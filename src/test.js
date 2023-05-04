@@ -1,3 +1,7 @@
-export function someFc() {
-	console.log('Hello world !');
+function someFc(str) {
+	console.log(str);
+}
+
+module.exports = {
+	someFc
 }
