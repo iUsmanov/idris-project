@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Counter } from './Counter';
+import { Counter } from './Counter/Counter';
 
 interface AppProps {
 	className?: string;
