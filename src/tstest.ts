@@ -1,9 +1,3 @@
-// function someTsFc(str: string) {
-// 	console.log(str);
-// }
-
-
-
-// module.exports = {
-// 	someTsFc
-// }
+export  function someTsFc(str: string) {
+	console.log(str);
+}

@@ -1,25 +1,27 @@
-const path = require('path');
-const webpack = require('webpack')
+import path from 'path'
+import webpack from 'webpack'
+import {webpackConfiguration} from './config/webpack/buildWebpackConfig';
+import { BuildEnv, BuildOptions, buildPaths } from './config/webpack/types/config';
 
-module.exports = {
-  entry: path.resolve(__dirname , 'src', 'index.ts'),
-  mode: 'production',
-  devtool: 'inline-source-map',
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
-      },
-    ],
-  },
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
-  },
-  output: {
-    filename: '[name].[contenthash].js',
-    path: path.resolve(__dirname, 'build'),
-	 clean: true
-  },
-};
+
+export default (env: BuildEnv): webpack.Configuration => {
+	
+	const port = env.port || 3000
+	const mode = env.mode || 'development'
+	const isDev = mode === 'development'
+
+	const paths: buildPaths = {
+		entry: path.resolve(__dirname , 'src', 'index.ts'),
+		build: path.resolve(__dirname, 'build'),
+		html: path.resolve(__dirname , 'public', 'index.html'),
+	}
+
+	const buildOptions: BuildOptions = {
+		buildPaths: paths,
+		mode,
+		isDev,
+		port
+	}
+
+	return webpackConfiguration(buildOptions);
+}
