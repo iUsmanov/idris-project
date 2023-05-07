@@ -10,7 +10,13 @@ export const App: FC<AppProps> = (props) => {
 
 	return (
 		<div className='app'>
-			<Counter />
+			<Counter
+				className='class'
+				prop1='fdsfggf'
+				prop2='fdsfdsfsdfdsfdsdfssdffsdfd'
+				prop3='fefwfewfwf'
+				prop4='gregregreg'
+			/>
 		</div>
- );
-}
+	);
+};
