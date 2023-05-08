@@ -1,7 +1,7 @@
 import { FC, ReactNode, useMemo, useState } from 'react';
-import { ThemeContext, ThemeContextProps } from '../../../../shared/lib/context/ThemeContext';
-import { Theme } from '../../../../shared/types/theme';
-import { defaultTheme } from '../../../../shared/const/theme';
+import { Theme } from '@/shared/types/theme';
+import { defaultTheme } from '@/shared/const/theme';
+import { ThemeContext } from '@/shared/lib/context/ThemeContext';
 
 interface ThemeProviderProps {
 	initialTheme?: Theme;

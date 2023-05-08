@@ -19,7 +19,7 @@ export function webpackConfiguration(options: BuildOptions): webpack.Configurati
 		module: {
 			rules: buildLoaders(options),
 		},
-		resolve: buildResolvers(),
+		resolve: buildResolvers(options),
 		plugins: buildPlugins(options),
 	};
 }

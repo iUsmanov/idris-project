@@ -1,8 +1,8 @@
 import { FC } from 'react';
-import { Counter } from './Counter/Counter';
+import { Counter } from '../Counter/Counter';
 import { Link } from 'react-router-dom';
-import { AppRouter } from './app/providers/router/components/AppRouter';
-import { useTheme } from './shared/lib/hooks/useTheme/useTheme';
+import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
+import { AppRouter } from './providers/router';
 interface AppProps {}
 
 export const App: FC<AppProps> = (props) => {

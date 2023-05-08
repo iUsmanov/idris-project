@@ -1,9 +1,9 @@
-import { AppRouteObject, AppRoutes } from '../../../../shared/types/router';
-import { MainPage } from '../../../../pages/MainPage';
-import { AboutPage } from '../../../../pages/AboutPage';
+import { AppRouteObject, AppRoutes } from '@/shared/types/router';
+import { MainPage } from '@/pages/MainPage';
+import { AboutPage } from '@/pages/AboutPage';
 import { createBrowserRouter } from 'react-router-dom';
-import { getRouteAbout, getRouteMain, getRouteProfile } from '../../../../shared/const/router';
-import { RootLayout } from '../../../../RootLayout';
+import { getRouteAbout, getRouteMain, getRouteProfile } from '@/shared/const/router';
+import { RootLayout } from '../../../RootLayout';
 
 export const routeConfig: Record<AppRoutes, AppRouteObject> = {
 	main: {
