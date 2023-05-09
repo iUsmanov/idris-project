@@ -3,7 +3,7 @@ import { MainPage } from '@/pages/MainPage';
 import { AboutPage } from '@/pages/AboutPage';
 import { createBrowserRouter } from 'react-router-dom';
 import { getRouteAbout, getRouteMain, getRouteProfile } from '@/shared/const/router';
-import { RootLayout } from '../../../RootLayout';
+import { RootLayout } from '@/app/RootLayout';
 
 export const routeConfig: Record<AppRoutes, AppRouteObject> = {
 	main: {
@@ -28,7 +28,6 @@ const routes = Object.values(routeConfig);
 
 export const router = createBrowserRouter([
 	{
-		path: '/',
 		element: <RootLayout />,
 		children: routes,
 	},

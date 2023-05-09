@@ -10,8 +10,5 @@ export function buildResolvers(options: BuildOptions): webpack.ResolveOptions {
 		alias: {
 			'@': options.buildPaths.src,
 		},
-		// alias: {
-		// src: options.buildPaths.src,
-		// },
 	};
 }

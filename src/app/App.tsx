@@ -3,6 +3,7 @@ import { Counter } from '../Counter/Counter';
 import { Link } from 'react-router-dom';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 import { AppRouter } from './providers/router';
+import { Navbar } from '@/widgets/Navbar';
 interface AppProps {}
 
 export const App: FC<AppProps> = (props) => {
@@ -10,10 +11,9 @@ export const App: FC<AppProps> = (props) => {
 
 	return (
 		<div className={'app'}>
-			<button onClick={changeTheme}>ChanheTheme</button>
+			<Navbar />
+			<button onClick={changeTheme}>ChangeTheme</button>
 			<Counter />
-			<Link to={'/'}>MainPage</Link>
-			<Link to={'/about'}>AboutPage</Link>
 			<AppRouter />
 		</div>
 	);
