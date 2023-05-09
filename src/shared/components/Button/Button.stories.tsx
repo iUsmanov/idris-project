@@ -1,15 +1,15 @@
 // import { ComponentStory, ComponentMeta } from '@storybook/react';
-// import { AppLink } from './AppLink';
+// import { Button } from './Button';
 
 // export default {
-// 	title: 'shared/AppLink',
-// 	component: AppLink,
+// 	title: 'shared/Button',
+// 	component: Button,
 // 	argTypes: {
 // 		backgroundColor: { control: 'color' },
 // 	},
-// } as ComponentMeta<typeof AppLink>;
+// } as ComponentMeta<typeof Button>;
 
-// const Template: ComponentStory<typeof AppLink> = (args) => <AppLink {...args} />;
+// const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
 // export const Normal = Template.bind({});
 // Normal.args = {};

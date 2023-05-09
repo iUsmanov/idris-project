@@ -9,6 +9,18 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
 		exclude: /node_modules/,
 	};
 
+	const svgrLoader = {
+		test: /\.svg$/,
+		use: ['@svgr/webpack'],
+		exclude: /node_modules/,
+	};
+
+	const assetsLoader = {
+		test: /\.(png|jpg|gif|woff|woff2)$/i,
+		// dependency: { not: ['url'] },
+		type: 'asset/resource',
+	};
+
 	const scssLoader = {
 		test: /\.s[ac]ss$/i,
 		use: [
@@ -18,7 +30,9 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
 				options: {
 					modules: {
 						auto: (resourcePath: string) => resourcePath.endsWith('.module.scss'),
-						localIdentName: options.isDev ? '[path][name]__[local]--[hash:base64:5]' : '[hash:base64:8]',
+						localIdentName: options.isDev
+							? '[path][name]__[local]--[hash:base64:5]'
+							: '[hash:base64:8]',
 					},
 				},
 			},
@@ -26,5 +40,5 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
 		],
 	};
 
-	return [typescriptLoader, scssLoader];
+	return [typescriptLoader, scssLoader, svgrLoader, assetsLoader];
 }
