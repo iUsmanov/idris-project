@@ -6,7 +6,9 @@ interface AppRouterProps {}
 export const AppRouter: FC<AppRouterProps> = (props) => {
 	return (
 		<Suspense fallback={<h1>Loadinggggg</h1>}>
-			<Outlet />
+			<div className='outlet-wrapper'>
+				<Outlet />
+			</div>
 		</Suspense>
 	);
 };
