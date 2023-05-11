@@ -9,6 +9,9 @@ export function buildPlugins(options: BuildOptions): webpack.WebpackPluginInstan
 			template: options.buildPaths.html,
 		}),
 		new webpack.ProgressPlugin(),
+		new webpack.DefinePlugin({
+			__IS_DEV__: JSON.stringify(options.isDev),
+		}),
 	];
 
 	if (!options.isDev) {

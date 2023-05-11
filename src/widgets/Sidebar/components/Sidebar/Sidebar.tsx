@@ -4,6 +4,7 @@ import cls from './Sidebar.module.scss';
 import { Button } from '@/shared/components/Button/Button';
 import { ThemeSwitcher } from '@/features/ThemeSwitcher';
 import { HStack } from '@/shared/components/Stack';
+import { LangSwitcher } from '@/features/LangSwitcher';
 
 interface SidebarProps {
 	className?: string;
@@ -17,8 +18,9 @@ export const Sidebar = memo((props: SidebarProps) => {
 	return (
 		<div className={classNames(cls.sidebar, { [cls.collapsed]: collapsed }, [className])}>
 			<Button onClick={() => setCollapsed((prev) => !prev)}>TOGGLE</Button>
-			<HStack justify='center' max className={cls.switchers}>
+			<HStack justify='center' align='center' max className={cls.switchers}>
 				<ThemeSwitcher />
+				<LangSwitcher className={cls.langSwitcher} />
 			</HStack>
 		</div>
 	);
