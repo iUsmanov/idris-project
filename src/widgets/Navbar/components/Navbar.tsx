@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Navbar.module.scss';
 import { AppLink } from '@/shared/components/AppLink/AppLink';
-import { ThemeSwitcher } from '@/features/ThemeSwitcher';
+import { HStack } from '@/shared/components/Stack';
 
 interface NavbarProps {
 	className?: string;
@@ -13,10 +13,10 @@ export const Navbar: FC<NavbarProps> = (props) => {
 
 	return (
 		<div className={classNames(cls.navbar, {}, [className])}>
-			<div className={cls.links}>
+			<HStack gap='16' className={cls.links}>
 				<AppLink to={'/'}>MainPage</AppLink>
 				<AppLink to={'/about'}>AboutPage</AppLink>
-			</div>
+			</HStack>
 		</div>
 	);
 };
