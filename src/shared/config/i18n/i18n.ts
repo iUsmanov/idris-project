@@ -21,6 +21,7 @@ i18n
 	// for all options read: https://www.i18next.com/overview/configuration-options
 	.init({
 		fallbackLng: false,
+		// fallbackLng: localStorage.getItem(LOCAL_STORAGE_LANGUAGE_KEY),
 		// fallbackLng: 'ru',
 		// lng: 'ru',
 		debug: __IS_DEV__,
