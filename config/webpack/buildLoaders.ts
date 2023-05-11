@@ -17,8 +17,19 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
 
 	const assetsLoader = {
 		test: /\.(png|jpg|gif|woff|woff2)$/i,
-		// dependency: { not: ['url'] },
 		type: 'asset/resource',
+		// dependency: { not: ['url'] },
+	};
+
+	const babelLoader = {
+		test: /\.(js|jsx|tsx)$/,
+		exclude: /node_modules/,
+		use: {
+			loader: 'babel-loader',
+			options: {
+				presets: ['@babel/preset-env'],
+			},
+		},
 	};
 
 	const scssLoader = {
