@@ -21,9 +21,9 @@ export const ThemeSwitcher = memo((props: ThemeSwitcherProps) => {
 			className={classNames(cls.themeSwitcher, {}, [className])}
 			onClick={changeTheme}
 		>
-			{theme === 'app_light_theme' && <LightIcon />}
-			{theme === 'app_dark_theme' && <OrangeIcon className={cls.icon} />}
-			{theme === 'app_orange_theme' && <DarkIcon />}
+			{theme === 'app-light-theme' && <LightIcon />}
+			{theme === 'app-dark-theme' && <OrangeIcon className={cls.icon} />}
+			{theme === 'app-orange-theme' && <DarkIcon />}
 		</Button>
 	);
 });

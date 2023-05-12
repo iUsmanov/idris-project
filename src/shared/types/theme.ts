@@ -1,1 +1,1 @@
-export type Theme = 'app_light_theme' | 'app_dark_theme' | 'app_orange_theme';
+export type Theme = 'app-light-theme' | 'app-dark-theme' | 'app-orange-theme';

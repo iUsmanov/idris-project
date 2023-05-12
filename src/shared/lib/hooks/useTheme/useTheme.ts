@@ -19,23 +19,23 @@ export function useTheme(): UseThemeResult {
 	const changeTheme = () => {
 		let newTheme;
 		switch (theme) {
-			case 'app_light_theme':
+			case 'app-light-theme':
 				document.body.classList.remove(theme);
-				newTheme = 'app_dark_theme' as Theme;
+				newTheme = 'app-dark-theme' as Theme;
 				document.body.classList.add(newTheme);
 				break;
-			case 'app_dark_theme':
+			case 'app-dark-theme':
 				document.body.classList.remove(theme);
-				newTheme = 'app_orange_theme' as Theme;
+				newTheme = 'app-orange-theme' as Theme;
 				document.body.classList.add(newTheme);
 				break;
-			case 'app_orange_theme':
+			case 'app-orange-theme':
 				document.body.classList.remove(theme);
-				newTheme = 'app_light_theme' as Theme;
+				newTheme = 'app-light-theme' as Theme;
 				document.body.classList.add(newTheme);
 				break;
 			default:
-				newTheme = 'app_dark_theme' as Theme;
+				newTheme = 'app-dark-theme' as Theme;
 		}
 		// ! should use optional chaining operator
 		setTheme?.(newTheme);
@@ -43,7 +43,7 @@ export function useTheme(): UseThemeResult {
 	};
 
 	return {
-		theme: theme || ('app_light_theme' as Theme),
+		theme: theme || ('app-light-theme' as Theme),
 		changeTheme,
 	};
 }
