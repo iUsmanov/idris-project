@@ -14,7 +14,11 @@ export const Button = memo((props: ButtonProps) => {
 	const { className, children, variant = 'primary', ...otherProps } = props;
 
 	return (
-		<button {...otherProps} className={classNames(cls.button, {}, [className, cls[variant]])}>
+		<button
+			{...otherProps}
+			type='button'
+			className={classNames(cls.button, {}, [className, cls[variant]])}
+		>
 			{children}
 		</button>
 	);
