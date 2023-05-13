@@ -4,6 +4,7 @@ import { AboutPage } from '@/pages/AboutPage';
 import { createBrowserRouter } from 'react-router-dom';
 import { getRouteAbout, getRouteMain, getRouteProfile } from '@/shared/const/router';
 import { RootLayout } from '@/app/RootLayout';
+import i18next from '@/shared/config/i18n/i18n';
 
 export const routeConfig: Record<AppRoutes, AppRouteObject> = {
 	main: {
@@ -16,11 +17,11 @@ export const routeConfig: Record<AppRoutes, AppRouteObject> = {
 	},
 	profile: {
 		path: getRouteProfile(':id'),
-		element: <div>Profile</div>,
+		element: <div>{i18next.t('Профиль')}</div>,
 	},
 	not_found: {
 		path: '*',
-		element: <div>Notfound</div>,
+		element: <div>{i18next.t('Страница не найдена')}</div>,
 	},
 };
 

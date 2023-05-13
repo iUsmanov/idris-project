@@ -21,8 +21,8 @@ export const Navbar: FC<NavbarProps> = (props) => {
 				<Counter className='ds' key={'dsa'} prop1='da' prop2='s' prop3='d' />
 			</div>
 			<HStack gap='16' className={cls.links}>
-				<AppLink to={'/'}>MainPage</AppLink>
-				<AppLink to={'/about'}>AboutPage</AppLink>
+				<AppLink to={'/'}>{t('Главная страница')}</AppLink>
+				<AppLink to={'/about'}>{t('О сайте')}</AppLink>
 			</HStack>
 		</div>
 	);

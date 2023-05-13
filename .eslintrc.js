@@ -18,7 +18,7 @@ module.exports = {
 		// По рекомендациям
 		project: './tsconfig.json',
 	},
-	plugins: ['react', '@typescript-eslint'],
+	plugins: ['react', '@typescript-eslint', 'i18next'],
 	rules: {
 		'react/display-name': 'off',
 		'@typescript-eslint/ban-ts-comment': 'off',
@@ -33,6 +33,7 @@ module.exports = {
 		'@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
 		// 'react/jsx-max-props-per-line': [2, { maximum: 3, when: 'always' }],
 		// 'react/jsx-first-prop-new-line': [2, 'multiline'],
+		'i18next/no-literal-string': 2,
 	},
 	globals: {
 		__IS_DEV__: true,
