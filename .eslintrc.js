@@ -10,7 +10,14 @@ module.exports = {
 		'plugin:react/jsx-runtime',
 		'prettier',
 	],
-	overrides: [],
+	overrides: [
+		{
+			files: ['**/*.test.ts', '**/*.test.js', '**/*.test.tsx', '**/*.test.jsx'],
+			env: {
+				jest: true,
+			},
+		},
+	],
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
 		ecmaVersion: 'latest',
