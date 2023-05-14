@@ -5,6 +5,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { getRouteAbout, getRouteMain, getRouteProfile } from '@/shared/const/router';
 import { RootLayout } from '@/app/RootLayout';
 import i18next from '@/shared/config/i18n/i18n';
+import { NotFoundPage } from '@/pages/NotFoundPage';
 
 export const routeConfig: Record<AppRoutes, AppRouteObject> = {
 	main: {
@@ -21,7 +22,7 @@ export const routeConfig: Record<AppRoutes, AppRouteObject> = {
 	},
 	not_found: {
 		path: '*',
-		element: <div>{i18next.t('Страница не найдена')}</div>,
+		element: <NotFoundPage />,
 	},
 };
 
