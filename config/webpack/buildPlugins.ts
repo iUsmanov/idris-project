@@ -14,10 +14,11 @@ export function buildPlugins(options: BuildOptions): webpack.WebpackPluginInstan
 		new webpack.DefinePlugin({
 			__IS_DEV__: JSON.stringify(options.isDev),
 		}),
-		// new BundleAnalyzerPlugin({
-		// 	openAnalyzer: true,
-		// }),
-	];
+		options.analyze &&
+			new BundleAnalyzerPlugin({
+				openAnalyzer: true,
+			}),
+	].filter(Boolean);
 
 	if (!options.isDev) {
 		plugins.push(
