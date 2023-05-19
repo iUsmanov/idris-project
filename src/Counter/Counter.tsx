@@ -19,7 +19,7 @@ export const Counter: FC<CounterProps> = (props) => {
 	return (
 		<div>
 			<h1 className={cls.title}>This is a counter</h1>
-			<h2>{count}</h2>
+			<h2 data-testid={'count'}>{count}</h2>
 			<button type='button' onClick={() => setCount((prev) => prev + 1)}>
 				incrementor
 			</button>

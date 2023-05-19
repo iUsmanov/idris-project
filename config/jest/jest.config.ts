@@ -3,6 +3,8 @@
  * https://jestjs.io/docs/configuration
  */
 
+import path from 'path';
+
 export default {
 	// Automatically clear mock calls, instances, contexts and results before every test
 	clearMocks: true,
@@ -38,12 +40,20 @@ export default {
 	moduleDirectories: ['node_modules', 'src'],
 
 	// A set of global variables that need to be available in all test environments
-	globals: {},
+	globals: {
+		__IS_DEV__: true,
+	},
 
 	// A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
 	moduleNameMapper: {
+		'\\.(css|scss)$': 'identity-obj-proxy',
+		'\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
 		'@/(.*)$': '<rootDir>/src/$1',
+		// Порядок имеет значение
 	},
+
+	// In jest.config.js add (if you haven't already)
+	setupFilesAfterEnv: ['<rootDir>config/jest/setupTests.ts'],
 
 	// All imported modules in your tests should be mocked automatically
 	// automock: false,

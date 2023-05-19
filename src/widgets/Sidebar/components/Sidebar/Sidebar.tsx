@@ -16,8 +16,13 @@ export const Sidebar = memo((props: SidebarProps) => {
 	const [collapsed, setCollapsed] = useState<boolean>(false);
 
 	return (
-		<div className={classNames(cls.sidebar, { [cls.collapsed]: collapsed }, [className])}>
-			<Button onClick={() => setCollapsed((prev) => !prev)}>TOGGLE</Button>
+		<div
+			data-testid={'sidebar'}
+			className={classNames(cls.sidebar, { [cls.collapsed]: collapsed }, [className])}
+		>
+			<Button data-testid={'collapseButton'} onClick={() => setCollapsed((prev) => !prev)}>
+				TOGGLE
+			</Button>
 			<HStack justify='center' align='center' max className={cls.switchers}>
 				<ThemeSwitcher />
 				<LangSwitcher className={cls.langSwitcher} />

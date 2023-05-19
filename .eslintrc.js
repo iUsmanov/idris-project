@@ -17,13 +17,20 @@ module.exports = {
 				jest: true,
 			},
 		},
+		{
+			files: ['**/src/**/*.test.{ts,tsx}'],
+			rules: {
+				'i18next/no-literal-string': 0,
+			},
+		},
 	],
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
 		ecmaVersion: 'latest',
 		sourceType: 'module',
-		// По рекомендациям
-		project: './tsconfig.json',
+		// По рекомендациям. Всё же отключил, так как возникли проблемы
+		// project: './tsconfig.json',
+		// tsconfigRootDir: __dirname,
 	},
 	plugins: ['react', '@typescript-eslint', 'i18next'],
 	rules: {
@@ -40,7 +47,7 @@ module.exports = {
 		'@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
 		// 'react/jsx-max-props-per-line': [2, { maximum: 3, when: 'always' }],
 		// 'react/jsx-first-prop-new-line': [2, 'multiline'],
-		'i18next/no-literal-string': 2,
+		'i18next/no-literal-string': [2, { onlyAttribute: ['data-testid', 'to'] }],
 	},
 	globals: {
 		__IS_DEV__: true,
