@@ -1,13 +1,50 @@
-name: learn-github-actions
+name: Linting, Testing, Building
 run-name: ${{ github.actor }} is learning GitHub Actions
-on: [push]
+# Shoul to "on"
+# push:
+#    branches: [main]
+# pull_request:
+#    branches: [main]
+on: [push, pull_request]
 jobs:
-   check-bats-version:
+   pipeline:
       runs-on: windows-latest
+      strategy:
+         matrix:
+            node-version: [18.06.0]
+
       steps:
-         - uses: actions/checkout@v3
-         - uses: actions/setup-node@v3
+         - uses: actions/checkout@v2
+           name: Setup Node.js environment
+         - uses: actions/setup-node@v1.4.3
            with:
-              node-version: '14'
-         - run: npm install -g bats
-         - run: bats -v
+              node-version: ${{ matrix.node-version }}
+
+         - name: Install dependencies
+           run: npm i
+
+         - name: Build project
+           run: npm run build:prod
+
+         - name: Prettier check
+           run: npm run pret
+
+         - name: Lint eslint
+           run: npm run lint:ts
+
+         - name: Lint stylelint
+           run: npm run lint:style
+
+         - name: Unit test
+           run: npm run test:unit
+
+         - name: Build storybook
+           run: npm run storybook:build
+
+         - name: UI test
+           run: npm run test:ui:ci
+
+         - name: Create ui-report
+           run: npm run test:ui:report
+         #   name: Install dependencies
+         #   run: npm run
