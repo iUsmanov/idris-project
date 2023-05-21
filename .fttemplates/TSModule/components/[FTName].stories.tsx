@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import { [FTName] } from './[FTName]';
 
 export default {
@@ -7,9 +7,9 @@ export default {
    argTypes: {
       backgroundColor: { control: 'color' },
    },
-} as ComponentMeta<typeof [FTName]>;
+} as StoryObj<typeof [FTName]>;
 
-const Template: ComponentStory<typeof [FTName]> = (args) => <[FTName] {...args} />;
+const Template: Meta<typeof [FTName]> = (args) => <[FTName] {...args} />;
 
 export const Normal = Template.bind({});
 Normal.args = {

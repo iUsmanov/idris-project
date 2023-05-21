@@ -8,7 +8,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	variant?: ButtonVariant;
 }
 
-export type ButtonVariant = 'primary' | 'secondary' | 'clear';
+export type ButtonVariant = 'primary' | 'outline' | 'clear';
 
 export const Button = memo((props: ButtonProps) => {
 	const { className, children, variant = 'primary', ...otherProps } = props;

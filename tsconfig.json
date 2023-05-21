@@ -20,15 +20,15 @@
 		"compilerOptions": {
 			"module": "CommonJS"
 		}
-	},
-	"include": [
-		"./config/jest/jest.config.ts",
-		"./config/jest/setupTests.ts",
-		"./src/**/*.ts",
-		"./src/**/*.tsx"
-		// Пришлось добавить из-за `project: './tsconfig.json'` в eslint.rc
-		// "./config/jest/jestEmptyComponent.tsx" -- убрал уже
-		// "./config/jest/jestEmptyComponent.tsx",
-		// "./config/webpack/buildLoaders.ts"
-	]
+	}
+	// "include": [
+	// 	"./config/jest/jest.config.ts",
+	// 	"./config/jest/setupTests.ts",
+	// 	"./src/**/*.ts",
+	// 	"./src/**/*.tsx"
+	// Пришлось добавить из-за `project: './tsconfig.json'` в eslint.rc
+	// "./config/jest/jestEmptyComponent.tsx" -- убрал уже
+	// "./config/jest/jestEmptyComponent.tsx",
+	// "./config/webpack/buildLoaders.ts"
+	// ]
 }
