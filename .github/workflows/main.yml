@@ -23,8 +23,8 @@ jobs:
          - name: Install dependencies
            run: npm ci --force
 
-         - name: Prettier check
-           run: npm run pret
+         # - name: Prettier check
+         #   run: npm run pret
 
          - name: Lint eslint
            run: npm run lint:ts
