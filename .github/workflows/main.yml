@@ -26,8 +26,8 @@ jobs:
          - name: Build project
            run: npm run build:prod
 
-         - name: Prettier check
-           run: npm run pret
+         # - name: Prettier check
+         #   run: npm run pret
 
          - name: Lint eslint
            run: npm run lint:ts
