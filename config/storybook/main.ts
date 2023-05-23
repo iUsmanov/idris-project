@@ -16,8 +16,6 @@ const config: StorybookConfig = {
 		autodocs: 'tag',
 	},
 	webpackFinal: async (config, { configType }) => {
-		// Make whatever fine-grained changes you need
-		// Return the altered config
 		if (config.resolve) {
 			config.resolve.modules = [
 				...(config.resolve.modules || []),
@@ -25,8 +23,6 @@ const config: StorybookConfig = {
 			];
 			config.resolve.alias = {
 				...config.resolve.alias,
-				// '@/': path.resolve(__dirname, '../src'),
-				// '@/*': path.resolve(__dirname, '../src/*'),
 				'@': path.resolve(__dirname, '..', '..', 'src'),
 			};
 		}
