@@ -8,7 +8,7 @@ run-name: ${{ github.actor }} is learning GitHub Actions
 on: [push, pull_request]
 jobs:
    pipeline:
-      runs-on: windows-2019
+      runs-on: ubuntu-latest
       strategy:
          matrix:
             node-version: [17.x]
