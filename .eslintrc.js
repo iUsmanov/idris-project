@@ -59,6 +59,8 @@ module.exports = {
 				onlyAttribute: ['data-testid', 'to'],
 			},
 		],
+		'react-hooks/rules-of-hooks': 'error',
+		'react-hooks/exhaustive-deps': 'error',
 	},
 	globals: {
 		__IS_DEV__: true,
