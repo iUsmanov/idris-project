@@ -5,10 +5,11 @@ import { Button } from '@/shared/components/Button/Button';
 
 interface LangSwitcherProps {
 	className?: string;
+	short?: boolean;
 }
 
 export const LangSwitcher = memo((props: LangSwitcherProps) => {
-	const { className } = props;
+	const { className, short } = props;
 	const { t, i18n } = useTranslation();
 
 	const langToggle = () => {
@@ -17,7 +18,7 @@ export const LangSwitcher = memo((props: LangSwitcherProps) => {
 
 	return (
 		<Button className={classNames('', {}, [className])} variant='clear' onClick={langToggle}>
-			{t('Язык')}
+			{short ? t('Короткий язык') : t('Язык')}
 		</Button>
 	);
 });

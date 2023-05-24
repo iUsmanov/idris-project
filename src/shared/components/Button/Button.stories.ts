@@ -65,23 +65,116 @@ export const OutlineOrange: Story = {
 
 // CLEAR
 
-export const ClearLight: Story = {
+export const ClearLightSizeM: Story = {
 	args: {
 		variant: 'clear',
+		size: 'size_m',
 	},
 	decorators: [],
 };
 
-export const ClearDark: Story = {
+export const ClearDarkSizeL: Story = {
 	args: {
 		variant: 'clear',
+		size: 'size_l',
 	},
 	decorators: [ThemeDecorator('app-dark-theme')],
 };
 
-export const ClearOrange: Story = {
+export const ClearOrangeSizeXL: Story = {
 	args: {
 		variant: 'clear',
+		size: 'size_xl',
+	},
+	decorators: [ThemeDecorator('app-orange-theme')],
+};
+
+// CLEAR_INVERTED
+
+export const ClearinvertedLightSizeM: Story = {
+	args: {
+		variant: 'clearInverted',
+		size: 'size_m',
+	},
+	decorators: [],
+};
+
+export const ClearinvertedDarkSizeL: Story = {
+	args: {
+		variant: 'clearInverted',
+		size: 'size_l',
+	},
+	decorators: [ThemeDecorator('app-dark-theme')],
+};
+
+export const ClearinvertedOrangeSizeXL: Story = {
+	args: {
+		variant: 'clearInverted',
+		size: 'size_xl',
+	},
+	decorators: [ThemeDecorator('app-orange-theme')],
+};
+
+// BACKGROUND
+
+export const BackgroundLight: Story = {
+	args: {
+		variant: 'background',
+		square: true,
+		size: 'size_m',
+		children: '>',
+	},
+	decorators: [],
+};
+
+export const BackgroundDark: Story = {
+	args: {
+		variant: 'background',
+		square: true,
+		size: 'size_l',
+		children: '>',
+	},
+	decorators: [ThemeDecorator('app-dark-theme')],
+};
+
+export const BackgroundOrange: Story = {
+	args: {
+		variant: 'background',
+		square: true,
+		size: 'size_xl',
+		children: '>',
+	},
+	decorators: [ThemeDecorator('app-orange-theme')],
+};
+
+// BACKGROUND_INVERTED
+
+export const BackgroundinvertedLight: Story = {
+	args: {
+		variant: 'backgroundInverted',
+		square: true,
+		size: 'size_m',
+		children: '>',
+	},
+	decorators: [],
+};
+
+export const BackgroundinvertedDark: Story = {
+	args: {
+		variant: 'backgroundInverted',
+		square: true,
+		size: 'size_l',
+		children: '>',
+	},
+	decorators: [ThemeDecorator('app-dark-theme')],
+};
+
+export const BackgroundinvertedOrange: Story = {
+	args: {
+		variant: 'backgroundInverted',
+		square: true,
+		size: 'size_xl',
+		children: '>',
 	},
 	decorators: [ThemeDecorator('app-orange-theme')],
 };
