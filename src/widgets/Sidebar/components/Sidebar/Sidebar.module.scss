@@ -4,6 +4,7 @@
 	height: calc(100vh - var(--navbar-height));
 	transition: width .3s;
 	position: relative;
+	color: var(--inverted-primary-color);
 }
 
 .switchers {
@@ -32,7 +33,7 @@
 }
 
 .icon {
-	fill: var(--primary-color);
+	fill: var(--inverted-primary-color);
 }
 
 .link {

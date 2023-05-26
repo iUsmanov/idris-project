@@ -40,7 +40,7 @@ export interface FlexProps extends DivProps {
 	className?: string;
 	justify?: FlexJustify;
 	align?: FlexAlign;
-	direction: FlexDirection;
+	direction?: FlexDirection;
 	gap?: FlexGap;
 	max?: boolean;
 	children: ReactNode;

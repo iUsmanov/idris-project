@@ -10,7 +10,6 @@ module.exports = {
 		'plugin:react/jsx-runtime',
 		'prettier',
 		'plugin:storybook/recommended',
-		'plugin:react-hooks/recommended',
 	],
 	overrides: [
 		{
@@ -20,7 +19,7 @@ module.exports = {
 			},
 		},
 		{
-			files: ['**/src/**/*.test.{ts,tsx}'],
+			files: ['**/src/**/*.{test,stories}.{ts,tsx}'],
 			rules: {
 				'i18next/no-literal-string': 0,
 			},
@@ -34,7 +33,7 @@ module.exports = {
 		// project: './tsconfig.json',
 		// tsconfigRootDir: __dirname,
 	},
-	plugins: ['react', '@typescript-eslint', 'i18next'],
+	plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks'],
 	rules: {
 		'react/display-name': 'off',
 		'@typescript-eslint/ban-ts-comment': 'off',

@@ -26,13 +26,13 @@ export const Sidebar = memo((props: SidebarProps) => {
 			className={classNames(cls.sidebar, { [cls.collapsed]: collapsed }, [className])}
 		>
 			<VStack gap='16' className={cls.items}>
-				<AppLink className={cls.item} to={getRouteMain()}>
+				<AppLink variant='inverted' className={cls.item} to={getRouteMain()}>
 					<HStack align='center'>
 						<MainIcon className={cls.icon} />
 						<span className={cls.link}>{t('Главная')}</span>
 					</HStack>
 				</AppLink>
-				<AppLink className={cls.item} to={getRouteAbout()}>
+				<AppLink variant='inverted' className={cls.item} to={getRouteAbout()}>
 					<HStack align='center'>
 						<AboutIcon className={cls.icon} />
 						<span className={cls.link}>{t('О сайте')}</span>

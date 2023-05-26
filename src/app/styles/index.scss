@@ -4,7 +4,7 @@
 @import "themes/dark";
 @import "themes/orange";
 
-.app {
+body,.app {
 	font: var(--font-m);
 	color: var(--primary-color);
 	background: var(--bg-color);
