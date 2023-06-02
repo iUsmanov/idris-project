@@ -1,5 +1,4 @@
-import { ReactNode, memo, useCallback, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Dispatch, ReactNode, SetStateAction, memo, useCallback, useEffect, useRef } from 'react';
 import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Modal.module.scss';
 import { Flex } from '../Stack';
@@ -11,24 +10,33 @@ interface ModalProps {
 	isOpen?: boolean;
 	onToggle?: VoidFunction;
 	container?: HTMLElement;
+	keepMounted?: boolean;
+	setKeepMounted?: Dispatch<SetStateAction<boolean>>;
 }
 
 export const Modal = memo((props: ModalProps) => {
-	const { className, children, isOpen, onToggle, container } = props;
-	const { t } = useTranslation();
+	const { className, children, isOpen, onToggle, container, keepMounted, setKeepMounted } = props;
+	const timerRef = useRef(null);
 
 	const onContentClick = useCallback((event: React.MouseEvent) => {
 		event.stopPropagation();
 	}, []);
 
-	// Может не нужно
 	const closeHandler = useCallback(() => {
+		if (!keepMounted) return;
+		setKeepMounted(true);
 		onToggle?.();
-	}, [onToggle]);
 
-	const mods: Mods = {
-		[cls.opened]: isOpen,
-	};
+		timerRef.current = setTimeout(() => {
+			setKeepMounted(false);
+		}, 300);
+	}, [keepMounted, onToggle, setKeepMounted]);
+
+	useEffect(() => {
+		return () => {
+			clearTimeout(timerRef.current);
+		};
+	}, []);
 
 	useEffect(() => {
 		const onEscapeClose = (event: KeyboardEvent) => {
@@ -47,8 +55,12 @@ export const Modal = memo((props: ModalProps) => {
 		};
 	}, [closeHandler, isOpen]);
 
+	const mods: Mods = {
+		[cls.opened]: isOpen,
+	};
+
 	return (
-		<Portal container={container}>
+		<Portal container={container} keepMounted={keepMounted}>
 			<div className={classNames(cls.modal, mods, [className])}>
 				<Flex justify='center' align='center' className={cls.overlay} onClick={closeHandler}>
 					<div onClick={onContentClick} className={cls.content}>

@@ -12,11 +12,5 @@ export const MainPage: FC<MainPageProps> = (props) => {
 		setValue(value);
 	};
 
-	return (
-		<div>
-			{t('Главная страница')}
-			<Input placeholder='Введите текст' value={value} onChange={onChange} autoFocus />
-			<Input placeholder='Введите текст' value={value} onChange={onChange} />
-		</div>
-	);
+	return <div>{t('Главная страница')}</div>;
 };

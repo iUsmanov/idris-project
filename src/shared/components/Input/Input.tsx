@@ -1,4 +1,12 @@
-import { ChangeEvent, InputHTMLAttributes, SyntheticEvent, memo, useEffect, useState } from 'react';
+import {
+	ChangeEvent,
+	InputHTMLAttributes,
+	SyntheticEvent,
+	memo,
+	useEffect,
+	useRef,
+	useState,
+} from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Input.module.scss';
 import { HStack } from '../Stack';
@@ -18,6 +26,7 @@ export const Input = memo((props: InputProps) => {
 	const { className, placeholder, type = 'text', value, onChange, autoFocus, ...otherProps } = props;
 	const [isFocused, setIsFocused] = useState<boolean>(false);
 	const [caretPosition, setCaretPosition] = useState<number>(0);
+	const ref = useRef<HTMLInputElement>(null);
 
 	const onFocus = () => {
 		setIsFocused(true);
@@ -32,18 +41,17 @@ export const Input = memo((props: InputProps) => {
 	};
 
 	const onSelect = (event: SyntheticEvent<HTMLInputElement, Event>) => {
-		// if (event.target instanceof HTMLInputElement) {
 		setCaretPosition(event.currentTarget.selectionStart || 0);
-		// }
 	};
 
-	// useEffect(() => {
-	// 	if (autoFocus) {
-	// 		onFocus();
-	// 	} else {
-	// 		onBlur();
-	// 	}
-	// }, [autoFocus]);
+	useEffect(() => {
+		if (autoFocus) {
+			onFocus();
+			setTimeout(() => {
+				ref.current.focus();
+			}, 30);
+		}
+	}, [autoFocus]);
 
 	return (
 		<HStack className={classNames(cls.componentWrapper, {}, [className])}>
@@ -51,6 +59,7 @@ export const Input = memo((props: InputProps) => {
 			<div className={cls.caretAndInputWrapper}>
 				<input
 					{...otherProps}
+					ref={ref}
 					type={type}
 					className={cls.input}
 					value={value}

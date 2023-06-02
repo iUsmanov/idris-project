@@ -8,18 +8,14 @@ interface PortalProps {
 }
 
 export const Portal = memo((props: PortalProps) => {
-	const { children, container = null } = props;
-
-	// Неплохо было бы удалить модалку из dom, после его закрытия
-	// if (!keepMounted) {
-	// 	if (children instanceof HTMLElement) {
-	// 		console.log('children instanceof HTMLElement');
-	// 		document.body.removeChild(children);
-	// 	}
-	// }
+	const { children, container = null, keepMounted = false } = props;
 
 	if (!container) {
 		return <>{children}</>;
+	}
+
+	if (!keepMounted) {
+		return null;
 	}
 
 	return createPortal(children, container);
