@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction, memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './LoginModal.module.scss';
 import { Modal } from '@/shared/components/Modal/Modal';
 import { LoginForm } from '../LoginForm/LoginForm';
 
@@ -22,7 +21,7 @@ export const LoginModal = memo((props: LoginModalProps) => {
 			onToggle={onToggle}
 			keepMounted={keepMounted}
 			setKeepMounted={setKeepMounted}
-			className={classNames(cls.loginModal, {}, [className])}
+			className={classNames('', {}, [className])}
 		>
 			<LoginForm isOpen={isOpen} />
 		</Modal>

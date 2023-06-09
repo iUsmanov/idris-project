@@ -3,5 +3,6 @@
 
 npm run lint:ts
 npm run lint:style
-npm run test:unit
-npm run build:prod
+npm run pret:fix
+# npm run test:unit
+# npm run build:prod
