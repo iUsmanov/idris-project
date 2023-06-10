@@ -10,6 +10,7 @@ interface PortalProps {
 export const Portal = memo((props: PortalProps) => {
 	const { children, container = null, keepMounted = false } = props;
 
+	// Для сторибука
 	if (!container) {
 		return <>{children}</>;
 	}

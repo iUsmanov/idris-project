@@ -24,7 +24,6 @@ export const Modal = memo((props: ModalProps) => {
 
 	const closeHandler = useCallback(() => {
 		if (!keepMounted) return;
-		setKeepMounted(true);
 		onToggle?.();
 
 		timerRef.current = setTimeout(() => {

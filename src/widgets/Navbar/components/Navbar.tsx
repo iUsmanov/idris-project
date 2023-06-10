@@ -13,7 +13,7 @@ export const Navbar: FC<NavbarProps> = (props) => {
 	const { className } = props;
 	const { t } = useTranslation();
 	const {
-		state: isAuthModalVisible,
+		visible: isAuthModalVisible,
 		onModalToggle,
 		keepMounted,
 		mountAndOpen,

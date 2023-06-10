@@ -48,7 +48,7 @@ export const Input = memo((props: InputProps) => {
 		if (autoFocus) {
 			onFocus();
 			setTimeout(() => {
-				ref.current.focus();
+				ref.current?.focus();
 			}, 30);
 		}
 	}, [autoFocus]);

@@ -6,15 +6,15 @@ interface UseModalReturn {
 	onModalToggle: VoidFunction;
 	onMountToggle: VoidFunction;
 	mountAndOpen: VoidFunction;
-	state: boolean;
+	visible: boolean;
 	keepMounted: boolean;
-	setState: Dispatch<SetStateAction<boolean>>;
+	setVisible: Dispatch<SetStateAction<boolean>>;
 	setKeepMounted: Dispatch<SetStateAction<boolean>>;
 }
 
 export const useModal = (): UseModalReturn => {
 	// const {} = props;
-	const [state, setState] = useState<boolean>(false);
+	const [visible, setVisible] = useState<boolean>(false);
 	const [keepMounted, setKeepMounted] = useState<boolean>(false);
 	const timerRef = useRef(null);
 
@@ -23,14 +23,14 @@ export const useModal = (): UseModalReturn => {
 	}, []);
 
 	const onModalToggle = useCallback(() => {
-		setState((prev) => !prev);
+		setVisible((prev) => !prev);
 	}, []);
 
 	const mountAndOpen = useCallback(() => {
 		setKeepMounted(true);
 		timerRef.current = setTimeout(() => {
 			onModalToggle();
-		}, 300);
+		}, 0);
 	}, [onModalToggle]);
 
 	useEffect(() => {
@@ -39,5 +39,13 @@ export const useModal = (): UseModalReturn => {
 		};
 	}, []);
 
-	return { state, setState, onModalToggle, mountAndOpen, onMountToggle, keepMounted, setKeepMounted };
+	return {
+		visible,
+		setVisible,
+		onModalToggle,
+		mountAndOpen,
+		onMountToggle,
+		keepMounted,
+		setKeepMounted,
+	};
 };
