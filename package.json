@@ -120,6 +120,7 @@
 		}
 	},
 	"lint-staged": {
+		"**/*.{ts,tsx,js,json}": "prettier --write ",
 		"**/*.{ts,tsx}": "eslint",
 		"**/*.{css,scss}": "stylelint"
 	}
