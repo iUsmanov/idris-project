@@ -13,23 +13,23 @@ export const Navbar: FC<NavbarProps> = (props) => {
 	const { className } = props;
 	const { t } = useTranslation();
 	const {
-		visible: isAuthModalVisible,
-		onModalToggle,
-		keepMounted,
-		mountAndOpen,
-		setKeepMounted,
+		isOpened: isAuthModalOpened,
+		isMounted: isAuthModalMounted,
+		onOpenToggle: onAuthModalOpenToggle,
+		onMountToggle: onAuthModalMountToggle,
+		onMountAndOpen: onAuthModalMountAndOpen,
 	} = useModal();
 
 	return (
 		<div className={classNames(cls.navbar, {}, [className])}>
 			<LoginModal
-				isOpen={isAuthModalVisible}
-				onToggle={onModalToggle}
-				keepMounted={keepMounted}
-				setKeepMounted={setKeepMounted}
+				isOpened={isAuthModalOpened}
+				isMounted={isAuthModalMounted}
+				onOpenToggle={onAuthModalOpenToggle}
+				onMountToggle={onAuthModalMountToggle}
 			/>
 			<div>{t('Articles App')}</div>
-			<Button variant='clearInverted' className={cls.login} onClick={mountAndOpen}>
+			<Button variant='clearInverted' className={cls.login} onClick={onAuthModalMountAndOpen}>
 				{t('Войти')}
 			</Button>
 		</div>

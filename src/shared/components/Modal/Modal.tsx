@@ -6,16 +6,24 @@ import { Portal } from '../Portal/Portal';
 
 interface ModalProps {
 	className?: string;
-	children: ReactNode;
-	isOpen?: boolean;
-	onToggle?: VoidFunction;
 	container?: HTMLElement;
-	keepMounted?: boolean;
-	setKeepMounted?: Dispatch<SetStateAction<boolean>>;
+	children: ReactNode;
+	isOpened?: boolean;
+	isMounted?: boolean;
+	onOpenToggle?: (bool: boolean) => void;
+	onMountToggle?: (bool: boolean) => void;
 }
 
 export const Modal = memo((props: ModalProps) => {
-	const { className, children, isOpen, onToggle, container, keepMounted, setKeepMounted } = props;
+	const {
+		className,
+		children,
+		container,
+		isOpened = false,
+		isMounted = false,
+		onOpenToggle,
+		onMountToggle,
+	} = props;
 	const timerRef = useRef(null);
 
 	const onContentClick = useCallback((event: React.MouseEvent) => {
@@ -23,13 +31,13 @@ export const Modal = memo((props: ModalProps) => {
 	}, []);
 
 	const closeHandler = useCallback(() => {
-		if (!keepMounted) return;
-		onToggle?.();
+		if (!isMounted) return;
+		onOpenToggle?.(false);
 
 		timerRef.current = setTimeout(() => {
-			setKeepMounted(false);
+			onMountToggle(false);
 		}, 300);
-	}, [keepMounted, onToggle, setKeepMounted]);
+	}, [isMounted, onMountToggle, onOpenToggle]);
 
 	useEffect(() => {
 		return () => {
@@ -45,21 +53,21 @@ export const Modal = memo((props: ModalProps) => {
 			}
 		};
 
-		if (isOpen) {
+		if (isOpened) {
 			document.addEventListener('keydown', onEscapeClose);
 		}
 
 		return () => {
 			document.removeEventListener('keydown', onEscapeClose);
 		};
-	}, [closeHandler, isOpen]);
+	}, [closeHandler, isOpened]);
 
 	const mods: Mods = {
-		[cls.opened]: isOpen,
+		[cls.opened]: isOpened,
 	};
 
 	return (
-		<Portal container={container} keepMounted={keepMounted}>
+		<Portal container={container} isMounted={isMounted}>
 			<div className={classNames(cls.modal, mods, [className])}>
 				<Flex justify='center' align='center' className={cls.overlay} onClick={closeHandler}>
 					<div onClick={onContentClick} className={cls.content}>

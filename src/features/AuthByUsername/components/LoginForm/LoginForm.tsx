@@ -7,11 +7,11 @@ import { Button } from '@/shared/components/Button/Button';
 
 interface LoginFormProps {
 	className?: string;
-	isOpen?: boolean;
+	isOpened?: boolean;
 }
 
 export const LoginForm = memo((props: LoginFormProps) => {
-	const { className, isOpen } = props;
+	const { className, isOpened } = props;
 	const { t } = useTranslation();
 	const [login, setLogin] = useState<string>('');
 	const [password, setPassword] = useState<string>('');
@@ -31,7 +31,7 @@ export const LoginForm = memo((props: LoginFormProps) => {
 				placeholder={t('Введите username')}
 				onChange={onChangeLogin}
 				value={login}
-				autoFocus={isOpen}
+				autoFocus={isOpened}
 			/>
 			<Input
 				className={cls.input}
@@ -39,7 +39,9 @@ export const LoginForm = memo((props: LoginFormProps) => {
 				onChange={onChangePassword}
 				value={password}
 			/>
-			<Button className={cls.loginBtn}>{t('Войти')}</Button>
+			<Button className={cls.loginBtn} variant='outline'>
+				{t('Войти')}
+			</Button>
 		</div>
 	);
 });

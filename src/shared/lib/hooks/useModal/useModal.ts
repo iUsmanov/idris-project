@@ -3,35 +3,34 @@ import { Dispatch, SetStateAction, useCallback, useEffect, useRef, useState } fr
 interface UseModalProps {}
 
 interface UseModalReturn {
-	onModalToggle: VoidFunction;
-	onMountToggle: VoidFunction;
-	mountAndOpen: VoidFunction;
-	visible: boolean;
-	keepMounted: boolean;
-	setVisible: Dispatch<SetStateAction<boolean>>;
-	setKeepMounted: Dispatch<SetStateAction<boolean>>;
+	isOpened: boolean;
+	isMounted: boolean;
+	onOpenToggle: (bool: boolean) => void;
+	onMountToggle: (bool: boolean) => void;
+	onMountAndOpen: VoidFunction;
 }
 
 export const useModal = (): UseModalReturn => {
 	// const {} = props;
-	const [visible, setVisible] = useState<boolean>(false);
-	const [keepMounted, setKeepMounted] = useState<boolean>(false);
+	const [isOpened, setOpened] = useState<boolean>(false);
+	const [isMounted, setIsMounted] = useState<boolean>(false);
 	const timerRef = useRef(null);
 
-	const onMountToggle = useCallback(() => {
-		setKeepMounted((prev) => !prev);
+	const onMountToggle = useCallback((bool: boolean) => {
+		setIsMounted(bool);
 	}, []);
 
-	const onModalToggle = useCallback(() => {
-		setVisible((prev) => !prev);
+	const onOpenToggle = useCallback((bool: boolean) => {
+		setOpened(bool);
 	}, []);
 
-	const mountAndOpen = useCallback(() => {
-		setKeepMounted(true);
+	const onMountAndOpen = useCallback(() => {
+		if (isMounted) return;
+		onMountToggle(true);
 		timerRef.current = setTimeout(() => {
-			onModalToggle();
+			onOpenToggle(true);
 		}, 0);
-	}, [onModalToggle]);
+	}, [isMounted, onMountToggle, onOpenToggle]);
 
 	useEffect(() => {
 		return () => {
@@ -40,12 +39,10 @@ export const useModal = (): UseModalReturn => {
 	}, []);
 
 	return {
-		visible,
-		setVisible,
-		onModalToggle,
-		mountAndOpen,
+		isOpened,
+		onOpenToggle,
+		isMounted,
 		onMountToggle,
-		keepMounted,
-		setKeepMounted,
+		onMountAndOpen,
 	};
 };

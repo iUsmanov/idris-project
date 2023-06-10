@@ -1,29 +1,29 @@
-import { Dispatch, SetStateAction, memo } from 'react';
+import { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Modal } from '@/shared/components/Modal/Modal';
 import { LoginForm } from '../LoginForm/LoginForm';
 
 interface LoginModalProps {
 	className?: string;
-	isOpen?: boolean;
-	onToggle?: VoidFunction;
-	keepMounted?: boolean;
-	setKeepMounted?: Dispatch<SetStateAction<boolean>>;
+	isOpened?: boolean;
+	isMounted?: boolean;
+	onOpenToggle?: (bool: boolean) => void;
+	onMountToggle?: (bool: boolean) => void;
 }
 
 export const LoginModal = memo((props: LoginModalProps) => {
-	const { className, isOpen, onToggle, keepMounted, setKeepMounted } = props;
+	const { className, isOpened, onMountToggle, isMounted, onOpenToggle } = props;
 
 	return (
 		<Modal
-			container={document.body}
-			isOpen={isOpen}
-			onToggle={onToggle}
-			keepMounted={keepMounted}
-			setKeepMounted={setKeepMounted}
 			className={classNames('', {}, [className])}
+			container={document.body}
+			isOpened={isOpened}
+			isMounted={isMounted}
+			onOpenToggle={onOpenToggle}
+			onMountToggle={onMountToggle}
 		>
-			<LoginForm isOpen={isOpen} />
+			<LoginForm isOpened={isOpened} />
 		</Modal>
 	);
 });

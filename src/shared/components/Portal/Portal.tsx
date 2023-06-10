@@ -4,18 +4,18 @@ import { createPortal } from 'react-dom';
 interface PortalProps {
 	children: ReactNode;
 	container?: HTMLElement;
-	keepMounted?: boolean;
+	isMounted?: boolean;
 }
 
 export const Portal = memo((props: PortalProps) => {
-	const { children, container = null, keepMounted = false } = props;
+	const { children, container = null, isMounted = false } = props;
 
 	// Для сторибука
 	if (!container) {
 		return <>{children}</>;
 	}
 
-	if (!keepMounted) {
+	if (!isMounted) {
 		return null;
 	}
 

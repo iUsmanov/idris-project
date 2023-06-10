@@ -1,17 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { Modal } from './Modal';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
-import { findDOMNode } from 'react-dom';
-import { useEffect, useState } from 'react';
-
-// const [app, setApp] = useState<HTMLElement>();
-
-// useEffect(() => {
-// 	const elem = document.querySelector('.app');
-// 	if (elem instanceof HTMLElement) {
-// 		setApp(elem);
-// 	}
-// }, []);
 
 const meta = {
 	title: 'shared/Modal',
@@ -19,7 +8,7 @@ const meta = {
 	tags: ['autodocs'],
 	argTypes: {},
 	args: {
-		isOpen: true,
+		isOpened: true,
 	},
 } satisfies Meta<typeof Modal>;
 
