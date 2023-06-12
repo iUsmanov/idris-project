@@ -4,6 +4,7 @@ import { StyleDecorator } from '../../src/shared/config/storybook/StyleDecorator
 import { ThemeDecorator } from '../../src/shared/config/storybook/ThemeDecorator';
 import { RouterDecorator } from '../../src/shared/config/storybook/RouterDecorator';
 import { I18nDecorator } from '../../src/shared/config/storybook/I18nDecorator';
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator';
 
 const preview: Preview = {
 	parameters: {
@@ -15,7 +16,13 @@ const preview: Preview = {
 			},
 		},
 	},
-	decorators: [StyleDecorator, ThemeDecorator('app-light-theme'), RouterDecorator, I18nDecorator],
+	decorators: [
+		StyleDecorator,
+		ThemeDecorator('app-light-theme'),
+		RouterDecorator,
+		I18nDecorator,
+		StoreDecorator(),
+	],
 };
 
 export const globalTypes = {

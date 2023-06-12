@@ -178,3 +178,32 @@ export const BackgroundinvertedOrange: Story = {
 	},
 	decorators: [ThemeDecorator('app-orange-theme')],
 };
+
+// DISABLED
+
+export const DisabledLight: Story = {
+	args: {
+		size: 'size_m',
+		disabled: true,
+		variant: 'outline',
+	},
+	decorators: [],
+};
+
+export const DisabledDark: Story = {
+	args: {
+		size: 'size_l',
+		disabled: true,
+		variant: 'outline',
+	},
+	decorators: [ThemeDecorator('app-dark-theme')],
+};
+
+export const DisabledOrange: Story = {
+	args: {
+		size: 'size_xl',
+		disabled: true,
+		variant: 'outline',
+	},
+	decorators: [ThemeDecorator('app-orange-theme')],
+};

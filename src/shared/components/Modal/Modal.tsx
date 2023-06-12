@@ -1,4 +1,4 @@
-import { Dispatch, ReactNode, SetStateAction, memo, useCallback, useEffect, useRef } from 'react';
+import { ReactNode, memo, useCallback, useEffect, useRef } from 'react';
 import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Modal.module.scss';
 import { Flex } from '../Stack';

@@ -23,7 +23,7 @@ export const LoginModal = memo((props: LoginModalProps) => {
 			onOpenToggle={onOpenToggle}
 			onMountToggle={onMountToggle}
 		>
-			<LoginForm isOpened={isOpened} />
+			<LoginForm isOpened={isOpened} onOpenToggle={onOpenToggle} onMountToggle={onMountToggle} />
 		</Modal>
 	);
 });

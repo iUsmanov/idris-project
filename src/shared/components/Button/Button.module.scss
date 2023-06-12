@@ -4,6 +4,11 @@
 	color: var(--primary-color);
 }
 
+.button:disabled {
+	opacity: 0.5;
+
+}
+
 // .primary {}
 
 .outline {
@@ -37,10 +42,6 @@
 
 .square {
 	padding: 0;
-}
-
-.disabled {
-	opacity: 0.5;
 }
 
 .square.size_m {

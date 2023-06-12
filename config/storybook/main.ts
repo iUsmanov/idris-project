@@ -2,7 +2,7 @@ import type { StorybookConfig } from '@storybook/react-webpack5';
 import { buildScssLoader } from '../webpack/loaders/buildScssLoader';
 import path from 'path';
 import { buildSvgrLoader } from '../webpack/loaders/buildSvgrLoader';
-import { RuleSetRule } from 'webpack';
+import webpack, { RuleSetRule } from 'webpack';
 
 const config: StorybookConfig = {
 	stories: ['../../src/**/*.stories.@(js|jsx|ts|tsx)'],
@@ -39,6 +39,13 @@ const config: StorybookConfig = {
 
 			config.module.rules.push(buildSvgrLoader());
 		}
+
+		config.plugins = [
+			...config.plugins,
+			new webpack.DefinePlugin({
+				__IS_DEV__: true,
+			}),
+		];
 
 		return config;
 	},
