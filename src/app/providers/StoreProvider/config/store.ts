@@ -2,7 +2,7 @@ import { AnyAction, ReducersMapObject, configureStore } from '@reduxjs/toolkit';
 import { StateSchema } from './StateSchema';
 import { counterReducer } from '@/entities/Counter';
 import { userReducer } from '@/entities/User';
-import { loginReducer } from '@/features/AuthByUsername';
+import { authMiddleware, loginReducer } from '@/features/AuthByUsername';
 
 export const createReduxStore = (initialState?: StateSchema) => {
 	const rootReducer: ReducersMapObject<StateSchema, AnyAction> = {
@@ -11,10 +11,12 @@ export const createReduxStore = (initialState?: StateSchema) => {
 		loginForm: loginReducer,
 	};
 
-	return configureStore<StateSchema>({
+	// return configureStore<StateSchema>({ StateSchema пришлось убрать из-за поля middleware
+	return configureStore({
 		reducer: rootReducer,
 		preloadedState: initialState,
 		devTools: __IS_DEV__,
+		middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(authMiddleware),
 	});
 };
 
