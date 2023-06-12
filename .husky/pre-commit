@@ -7,3 +7,6 @@ npx lint-staged
 # npm run pret:fix
 # npm run test:unit
 # npm run build:prod
+
+		# "**/*.{ts,tsx,js,json}": "prettier --write ",
+		# "**/*.{css,scss}": "stylelint",
