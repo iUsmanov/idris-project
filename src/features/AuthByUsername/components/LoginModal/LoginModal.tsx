@@ -1,7 +1,8 @@
-import { memo } from 'react';
+import { Suspense, memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Modal } from '@/shared/components/Modal/Modal';
-import { LoginForm } from '../LoginForm/LoginForm';
+import { LoginFormAsync } from '../LoginForm/LoginForm.async';
+import { Loader } from '@/shared/components/Loader/Loader';
 
 interface LoginModalProps {
 	className?: string;
@@ -23,7 +24,13 @@ export const LoginModal = memo((props: LoginModalProps) => {
 			onOpenToggle={onOpenToggle}
 			onMountToggle={onMountToggle}
 		>
-			<LoginForm isOpened={isOpened} onOpenToggle={onOpenToggle} onMountToggle={onMountToggle} />
+			<Suspense fallback={<Loader size='min' />}>
+				<LoginFormAsync
+					isOpened={isOpened}
+					onOpenToggle={onOpenToggle}
+					onMountToggle={onMountToggle}
+				/>
+			</Suspense>
 		</Modal>
 	);
 });

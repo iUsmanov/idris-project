@@ -21,8 +21,8 @@
 	height: 0;
 	margin: 8px;
 	box-sizing: border-box;
-	border: 32px solid #fff;
-	border-color: #fff transparent;
+	border: 32px solid var(--primary-color);
+	border-color: var(--primary-color) transparent;
 	animation: loader 2.4s infinite;
 }
 

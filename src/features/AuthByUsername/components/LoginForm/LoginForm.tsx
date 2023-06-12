@@ -14,7 +14,7 @@ import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLogi
 import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading';
 import { getLoginError } from '../../model/selectors/getLoginError/getLoginError';
 
-interface LoginFormProps {
+export interface LoginFormProps {
 	className?: string;
 	isOpened?: boolean;
 	onOpenToggle?: (bool: boolean) => void;
