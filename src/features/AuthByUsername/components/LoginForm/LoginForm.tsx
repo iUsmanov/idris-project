@@ -6,10 +6,13 @@ import { Input } from '@/shared/components/Input/Input';
 import { Button } from '@/shared/components/Button/Button';
 import { useSelector } from 'react-redux';
 import { loginActions } from '../../model/slice/loginSlice';
-import { getLoginState } from '../../model/selectors/getLoginState/getLoginState';
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Text } from '@/shared/components/Text/Text';
+import { getLoginUsername } from '../../model/selectors/getLoginUsername/getLoginUsername';
+import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword';
+import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading';
+import { getLoginError } from '../../model/selectors/getLoginError/getLoginError';
 
 interface LoginFormProps {
 	className?: string;
@@ -22,7 +25,10 @@ export const LoginForm = memo((props: LoginFormProps) => {
 	const { className, isOpened, onMountToggle, onOpenToggle } = props;
 	const { t } = useTranslation();
 	const dispatch = useAppDispatch();
-	const { username, password, isLoading, error } = useSelector(getLoginState);
+	const username = useSelector(getLoginUsername);
+	const password = useSelector(getLoginPassword);
+	const isLoading = useSelector(getLoginIsLoading);
+	const error = useSelector(getLoginError);
 
 	const onChangeUsername = useCallback(
 		(value: string) => {
