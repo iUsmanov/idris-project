@@ -3,6 +3,7 @@ import { StateSchema } from './StateSchema';
 import { counterReducer } from '@/entities/Counter';
 import { userReducer } from '@/entities/User';
 import { authMiddleware, loginReducer } from '@/features/AuthByUsername';
+import { createReducerManager } from './reducerManager';
 
 export const createReduxStore = (initialState?: StateSchema) => {
 	const rootReducer: ReducersMapObject<StateSchema, AnyAction> = {
@@ -11,13 +12,16 @@ export const createReduxStore = (initialState?: StateSchema) => {
 		loginForm: loginReducer,
 	};
 
+	const reducerManager = createReducerManager(rootReducer);
 	// return configureStore<StateSchema>({ StateSchema пришлось убрать из-за поля middleware
-	return configureStore({
+	const store = configureStore({
 		reducer: rootReducer,
 		preloadedState: initialState,
 		devTools: __IS_DEV__,
 		middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(authMiddleware),
 	});
-};
+	// @ts-ignore
+	store.reducerManager = reducerManager;
 
-export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];
+	return store;
+};
