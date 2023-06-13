@@ -13,9 +13,6 @@ export interface StateSchema {
 	loginForm?: LoginSchema;
 }
 
-export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];
-export type StateSchemaKey = keyof StateSchema;
-
 export interface ReducerManager {
 	getReducerMap: () => ReducersMapObject<StateSchema, AnyAction>;
 	reduce: (state: StateSchema, action: AnyAction) => CombinedState<StateSchema>;
@@ -26,3 +23,6 @@ export interface ReducerManager {
 export interface ReduxStoreWithManager extends ToolkitStore<StateSchema> {
 	reducerManager: ReducerManager;
 }
+
+export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];
+export type StateSchemaKey = keyof StateSchema;
