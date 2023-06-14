@@ -35,7 +35,7 @@ export const LoginForm = memo((props: LoginFormProps) => {
 	const isLoading = useSelector(getLoginIsLoading);
 	const error = useSelector(getLoginError);
 
-	useDynamicModule({ reducers: initialReducers, saveAfterUnmount: true });
+	useDynamicModule({ reducers: initialReducers });
 
 	const onChangeUsername = useCallback(
 		(value: string) => {
