@@ -3,13 +3,11 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Sidebar.module.scss';
 import { Button } from '@/shared/components/Button/Button';
 import { ThemeSwitcher } from '@/features/ThemeSwitcher';
-import { Flex, HStack, VStack } from '@/shared/components/Stack';
+import { Flex, VStack } from '@/shared/components/Stack';
 import { LangSwitcher } from '@/features/LangSwitcher';
-import { AppLink } from '@/shared/components/AppLink/AppLink';
 import { useTranslation } from 'react-i18next';
-import { getRouteAbout, getRouteMain } from '@/shared/const/router';
-import MainIcon from '@/shared/assets/icons/main-20-20.svg';
-import AboutIcon from '@/shared/assets/icons/about-20-20.svg';
+import { SidebarItemsList } from '../../model/items';
+import { SidebarItem } from '../SidebarItem/SidebarItem';
 
 interface SidebarProps {
 	className?: string;
@@ -26,18 +24,9 @@ export const Sidebar = memo((props: SidebarProps) => {
 			className={classNames(cls.sidebar, { [cls.collapsed]: collapsed }, [className])}
 		>
 			<VStack gap='16' className={cls.items}>
-				<AppLink variant='inverted' className={cls.item} to={getRouteMain()}>
-					<HStack align='center'>
-						<MainIcon className={cls.icon} />
-						<span className={cls.link}>{t('Главная')}</span>
-					</HStack>
-				</AppLink>
-				<AppLink variant='inverted' className={cls.item} to={getRouteAbout()}>
-					<HStack align='center'>
-						<AboutIcon className={cls.icon} />
-						<span className={cls.link}>{t('О сайте')}</span>
-					</HStack>
-				</AppLink>
+				{SidebarItemsList.map((item) => (
+					<SidebarItem key={item.text} item={item} collapsed={collapsed} />
+				))}
 			</VStack>
 			<Button
 				variant='backgroundInverted'
