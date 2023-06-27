@@ -1,4 +1,4 @@
-import { FC, useCallback } from 'react';
+import { FC, memo, useCallback } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Navbar.module.scss';
 import { useTranslation } from 'react-i18next';
@@ -12,7 +12,7 @@ interface NavbarProps {
 	className?: string;
 }
 
-export const Navbar: FC<NavbarProps> = (props) => {
+export const Navbar = memo((props: NavbarProps) => {
 	const { className } = props;
 	const { t } = useTranslation();
 	const authData = useSelector(getUserAuthData);
@@ -54,4 +54,4 @@ export const Navbar: FC<NavbarProps> = (props) => {
 			</Button>
 		</div>
 	);
-};
+});

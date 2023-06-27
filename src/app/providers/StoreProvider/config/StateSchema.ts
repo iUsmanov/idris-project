@@ -4,6 +4,7 @@ import { LoginSchema } from '@/features/AuthByUsername';
 import { createReduxStore } from './store';
 import { AnyAction, CombinedState, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore';
+import { ProfileSchema } from '@/entities/Profile';
 
 export interface StateSchema {
 	counter: CounterSchema;
@@ -11,6 +12,7 @@ export interface StateSchema {
 
 	// Async reducers
 	loginForm?: LoginSchema;
+	profile?: ProfileSchema;
 }
 
 export interface ReducerManager {
