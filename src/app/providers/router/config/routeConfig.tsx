@@ -16,9 +16,10 @@ export const routeConfig: Record<AppRoutes, AppRouteObject> = {
 		path: getRouteAbout(),
 		element: <AboutPage />,
 	},
-	profile: {
-		path: getRouteProfile(''),
-		// path: getRouteProfile(':id'),
+	profiles: {
+		// path: getRouteProfile('1'),
+		// path: getRouteProfile(''),
+		path: getRouteProfile(':id'),
 		element: <ProfilePage />,
 	},
 	not_found: {

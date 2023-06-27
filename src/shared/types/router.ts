@@ -3,7 +3,7 @@ import { RouteObject } from 'react-router-dom';
 export type AppRoutes =
 	| 'main'
 	| 'about'
-	| 'profile'
+	| 'profiles'
 	// | 'articles'
 	// | 'article_details'
 	// | 'article_create'

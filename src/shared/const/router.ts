@@ -14,4 +14,4 @@
 
 export const getRouteMain = () => `/`;
 export const getRouteAbout = () => `/about`;
-export const getRouteProfile = (id: string) => `/profile/${id}`;
+export const getRouteProfile = (id: string) => `/profiles/${id}`;
