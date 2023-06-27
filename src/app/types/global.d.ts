@@ -15,3 +15,4 @@ declare module '*.svg' {
 
 // GLOBAL VARIABLES
 declare const __IS_DEV__: boolean;
+declare const __API__: string;

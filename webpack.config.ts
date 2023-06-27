@@ -8,6 +8,7 @@ export default (env: BuildEnv): webpack.Configuration => {
 	const mode = env.mode || 'development';
 	const isDev = mode === 'development';
 	const analyze = env.analyze || false;
+	const apiURL = env.apiURL || 'http://localhost:8000';
 
 	const paths: BuildPaths = {
 		entry: path.resolve(__dirname, 'src', 'index.tsx'),
@@ -22,6 +23,7 @@ export default (env: BuildEnv): webpack.Configuration => {
 		isDev,
 		port,
 		analyze,
+		apiURL,
 	};
 
 	return webpackConfiguration(buildOptions);
