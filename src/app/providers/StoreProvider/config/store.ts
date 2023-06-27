@@ -4,6 +4,7 @@ import { counterReducer } from '@/entities/Counter';
 import { userReducer } from '@/entities/User';
 import { authMiddleware } from '@/features/AuthByUsername';
 import { createReducerManager } from './reducerManager';
+import { $api } from '@/shared/api/api';
 
 export const createReduxStore = (
 	initialState?: StateSchema,
@@ -21,7 +22,14 @@ export const createReduxStore = (
 		reducer: reducerManager.reduce,
 		preloadedState: initialState,
 		devTools: __IS_DEV__,
-		middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(authMiddleware),
+		middleware: (getDefaultMiddleware) =>
+			getDefaultMiddleware({
+				thunk: {
+					extraArgument: {
+						api: $api,
+					},
+				},
+			}).concat(authMiddleware),
 	});
 	// @ts-ignore
 	store.reducerManager = reducerManager;

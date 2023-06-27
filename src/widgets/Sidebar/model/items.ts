@@ -22,7 +22,7 @@ export const SidebarItemsList: SidebarItemType[] = [
 	},
 	{
 		path: getRouteProfile(''),
-		text: 'О сайте',
+		text: 'Профиль',
 		Icon: ProfileIcon,
 	},
 ];

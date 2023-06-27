@@ -52,8 +52,8 @@ export const LoginForm = memo((props: LoginFormProps) => {
 	);
 
 	const onLoginClick = useCallback(async () => {
-		const act = await dispatch(loginByUsername({ username, password }));
-		if (act.meta.requestStatus === 'fulfilled') {
+		const action = await dispatch(loginByUsername({ username, password }));
+		if (action.meta.requestStatus === 'fulfilled') {
 			onOpenToggle(false);
 			onMountToggle(false);
 		}
