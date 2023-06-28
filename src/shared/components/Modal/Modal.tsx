@@ -24,7 +24,7 @@ export const Modal = memo((props: ModalProps) => {
 		onOpenToggle,
 		onMountToggle,
 	} = props;
-	const timerRef = useRef(null);
+	const timerRef = useRef<undefined | ReturnType<typeof setTimeout>>(undefined);
 
 	const onContentClick = useCallback((event: React.MouseEvent) => {
 		event.stopPropagation();
@@ -35,7 +35,7 @@ export const Modal = memo((props: ModalProps) => {
 		onOpenToggle?.(false);
 
 		timerRef.current = setTimeout(() => {
-			onMountToggle(false);
+			onMountToggle?.(false);
 		}, 300);
 	}, [isMounted, onMountToggle, onOpenToggle]);
 

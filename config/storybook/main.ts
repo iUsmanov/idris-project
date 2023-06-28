@@ -40,13 +40,15 @@ const config: StorybookConfig = {
 			config.module.rules.push(buildSvgrLoader());
 		}
 
-		config.plugins = [
-			...config.plugins,
-			new webpack.DefinePlugin({
-				__IS_DEV__: true,
-				__API__: '',
-			}),
-		];
+		if (config.plugins) {
+			config.plugins = [
+				...config.plugins,
+				new webpack.DefinePlugin({
+					__IS_DEV__: true,
+					__API__: '',
+				}),
+			];
+		}
 
 		return config;
 	},

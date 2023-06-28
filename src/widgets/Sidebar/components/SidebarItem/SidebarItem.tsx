@@ -7,7 +7,7 @@ import { HStack } from '@/shared/components/Stack';
 import { SidebarItemType } from '../../model/items';
 
 interface SidebarItemProps {
-	item?: SidebarItemType;
+	item: SidebarItemType;
 	collapsed?: boolean;
 }
 

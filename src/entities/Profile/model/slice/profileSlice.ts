@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { ActionReducerMapBuilder, PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { Profile, ProfileSchema } from '../types/profile';
 import { fetchProfileData } from '../services/fetchProfileData/fetchProfileData';
 
@@ -13,7 +13,7 @@ export const profileSlice = createSlice({
 	name: 'profile',
 	initialState,
 	reducers: {},
-	extraReducers(builder) {
+	extraReducers(builder: ActionReducerMapBuilder<ProfileSchema>) {
 		builder
 			.addCase(fetchProfileData.pending, (state) => {
 				state.isLoading = true;
@@ -24,7 +24,7 @@ export const profileSlice = createSlice({
 				state.isLoading = false;
 				state.data = action.payload;
 			})
-			.addCase(fetchProfileData.rejected, (state, action: PayloadAction<string>) => {
+			.addCase(fetchProfileData.rejected, (state, action) => {
 				state.isLoading = false;
 				state.error = action.payload;
 			});

@@ -20,7 +20,7 @@ export type ButtonVariant =
 export type ButtonSize = 'size_m' | 'size_l' | 'size_xl';
 
 export const Button = memo((props: ButtonProps) => {
-	const { className, children, variant = 'primary', square, size, ...otherProps } = props;
+	const { className, children, variant = 'primary', square, size = 'size_m', ...otherProps } = props;
 
 	const mods: Mods = {
 		[cls.square]: square,

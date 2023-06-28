@@ -17,13 +17,21 @@ interface InputProps extends HTMLInputProps {
 	className?: string;
 	placeholder?: string;
 	type?: string;
-	value: string;
+	value: string | undefined;
 	onChange?: (value: string) => void;
 	autoFocus?: boolean;
 }
 
 export const Input = memo((props: InputProps) => {
-	const { className, placeholder, type = 'text', value, onChange, autoFocus, ...otherProps } = props;
+	const {
+		className,
+		placeholder,
+		type = 'text',
+		value = '',
+		onChange,
+		autoFocus,
+		...otherProps
+	} = props;
 	const [isFocused, setIsFocused] = useState<boolean>(false);
 	const [caretPosition, setCaretPosition] = useState<number>(0);
 	const ref = useRef<HTMLInputElement>(null);

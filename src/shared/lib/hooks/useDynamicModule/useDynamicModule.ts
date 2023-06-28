@@ -8,7 +8,7 @@ export type ReducersList = {
 	[name in StateSchemaKey]?: Reducer;
 };
 
-type ReducersListEntry = [StateSchemaKey, Reducer];
+// type ReducersListEntry = [StateSchemaKey, Reducer];after turn on strict-mode, not need
 
 interface useDynamicModuleProps {
 	reducers: ReducersList;
@@ -21,15 +21,15 @@ export const useDynamicModule = (props: useDynamicModuleProps) => {
 	const store = useStore() as ReduxStoreWithManager;
 
 	useEffect(() => {
-		Object.entries(reducers).forEach(([name, reducer]: ReducersListEntry) => {
-			if (store.getState()[name]) return;
-			store.reducerManager.add(name, reducer);
+		Object.entries(reducers).forEach(([name, reducer]) => {
+			if (store.getState()[name as StateSchemaKey]) return;
+			store.reducerManager.add(name as StateSchemaKey, reducer);
 			dispatch({ type: `@INIT ${name} reducer` });
 		});
 		return () => {
-			Object.entries(reducers).forEach(([name, reducer]: ReducersListEntry) => {
+			Object.entries(reducers).forEach(([name, reducer]) => {
 				if (saveAfterUnmount) return;
-				store.reducerManager.remove(name);
+				store.reducerManager.remove(name as StateSchemaKey);
 				dispatch({ type: `@DESTROY ${name} reducer` });
 			});
 		};

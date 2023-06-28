@@ -1,5 +1,5 @@
-import { AnyAction, ReducersMapObject, configureStore } from '@reduxjs/toolkit';
-import { StateSchema } from './StateSchema';
+import { AnyAction, CombinedState, Reducer, ReducersMapObject, configureStore } from '@reduxjs/toolkit';
+import { StateSchema, ThunkExtraArg } from './StateSchema';
 import { counterReducer } from '@/entities/Counter';
 import { userReducer } from '@/entities/User';
 import { authMiddleware } from '@/features/AuthByUsername';
@@ -17,17 +17,19 @@ export const createReduxStore = (
 	};
 
 	const reducerManager = createReducerManager(rootReducer);
-	// return configureStore<StateSchema>({ StateSchema пришлось убрать из-за поля middleware
+
+	const extraArg: ThunkExtraArg = {
+		api: $api,
+	};
+
 	const store = configureStore({
-		reducer: reducerManager.reduce,
+		reducer: reducerManager.reduce as Reducer<CombinedState<StateSchema>, AnyAction>,
 		preloadedState: initialState,
 		devTools: __IS_DEV__,
 		middleware: (getDefaultMiddleware) =>
 			getDefaultMiddleware({
 				thunk: {
-					extraArgument: {
-						api: $api,
-					},
+					extraArgument: extraArg,
 				},
 			}).concat(authMiddleware),
 	});

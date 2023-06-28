@@ -43,7 +43,7 @@ export function useTheme(): UseThemeResult {
 	};
 
 	return {
-		theme: theme || ('app-light-theme' as Theme),
+		theme: theme || 'app-light-theme',
 		changeTheme,
 	};
 }

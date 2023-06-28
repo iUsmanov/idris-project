@@ -15,11 +15,16 @@ export function buildPlugins(options: BuildOptions): webpack.WebpackPluginInstan
 			__IS_DEV__: JSON.stringify(options.isDev),
 			__API__: JSON.stringify(options.apiURL),
 		}),
-		options.analyze &&
+	].filter(Boolean);
+
+	if (options.analyze) {
+		// options.analyze &&
+		plugins.push(
 			new BundleAnalyzerPlugin({
 				openAnalyzer: true,
-			}),
-	].filter(Boolean);
+			})
+		);
+	}
 
 	if (!options.isDev) {
 		plugins.push(

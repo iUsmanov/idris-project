@@ -14,7 +14,7 @@ export const useModal = (): UseModalReturn => {
 	// const {} = props;
 	const [isOpened, setOpened] = useState<boolean>(false);
 	const [isMounted, setIsMounted] = useState<boolean>(false);
-	const timerRef = useRef(null);
+	const timerRef = useRef<undefined | ReturnType<typeof setTimeout>>(undefined);
 
 	const onMountToggle = useCallback((bool: boolean) => {
 		setIsMounted(bool);
