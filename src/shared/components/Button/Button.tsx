@@ -13,6 +13,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export type ButtonVariant =
 	| 'primary'
 	| 'outline'
+	| 'outlineRed'
 	| 'clear'
 	| 'clearInverted'
 	| 'background'

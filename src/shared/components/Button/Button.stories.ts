@@ -63,6 +63,29 @@ export const OutlineOrange: Story = {
 	decorators: [ThemeDecorator('app-orange-theme')],
 };
 
+// OUTLINE
+
+export const OutlineRedLight: Story = {
+	args: {
+		variant: 'outlineRed',
+	},
+	decorators: [],
+};
+
+export const OutlineRedDark: Story = {
+	args: {
+		variant: 'outlineRed',
+	},
+	decorators: [ThemeDecorator('app-dark-theme')],
+};
+
+export const OutlineRedOrange: Story = {
+	args: {
+		variant: 'outlineRed',
+	},
+	decorators: [ThemeDecorator('app-orange-theme')],
+};
+
 // CLEAR
 
 export const ClearLightSizeM: Story = {

@@ -11,10 +11,17 @@
 
 // .primary {}
 
-.outline {
-	color: var(--primary-color);
+.outline, .outlineRed {
 	border: 1px solid var(--primary-color);
 	background: none;
+}
+
+.outline {
+	color: var(--primary-color);
+}
+
+.outlineRed {
+	color: var(--red-light);
 }
 
 .clear, .clearInverted {

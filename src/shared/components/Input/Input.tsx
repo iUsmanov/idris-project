@@ -20,6 +20,7 @@ interface InputProps extends HTMLInputProps {
 	value: string | undefined;
 	onChange?: (value: string) => void;
 	autoFocus?: boolean;
+	readOnly?: boolean;
 }
 
 export const Input = memo((props: InputProps) => {
@@ -30,11 +31,14 @@ export const Input = memo((props: InputProps) => {
 		value = '',
 		onChange,
 		autoFocus,
+		readOnly,
 		...otherProps
 	} = props;
 	const [isFocused, setIsFocused] = useState<boolean>(false);
 	const [caretPosition, setCaretPosition] = useState<number>(0);
 	const ref = useRef<HTMLInputElement>(null);
+
+	const isCaretVisible = isFocused && !readOnly;
 
 	const onFocus = () => {
 		setIsFocused(true);
@@ -62,7 +66,7 @@ export const Input = memo((props: InputProps) => {
 	}, [autoFocus]);
 
 	return (
-		<HStack className={classNames(cls.componentWrapper, {}, [className])}>
+		<HStack className={classNames(cls.componentWrapper, { [cls.readonly]: readOnly }, [className])}>
 			{placeholder && <div className={cls.placeholder}>{`${placeholder}>`}</div>}
 			<div className={cls.caretAndInputWrapper}>
 				<input
@@ -76,8 +80,11 @@ export const Input = memo((props: InputProps) => {
 					onFocus={onFocus}
 					onBlur={onBlur}
 					autoFocus={autoFocus}
+					readOnly={readOnly}
 				/>
-				{isFocused && <span className={cls.caret} style={{ left: `${caretPosition * 9}px` }} />}
+				{isCaretVisible && (
+					<span className={cls.caret} style={{ left: `${caretPosition * 9}px` }} />
+				)}
 			</div>
 		</HStack>
 	);
