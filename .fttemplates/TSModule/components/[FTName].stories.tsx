@@ -1,17 +1,31 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { [FTName] } from './[FTName]';
+import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
 
-export default {
-   title: 'shared/[FTName]',
-   component: [FTName],
-   argTypes: {
-      backgroundColor: { control: 'color' },
-   },
-} as StoryObj<typeof [FTName]>;
+const meta = {
+	title: 'shared/[FTName]',
+	component: [FTName],
+	tags: ['autodocs'],
+	argTypes: {},
+	args: {
+		
+	},
+} satisfies Meta<typeof [FTName]>;
 
-const Template: Meta<typeof [FTName]> = (args) => <[FTName] {...args} />;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Normal = Template.bind({});
-Normal.args = {
+export const PrimaryLight: Story = {
+	args: {},
+	decorators: [],
+};
 
+export const PrimaryDark: Story = {
+	args: {},
+	decorators: [ThemeDecorator('app-dark-theme')],
+};
+
+export const PrimaryOrange: Story = {
+	args: {},
+	decorators: [ThemeDecorator('app-orange-theme')],
 };
