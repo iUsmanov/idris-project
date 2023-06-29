@@ -37,7 +37,7 @@ export function useTheme(): UseThemeResult {
 			default:
 				newTheme = 'app-dark-theme' as Theme;
 		}
-		// ! should use optional chaining operator
+
 		setTheme?.(newTheme);
 		localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
 	};

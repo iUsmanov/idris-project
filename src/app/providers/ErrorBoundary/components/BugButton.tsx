@@ -1,13 +1,7 @@
-import { FC, useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { Button } from '@/shared/components/Button/Button';
 
-interface BugButtonProps {
-	className?: string;
-}
-
-export const BugButton: FC<BugButtonProps> = (props) => {
-	const { className } = props;
-
+export const BugButton = memo(() => {
 	const [error, setError] = useState<boolean>(false);
 
 	const onThrow = () => setError(true);
@@ -19,4 +13,4 @@ export const BugButton: FC<BugButtonProps> = (props) => {
 	}, [error]);
 
 	return <Button onClick={onThrow}>ERROR</Button>;
-};
+});

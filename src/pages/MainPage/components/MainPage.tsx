@@ -1,16 +1,8 @@
-import { Input } from '@/shared/components/Input/Input';
-import { FC, useState } from 'react';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-interface MainPageProps {}
-
-export const MainPage: FC<MainPageProps> = (props) => {
+export const MainPage = memo(() => {
 	const { t } = useTranslation();
-	const [value, setValue] = useState<string>('');
-
-	const onChange = (value: string) => {
-		setValue(value);
-	};
 
 	return <div>{t('Главная страница')}</div>;
-};
+});

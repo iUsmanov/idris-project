@@ -1,14 +1,12 @@
 /* eslint-disable i18next/no-literal-string */
-import { FC } from 'react';
 import cls from './Counter.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { counterActions } from '../../model/slices/counterSlice';
 import { getCounterValue } from '../../model/selectors/getCounterValue/getCounterValue';
 import { Button } from '@/shared/components/Button/Button';
+import { memo } from 'react';
 
-interface CounterProps {}
-
-export const Counter: FC<CounterProps> = () => {
+export const Counter = memo(() => {
 	const value = useSelector(getCounterValue);
 
 	const dispath = useDispatch();
@@ -29,4 +27,4 @@ export const Counter: FC<CounterProps> = () => {
 			<Button onClick={decrement}>decrementor</Button>
 		</div>
 	);
-};
+});

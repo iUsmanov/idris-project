@@ -1,10 +1,8 @@
 import { PageLoader } from '@/widgets/PageLoader';
-import { FC, Suspense } from 'react';
+import { Suspense, memo } from 'react';
 import { Outlet } from 'react-router-dom';
 
-interface AppRouterProps {}
-
-export const AppRouter: FC<AppRouterProps> = (props) => {
+export const AppRouter = memo(() => {
 	return (
 		<Suspense fallback={<PageLoader />}>
 			<div className='outlet-wrapper'>
@@ -12,4 +10,4 @@ export const AppRouter: FC<AppRouterProps> = (props) => {
 			</div>
 		</Suspense>
 	);
-};
+});

@@ -1,11 +1,10 @@
-import { FC } from 'react';
 import { App } from './App';
 import { ThemeProvider } from './providers/ThemeProvider';
 import { ErrorBoundary } from './providers/ErrorBoundary';
 import { StoreProvider } from './providers/StoreProvider';
-interface RootLayoutProps {}
+import { memo } from 'react';
 
-export const RootLayout: FC<RootLayoutProps> = (props) => {
+export const RootLayout = memo(() => {
 	return (
 		<ErrorBoundary>
 			<StoreProvider>
@@ -15,4 +14,4 @@ export const RootLayout: FC<RootLayoutProps> = (props) => {
 			</StoreProvider>
 		</ErrorBoundary>
 	);
-};
+});

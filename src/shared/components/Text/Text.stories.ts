@@ -11,7 +11,7 @@ const meta = {
 	argTypes: {},
 	args: {
 		title: 'Title',
-		children: 'Your text',
+		text: 'Your text',
 	},
 } satisfies Meta<typeof Text>;
 

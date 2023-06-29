@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import { ReactNode, memo } from 'react';
 import { Provider } from 'react-redux';
 import { createReduxStore } from '../config/store';
 import { StateSchema } from '../config/StateSchema';
@@ -10,10 +10,10 @@ interface StoreProviderProps {
 	asyncReducers?: ReducersMapObject<StateSchema>;
 }
 
-export const StoreProvider: FC<StoreProviderProps> = (props) => {
+export const StoreProvider = memo((props: StoreProviderProps) => {
 	const { children, initialState, asyncReducers } = props;
 
 	const store = createReduxStore(initialState, asyncReducers);
 
 	return <Provider store={store}>{children}</Provider>;
-};
+});
