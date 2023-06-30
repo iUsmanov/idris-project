@@ -1,3 +1,6 @@
+import { Country } from '@/entities/Country';
+import { Currency } from '@/entities/Currency';
+
 export interface Profile {
 	id: string;
 	first: string;
@@ -16,6 +19,3 @@ export interface ProfileSchema {
 	error?: string;
 	readonly?: boolean;
 }
-
-export type Currency = 'RUB' | 'EUR' | 'USD';
-export type Country = 'Russia' | 'Belarus' | 'Ukraine' | 'Kazakhstan' | 'Armenia';
