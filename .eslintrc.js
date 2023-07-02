@@ -65,6 +65,7 @@ module.exports = {
 	globals: {
 		__IS_DEV__: true,
 		__API__: true,
+		__ENVIRON__: true,
 	},
 	// По рекомендациям
 	settings: {

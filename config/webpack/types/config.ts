@@ -14,6 +14,7 @@ export interface BuildOptions {
 	buildPaths: BuildPaths;
 	analyze?: boolean;
 	apiURL: string;
+	environ: 'jest' | 'storybook' | 'app';
 }
 
 export interface BuildEnv {

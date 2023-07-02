@@ -37,7 +37,9 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
 	useDynamicModule({ reducers: initialReducers });
 
 	useEffect(() => {
-		dispatch(fetchProfileData());
+		if (__ENVIRON__ !== 'storybook') {
+			dispatch(fetchProfileData());
+		}
 	}, [dispatch]);
 
 	const onChangeFirstOrLastName = useCallback(

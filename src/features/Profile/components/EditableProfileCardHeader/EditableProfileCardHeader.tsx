@@ -30,7 +30,9 @@ export const EditableProfileCardHeader = memo((props: EditableProfileCardHeaderP
 	}, [dispatch]);
 
 	const onEditSave = useCallback(() => {
-		dispatch(updateProfileData());
+		if (__ENVIRON__ !== 'storybook') {
+			dispatch(updateProfileData());
+		}
 	}, [dispatch]);
 
 	return (

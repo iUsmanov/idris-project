@@ -14,6 +14,7 @@ export function buildPlugins(options: BuildOptions): webpack.WebpackPluginInstan
 		new webpack.DefinePlugin({
 			__IS_DEV__: JSON.stringify(options.isDev),
 			__API__: JSON.stringify(options.apiURL),
+			__ENVIRON__: JSON.stringify(options.environ),
 		}),
 	].filter(Boolean);
 

@@ -52,10 +52,12 @@ export const LoginForm = memo((props: LoginFormProps) => {
 	);
 
 	const onLoginClick = useCallback(async () => {
-		const action = await dispatch(loginByUsername({ username, password }));
-		if (action.meta.requestStatus === 'fulfilled') {
-			onOpenToggle?.(false);
-			onMountToggle?.(false);
+		if (__ENVIRON__ !== 'storybook') {
+			const action = await dispatch(loginByUsername({ username, password }));
+			if (action.meta.requestStatus === 'fulfilled') {
+				onOpenToggle?.(false);
+				onMountToggle?.(false);
+			}
 		}
 	}, [dispatch, onMountToggle, onOpenToggle, password, username]);
 

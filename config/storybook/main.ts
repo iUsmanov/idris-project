@@ -46,6 +46,7 @@ const config: StorybookConfig = {
 				new webpack.DefinePlugin({
 					__IS_DEV__: true,
 					__API__: '',
+					__ENVIRON__: 'storybook',
 				}),
 			];
 		}
