@@ -14,6 +14,7 @@ import { getProfileReadonly } from '../../model/selectors/getProfileReadonly/get
 import { getProfileFormData } from '../../model/selectors/getProfileFormData/getProfileFormData';
 import { Currency } from '@/entities/Currency';
 import { Country } from '@/entities/Country';
+import { getProfileValidateErrors } from '../../model/selectors/getProfileValidateErrors/getProfileValidateErrors';
 
 interface EditableProfileCardProps {
 	className?: string;
@@ -25,12 +26,13 @@ const initialReducers: ReducersList = {
 
 export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
 	const { className } = props;
-	const { t } = useTranslation();
+	const { t } = useTranslation('profile');
 	const dispatch = useAppDispatch();
 	const formData = useSelector(getProfileFormData);
 	const isLoading = useSelector(getProfileIsLoading);
 	const error = useSelector(getProfileError);
 	const readonly = useSelector(getProfileReadonly);
+	const profileValidateErrors = useSelector(getProfileValidateErrors);
 
 	useDynamicModule({ reducers: initialReducers });
 
@@ -103,7 +105,7 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
 
 	return (
 		<div className={classNames('', {}, [className])}>
-			<EditableProfileCardHeader readonly={readonly} />
+			<EditableProfileCardHeader readonly={readonly} profileValidateErrors={profileValidateErrors} />
 			<ProfileCard
 				data={formData}
 				isLoading={isLoading}

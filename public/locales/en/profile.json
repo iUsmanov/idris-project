@@ -17,5 +17,13 @@
 	"Имя и фамилия обязательны": "First and last name are required",
 	"Данные не указаны": "Data is not specified",
 	"Некорректный возраст": "Incorrect age",
+	"noData": "Data is not specified",
+	"incorrectAge": "Incorrect age",
+	"serverError": "Server error when saving",
+	"incorrectAvatarLink": "Incorrect link to avatar",
+	"incorrectCity": "Incorrect city",
+	"incorrectFirstName": "Incorrect firstname",
+	"incorrectLastName": "Incorrect lastname",
+	"incorrectUsername": "Incorrect username",
 	"Профиль не найден": "Профиль не найден"
 }

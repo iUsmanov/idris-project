@@ -12,15 +12,16 @@
 // .primary {}
 
 .outline, .outlineRed {
-	border: 1px solid var(--primary-color);
 	background: none;
 }
 
 .outline {
+	border: 1px solid var(--primary-color);
 	color: var(--primary-color);
 }
 
 .outlineRed {
+	border: 1px solid var(--red-light);
 	color: var(--red-light);
 }
 
