@@ -3,7 +3,7 @@ import { ProfileCard } from './ProfileCard';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
 
 const meta = {
-	title: 'shared/ProfileCard',
+	title: 'entities/ProfileCard',
 	component: ProfileCard,
 	tags: ['autodocs'],
 	argTypes: {},
@@ -13,7 +13,17 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
+export const PrimaryLight: Story = {
 	args: {},
 	decorators: [],
+};
+
+export const PrimaryDark: Story = {
+	args: {},
+	decorators: [ThemeDecorator('app-dark-theme')],
+};
+
+export const PrimaryOrange: Story = {
+	args: {},
+	decorators: [ThemeDecorator('app-orange-theme')],
 };

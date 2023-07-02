@@ -1,6 +1,6 @@
 import { StateSchema, StoreProvider } from '@/app/providers/StoreProvider';
-import { profileReducer } from '@/entities/Profile';
 import { loginReducer } from '@/features/AuthByUsername/model/slice/loginSlice';
+import { profileReducer } from '@/features/Profile/model/slice/profileSlice';
 import { ReducersList } from '@/shared/lib/hooks/useDynamicModule/useDynamicModule';
 import { ReducersMapObject } from '@reduxjs/toolkit';
 import { StoryFn } from '@storybook/react';

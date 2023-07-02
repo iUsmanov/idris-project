@@ -6,7 +6,7 @@ import { Flex } from '../Stack';
 interface AvatarProps {
 	className?: string;
 	alt?: string;
-	src: string;
+	src?: string;
 	size?: number;
 	justify?: AvatarAlign;
 }
@@ -14,7 +14,7 @@ interface AvatarProps {
 type AvatarAlign = 'left' | 'center' | 'right';
 
 export const Avatar = memo((props: AvatarProps) => {
-	const { className, src, alt, size = 100, justify = 'left' } = props;
+	const { className, src, alt, size = 100, justify = 'center' } = props;
 
 	const styles = useMemo<CSSProperties>(() => ({ width: size, height: size }), [size]);
 

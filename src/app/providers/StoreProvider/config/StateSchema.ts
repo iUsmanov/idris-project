@@ -4,8 +4,8 @@ import { LoginSchema } from '@/features/AuthByUsername';
 import { createReduxStore } from './store';
 import { AnyAction, CombinedState, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore';
-import { ProfileSchema } from '@/entities/Profile';
 import { AxiosInstance } from 'axios';
+import { ProfileSchema } from '@/features/Profile';
 
 export interface StateSchema {
 	counter: CounterSchema;
@@ -34,6 +34,7 @@ export interface ThunkExtraArg {
 export interface ThunkConfig<T> {
 	rejectValue: T;
 	extra: ThunkExtraArg;
+	state: StateSchema;
 }
 
 export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];

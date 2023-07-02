@@ -39,7 +39,11 @@ export const Select = memo((props: SelectProps) => {
 
 	return (
 		<Flex className={cls.wrapper}>
-			{label && <span className={cls.label}>{`${label}>`}</span>}
+			{label && (
+				<span
+					className={classNames(cls.label, { [cls.disabled]: disabled }, [])}
+				>{`${label}>`}</span>
+			)}
 			<select
 				className={classNames(cls.select, {}, [className])}
 				value={value}
