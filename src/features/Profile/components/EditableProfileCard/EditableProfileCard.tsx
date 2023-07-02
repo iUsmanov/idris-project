@@ -38,16 +38,18 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
 		dispatch(fetchProfileData());
 	}, [dispatch]);
 
-	const onChangeFirstName = useCallback(
-		(value: string) => {
-			dispatch(profileActions.setFormData({ first: value }));
-		},
-		[dispatch]
-	);
-
-	const onChangeLastName = useCallback(
-		(value: string) => {
-			dispatch(profileActions.setFormData({ lastname: value }));
+	const onChangeFirstOrLastName = useCallback(
+		(value: string, name?: string) => {
+			switch (name) {
+				case 'firstName':
+					dispatch(profileActions.setFormData({ first: value }));
+					break;
+				case 'lastName':
+					dispatch(profileActions.setFormData({ lastname: value }));
+					break;
+				default:
+					return;
+			}
 		},
 		[dispatch]
 	);
@@ -107,8 +109,7 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
 				isLoading={isLoading}
 				error={error}
 				readonly={readonly}
-				onChangeFirstName={onChangeFirstName}
-				onChangeLastName={onChangeLastName}
+				onChangeFirstOrLastName={onChangeFirstOrLastName}
 				onChangeAge={onChangeAge}
 				onChangeCity={onChangeCity}
 				onChangeUsername={onChangeUsername}

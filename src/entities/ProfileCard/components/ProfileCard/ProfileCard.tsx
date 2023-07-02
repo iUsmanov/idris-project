@@ -17,8 +17,7 @@ interface ProfileCardProps {
 	isLoading?: boolean;
 	error?: string;
 	readonly?: boolean;
-	onChangeFirstName?: (value: string) => void;
-	onChangeLastName?: (value: string) => void;
+	onChangeFirstOrLastName?: (value: string, name?: string) => void;
 	onChangeUsername?: (value: string) => void;
 	onChangeAge?: (value: string) => void;
 	onChangeCity?: (value: string) => void;
@@ -34,14 +33,13 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
 		data,
 		error,
 		readonly,
-		onChangeFirstName,
-		onChangeLastName,
 		onChangeAge,
 		onChangeAvatar,
 		onChangeCity,
 		onChangeUsername,
 		onChangeCountry,
 		onChangeCurrency,
+		onChangeFirstOrLastName,
 	} = props;
 	const { t } = useTranslation('profile');
 
@@ -76,16 +74,18 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
 			<Avatar src={data?.avatar} size={150} />
 			<VStack gap={'16'}>
 				<Input
-					onChange={onChangeFirstName}
+					onChange={onChangeFirstOrLastName}
 					readOnly={readonly}
 					value={data?.first}
 					placeholder={t('Ваше имя')}
+					name='firstName'
 				/>
 				<Input
-					onChange={onChangeLastName}
+					onChange={onChangeFirstOrLastName}
 					readOnly={readonly}
 					value={data?.lastname}
 					placeholder={t('Ваша фамилия')}
+					name='lastName'
 				/>
 				<Input
 					onChange={onChangeAge}

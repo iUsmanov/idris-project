@@ -18,9 +18,10 @@ interface InputProps extends HTMLInputProps {
 	placeholder?: string;
 	type?: string;
 	value?: string | number;
-	onChange?: (value: string) => void;
+	onChange?: (value: string, name?: string) => void;
 	autoFocus?: boolean;
 	readOnly?: boolean;
+	name?: string;
 }
 
 export const Input = memo((props: InputProps) => {
@@ -32,6 +33,7 @@ export const Input = memo((props: InputProps) => {
 		onChange,
 		autoFocus,
 		readOnly,
+		name,
 		...otherProps
 	} = props;
 	const [isFocused, setIsFocused] = useState<boolean>(false);
@@ -49,7 +51,11 @@ export const Input = memo((props: InputProps) => {
 	};
 
 	const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-		onChange?.(event.target.value);
+		if (name) {
+			onChange?.(event.target.value, name);
+		} else {
+			onChange?.(event.target.value);
+		}
 	};
 
 	const onSelect = (event: SyntheticEvent<HTMLInputElement, Event>) => {
