@@ -104,7 +104,7 @@ export const InvertedDarkSizeL: Story = {
 	decorators: [ThemeDecorator('app-dark-theme')],
 };
 
-export const InvertedOrangeSizeXL: Story = {
+export const InvertedOrangeSizeS: Story = {
 	args: {
 		variant: 'inverted',
 		size: 'size_s',

@@ -16,17 +16,38 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const PrimaryLight: Story = {
+export const CenterLight: Story = {
 	args: {},
 	decorators: [],
 };
 
-export const PrimaryDark: Story = {
+export const CenterDark: Story = {
 	args: {},
 	decorators: [ThemeDecorator('app-dark-theme')],
 };
 
-export const PrimaryOrange: Story = {
+export const CenterOrange: Story = {
 	args: {},
 	decorators: [ThemeDecorator('app-orange-theme')],
+};
+
+export const LeftLight: Story = {
+	args: { justify: 'left' },
+	decorators: [],
+};
+
+export const BiggerLight: Story = {
+	args: {
+		justify: 'right',
+		size: 200,
+	},
+	decorators: [],
+};
+
+export const NoLight: Story = {
+	args: {
+		src: '',
+		alt: 'Нет пути к изображению',
+	},
+	decorators: [],
 };

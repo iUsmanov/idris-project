@@ -44,11 +44,12 @@ const config: StorybookConfig = {
 			config.plugins = [
 				...config.plugins,
 				new webpack.DefinePlugin({
-					__IS_DEV__: true,
-					__API__: '',
-					__ENVIRON__: 'storybook',
+					__IS_DEV__: JSON.stringify(true),
+					__API__: JSON.stringify(''),
+					__ENVIRON__: JSON.stringify('storybook'),
 				}),
 			];
+			// console.log('HAHAH');!NOT WoRKS
 		}
 
 		return config;

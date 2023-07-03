@@ -35,3 +35,15 @@ export const PrimaryOrange: Story = {
 	args: {},
 	decorators: [ThemeDecorator('app-orange-theme')],
 };
+
+export const DisabledLight: Story = {
+	args: {
+		disabled: true,
+	},
+};
+
+export const NoLabelLight: Story = {
+	args: {
+		label: '',
+	},
+};

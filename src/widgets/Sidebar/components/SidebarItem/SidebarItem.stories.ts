@@ -5,7 +5,7 @@ import { getRouteMain } from '@/shared/const/router';
 import MainIcon from '@/shared/assets/icons/main-20-20.svg';
 
 const meta = {
-	title: 'widgets/SidebarItem',
+	title: 'widgets/Sidebar/SidebarItem',
 	component: SidebarItem,
 	tags: ['autodocs'],
 	argTypes: {},
