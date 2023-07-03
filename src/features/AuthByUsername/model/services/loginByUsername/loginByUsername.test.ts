@@ -55,7 +55,7 @@ describe('loginByUsername.test', () => {
 		expect(action.meta.requestStatus).toBe('fulfilled');
 		expect(action.payload).toEqual(user);
 	});
-	test('Error login', async () => {
+	test('Rejected', async () => {
 		const thunk = new TestAsyncThunk(loginByUsername);
 		thunk.api.post.mockResolvedValue({ status: 403 });
 		const action = await thunk.callThunk({ username: '123', password: '123' });

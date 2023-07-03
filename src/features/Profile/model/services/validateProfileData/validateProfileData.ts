@@ -5,29 +5,36 @@ export const validateProfileErrors = (profile?: Profile) => {
 
 	if (!profile) {
 		errors.push('noData');
+		return errors;
 	}
 
-	if (!profile?.first) {
+	const { first, age, avatar, city, lastname, username } = profile;
+
+	if (!first && !age && !avatar && !city && !lastname && !username) {
+		errors.push('noData');
+		return errors;
+	}
+	if (!first) {
 		errors.push('incorrectFirstName');
 	}
 
-	if (!profile?.lastname) {
+	if (!lastname) {
 		errors.push('incorrectLastName');
 	}
 
-	if (!profile?.username) {
+	if (!username) {
 		errors.push('incorrectUsername');
 	}
 
-	if (!profile?.age) {
+	if (!age) {
 		errors.push('incorrectAge');
 	}
 
-	if (!profile?.avatar) {
+	if (!avatar) {
 		errors.push('incorrectAvatarLink');
 	}
 
-	if (!profile?.city) {
+	if (!city) {
 		errors.push('incorrectCity');
 	}
 
