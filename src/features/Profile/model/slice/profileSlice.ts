@@ -8,6 +8,7 @@ export const initialState: ProfileSchema = {
 	formData: undefined,
 	isLoading: false,
 	error: undefined,
+	validateErrors: undefined,
 	readonly: true,
 };
 
