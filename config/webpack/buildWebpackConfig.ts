@@ -12,6 +12,7 @@ export function webpackConfiguration(options: BuildOptions): webpack.Configurati
 			filename: '[name].[contenthash].js',
 			path: options.buildPaths.build,
 			clean: true,
+			publicPath: '/',
 		},
 		mode: options.mode,
 		devtool: options.isDev ? 'inline-source-map' : undefined,

@@ -2,11 +2,19 @@ import { AppRouteObject, AppRoutes } from '@/shared/types/router';
 import { MainPage } from '@/pages/MainPage';
 import { AboutPage } from '@/pages/AboutPage';
 import { createBrowserRouter } from 'react-router-dom';
-import { getRouteAbout, getRouteMain, getRouteProfile } from '@/shared/const/router';
+import {
+	getRouteAbout,
+	getRouteArticleDetails,
+	getRouteArticles,
+	getRouteMain,
+	getRouteProfile,
+} from '@/shared/const/router';
 import { RootLayout } from '@/app/RootLayout';
 import { NotFoundPage } from '@/pages/NotFoundPage';
 import { ProfilePage } from '@/pages/ProfilePage';
 import { RequireAuth } from '../components/RequireAuth';
+import { ArticlesPage } from '@/pages/ArticlesPage';
+import { ArticleDetailsPage } from '@/pages/ArticleDetailsPage';
 
 export const routeConfig: Record<AppRoutes, AppRouteObject> = {
 	main: {
@@ -18,10 +26,18 @@ export const routeConfig: Record<AppRoutes, AppRouteObject> = {
 		element: <AboutPage />,
 	},
 	profiles: {
-		// path: getRouteProfile('1'),
-		// path: getRouteProfile(''),
 		path: getRouteProfile(':id'),
 		element: <ProfilePage />,
+		authOnly: true,
+	},
+	articles: {
+		path: getRouteArticles(),
+		element: <ArticlesPage />,
+		authOnly: true,
+	},
+	article_details: {
+		path: getRouteArticleDetails(':id'),
+		element: <ArticleDetailsPage />,
 		authOnly: true,
 	},
 	not_found: {
