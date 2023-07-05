@@ -2,11 +2,16 @@
 	cursor: pointer;
 	padding: 6px 15px;
 	color: var(--primary-color);
+	
+	&:hover {
+		opacity: 0.8;
+		fill-opacity: 0.8;
+		stroke-opacity: 0.8;
+	}
 }
 
 .button:disabled {
 	opacity: 0.5;
-
 }
 
 // .primary {}
@@ -77,4 +82,8 @@
 
 .size_xl {
 	font: var(--font-xl);
+}
+
+.fullWidth {
+	width: 100%;
 }
