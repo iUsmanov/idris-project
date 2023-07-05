@@ -13,7 +13,7 @@ import {
 	getArticleDetailsIsLoading,
 } from '../../model/selectors/articleDetailsSelectors';
 import { Text } from '@/shared/components/Text/Text';
-import { Skeleton } from '@/shared/components/Skeleton/Skeleton';
+import { Shimmer, ShimmerType } from '@/shared/components/Shimmer/Shimmer';
 
 interface ArticleDetailsProps {
 	className?: string;
@@ -22,6 +22,16 @@ interface ArticleDetailsProps {
 
 const reducers: ReducersList = {
 	articleDetails: articleDetailsReducer,
+};
+
+const skeletons: ShimmerType = {
+	ver: [
+		{ width: 200, height: 200, borderRadius: '50%', margin: '0 auto' },
+		{ width: 300, height: 32, marginTop: 20 },
+		{ width: 600, height: 24, marginTop: 15 },
+		{ width: '100%', height: 200, marginTop: 15 },
+		{ width: '100%', height: 200, marginTop: 15 },
+	],
 };
 
 export const ArticleDetails = memo((props: ArticleDetailsProps) => {
@@ -41,15 +51,7 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
 	}, [dispatch, id]);
 
 	if (isLoading) {
-		return (
-			<div>
-				<Skeleton className={cls.preview} width={200} height={200} borderRadius='50%' />
-				<Skeleton className={cls.title} width={300} height={32} />
-				<Skeleton className={cls.skeleton} width={600} height={24} />
-				<Skeleton className={cls.skeleton} width='100%' height={200} />
-				<Skeleton className={cls.skeleton} width='100%' height={200} />
-			</div>
-		);
+		return <Shimmer skeletons={skeletons} />;
 	}
 
 	if (error) {
