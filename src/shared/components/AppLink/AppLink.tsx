@@ -3,12 +3,11 @@ import cls from './AppLink.module.scss';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Link, LinkProps } from 'react-router-dom';
 
-export type AppLinkVariant = 'primary' | 'inverted';
+export type AppLinkVariant = 'primary' | 'inverted' | 'red';
 
 interface AppLinkProps extends LinkProps {
 	className?: string;
 	variant?: AppLinkVariant;
-	to: string;
 	children: ReactNode;
 }
 

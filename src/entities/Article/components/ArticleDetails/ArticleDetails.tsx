@@ -1,4 +1,4 @@
-import { memo, useEffect } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './ArticleDetails.module.scss';
@@ -14,6 +14,15 @@ import {
 } from '../../model/selectors/articleDetailsSelectors';
 import { Text } from '@/shared/components/Text/Text';
 import { Shimmer, ShimmerType } from '@/shared/components/Shimmer/Shimmer';
+import { Avatar } from '@/shared/components/Avatar/Avatar';
+import { HStack } from '@/shared/components/Stack';
+import EyeIcon from '@/shared/assets/icons/eye-20-20.svg';
+import CalendarIcon from '@/shared/assets/icons/calendar-20-20.svg';
+import { Icon } from '@/shared/components/Icon/Icon';
+import { ArticleBlock } from '../../model/types/article';
+import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
+import { ArticleImageBlockComponent } from '../ArticleImageBlockComponent/ArticleImageBlockComponent';
+import { ArticleCodeBlockComponent } from '../ArticleCodeBlockComponent/ArticleCodeBlockComponent';
 
 interface ArticleDetailsProps {
 	className?: string;
@@ -50,13 +59,43 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
 		}
 	}, [dispatch, id]);
 
+	const renderBlock = useCallback((block: ArticleBlock) => {
+		switch (block.type) {
+			case 'TEXT':
+				return <ArticleTextBlockComponent key={block.id} className={cls.block} block={block} />;
+				break;
+			case 'IMAGE':
+				return <ArticleImageBlockComponent key={block.id} className={cls.block} block={block} />;
+				break;
+			case 'CODE':
+				return <ArticleCodeBlockComponent key={block.id} className={cls.block} block={block} />;
+				break;
+			default:
+				return null;
+		}
+	}, []);
+
 	if (isLoading) {
 		return <Shimmer skeletons={skeletons} />;
 	}
 
 	if (error) {
-		return <Text align='center' title={t('Произошла ошибка при загрузке статьи')} />;
+		return <Text align='center' title={t('Произошла ошибка при загрузке статьи')} size='size_l' />;
 	}
 
-	return <div className={classNames(cls.articleDetails, {}, [className])}></div>;
+	return (
+		<div className={classNames(cls.articleDetails, {}, [className])}>
+			<Avatar justify='center' src={article?.img} size={200} />
+			<Text title={article?.title} text={article?.subtitle} size='size_l' />
+			<HStack gap='8' align='center'>
+				<Icon Svg={EyeIcon} />
+				<Text text={String(article?.views)} size='size_m' />
+			</HStack>
+			<HStack gap='8' align='center'>
+				<Icon Svg={CalendarIcon} />
+				<Text text={article?.createdAt} size='size_m' />
+			</HStack>
+			{article?.blocks.map(renderBlock)}
+		</div>
+	);
 });
