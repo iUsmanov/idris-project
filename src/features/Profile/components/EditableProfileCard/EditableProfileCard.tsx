@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect } from 'react';
+import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useSelector } from 'react-redux';
@@ -15,6 +15,7 @@ import { getProfileFormData } from '../../model/selectors/getProfileFormData/get
 import { Currency } from '@/entities/Currency';
 import { Country } from '@/entities/Country';
 import { getProfileValidateErrors } from '../../model/selectors/getProfileValidateErrors/getProfileValidateErrors';
+import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 
 interface EditableProfileCardProps {
 	className?: string;
@@ -36,11 +37,9 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
 
 	useDynamicModule({ reducers: initialReducers });
 
-	useEffect(() => {
-		if (__ENVIRON__ !== 'storybook') {
-			dispatch(fetchProfileData());
-		}
-	}, [dispatch]);
+	useInitialEffect(() => {
+		dispatch(fetchProfileData());
+	});
 
 	const onChangeFirstOrLastName = useCallback(
 		(value: string, name?: string) => {
