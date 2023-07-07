@@ -1,0 +1,32 @@
+import { memo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import cls from './CommentCard.module.scss';
+import { Comment } from '../../model/types/comment';
+import { HStack } from '@/shared/components/Stack';
+import { Text } from '@/shared/components/Text/Text';
+import { Avatar } from '@/shared/components/Avatar/Avatar';
+
+interface CommentCardProps {
+	className?: string;
+	comment: Comment;
+}
+
+export const CommentCard = memo((props: CommentCardProps) => {
+	const { className, comment } = props;
+	const { t } = useTranslation();
+
+	return (
+		<div className={classNames(cls.commentCard, {}, [className])}>
+			<HStack align='center' className={cls.header}>
+				{comment.user?.avatar ? (
+					<Avatar src={comment.user?.avatar} size={30} />
+				) : (
+					<Text title={comment.userId} size='size_l' />
+				)}
+				<Text title={comment.userId} size='size_m' className={cls.username} />
+			</HStack>
+			<Text text={comment.text} size='size_m' />
+		</div>
+	);
+});

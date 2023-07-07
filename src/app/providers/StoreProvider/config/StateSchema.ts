@@ -7,6 +7,7 @@ import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore';
 import { AxiosInstance } from 'axios';
 import { ProfileSchema } from '@/features/Profile';
 import { ArticleDetailsSchema } from '@/entities/Article';
+import { ArticleCommentsListSchema } from '@/features/ArticleCommentsList';
 
 export interface StateSchema {
 	counter: CounterSchema;
@@ -16,6 +17,7 @@ export interface StateSchema {
 	loginForm?: LoginSchema;
 	profile?: ProfileSchema;
 	articleDetails?: ArticleDetailsSchema;
+	articleCommentsList?: ArticleCommentsListSchema;
 }
 
 export interface ReducerManager {

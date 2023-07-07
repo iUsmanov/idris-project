@@ -13,6 +13,7 @@ type ShimmerValue = (CSSProperties | ShimmerType)[];
 
 interface ShimmerProps {
 	skeletons: ShimmerType;
+	className?: string;
 }
 
 function createTupple(skeletons: CSSProperties | ShimmerType): [ShimmerKey, ShimmerValue] {
@@ -42,10 +43,10 @@ function createStack(name: ShimmerKey, array: ShimmerValue) {
 }
 
 export const Shimmer = memo((props: ShimmerProps) => {
-	const { skeletons } = props;
+	const { skeletons, className } = props;
 
 	const [name, array] = createTupple(skeletons);
 	const nodes = createStack(name, array);
 
-	return <div className={classNames(cls.shimmer, {}, [])}>{nodes}</div>;
+	return <div className={classNames(cls.shimmer, {}, [className])}>{nodes}</div>;
 });
