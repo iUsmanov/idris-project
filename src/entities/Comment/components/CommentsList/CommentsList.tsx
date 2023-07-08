@@ -22,7 +22,9 @@ const skeletons: ShimmerType = {
 				{ width: 120, height: 20, margin: 'auto 0', marginLeft: 10 },
 			],
 		},
-		{ ver: [{ width: 800, height: 30, marginTop: 20 }] },
+		{
+			ver: [{ height: 60, marginTop: 20 }],
+		},
 	],
 };
 

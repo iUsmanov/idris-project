@@ -1,5 +1,4 @@
 import { ArticleDetails } from '@/entities/Article';
-import { Text } from '@/shared/components/Text/Text';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -18,7 +17,6 @@ export const ArticleDetailsPage = memo(() => {
 	return (
 		<div className={classNames('', {}, [])}>
 			<ArticleDetails className={cls.articleDetails} id={id} />
-			<Text title={t('Комментарии')} size='size_l' />
 			<ArticleCommentsList />
 		</div>
 	);

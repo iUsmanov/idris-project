@@ -7,7 +7,7 @@ import {
 	articleCommentsListReducer,
 	getArticleCommentsList,
 } from '../model/slice/articleCommentsListSlice';
-import { Comment, CommentsList } from '@/entities/Comment';
+import { CommentsList } from '@/entities/Comment';
 import { useSelector } from 'react-redux';
 import {
 	getArticleCommentsListError,
@@ -17,6 +17,8 @@ import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitial
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { fetchArticleCommentsByArticleId } from '../model/services/fetchArticleCommentsByArticleId/fetchArticleCommentsByArticleId';
 import { useParams } from 'react-router-dom';
+import { Text } from '@/shared/components/Text/Text';
+import { getArticleDetailsError } from '@/entities/Article';
 
 interface ArticleCommentsListProps {
 	className?: string;
@@ -28,11 +30,12 @@ const reducers: ReducersList = {
 
 export const ArticleCommentsList = memo((props: ArticleCommentsListProps) => {
 	const { className } = props;
-	const { t } = useTranslation();
+	const { t } = useTranslation('article-details');
 	const dispatch = useAppDispatch();
 	const comments = useSelector(getArticleCommentsList.selectAll);
 	const isLoading = useSelector(getArticleCommentsListIsLoading);
 	const error = useSelector(getArticleCommentsListError);
+	const articleError = useSelector(getArticleDetailsError);
 	const { id } = useParams<{ id: string }>();
 
 	useDynamicModule({ reducers });
@@ -41,5 +44,14 @@ export const ArticleCommentsList = memo((props: ArticleCommentsListProps) => {
 		dispatch(fetchArticleCommentsByArticleId(id));
 	});
 
-	return <CommentsList comments={comments} isLoading={isLoading} error={error} />;
+	if (articleError) {
+		return null;
+	}
+
+	return (
+		<>
+			<Text title={t('Комментарии')} size='size_l' />
+			<CommentsList comments={comments} isLoading={isLoading} error={error} />
+		</>
+	);
 });

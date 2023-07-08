@@ -34,11 +34,19 @@ function createStack(name: ShimmerKey, array: ShimmerValue) {
 	const key = Math.random();
 
 	if (name === 'hor') {
-		return <HStack key={key}>{nodes}</HStack>;
+		return (
+			<HStack max key={key}>
+				{nodes}
+			</HStack>
+		);
 	}
 
 	if (name === 'ver') {
-		return <VStack key={key}>{nodes}</VStack>;
+		return (
+			<VStack max key={key}>
+				{nodes}
+			</VStack>
+		);
 	}
 }
 
