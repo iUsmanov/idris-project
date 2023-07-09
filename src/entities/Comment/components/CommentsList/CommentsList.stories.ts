@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { CommentsList } from './CommentsList';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
+import Image from '@/shared/assets/tests/storybook.jpg';
 
 const meta = {
 	title: 'entities/CommentsList',
@@ -14,16 +15,41 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const PrimaryLight: Story = {
-	args: {},
+	args: {
+		comments: [
+			{
+				id: '1',
+				text: 'some comment',
+				articleId: '1',
+				userId: '1',
+				user: {
+					avatar: Image,
+				},
+			},
+			{
+				id: '2',
+				text: 'some comment',
+				articleId: '1',
+				userId: '1',
+				user: {
+					avatar: Image,
+				},
+			},
+		],
+	},
 	decorators: [],
 };
 
-export const PrimaryDark: Story = {
-	args: {},
+export const LoadingDark: Story = {
+	args: {
+		isLoading: true,
+	},
 	decorators: [ThemeDecorator('app-dark-theme')],
 };
 
-export const PrimaryOrange: Story = {
-	args: {},
+export const ErrorOrange: Story = {
+	args: {
+		error: 'error',
+	},
 	decorators: [ThemeDecorator('app-orange-theme')],
 };
