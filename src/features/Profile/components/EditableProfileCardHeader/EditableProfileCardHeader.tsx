@@ -9,6 +9,8 @@ import { profileActions } from '../../model/slice/profileSlice';
 import { updateProfileData } from '../../model/services/updateProfileData/updateProfileData';
 import cls from './EditableProfileCardHeader.module.scss';
 import { ValidateProfileError } from '../../model/types/profile';
+import { useSelector } from 'react-redux';
+import { getProfileCanEdit } from '../../model/selectors/getProfileCanEdit/getProfileCanEdit';
 
 interface EditableProfileCardHeaderProps {
 	className?: string;
@@ -20,6 +22,7 @@ export const EditableProfileCardHeader = memo((props: EditableProfileCardHeaderP
 	const { className, readonly, profileValidateErrors } = props;
 	const { t } = useTranslation('profile');
 	const dispatch = useAppDispatch();
+	const canEdit = useSelector(getProfileCanEdit);
 
 	const onCancelEdit = useCallback(() => {
 		dispatch(profileActions.cancelEdit());
@@ -44,19 +47,23 @@ export const EditableProfileCardHeader = memo((props: EditableProfileCardHeaderP
 				align='center'
 			>
 				<Text title={t('Профиль')} size='size_l' />
-				{readonly ? (
-					<Button onClick={onEdit} variant={'outline'}>
-						{t('Редактировать')}
-					</Button>
-				) : (
-					<HStack gap='8'>
-						<Button onClick={onCancelEdit} variant={'outlineRed'}>
-							{t('Отменить')}
-						</Button>
-						<Button onClick={onEditSave} variant={'outline'}>
-							{t('Сохранить')}
-						</Button>
-					</HStack>
+				{canEdit && (
+					<>
+						{readonly ? (
+							<Button onClick={onEdit} variant={'outline'}>
+								{t('Редактировать')}
+							</Button>
+						) : (
+							<HStack gap='8'>
+								<Button onClick={onCancelEdit} variant={'outlineRed'}>
+									{t('Отменить')}
+								</Button>
+								<Button onClick={onEditSave} variant={'outline'}>
+									{t('Сохранить')}
+								</Button>
+							</HStack>
+						)}
+					</>
 				)}
 			</HStack>
 			<div>

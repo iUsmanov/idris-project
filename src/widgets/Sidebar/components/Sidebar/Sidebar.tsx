@@ -6,8 +6,9 @@ import { ThemeSwitcher } from '@/features/ThemeSwitcher';
 import { Flex, VStack } from '@/shared/components/Stack';
 import { LangSwitcher } from '@/features/LangSwitcher';
 import { useTranslation } from 'react-i18next';
-import { SidebarItemsList } from '../../model/items';
+import { getSidebarItems } from '../../model/selectors/items';
 import { SidebarItem } from '../SidebarItem/SidebarItem';
+import { useSelector } from 'react-redux';
 
 interface SidebarProps {
 	className?: string;
@@ -17,14 +18,14 @@ export const Sidebar = memo((props: SidebarProps) => {
 	const { className } = props;
 	const { t } = useTranslation();
 	const [collapsed, setCollapsed] = useState<boolean>(false);
-
+	const sidebarItemsList = useSelector(getSidebarItems);
 	return (
 		<div
 			data-testid={'sidebar'}
 			className={classNames(cls.sidebar, { [cls.collapsed]: collapsed }, [className])}
 		>
 			<VStack gap='16' className={cls.items}>
-				{SidebarItemsList.map((item) => (
+				{sidebarItemsList.map((item) => (
 					<SidebarItem key={item.text} item={item} collapsed={collapsed} />
 				))}
 			</VStack>

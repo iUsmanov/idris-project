@@ -90,9 +90,9 @@ describe('profileSlice.test', () => {
 			error: undefined,
 			isLoading: false,
 		};
-		expect(profileReducer(state as ProfileSchema, fetchProfileData.fulfilled(payload, ''))).toEqual(
-			expected
-		);
+		expect(
+			profileReducer(state as ProfileSchema, fetchProfileData.fulfilled(payload, '', ''))
+		).toEqual(expected);
 	});
 	test('fetchProfileData reject', () => {
 		const state: DeepPartial<ProfileSchema> = {
@@ -104,7 +104,7 @@ describe('profileSlice.test', () => {
 			error: 'error',
 		};
 		expect(
-			profileReducer(state as ProfileSchema, fetchProfileData.rejected(null, '', undefined, 'error'))
+			profileReducer(state as ProfileSchema, fetchProfileData.rejected(null, '', '', 'error'))
 		).toEqual(expected);
 	});
 	// !UPDATE PROFILE DATA

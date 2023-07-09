@@ -27,6 +27,12 @@ const meta = {
 			},
 		}),
 	],
+	parameters: {
+		router: {
+			path: '/profiles/:id',
+			route: '/profiles/1',
+		},
+	},
 } satisfies Meta<typeof EditableProfileCard>;
 
 export default meta;
