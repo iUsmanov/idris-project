@@ -17,7 +17,6 @@ import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitial
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { fetchArticleCommentsByArticleId } from '../model/services/fetchArticleCommentsByArticleId/fetchArticleCommentsByArticleId';
 import { useParams } from 'react-router-dom';
-import { Text } from '@/shared/components/Text/Text';
 import { getArticleDetailsError } from '@/entities/Article';
 
 interface ArticleCommentsListProps {
@@ -48,10 +47,5 @@ export const ArticleCommentsList = memo((props: ArticleCommentsListProps) => {
 		return null;
 	}
 
-	return (
-		<>
-			<Text title={t('Комментарии')} size='size_l' />
-			<CommentsList comments={comments} isLoading={isLoading} error={error} />
-		</>
-	);
+	return <CommentsList comments={comments} isLoading={isLoading} error={error} />;
 });

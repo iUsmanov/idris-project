@@ -4,7 +4,7 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import cls from './ArticleDetailsPage.module.scss';
-import { ArticleCommentsList } from '@/features/ArticleCommentsList';
+import { ArticleComments } from '@/widgets/ArticleComments';
 
 export const ArticleDetailsPage = memo(() => {
 	const { t } = useTranslation('article-details');
@@ -17,7 +17,7 @@ export const ArticleDetailsPage = memo(() => {
 	return (
 		<div className={classNames('', {}, [])}>
 			<ArticleDetails className={cls.articleDetails} id={id} />
-			<ArticleCommentsList />
+			<ArticleComments />
 		</div>
 	);
 });

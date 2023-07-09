@@ -8,6 +8,7 @@ import { AxiosInstance } from 'axios';
 import { ProfileSchema } from '@/features/Profile';
 import { ArticleDetailsSchema } from '@/entities/Article';
 import { ArticleCommentsListSchema } from '@/features/ArticleCommentsList';
+import { AddNewCommentSchema } from '@/features/AddNewComment';
 
 export interface StateSchema {
 	counter: CounterSchema;
@@ -18,6 +19,7 @@ export interface StateSchema {
 	profile?: ProfileSchema;
 	articleDetails?: ArticleDetailsSchema;
 	articleCommentsList?: ArticleCommentsListSchema;
+	addNewComment?: AddNewCommentSchema;
 }
 
 export interface ReducerManager {

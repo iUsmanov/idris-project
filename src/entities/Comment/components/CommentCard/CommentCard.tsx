@@ -6,6 +6,8 @@ import { Comment } from '../../model/types/comment';
 import { HStack } from '@/shared/components/Stack';
 import { Text } from '@/shared/components/Text/Text';
 import { Avatar } from '@/shared/components/Avatar/Avatar';
+import { AppLink } from '@/shared/components/AppLink/AppLink';
+import { getRouteProfile } from '@/shared/const/router';
 
 interface CommentCardProps {
 	className?: string;
@@ -18,14 +20,16 @@ export const CommentCard = memo((props: CommentCardProps) => {
 
 	return (
 		<div className={classNames(cls.commentCard, {}, [className])}>
-			<HStack align='center' className={cls.header}>
-				{comment.user?.avatar ? (
-					<Avatar src={comment.user?.avatar} size={30} />
-				) : (
-					<Text title={comment.userId} size='size_l' />
-				)}
-				<Text title={comment.userId} size='size_m' className={cls.username} />
-			</HStack>
+			<AppLink to={getRouteProfile(comment.userId)}>
+				<HStack align='center' className={cls.header}>
+					{comment.user?.avatar ? (
+						<Avatar src={comment.user?.avatar} size={30} />
+					) : (
+						<Text title={comment.userId} size='size_l' />
+					)}
+					<Text title={comment.userId} size='size_m' className={cls.username} />
+				</HStack>
+			</AppLink>
 			<Text text={comment.text} size='size_m' />
 		</div>
 	);

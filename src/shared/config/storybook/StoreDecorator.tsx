@@ -1,5 +1,6 @@
 import { StateSchema, StoreProvider } from '@/app/providers/StoreProvider';
 import { articleDetailsReducer } from '@/entities/Article/model/slice/articleDetailsSlice';
+import { addNewCommentReducer } from '@/features/AddNewComment/model/slice/addNewCommentSlice';
 import { articleCommentsListReducer } from '@/features/ArticleCommentsList/model/slice/articleCommentsListSlice';
 import { loginReducer } from '@/features/AuthByUsername/model/slice/loginSlice';
 import { profileReducer } from '@/features/Profile/model/slice/profileSlice';
@@ -13,6 +14,7 @@ const defaultAsyncReducers: ReducersList = {
 	profile: profileReducer,
 	articleDetails: articleDetailsReducer,
 	articleCommentsList: articleCommentsListReducer,
+	addNewComment: addNewCommentReducer,
 };
 
 export const StoreDecorator =
