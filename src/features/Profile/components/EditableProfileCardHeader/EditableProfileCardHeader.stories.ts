@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { EditableProfileCardHeader } from './EditableProfileCardHeader';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator';
 
 const meta = {
 	title: 'features/EditableProfileCardHeader',
@@ -10,7 +11,20 @@ const meta = {
 	args: {
 		readonly: true,
 	},
-	decorators: [],
+	decorators: [
+		StoreDecorator({
+			articleDetails: {
+				data: {
+					id: '1',
+				},
+			},
+			user: {
+				authData: {
+					id: '1',
+				},
+			},
+		}),
+	],
 } satisfies Meta<typeof EditableProfileCardHeader>;
 
 export default meta;
@@ -43,4 +57,9 @@ export const ValidateErrorsLight: Story = {
 		profileValidateErrors: ['incorrectFirstName', 'incorrectAge'],
 	},
 	decorators: [],
+};
+
+export const CantEditLight: Story = {
+	args: {},
+	decorators: [StoreDecorator({})],
 };
