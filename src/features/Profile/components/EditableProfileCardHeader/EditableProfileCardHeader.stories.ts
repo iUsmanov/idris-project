@@ -13,7 +13,7 @@ const meta = {
 	},
 	decorators: [
 		StoreDecorator({
-			articleDetails: {
+			profile: {
 				data: {
 					id: '1',
 				},

@@ -51,7 +51,18 @@ const meta = {
 	decorators: [
 		StoreDecorator({
 			articleCommentsList: {
+				ids: ['1', '2', '3'],
 				entities: entities,
+				commentsError: undefined,
+				sendError: undefined,
+				isCommentsLoading: false,
+				isSendLoading: false,
+			},
+			articleDetails: {
+				error: undefined,
+			},
+			addNewComment: {
+				text: 'Some text',
 			},
 		}),
 	],
@@ -75,23 +86,89 @@ export const PrimaryOrange: Story = {
 	decorators: [ThemeDecorator('app-orange-theme')],
 };
 
-export const LoadingLight: Story = {
+export const CommentsLoadingLight: Story = {
 	args: {},
 	decorators: [
 		StoreDecorator({
 			articleCommentsList: {
-				isLoading: true,
+				ids: ['1', '2', '3'],
+				entities: {},
+				commentsError: undefined,
+				sendError: undefined,
+				isCommentsLoading: true,
+				isSendLoading: false,
+			},
+			articleDetails: {
+				error: undefined,
+			},
+			addNewComment: {
+				text: 'Some text',
 			},
 		}),
 	],
 };
 
-export const ErrorLight: Story = {
+export const SendLoadingLight: Story = {
 	args: {},
 	decorators: [
 		StoreDecorator({
 			articleCommentsList: {
-				error: 'error',
+				ids: ['1', '2', '3'],
+				entities: entities,
+				commentsError: undefined,
+				sendError: undefined,
+				isCommentsLoading: false,
+				isSendLoading: true,
+			},
+			articleDetails: {
+				error: undefined,
+			},
+			addNewComment: {
+				text: 'Some text',
+			},
+		}),
+	],
+};
+
+export const CommenstErrorLight: Story = {
+	args: {},
+	decorators: [
+		StoreDecorator({
+			articleCommentsList: {
+				ids: ['1', '2', '3'],
+				entities: entities,
+				commentsError: 'error',
+				sendError: undefined,
+				isCommentsLoading: false,
+				isSendLoading: false,
+			},
+			articleDetails: {
+				error: undefined,
+			},
+			addNewComment: {
+				text: 'Some text',
+			},
+		}),
+	],
+};
+
+export const SendErrorLight: Story = {
+	args: {},
+	decorators: [
+		StoreDecorator({
+			articleCommentsList: {
+				ids: ['1', '2', '3'],
+				entities: entities,
+				commentsError: undefined,
+				sendError: 'error',
+				isCommentsLoading: false,
+				isSendLoading: false,
+			},
+			articleDetails: {
+				error: undefined,
+			},
+			addNewComment: {
+				text: 'Some text',
 			},
 		}),
 	],

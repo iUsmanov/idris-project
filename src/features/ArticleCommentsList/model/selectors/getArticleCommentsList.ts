@@ -1,7 +1,14 @@
 import { StateSchema } from '@/app/providers/StoreProvider';
 import { initialState } from '../slice/articleCommentsListSlice';
 
-export const getArticleCommentsListIsLoading = (state: StateSchema) =>
-	state.articleCommentsList?.isLoading || initialState.isLoading;
+export const getArticleCommentsListIsCommentsLoading = (state: StateSchema) =>
+	state.articleCommentsList?.isCommentsLoading || initialState.isCommentsLoading;
 
-export const getArticleCommentsListError = (state: StateSchema) => state.articleCommentsList?.error;
+export const getArticleCommentsListCommentsError = (state: StateSchema) =>
+	state.articleCommentsList?.commentsError;
+
+export const getArticleCommentsListIsSendLoading = (state: StateSchema) =>
+	state.articleCommentsList?.isSendLoading || initialState.isSendLoading;
+
+export const getArticleCommentsListSendError = (state: StateSchema) =>
+	state.articleCommentsList?.sendError;

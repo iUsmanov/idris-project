@@ -38,12 +38,12 @@ const comments: Comment[] = [
 describe('articleCommentsListSlice.test', () => {
 	test('fetchArticleCommentsByArticleId pending', () => {
 		const state: DeepPartial<ArticleCommentsListSchema> = {
-			error: 'error',
-			isLoading: false,
+			commentsError: 'error',
+			isCommentsLoading: false,
 		};
 		const expects = {
-			error: undefined,
-			isLoading: true,
+			commentsError: undefined,
+			isCommentsLoading: true,
 		};
 		expect(
 			articleCommentsListReducer(
@@ -54,11 +54,11 @@ describe('articleCommentsListSlice.test', () => {
 	});
 	test('fetchArticleCommentsByArticleId fulfilled', () => {
 		const state: DeepPartial<ArticleCommentsListSchema> = {
-			isLoading: true,
+			isCommentsLoading: true,
 		};
 		const payload: Comment[] = comments;
 		const expects: DeepPartial<ArticleCommentsListSchema> = {
-			isLoading: false,
+			isCommentsLoading: false,
 			ids: ['1', '2', '3'],
 			entities: {
 				'1': comments[0],
@@ -75,12 +75,12 @@ describe('articleCommentsListSlice.test', () => {
 	});
 	test('fetchArticleCommentsByArticleId rejected', () => {
 		const state: DeepPartial<ArticleCommentsListSchema> = {
-			isLoading: true,
-			error: undefined,
+			isCommentsLoading: true,
+			commentsError: undefined,
 		};
 		const expects: DeepPartial<ArticleCommentsListSchema> = {
-			error: 'error',
-			isLoading: false,
+			commentsError: 'error',
+			isCommentsLoading: false,
 		};
 		expect(
 			articleCommentsListReducer(
@@ -89,13 +89,42 @@ describe('articleCommentsListSlice.test', () => {
 			)
 		).toEqual(expects);
 	});
+});
+
+describe('articleCommentsListSlice.test', () => {
+	test('sendArticleComment pending', () => {
+		const state: DeepPartial<ArticleCommentsListSchema> = {
+			sendError: 'error',
+			isSendLoading: false,
+		};
+		const expects = {
+			sendError: undefined,
+			isSendLoading: true,
+		};
+		expect(
+			articleCommentsListReducer(state as ArticleCommentsListSchema, sendArticleComment.pending)
+		).toEqual(expects);
+	});
+	test('sendArticleComment fulfilled', () => {
+		const state: DeepPartial<ArticleCommentsListSchema> = {
+			isSendLoading: true,
+		};
+		const expects: DeepPartial<ArticleCommentsListSchema> = {
+			isSendLoading: false,
+		};
+		expect(
+			articleCommentsListReducer(state as ArticleCommentsListSchema, sendArticleComment.fulfilled)
+		).toEqual(expects);
+	});
 
 	test('sendArticleComment rejected', () => {
 		const state: DeepPartial<ArticleCommentsListSchema> = {
-			error: undefined,
+			isSendLoading: true,
+			sendError: undefined,
 		};
 		const expects: DeepPartial<ArticleCommentsListSchema> = {
-			error: 'error',
+			isSendLoading: false,
+			sendError: 'error',
 		};
 		expect(
 			articleCommentsListReducer(

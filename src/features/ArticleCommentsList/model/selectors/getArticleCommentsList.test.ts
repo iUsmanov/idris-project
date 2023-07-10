@@ -1,23 +1,49 @@
 import { StateSchema } from '@/app/providers/StoreProvider';
-import { getArticleCommentsListError, getArticleCommentsListIsLoading } from './getArticleCommentsList';
+import {
+	getArticleCommentsListCommentsError,
+	getArticleCommentsListIsCommentsLoading,
+	getArticleCommentsListIsSendLoading,
+	getArticleCommentsListSendError,
+} from './getArticleCommentsList';
 
-describe('getArticleCommentsListIsLoading', () => {
+describe('getArticleCommentsListIsCommentsLoading', () => {
 	test('Should return true', () => {
-		const state: DeepPartial<StateSchema> = { articleCommentsList: { isLoading: true } };
-		expect(getArticleCommentsListIsLoading(state as StateSchema)).toEqual(true);
+		const state: DeepPartial<StateSchema> = { articleCommentsList: { isCommentsLoading: true } };
+		expect(getArticleCommentsListIsCommentsLoading(state as StateSchema)).toEqual(true);
 	});
 	test('With empty state', () => {
 		const state: DeepPartial<StateSchema> = {};
-		expect(getArticleCommentsListIsLoading(state as StateSchema)).toEqual(false);
+		expect(getArticleCommentsListIsCommentsLoading(state as StateSchema)).toEqual(false);
 	});
 });
-describe('getArticleCommentsListError', () => {
+describe('getArticleCommentsListCommentsError', () => {
 	test('Should return true error', () => {
-		const state: DeepPartial<StateSchema> = { articleCommentsList: { error: 'error' } };
-		expect(getArticleCommentsListError(state as StateSchema)).toEqual('error');
+		const state: DeepPartial<StateSchema> = { articleCommentsList: { commentsError: 'error' } };
+		expect(getArticleCommentsListCommentsError(state as StateSchema)).toEqual('error');
 	});
 	test('With empty state', () => {
 		const state: DeepPartial<StateSchema> = {};
-		expect(getArticleCommentsListError(state as StateSchema)).toEqual(undefined);
+		expect(getArticleCommentsListCommentsError(state as StateSchema)).toEqual(undefined);
+	});
+});
+
+describe('getArticleCommentsListIsSendLoading', () => {
+	test('Should return true', () => {
+		const state: DeepPartial<StateSchema> = { articleCommentsList: { isSendLoading: true } };
+		expect(getArticleCommentsListIsSendLoading(state as StateSchema)).toEqual(true);
+	});
+	test('With empty state', () => {
+		const state: DeepPartial<StateSchema> = {};
+		expect(getArticleCommentsListIsSendLoading(state as StateSchema)).toEqual(false);
+	});
+});
+describe('getArticleCommentsListSendError', () => {
+	test('Should return true error', () => {
+		const state: DeepPartial<StateSchema> = { articleCommentsList: { sendError: 'error' } };
+		expect(getArticleCommentsListSendError(state as StateSchema)).toEqual('error');
+	});
+	test('With empty state', () => {
+		const state: DeepPartial<StateSchema> = {};
+		expect(getArticleCommentsListSendError(state as StateSchema)).toEqual(undefined);
 	});
 });

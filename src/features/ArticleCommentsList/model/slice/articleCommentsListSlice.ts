@@ -8,8 +8,10 @@ import { sendArticleComment } from '../services/sendArticleComment/sendArticleCo
 export const initialState: ArticleCommentsListSchema = {
 	ids: [],
 	entities: {},
-	isLoading: false,
-	error: undefined,
+	isCommentsLoading: false,
+	isSendLoading: false,
+	commentsError: undefined,
+	sendError: undefined,
 };
 
 const articleCommentsListAdapter = createEntityAdapter<Comment>({
@@ -28,24 +30,32 @@ export const articleCommentsListSlice = createSlice({
 		builder
 			.addCase(fetchArticleCommentsByArticleId.pending, (state) => {
 				// state.data = undefined;
-				state.error = undefined;
-				state.isLoading = true;
+				state.commentsError = undefined;
+				state.isCommentsLoading = true;
 			})
 			.addCase(
 				fetchArticleCommentsByArticleId.fulfilled,
 				(state, action: PayloadAction<Comment[]>) => {
 					// state.data = action.payload;
 					articleCommentsListAdapter.setAll(state, action.payload);
-					state.isLoading = false;
+					state.isCommentsLoading = false;
 				}
 			)
 			.addCase(fetchArticleCommentsByArticleId.rejected, (state, action) => {
-				state.error = action.payload;
-				state.isLoading = false;
+				state.commentsError = action.payload;
+				state.isCommentsLoading = false;
 			})
-
+			//
+			.addCase(sendArticleComment.pending, (state) => {
+				state.sendError = undefined;
+				state.isSendLoading = true;
+			})
+			.addCase(sendArticleComment.fulfilled, (state) => {
+				state.isSendLoading = false;
+			})
 			.addCase(sendArticleComment.rejected, (state, action) => {
-				state.error = action.payload;
+				state.sendError = action.payload;
+				state.isSendLoading = false;
 			});
 	},
 });

@@ -9,10 +9,7 @@ import {
 } from '../model/slice/articleCommentsListSlice';
 import { CommentsList } from '@/entities/Comment';
 import { useSelector } from 'react-redux';
-import {
-	getArticleCommentsListError,
-	getArticleCommentsListIsLoading,
-} from '../model/selectors/getArticleCommentsList';
+
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { fetchArticleCommentsByArticleId } from '../model/services/fetchArticleCommentsByArticleId/fetchArticleCommentsByArticleId';
@@ -21,6 +18,12 @@ import { getArticleDetailsError } from '@/entities/Article';
 import { AddNewComment } from '@/entities/AddNewComment';
 import { Text } from '@/shared/components/Text/Text';
 import { sendArticleComment } from '../model/services/sendArticleComment/sendArticleComment';
+import {
+	getArticleCommentsListCommentsError,
+	getArticleCommentsListIsCommentsLoading,
+	getArticleCommentsListIsSendLoading,
+	getArticleCommentsListSendError,
+} from '../model/selectors/getArticleCommentsList';
 
 interface ArticleCommentsListProps {
 	className?: string;
@@ -35,8 +38,10 @@ export const ArticleCommentsList = memo((props: ArticleCommentsListProps) => {
 	const { t } = useTranslation('article-details');
 	const dispatch = useAppDispatch();
 	const comments = useSelector(getArticleCommentsList.selectAll);
-	const isLoading = useSelector(getArticleCommentsListIsLoading);
-	const error = useSelector(getArticleCommentsListError);
+	const isCommentsLoading = useSelector(getArticleCommentsListIsCommentsLoading);
+	const isSendLoading = useSelector(getArticleCommentsListIsSendLoading);
+	const commentsError = useSelector(getArticleCommentsListCommentsError);
+	const sendError = useSelector(getArticleCommentsListSendError);
 	const articleError = useSelector(getArticleDetailsError);
 	const { id } = useParams<{ id: string }>();
 
@@ -60,8 +65,14 @@ export const ArticleCommentsList = memo((props: ArticleCommentsListProps) => {
 	return (
 		<>
 			<Text title={t('Комментарии')} size='size_l' />
-			<AddNewComment sendNewComment={sendNewComment} />
-			<CommentsList comments={comments} isLoading={isLoading} error={error} />
+			{!commentsError && (
+				<AddNewComment
+					sendNewComment={sendNewComment}
+					isLoading={isSendLoading}
+					error={sendError}
+				/>
+			)}
+			<CommentsList comments={comments} isLoading={isCommentsLoading} error={commentsError} />
 		</>
 	);
 });

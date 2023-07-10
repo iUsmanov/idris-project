@@ -6,6 +6,8 @@ export interface ArticleCommentsListSchema extends EntityState<Comment> {
 	// entities: Record<any, any>;
 	// =======
 	// data?: Comment[];
-	isLoading?: boolean;
-	error?: string;
+	isCommentsLoading?: boolean;
+	isSendLoading?: boolean;
+	commentsError?: string;
+	sendError?: string;
 }

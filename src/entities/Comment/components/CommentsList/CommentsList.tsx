@@ -42,7 +42,14 @@ export const CommentsList = memo((props: CommentsListProps) => {
 	}
 
 	if (error) {
-		return <Text size='size_l' title={t('Произошла непредвиденная ошибка')} align='center' />;
+		return (
+			<Text
+				variant='error'
+				size='size_l'
+				title={t('Произошла непредвиденная ошибка')}
+				align='center'
+			/>
+		);
 	}
 
 	return (

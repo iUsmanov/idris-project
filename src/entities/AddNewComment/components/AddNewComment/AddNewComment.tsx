@@ -5,10 +5,7 @@ import cls from './AddNewComment.module.scss';
 import { HStack } from '@/shared/components/Stack';
 import { Input } from '@/shared/components/Input/Input';
 import { Button } from '@/shared/components/Button/Button';
-import {
-	getAddNewCommentError,
-	getAddNewCommentText,
-} from '../../model/selectors/addNewCommentSelectors';
+import { getAddNewCommentText } from '../../model/selectors/addNewCommentSelectors';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { addNewCommentActions, addNewCommentReducer } from '../../model/slice/addNewCommentSlice';
@@ -18,6 +15,8 @@ import { Text } from '@/shared/components/Text/Text';
 export interface AddNewCommentProps {
 	className?: string;
 	sendNewComment: (text: string) => void;
+	isLoading?: boolean;
+	error?: string;
 }
 
 const reducers: ReducersList = {
@@ -25,11 +24,10 @@ const reducers: ReducersList = {
 };
 
 export const AddNewComment = memo((props: AddNewCommentProps) => {
-	const { className, sendNewComment } = props;
+	const { className, sendNewComment, error, isLoading } = props;
 	const { t } = useTranslation();
 	const dispatch = useAppDispatch();
 	const text = useSelector(getAddNewCommentText);
-	const error = useSelector(getAddNewCommentError);
 
 	useDynamicModule({ reducers });
 
@@ -47,7 +45,7 @@ export const AddNewComment = memo((props: AddNewCommentProps) => {
 
 	return (
 		<>
-			{error && <Text variant='error' title={t('Введите текст комментария')} />}
+			{error && <Text variant='error' title={t('Произошла непредвиденная ошибка')} />}
 			<HStack
 				justify='between'
 				align='center'
@@ -58,8 +56,9 @@ export const AddNewComment = memo((props: AddNewCommentProps) => {
 					placeholder={t('Введите текст комментария')}
 					value={text}
 					onChange={onChangeText}
+					disabled={isLoading}
 				/>
-				<Button variant='outline' onClick={onSendNewComment}>
+				<Button variant='outline' onClick={onSendNewComment} disabled={isLoading}>
 					{t('Отправить')}
 				</Button>
 			</HStack>

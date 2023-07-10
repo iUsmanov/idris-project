@@ -26,6 +26,14 @@ const meta = {
 					username: 'Chotkiy pocik',
 				},
 				readonly: true,
+				data: {
+					id: '1',
+				},
+			},
+			user: {
+				authData: {
+					id: '1',
+				},
 			},
 		}),
 	],
@@ -87,6 +95,14 @@ export const EditingLight: Story = {
 					lastname: 'Styled',
 					username: 'Chotkiy pocik',
 				},
+				data: {
+					id: '1',
+				},
+			},
+			user: {
+				authData: {
+					id: '1',
+				},
 			},
 		}),
 	],
@@ -108,6 +124,14 @@ export const ValidateErrorsLight: Story = {
 					username: 'Chotkiy pocik',
 				},
 				validateErrors: ['incorrectFirstName', 'incorrectCity'],
+				data: {
+					id: '1',
+				},
+			},
+			user: {
+				authData: {
+					id: '1',
+				},
 			},
 		}),
 	],

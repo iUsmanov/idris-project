@@ -1,9 +1,10 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { AddNewComment } from './AddNewComment';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator';
 
 const meta = {
-	title: 'features/AddNewComment',
+	title: 'entities/AddNewComment',
 	component: AddNewComment,
 	tags: ['autodocs'],
 	argTypes: {},
@@ -26,4 +27,27 @@ export const PrimaryDark: Story = {
 export const PrimaryOrange: Story = {
 	args: {},
 	decorators: [ThemeDecorator('app-orange-theme')],
+};
+
+export const WithTextLight: Story = {
+	args: {},
+	decorators: [
+		StoreDecorator({
+			addNewComment: {
+				text: 'Your text',
+			},
+		}),
+	],
+};
+
+export const LoadingLight: Story = {
+	args: {
+		isLoading: true,
+	},
+	decorators: [],
+};
+
+export const ErrorLight: Story = {
+	args: { error: 'error' },
+	decorators: [],
 };

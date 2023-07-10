@@ -3,6 +3,9 @@ import { ArticleDetailsPage } from './ArticleDetailsPage';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
 import { Article } from '@/entities/Article';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator';
+import { Dictionary } from '@reduxjs/toolkit';
+import { Comment } from '@/entities/Comment';
+import Image from '@/shared/assets/tests/storybook.jpg';
 
 const article: Article = {
 	id: '1',
@@ -38,13 +41,58 @@ const article: Article = {
 	],
 };
 
+const entities: Dictionary<Comment> = {
+	'1': {
+		id: '1',
+		text: 'some comment',
+		articleId: '1',
+		userId: '1',
+		user: {
+			avatar: Image,
+		},
+	},
+	'2': {
+		id: '2',
+		text: 'some comment',
+		articleId: '1',
+		userId: '1',
+		user: {
+			avatar: Image,
+		},
+	},
+	'3': {
+		id: '3',
+		text: 'some comment',
+		articleId: '1',
+		userId: '1',
+		user: {
+			avatar: Image,
+		},
+	},
+};
+
 const meta = {
 	title: 'pages/ArticleDetailsPage',
 	component: ArticleDetailsPage,
 	tags: ['autodocs'],
 	argTypes: {},
 	args: {},
-	decorators: [StoreDecorator({ articleDetails: { data: article } })],
+	decorators: [
+		StoreDecorator({
+			articleDetails: { data: article, error: undefined },
+			articleCommentsList: {
+				ids: ['1', '2', '3'],
+				entities: entities,
+				commentsError: undefined,
+				sendError: undefined,
+				isCommentsLoading: false,
+				isSendLoading: false,
+			},
+			addNewComment: {
+				text: 'Some text',
+			},
+		}),
+	],
 	parameters: {
 		router: {
 			path: '/articles/:id',
@@ -71,10 +119,82 @@ export const Orange: Story = {
 	decorators: [ThemeDecorator('app-orange-theme')],
 };
 
-export const LoadingLight: Story = {
-	decorators: [StoreDecorator({ articleDetails: { isLoading: true } })],
+export const CommentsLoadingLight: Story = {
+	args: {},
+	decorators: [
+		StoreDecorator({
+			articleCommentsList: {
+				ids: ['1', '2', '3'],
+				entities: {},
+				commentsError: undefined,
+				sendError: undefined,
+				isCommentsLoading: true,
+				isSendLoading: false,
+			},
+			articleDetails: { data: article, error: undefined },
+			addNewComment: {
+				text: 'Some text',
+			},
+		}),
+	],
 };
 
-export const ErrorLight: Story = {
-	decorators: [StoreDecorator({ articleDetails: { error: 'error' } })],
+export const SendLoadingLight: Story = {
+	args: {},
+	decorators: [
+		StoreDecorator({
+			articleCommentsList: {
+				ids: ['1', '2', '3'],
+				entities: entities,
+				commentsError: undefined,
+				sendError: undefined,
+				isCommentsLoading: false,
+				isSendLoading: true,
+			},
+			articleDetails: { data: article, error: undefined },
+			addNewComment: {
+				text: 'Some text',
+			},
+		}),
+	],
+};
+
+export const CommenstErrorLight: Story = {
+	args: {},
+	decorators: [
+		StoreDecorator({
+			articleCommentsList: {
+				ids: ['1', '2', '3'],
+				entities: entities,
+				commentsError: 'error',
+				sendError: undefined,
+				isCommentsLoading: false,
+				isSendLoading: false,
+			},
+			articleDetails: { data: article, error: undefined },
+			addNewComment: {
+				text: 'Some text',
+			},
+		}),
+	],
+};
+
+export const SendErrorLight: Story = {
+	args: {},
+	decorators: [
+		StoreDecorator({
+			articleCommentsList: {
+				ids: ['1', '2', '3'],
+				entities: entities,
+				commentsError: undefined,
+				sendError: 'error',
+				isCommentsLoading: false,
+				isSendLoading: false,
+			},
+			articleDetails: { data: article, error: undefined },
+			addNewComment: {
+				text: 'Some text',
+			},
+		}),
+	],
 };
