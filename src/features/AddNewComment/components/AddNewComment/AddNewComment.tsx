@@ -13,10 +13,11 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { addNewCommentActions, addNewCommentReducer } from '../../model/slice/addNewCommentSlice';
 import { ReducersList, useDynamicModule } from '@/shared/lib/hooks/useDynamicModule/useDynamicModule';
+import { Text } from '@/shared/components/Text/Text';
 
 export interface AddNewCommentProps {
 	className?: string;
-	onSendNewComment: () => void;
+	sendNewComment: (text: string) => void;
 }
 
 const reducers: ReducersList = {
@@ -24,7 +25,7 @@ const reducers: ReducersList = {
 };
 
 export const AddNewComment = memo((props: AddNewCommentProps) => {
-	const { className, onSendNewComment } = props;
+	const { className, sendNewComment } = props;
 	const { t } = useTranslation();
 	const dispatch = useAppDispatch();
 	const text = useSelector(getAddNewCommentText);
@@ -39,21 +40,29 @@ export const AddNewComment = memo((props: AddNewCommentProps) => {
 		[dispatch]
 	);
 
+	const onSendNewComment = useCallback(() => {
+		sendNewComment(text || '');
+		onChangeText('');
+	}, [onChangeText, sendNewComment, text]);
+
 	return (
-		<HStack
-			justify='between'
-			align='center'
-			className={classNames(cls.addNewComment, {}, [className])}
-		>
-			<Input
-				className={cls.input}
-				placeholder={t('Введите текст комментария')}
-				value={text}
-				onChange={onChangeText}
-			/>
-			<Button variant='outline' onClick={onSendNewComment}>
-				{t('Отправить')}
-			</Button>
-		</HStack>
+		<>
+			{error && <Text variant='error' title={t('Введите текст комментария')} />}
+			<HStack
+				justify='between'
+				align='center'
+				className={classNames(cls.addNewComment, {}, [className])}
+			>
+				<Input
+					className={cls.input}
+					placeholder={t('Введите текст комментария')}
+					value={text}
+					onChange={onChangeText}
+				/>
+				<Button variant='outline' onClick={onSendNewComment}>
+					{t('Отправить')}
+				</Button>
+			</HStack>
+		</>
 	);
 });

@@ -7,24 +7,35 @@ import { AddNewComment } from '@/features/AddNewComment';
 import { ArticleCommentsList } from '@/features/ArticleCommentsList';
 import { sendArticleComment } from '../model/services/sendArticleComment/sendArticleComment';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { ReducersList, useDynamicModule } from '@/shared/lib/hooks/useDynamicModule/useDynamicModule';
+import { articleCommentsReducer } from '../model/slice/articleCommentsSlice';
 
 interface ArticleCommentsProps {
 	className?: string;
 }
+
+const reducers: ReducersList = {
+	articleComments: articleCommentsReducer,
+};
 
 export const ArticleComments = memo((props: ArticleCommentsProps) => {
 	const { className } = props;
 	const { t } = useTranslation();
 	const dispatch = useAppDispatch();
 
-	const onSendNewComment = useCallback(() => {
-		dispatch(sendArticleComment());
-	}, [dispatch]);
+	useDynamicModule({ reducers });
+
+	const sendNewComment = useCallback(
+		(text: string) => {
+			dispatch(sendArticleComment(text));
+		},
+		[dispatch]
+	);
 
 	return (
 		<>
 			<Text title={t('Комментарии')} size='size_l' />
-			<AddNewComment onSendNewComment={onSendNewComment} />
+			<AddNewComment sendNewComment={sendNewComment} />
 			<ArticleCommentsList />
 		</>
 	);

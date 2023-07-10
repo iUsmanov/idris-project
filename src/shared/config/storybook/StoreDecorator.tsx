@@ -5,6 +5,7 @@ import { articleCommentsListReducer } from '@/features/ArticleCommentsList/model
 import { loginReducer } from '@/features/AuthByUsername/model/slice/loginSlice';
 import { profileReducer } from '@/features/Profile/model/slice/profileSlice';
 import { ReducersList } from '@/shared/lib/hooks/useDynamicModule/useDynamicModule';
+import { articleCommentsReducer } from '@/widgets/ArticleComments/model/slice/articleCommentsSlice';
 import { ReducersMapObject } from '@reduxjs/toolkit';
 import { StoryFn } from '@storybook/react';
 
@@ -15,6 +16,7 @@ const defaultAsyncReducers: ReducersList = {
 	articleDetails: articleDetailsReducer,
 	articleCommentsList: articleCommentsListReducer,
 	addNewComment: addNewCommentReducer,
+	articleComments: articleCommentsReducer,
 };
 
 export const StoreDecorator =
