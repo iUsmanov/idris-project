@@ -3,6 +3,7 @@ import { fetchArticleCommentsByArticleId } from '../services/fetchArticleComment
 import { ArticleCommentsListSchema } from '../types/articleCommentsListSchema';
 import { articleCommentsListReducer } from './articleCommentsListSlice';
 import Image from '@/shared/assets/tests/storybook.jpg';
+import { sendArticleComment } from '../services/sendArticleComment/sendArticleComment';
 
 const comments: Comment[] = [
 	{
@@ -85,6 +86,21 @@ describe('articleCommentsListSlice.test', () => {
 			articleCommentsListReducer(
 				state as ArticleCommentsListSchema,
 				fetchArticleCommentsByArticleId.rejected(null, '', '', 'error')
+			)
+		).toEqual(expects);
+	});
+
+	test('sendArticleComment rejected', () => {
+		const state: DeepPartial<ArticleCommentsListSchema> = {
+			error: undefined,
+		};
+		const expects: DeepPartial<ArticleCommentsListSchema> = {
+			error: 'error',
+		};
+		expect(
+			articleCommentsListReducer(
+				state as ArticleCommentsListSchema,
+				sendArticleComment.rejected(null, '', '', 'error')
 			)
 		).toEqual(expects);
 	});

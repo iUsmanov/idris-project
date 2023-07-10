@@ -3,6 +3,7 @@ import { ArticleCommentsListSchema } from '../types/articleCommentsListSchema';
 import { Comment } from '@/entities/Comment';
 import { StateSchema } from '@/app/providers/StoreProvider';
 import { fetchArticleCommentsByArticleId } from '../services/fetchArticleCommentsByArticleId/fetchArticleCommentsByArticleId';
+import { sendArticleComment } from '../services/sendArticleComment/sendArticleComment';
 
 export const initialState: ArticleCommentsListSchema = {
 	ids: [],
@@ -41,6 +42,10 @@ export const articleCommentsListSlice = createSlice({
 			.addCase(fetchArticleCommentsByArticleId.rejected, (state, action) => {
 				state.error = action.payload;
 				state.isLoading = false;
+			})
+
+			.addCase(sendArticleComment.rejected, (state, action) => {
+				state.error = action.payload;
 			});
 	},
 });

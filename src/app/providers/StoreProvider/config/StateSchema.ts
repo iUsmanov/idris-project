@@ -20,7 +20,6 @@ export interface StateSchema {
 	articleDetails?: ArticleDetailsSchema;
 	articleCommentsList?: ArticleCommentsListSchema;
 	addNewComment?: AddNewCommentSchema;
-	articleComments?: AddNewCommentSchema;
 }
 
 export interface ReducerManager {

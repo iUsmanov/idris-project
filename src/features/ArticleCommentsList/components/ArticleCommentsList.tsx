@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './ArticleCommentsList.module.scss';
@@ -18,6 +18,9 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { fetchArticleCommentsByArticleId } from '../model/services/fetchArticleCommentsByArticleId/fetchArticleCommentsByArticleId';
 import { useParams } from 'react-router-dom';
 import { getArticleDetailsError } from '@/entities/Article';
+import { AddNewComment } from '@/entities/AddNewComment';
+import { Text } from '@/shared/components/Text/Text';
+import { sendArticleComment } from '../model/services/sendArticleComment/sendArticleComment';
 
 interface ArticleCommentsListProps {
 	className?: string;
@@ -43,9 +46,22 @@ export const ArticleCommentsList = memo((props: ArticleCommentsListProps) => {
 		dispatch(fetchArticleCommentsByArticleId(id));
 	});
 
+	const sendNewComment = useCallback(
+		(text: string) => {
+			dispatch(sendArticleComment(text));
+		},
+		[dispatch]
+	);
+
 	if (articleError) {
 		return null;
 	}
 
-	return <CommentsList comments={comments} isLoading={isLoading} error={error} />;
+	return (
+		<>
+			<Text title={t('Комментарии')} size='size_l' />
+			<AddNewComment sendNewComment={sendNewComment} />
+			<CommentsList comments={comments} isLoading={isLoading} error={error} />
+		</>
+	);
 });
