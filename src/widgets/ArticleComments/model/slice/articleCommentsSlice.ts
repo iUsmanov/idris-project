@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { AddNewCommentSchema } from '@/features/AddNewComment';
 import { sendArticleComment } from '../services/sendArticleComment/sendArticleComment';
+import { AddNewCommentSchema } from '@/entities/AddNewComment';
 
 const initialState: AddNewCommentSchema = {};
 

@@ -8,7 +8,7 @@ import { AxiosInstance } from 'axios';
 import { ProfileSchema } from '@/features/Profile';
 import { ArticleDetailsSchema } from '@/entities/Article';
 import { ArticleCommentsListSchema } from '@/features/ArticleCommentsList';
-import { AddNewCommentSchema } from '@/features/AddNewComment';
+import { AddNewCommentSchema } from '@/entities/AddNewComment';
 
 export interface StateSchema {
 	counter: CounterSchema;

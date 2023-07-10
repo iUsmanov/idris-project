@@ -3,12 +3,12 @@ import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './ArticleComments.module.scss';
 import { Text } from '@/shared/components/Text/Text';
-import { AddNewComment } from '@/features/AddNewComment';
 import { ArticleCommentsList } from '@/features/ArticleCommentsList';
 import { sendArticleComment } from '../model/services/sendArticleComment/sendArticleComment';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { ReducersList, useDynamicModule } from '@/shared/lib/hooks/useDynamicModule/useDynamicModule';
 import { articleCommentsReducer } from '../model/slice/articleCommentsSlice';
+import { AddNewComment } from '@/entities/AddNewComment';
 
 interface ArticleCommentsProps {
 	className?: string;
