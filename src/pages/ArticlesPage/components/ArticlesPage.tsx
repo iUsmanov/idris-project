@@ -19,6 +19,7 @@ import {
 import { Text } from '@/shared/components/Text/Text';
 import { ArticleViewSelector } from '@/features/ArticleViewSelector';
 import { LOCAL_STORAGE_ARTICLE_VIEW_KEY } from '@/shared/const/localStorage';
+import { Page } from '@/widgets/Page';
 
 const reducers: ReducersList = {
 	articlesPage: articlesPageReducer,
@@ -59,9 +60,9 @@ export const ArticlesPage = memo(() => {
 	}
 
 	return (
-		<div>
+		<Page>
 			<ArticleViewSelector view={view} onViewClick={onChangeView} />
 			<ArticleList articles={articles} isLoading={isLoading} view={view} />
-		</div>
+		</Page>
 	);
 });

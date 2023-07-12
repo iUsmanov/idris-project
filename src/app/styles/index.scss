@@ -10,11 +10,3 @@ body,.app {
 	background: var(--bg-color);
 	min-height: 100vh;
 }
-
-.outlet-wrapper {
-	height: calc(100vh - var(--navbar-height));
-	flex-grow: 1;
-	padding: 20px;
-	padding-left: 45px;
-	overflow-y: auto;
-}

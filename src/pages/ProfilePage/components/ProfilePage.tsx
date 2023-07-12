@@ -2,6 +2,7 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { EditableProfileCard } from '@/features/Profile';
+import { Page } from '@/widgets/Page';
 
 interface ProfilePageProps {
 	className?: string;
@@ -12,8 +13,8 @@ export const ProfilePage = memo((props: ProfilePageProps) => {
 	const { t } = useTranslation();
 
 	return (
-		<div className={classNames('', {}, [className])}>
+		<Page className={classNames('', {}, [className])}>
 			<EditableProfileCard />
-		</div>
+		</Page>
 	);
 });
