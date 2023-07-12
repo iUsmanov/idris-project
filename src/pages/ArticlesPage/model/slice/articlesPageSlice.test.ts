@@ -1,8 +1,9 @@
 import Image from '@/shared/assets/tests/storybook.jpg';
 import { ArticlesPageSchema } from '../types/articlesPage';
-import { articlesPageReducer } from './articlesPageSlice';
+import { articlesPageActions, articlesPageReducer } from './articlesPageSlice';
 import { fetchArticlesList } from '../services/fetchArticlesList/fetchArticlesList';
-import { Article } from '@/entities/Article';
+import { Article, ArticleView } from '@/entities/Article';
+import { LOCAL_STORAGE_ARTICLE_VIEW_KEY } from '@/shared/const/localStorage';
 
 const articles: Article[] = [
 	{
@@ -180,5 +181,43 @@ describe('articlesPageSlice.test', () => {
 				fetchArticlesList.rejected(null, '', undefined, 'error')
 			)
 		).toEqual(expects);
+	});
+
+	test('setView from LIST to TILE', () => {
+		const state: DeepPartial<ArticlesPageSchema> = {
+			view: 'LIST',
+		};
+		const payload: ArticleView = 'TILE';
+		const expects: DeepPartial<ArticlesPageSchema> = {
+			view: payload,
+		};
+		expect(
+			articlesPageReducer(state as ArticlesPageSchema, articlesPageActions.setView(payload))
+		).toEqual(expects);
+	});
+	test('setView from TILE to LIST', () => {
+		const state: DeepPartial<ArticlesPageSchema> = {
+			view: 'TILE',
+		};
+		const payload: ArticleView = 'LIST';
+		const expects: DeepPartial<ArticlesPageSchema> = {
+			view: payload,
+		};
+		expect(
+			articlesPageReducer(state as ArticlesPageSchema, articlesPageActions.setView(payload))
+		).toEqual(expects);
+	});
+	test('initState', () => {
+		const state: DeepPartial<ArticlesPageSchema> = {
+			view: 'TILE',
+		};
+		localStorage.setItem(LOCAL_STORAGE_ARTICLE_VIEW_KEY, 'LIST');
+		const expects: DeepPartial<ArticlesPageSchema> = {
+			view: 'LIST',
+		};
+		expect(articlesPageReducer(state as ArticlesPageSchema, articlesPageActions.initState())).toEqual(
+			expects
+		);
+		expect(localStorage.getItem(LOCAL_STORAGE_ARTICLE_VIEW_KEY)).toEqual('LIST');
 	});
 });

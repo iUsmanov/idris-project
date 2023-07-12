@@ -1,8 +1,12 @@
-import { ArticleList } from '@/entities/Article';
-import { memo } from 'react';
+import { ArticleList, ArticleView } from '@/entities/Article';
+import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ReducersList, useDynamicModule } from '@/shared/lib/hooks/useDynamicModule/useDynamicModule';
-import { articlesPageReducer, getArticles } from '../model/slice/articlesPageSlice';
+import {
+	articlesPageActions,
+	articlesPageReducer,
+	getArticles,
+} from '../model/slice/articlesPageSlice';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { fetchArticlesList } from '../model/services/fetchArticlesList/fetchArticlesList';
@@ -13,6 +17,8 @@ import {
 	getArticlesView,
 } from '../model/selectors/articlesPageSelectors';
 import { Text } from '@/shared/components/Text/Text';
+import { ArticleViewSelector } from '@/features/ArticleViewSelector';
+import { LOCAL_STORAGE_ARTICLE_VIEW_KEY } from '@/shared/const/localStorage';
 
 const reducers: ReducersList = {
 	articlesPage: articlesPageReducer,
@@ -30,7 +36,16 @@ export const ArticlesPage = memo(() => {
 
 	useInitialEffect(() => {
 		dispatch(fetchArticlesList());
+		dispatch(articlesPageActions.initState());
 	});
+
+	const onChangeView = useCallback(
+		(view: ArticleView) => {
+			dispatch(articlesPageActions.setView(view));
+			localStorage.setItem(LOCAL_STORAGE_ARTICLE_VIEW_KEY, view);
+		},
+		[dispatch]
+	);
 
 	if (error) {
 		return (
@@ -45,7 +60,8 @@ export const ArticlesPage = memo(() => {
 
 	return (
 		<div>
-			<ArticleList articles={articles} isLoading={isLoading} /*  view={view} */ view='LIST' />
+			<ArticleViewSelector view={view} onViewClick={onChangeView} />
+			<ArticleList articles={articles} isLoading={isLoading} view={view} />
 		</div>
 	);
 });
