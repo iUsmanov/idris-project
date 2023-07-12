@@ -1,13 +1,11 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { ArticlesPage } from './ArticlesPage';
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
-import { Article } from '@/entities/Article';
-import { Dictionary } from '@reduxjs/toolkit';
 import Image from '@/shared/assets/tests/storybook.jpg';
-import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator';
+import { ArticlesPageSchema } from '../types/articlesPage';
+import { articlesPageReducer } from './articlesPageSlice';
+import { fetchArticlesList } from '../services/fetchArticlesList/fetchArticlesList';
+import { Article } from '@/entities/Article';
 
-const entities: Dictionary<Article> = {
-	'1': {
+const articles: Article[] = [
+	{
 		id: '1',
 		title: 'Javascript news СВЕЖАЯ',
 		subtitle: 'Что нового в JS за 2022 год?',
@@ -81,7 +79,7 @@ const entities: Dictionary<Article> = {
 			},
 		],
 	},
-	'2': {
+	{
 		id: '2',
 		title: 'Python news',
 		subtitle: 'Что нового в JS за 2022 год?',
@@ -107,7 +105,7 @@ const entities: Dictionary<Article> = {
 			},
 		],
 	},
-	'3': {
+	{
 		id: '3',
 		title: 'Kotlin news 2019',
 		subtitle: 'Что нового в JS за 2022 год?',
@@ -133,86 +131,54 @@ const entities: Dictionary<Article> = {
 			},
 		],
 	},
-};
+];
 
-const meta = {
-	title: 'pages/ArticlesPage',
-	component: ArticlesPage,
-	tags: ['autodocs'],
-	argTypes: {},
-	args: {},
-	decorators: [
-		StoreDecorator({
-			articlesPage: {
-				ids: ['1', '2', '3'],
-				entities: entities,
+describe('articlesPageSlice.test', () => {
+	test('fetchArticlesList pending', () => {
+		const state: DeepPartial<ArticlesPageSchema> = {
+			error: 'error',
+			isLoading: false,
+		};
+		const expects = {
+			error: undefined,
+			isLoading: true,
+		};
+		expect(articlesPageReducer(state as ArticlesPageSchema, fetchArticlesList.pending)).toEqual(
+			expects
+		);
+	});
+	test('fetchArticlesList fulfilled', () => {
+		const state: DeepPartial<ArticlesPageSchema> = {
+			isLoading: true,
+		};
+		const payload: Article[] = articles;
+		const expects: DeepPartial<ArticlesPageSchema> = {
+			isLoading: false,
+			ids: ['1', '2', '3'],
+			entities: {
+				'1': articles[0],
+				'2': articles[1],
+				'3': articles[2],
 			},
-		}),
-	],
-} satisfies Meta<typeof ArticlesPage>;
-
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const Light: Story = {
-	args: {},
-	decorators: [],
-};
-
-export const Dark: Story = {
-	args: {},
-	decorators: [ThemeDecorator('app-dark-theme')],
-};
-
-export const Orange: Story = {
-	args: {},
-	decorators: [ThemeDecorator('app-orange-theme')],
-};
-
-export const ErrorLight: Story = {
-	args: {},
-	decorators: [
-		StoreDecorator({
-			articlesPage: {
-				error: 'error',
-			},
-		}),
-	],
-};
-
-export const LoadingLight: Story = {
-	args: {},
-	decorators: [
-		StoreDecorator({
-			articlesPage: {
-				isLoading: true,
-			},
-		}),
-	],
-};
-
-export const ListLight: Story = {
-	args: {},
-	decorators: [
-		StoreDecorator({
-			articlesPage: {
-				ids: ['1', '2', '3'],
-				entities: entities,
-				view: 'LIST',
-			},
-		}),
-	],
-};
-
-export const TileLight: Story = {
-	args: {},
-	decorators: [
-		StoreDecorator({
-			articlesPage: {
-				ids: ['1', '2', '3'],
-				entities: entities,
-				view: 'TILE',
-			},
-		}),
-	],
-};
+		};
+		expect(
+			articlesPageReducer(state as ArticlesPageSchema, fetchArticlesList.fulfilled(payload, ''))
+		).toEqual(expects);
+	});
+	test('fetchArticlesList rejected', () => {
+		const state: DeepPartial<ArticlesPageSchema> = {
+			isLoading: true,
+			error: undefined,
+		};
+		const expects: DeepPartial<ArticlesPageSchema> = {
+			error: 'error',
+			isLoading: false,
+		};
+		expect(
+			articlesPageReducer(
+				state as ArticlesPageSchema,
+				fetchArticlesList.rejected(null, '', undefined, 'error')
+			)
+		).toEqual(expects);
+	});
+});

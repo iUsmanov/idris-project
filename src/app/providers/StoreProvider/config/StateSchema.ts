@@ -9,6 +9,7 @@ import { ProfileSchema } from '@/features/Profile';
 import { ArticleDetailsSchema } from '@/entities/Article';
 import { ArticleCommentsListSchema } from '@/features/ArticleCommentsList';
 import { AddNewCommentSchema } from '@/entities/AddNewComment';
+import { ArticlesPageSchema } from '@/pages/ArticlesPage';
 
 export interface StateSchema {
 	counter: CounterSchema;
@@ -20,6 +21,7 @@ export interface StateSchema {
 	articleDetails?: ArticleDetailsSchema;
 	articleCommentsList?: ArticleCommentsListSchema;
 	addNewComment?: AddNewCommentSchema;
+	articlesPage?: ArticlesPageSchema;
 }
 
 export interface ReducerManager {

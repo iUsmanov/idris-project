@@ -11,7 +11,7 @@ export const ArticleDetailsPageAsync = lazy(
 							default: module.ArticleDetailsPage,
 						}))
 					),
-				800
+				400
 			);
 		})
 );

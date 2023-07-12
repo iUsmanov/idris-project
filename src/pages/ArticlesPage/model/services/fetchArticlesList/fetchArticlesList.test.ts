@@ -1,13 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { ArticlesPage } from './ArticlesPage';
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
-import { Article } from '@/entities/Article';
-import { Dictionary } from '@reduxjs/toolkit';
 import Image from '@/shared/assets/tests/storybook.jpg';
-import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator';
-
-const entities: Dictionary<Article> = {
-	'1': {
+import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
+import { Article } from '@/entities/Article';
+import { fetchArticlesList } from './fetchArticlesList';
+const articles: Article[] = [
+	{
 		id: '1',
 		title: 'Javascript news СВЕЖАЯ',
 		subtitle: 'Что нового в JS за 2022 год?',
@@ -81,7 +77,7 @@ const entities: Dictionary<Article> = {
 			},
 		],
 	},
-	'2': {
+	{
 		id: '2',
 		title: 'Python news',
 		subtitle: 'Что нового в JS за 2022 год?',
@@ -107,7 +103,7 @@ const entities: Dictionary<Article> = {
 			},
 		],
 	},
-	'3': {
+	{
 		id: '3',
 		title: 'Kotlin news 2019',
 		subtitle: 'Что нового в JS за 2022 год?',
@@ -133,86 +129,26 @@ const entities: Dictionary<Article> = {
 			},
 		],
 	},
-};
+];
+describe('fetchArticlesList.test', () => {
+	test('Success load', async () => {
+		const thunk = new TestAsyncThunk(fetchArticlesList);
+		thunk.api.get.mockResolvedValue({ data: articles });
+		const action = await thunk.callThunk();
 
-const meta = {
-	title: 'pages/ArticlesPage',
-	component: ArticlesPage,
-	tags: ['autodocs'],
-	argTypes: {},
-	args: {},
-	decorators: [
-		StoreDecorator({
-			articlesPage: {
-				ids: ['1', '2', '3'],
-				entities: entities,
-			},
-		}),
-	],
-} satisfies Meta<typeof ArticlesPage>;
+		expect(thunk.dispatch).toHaveBeenCalledTimes(2);
+		expect(thunk.api.get).toHaveBeenCalled();
+		expect(action.payload).toEqual(articles);
+		expect(action.meta.requestStatus).toBe('fulfilled');
+	});
+	test('Error load', async () => {
+		const thunk = new TestAsyncThunk(fetchArticlesList);
+		thunk.api.get.mockResolvedValue({ status: 403 });
+		const action = await thunk.callThunk();
 
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const Light: Story = {
-	args: {},
-	decorators: [],
-};
-
-export const Dark: Story = {
-	args: {},
-	decorators: [ThemeDecorator('app-dark-theme')],
-};
-
-export const Orange: Story = {
-	args: {},
-	decorators: [ThemeDecorator('app-orange-theme')],
-};
-
-export const ErrorLight: Story = {
-	args: {},
-	decorators: [
-		StoreDecorator({
-			articlesPage: {
-				error: 'error',
-			},
-		}),
-	],
-};
-
-export const LoadingLight: Story = {
-	args: {},
-	decorators: [
-		StoreDecorator({
-			articlesPage: {
-				isLoading: true,
-			},
-		}),
-	],
-};
-
-export const ListLight: Story = {
-	args: {},
-	decorators: [
-		StoreDecorator({
-			articlesPage: {
-				ids: ['1', '2', '3'],
-				entities: entities,
-				view: 'LIST',
-			},
-		}),
-	],
-};
-
-export const TileLight: Story = {
-	args: {},
-	decorators: [
-		StoreDecorator({
-			articlesPage: {
-				ids: ['1', '2', '3'],
-				entities: entities,
-				view: 'TILE',
-			},
-		}),
-	],
-};
+		expect(thunk.dispatch).toHaveBeenCalledTimes(2);
+		expect(thunk.api.get).toHaveBeenCalled();
+		expect(action.payload).toEqual('error');
+		expect(action.meta.requestStatus).toBe('rejected');
+	});
+});

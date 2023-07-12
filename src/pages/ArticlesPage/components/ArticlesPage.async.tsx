@@ -7,7 +7,7 @@ export const ArticlesPageAsync = lazy(
 				() =>
 					// @ts-ignore
 					resolve(import('./ArticlesPage').then((module) => ({ default: module.ArticlesPage }))),
-				800
+				400
 			);
 		})
 );
