@@ -1,5 +1,6 @@
 export { ArticleDetails } from './components/ArticleDetails/ArticleDetails';
-export type { Article } from './model/types/article';
+export { ArticleList } from './components/ArticleList/ArticleList';
+export type { Article, ArticleView } from './model/types/article';
 export type { ArticleDetailsSchema } from './model/types/articleDetailsSchema';
 export {
 	getArticleDetailsError,

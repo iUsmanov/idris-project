@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import cls from './ArticleDetailsPage.module.scss';
 import { ArticleCommentsList } from '@/features/ArticleCommentsList';
+import { AppLink } from '@/shared/components/AppLink/AppLink';
+import { getRouteArticles } from '@/shared/const/router';
 
 export const ArticleDetailsPage = memo(() => {
 	const { t } = useTranslation('article-details');
@@ -16,6 +18,9 @@ export const ArticleDetailsPage = memo(() => {
 
 	return (
 		<div className={classNames('', {}, [])}>
+			<AppLink to={getRouteArticles()} variant='outline'>
+				{t('Назад к списку')}
+			</AppLink>
 			<ArticleDetails className={cls.articleDetails} id={id} />
 			<ArticleCommentsList />
 		</div>

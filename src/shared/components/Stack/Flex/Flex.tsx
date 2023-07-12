@@ -6,6 +6,7 @@ export type FlexJustify = 'left' | 'center' | 'right' | 'between';
 export type FlexAlign = 'start' | 'center' | 'end';
 export type FlexDirection = 'row' | 'column' | 'rowReverse' | 'columnReverse';
 export type FlexGap = '4' | '8' | '16' | '32';
+export type FlexWrap = 'wrap' | 'nowrap' | 'wrapReverse';
 
 const justifyClasses: Record<FlexJustify, string> = {
 	left: cls.justifyLeft,
@@ -27,6 +28,12 @@ const directionClasses: Record<FlexDirection, string> = {
 	columnReverse: cls.directionColumnReverse,
 };
 
+const wrapClasses: Record<FlexWrap, string> = {
+	wrap: cls.wrap,
+	nowrap: cls.nowrap,
+	wrapReverse: cls.wrapReverse,
+};
+
 const gapClasses: Record<FlexGap, string> = {
 	4: cls.gap4,
 	8: cls.gap8,
@@ -42,6 +49,7 @@ export interface FlexProps extends DivProps {
 	align?: FlexAlign;
 	direction?: FlexDirection;
 	gap?: FlexGap;
+	wrap?: FlexWrap;
 	max?: boolean;
 	children: ReactNode;
 }
@@ -52,6 +60,7 @@ export const Flex = (props: FlexProps) => {
 		align = 'start',
 		justify = 'left',
 		direction = 'row',
+		wrap = 'nowrap',
 		gap,
 		children,
 		max,
@@ -63,6 +72,7 @@ export const Flex = (props: FlexProps) => {
 		justifyClasses[justify],
 		alignClasses[align],
 		directionClasses[direction],
+		wrapClasses[wrap],
 		gap && gapClasses[gap],
 	];
 

@@ -35,4 +35,10 @@ export interface Article {
 	userId: string;
 	type: ArticleType[];
 	blocks: ArticleBlock[];
+	user?: {
+		username: string;
+		avatar: string;
+	};
 }
+
+export type ArticleView = 'TILE' | 'LIST';

@@ -70,3 +70,15 @@
 .gap32 {
 	gap: 32px;
 }
+
+.wrap {
+	flex-wrap: wrap;
+}
+
+.nowrap {
+	flex-wrap: nowrap;
+}
+
+.wrapReverse {
+	flex-wrap: wrap-reverse;
+}
