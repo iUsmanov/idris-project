@@ -151,6 +151,8 @@ describe('articlesPageSlice.test', () => {
 	test('fetchArticlesList fulfilled', () => {
 		const state: DeepPartial<ArticlesPageSchema> = {
 			isLoading: true,
+			ids: [],
+			entities: {},
 		};
 		const payload: Article[] = articles;
 		const expects: DeepPartial<ArticlesPageSchema> = {
@@ -161,9 +163,13 @@ describe('articlesPageSlice.test', () => {
 				'2': articles[1],
 				'3': articles[2],
 			},
+			hasMore: true,
 		};
 		expect(
-			articlesPageReducer(state as ArticlesPageSchema, fetchArticlesList.fulfilled(payload, ''))
+			articlesPageReducer(
+				state as ArticlesPageSchema,
+				fetchArticlesList.fulfilled(payload, '', { page: 1 })
+			)
 		).toEqual(expects);
 	});
 	test('fetchArticlesList rejected', () => {
@@ -178,7 +184,7 @@ describe('articlesPageSlice.test', () => {
 		expect(
 			articlesPageReducer(
 				state as ArticlesPageSchema,
-				fetchArticlesList.rejected(null, '', undefined, 'error')
+				fetchArticlesList.rejected(null, '', { page: 1 }, 'error')
 			)
 		).toEqual(expects);
 	});
@@ -190,6 +196,7 @@ describe('articlesPageSlice.test', () => {
 		const payload: ArticleView = 'TILE';
 		const expects: DeepPartial<ArticlesPageSchema> = {
 			view: payload,
+			limit: 9,
 		};
 		expect(
 			articlesPageReducer(state as ArticlesPageSchema, articlesPageActions.setView(payload))
@@ -202,6 +209,7 @@ describe('articlesPageSlice.test', () => {
 		const payload: ArticleView = 'LIST';
 		const expects: DeepPartial<ArticlesPageSchema> = {
 			view: payload,
+			limit: 4,
 		};
 		expect(
 			articlesPageReducer(state as ArticlesPageSchema, articlesPageActions.setView(payload))
@@ -214,10 +222,22 @@ describe('articlesPageSlice.test', () => {
 		localStorage.setItem(LOCAL_STORAGE_ARTICLE_VIEW_KEY, 'LIST');
 		const expects: DeepPartial<ArticlesPageSchema> = {
 			view: 'LIST',
+			limit: 4,
 		};
 		expect(articlesPageReducer(state as ArticlesPageSchema, articlesPageActions.initState())).toEqual(
 			expects
 		);
 		expect(localStorage.getItem(LOCAL_STORAGE_ARTICLE_VIEW_KEY)).toEqual('LIST');
+	});
+	test('setPage', () => {
+		const state: DeepPartial<ArticlesPageSchema> = {
+			page: 1,
+		};
+		const expects: DeepPartial<ArticlesPageSchema> = {
+			page: 2,
+		};
+		expect(articlesPageReducer(state as ArticlesPageSchema, articlesPageActions.setPage(2))).toEqual(
+			expects
+		);
 	});
 });

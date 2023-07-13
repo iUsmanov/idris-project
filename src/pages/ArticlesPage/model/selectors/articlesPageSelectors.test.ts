@@ -1,5 +1,12 @@
 import { StateSchema } from '@/app/providers/StoreProvider';
-import { getArticlesError, getArticlesIsLoading, getArticlesView } from './articlesPageSelectors';
+import {
+	getArticlesError,
+	getArticlesHasMore,
+	getArticlesIsLoading,
+	getArticlesLimit,
+	getArticlesNumber,
+	getArticlesView,
+} from './articlesPageSelectors';
 
 describe('getArticlesIsLoading', () => {
 	test('Should return true', () => {
@@ -35,5 +42,38 @@ describe('getArticlesView', () => {
 	test('With empty state', () => {
 		const state: DeepPartial<StateSchema> = {};
 		expect(getArticlesView(state as StateSchema)).toEqual('TILE');
+	});
+});
+
+describe('getArticlesHasMore', () => {
+	test('Should return true', () => {
+		const state: DeepPartial<StateSchema> = { articlesPage: { hasMore: true } };
+		expect(getArticlesHasMore(state as StateSchema)).toEqual(true);
+	});
+	test('With empty state', () => {
+		const state: DeepPartial<StateSchema> = {};
+		expect(getArticlesHasMore(state as StateSchema)).toEqual(undefined);
+	});
+});
+
+describe('getArticlesNumber', () => {
+	test('Should return 1', () => {
+		const state: DeepPartial<StateSchema> = { articlesPage: { page: 1 } };
+		expect(getArticlesNumber(state as StateSchema)).toEqual(1);
+	});
+	test('With empty state', () => {
+		const state: DeepPartial<StateSchema> = {};
+		expect(getArticlesNumber(state as StateSchema)).toEqual(1);
+	});
+});
+
+describe('getArticlesLimit', () => {
+	test('Should return 5', () => {
+		const state: DeepPartial<StateSchema> = { articlesPage: { limit: 5 } };
+		expect(getArticlesLimit(state as StateSchema)).toEqual(5);
+	});
+	test('With empty state', () => {
+		const state: DeepPartial<StateSchema> = {};
+		expect(getArticlesLimit(state as StateSchema)).toEqual(9);
 	});
 });

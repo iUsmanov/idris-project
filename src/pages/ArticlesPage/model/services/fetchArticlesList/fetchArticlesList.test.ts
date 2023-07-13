@@ -132,9 +132,13 @@ const articles: Article[] = [
 ];
 describe('fetchArticlesList.test', () => {
 	test('Success load', async () => {
-		const thunk = new TestAsyncThunk(fetchArticlesList);
+		const thunk = new TestAsyncThunk(fetchArticlesList, {
+			articlesPage: {
+				limit: 5,
+			},
+		});
 		thunk.api.get.mockResolvedValue({ data: articles });
-		const action = await thunk.callThunk();
+		const action = await thunk.callThunk({ page: 1 });
 
 		expect(thunk.dispatch).toHaveBeenCalledTimes(2);
 		expect(thunk.api.get).toHaveBeenCalled();
@@ -142,9 +146,13 @@ describe('fetchArticlesList.test', () => {
 		expect(action.meta.requestStatus).toBe('fulfilled');
 	});
 	test('Error load', async () => {
-		const thunk = new TestAsyncThunk(fetchArticlesList);
+		const thunk = new TestAsyncThunk(fetchArticlesList, {
+			articlesPage: {
+				limit: 5,
+			},
+		});
 		thunk.api.get.mockResolvedValue({ status: 403 });
-		const action = await thunk.callThunk();
+		const action = await thunk.callThunk({ page: 1 });
 
 		expect(thunk.dispatch).toHaveBeenCalledTimes(2);
 		expect(thunk.api.get).toHaveBeenCalled();

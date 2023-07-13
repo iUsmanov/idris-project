@@ -14,7 +14,7 @@ interface ArticleListProps {
 	view?: ArticleView;
 }
 
-const getSkeleton = (view: ArticleView) => {
+const getSkeletons = (view: ArticleView) => {
 	if (view === 'TILE') {
 		return (
 			<HStack
@@ -49,21 +49,21 @@ export const ArticleList = memo((props: ArticleListProps) => {
 		[view]
 	);
 
-	if (isLoading) {
-		return getSkeleton(view);
-	}
+	const renderArticles = articles.length && articles.map(renderArticle);
 
 	if (view === 'LIST') {
 		return (
 			<div className={classNames(cls.articleList, {}, [className, cls[view]])}>
-				{articles.length && articles.map(renderArticle)}
+				{renderArticles}
+				{isLoading && getSkeletons(view)}
 			</div>
 		);
 	}
 
 	return (
 		<HStack gap='32' wrap='wrap' className={classNames(cls.articleList, {}, [className, cls[view]])}>
-			{articles.length && articles.map(renderArticle)}
+			{renderArticles}
+			{isLoading && getSkeletons(view)}
 		</HStack>
 	);
 });

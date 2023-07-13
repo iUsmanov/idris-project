@@ -20,6 +20,7 @@ import { Text } from '@/shared/components/Text/Text';
 import { ArticleViewSelector } from '@/features/ArticleViewSelector';
 import { LOCAL_STORAGE_ARTICLE_VIEW_KEY } from '@/shared/const/localStorage';
 import { Page } from '@/widgets/Page';
+import { fetchNextArticlesPage } from '../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
 
 const reducers: ReducersList = {
 	articlesPage: articlesPageReducer,
@@ -36,9 +37,15 @@ export const ArticlesPage = memo(() => {
 	useDynamicModule({ reducers });
 
 	useInitialEffect(() => {
-		dispatch(fetchArticlesList());
 		dispatch(articlesPageActions.initState());
+		dispatch(fetchArticlesList({ page: 1 }));
 	});
+
+	const onLoadNextPart = useCallback(() => {
+		if (__ENVIRON__ !== 'storybook') {
+			dispatch(fetchNextArticlesPage());
+		}
+	}, [dispatch]);
 
 	const onChangeView = useCallback(
 		(view: ArticleView) => {
@@ -60,7 +67,7 @@ export const ArticlesPage = memo(() => {
 	}
 
 	return (
-		<Page>
+		<Page onScrollEnd={onLoadNextPart}>
 			<ArticleViewSelector view={view} onViewClick={onChangeView} />
 			<ArticleList articles={articles} isLoading={isLoading} view={view} />
 		</Page>
