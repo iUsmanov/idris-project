@@ -16,13 +16,29 @@ export function useInfiniteScroll(props: UseInfiniteScroll) {
 		if (callback) {
 			const options = {
 				root: wrapperElement,
-				rootMargin: '10px',
+				rootMargin: '0px',
 				threshold: 1.0,
 			};
 
 			const rootCallback: IntersectionObserverCallback = ([entry]) => {
 				if (entry.isIntersecting) {
 					callback();
+					let flag = false;
+					if (flag) return;
+					if (wrapperElement.scrollHeight <= wrapperElement.offsetHeight + 300) {
+						const repeatedCallback = () => {
+							if (wrapperElement.scrollHeight <= wrapperElement.offsetHeight + 300) {
+								setTimeout(() => {
+									callback();
+									repeatedCallback();
+								}, 10);
+							}
+						};
+
+						repeatedCallback();
+					} else {
+						flag = true;
+					}
 				}
 			};
 

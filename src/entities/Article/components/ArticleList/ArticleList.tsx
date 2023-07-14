@@ -50,12 +50,13 @@ export const ArticleList = memo((props: ArticleListProps) => {
 	);
 
 	const renderArticles = articles.length && articles.map(renderArticle);
+	const renderSkeletons = isLoading && getSkeletons(view);
 
 	if (view === 'LIST') {
 		return (
 			<div className={classNames(cls.articleList, {}, [className, cls[view]])}>
 				{renderArticles}
-				{isLoading && getSkeletons(view)}
+				{renderSkeletons}
 			</div>
 		);
 	}
@@ -63,7 +64,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
 	return (
 		<HStack gap='32' wrap='wrap' className={classNames(cls.articleList, {}, [className, cls[view]])}>
 			{renderArticles}
-			{isLoading && getSkeletons(view)}
+			{renderSkeletons}
 		</HStack>
 	);
 });
