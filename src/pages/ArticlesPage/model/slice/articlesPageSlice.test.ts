@@ -223,6 +223,7 @@ describe('articlesPageSlice.test', () => {
 		const expects: DeepPartial<ArticlesPageSchema> = {
 			view: 'LIST',
 			limit: 4,
+			_inited: true,
 		};
 		expect(articlesPageReducer(state as ArticlesPageSchema, articlesPageActions.initState())).toEqual(
 			expects

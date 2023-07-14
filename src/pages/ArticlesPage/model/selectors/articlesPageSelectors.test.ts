@@ -2,6 +2,7 @@ import { StateSchema } from '@/app/providers/StoreProvider';
 import {
 	getArticlesError,
 	getArticlesHasMore,
+	getArticlesInited,
 	getArticlesIsLoading,
 	getArticlesLimit,
 	getArticlesNumber,
@@ -75,5 +76,20 @@ describe('getArticlesLimit', () => {
 	test('With empty state', () => {
 		const state: DeepPartial<StateSchema> = {};
 		expect(getArticlesLimit(state as StateSchema)).toEqual(9);
+	});
+});
+
+describe('getArticlesInited', () => {
+	test('Should return true', () => {
+		const state: DeepPartial<StateSchema> = { articlesPage: { _inited: true } };
+		expect(getArticlesInited(state as StateSchema)).toEqual(true);
+	});
+	test('Should return false', () => {
+		const state: DeepPartial<StateSchema> = { articlesPage: { _inited: false } };
+		expect(getArticlesInited(state as StateSchema)).toEqual(false);
+	});
+	test('With empty state', () => {
+		const state: DeepPartial<StateSchema> = {};
+		expect(getArticlesInited(state as StateSchema)).toEqual(false);
 	});
 });

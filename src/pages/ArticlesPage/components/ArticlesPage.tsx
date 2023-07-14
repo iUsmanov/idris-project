@@ -9,7 +9,6 @@ import {
 } from '../model/slice/articlesPageSlice';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { fetchArticlesList } from '../model/services/fetchArticlesList/fetchArticlesList';
 import { useSelector } from 'react-redux';
 import {
 	getArticlesError,
@@ -21,6 +20,7 @@ import { ArticleViewSelector } from '@/features/ArticleViewSelector';
 import { LOCAL_STORAGE_ARTICLE_VIEW_KEY } from '@/shared/const/localStorage';
 import { Page } from '@/widgets/Page';
 import { fetchNextArticlesPage } from '../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
+import { initArticlesPage } from '../model/services/initArticlesPage/initArticlesPage';
 
 const reducers: ReducersList = {
 	articlesPage: articlesPageReducer,
@@ -34,11 +34,10 @@ export const ArticlesPage = memo(() => {
 	const error = useSelector(getArticlesError);
 	const view = useSelector(getArticlesView);
 
-	useDynamicModule({ reducers });
+	useDynamicModule({ reducers, saveAfterUnmount: true });
 
 	useInitialEffect(() => {
-		dispatch(articlesPageActions.initState());
-		dispatch(fetchArticlesList({ page: 1 }));
+		dispatch(initArticlesPage());
 	});
 
 	const onLoadNextPart = useCallback(() => {
