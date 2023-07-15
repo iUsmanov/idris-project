@@ -4,27 +4,43 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Select.module.scss';
 import { Flex } from '../Stack';
 
-interface SelectProps {
+interface SelectProps<T extends string> {
 	className?: string;
-	options: SelectOption[];
+	options: SelectOption<T>[];
 	label?: string;
-	value?: string;
-	onChange?: (value: string) => void;
+	value?: T;
+	onChange?: (value: T) => void;
 	disabled?: boolean;
 }
 
-export interface SelectOption {
-	value: string;
+export interface SelectOption<T extends string> {
+	value: T;
 	content: string;
 }
 
-export const Select = memo((props: SelectProps) => {
+/* 
+
+Там еще надо поддержку аргумента compare также сделать:
+
+const typedMemo: <Component extends React.FC<any>>(
+component: Component,
+compare?: (
+prevProps: React.ComponentPropsWithoutRef<Component>,
+newProps: React.ComponentPropsWithoutRef<Component>
+) => boolean
+) => Component = memo;
+
+*/
+
+const typedMemo: <T>(c: T) => T = memo;
+
+export const Select = typedMemo(<T extends string>(props: SelectProps<T>) => {
 	const { className, options, label, onChange, value, disabled } = props;
 	const { t } = useTranslation();
 
 	const onChangeHandler = useCallback<ChangeEventHandler<HTMLSelectElement>>(
 		(event: ChangeEvent<HTMLSelectElement>) => {
-			onChange?.(event.target.value);
+			onChange?.(event.target.value as T);
 		},
 		[onChange]
 	);
