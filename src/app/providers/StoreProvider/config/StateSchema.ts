@@ -10,10 +10,12 @@ import { ArticleDetailsSchema } from '@/entities/Article';
 import { ArticleCommentsListSchema } from '@/features/ArticleCommentsList';
 import { AddNewCommentSchema } from '@/entities/AddNewComment';
 import { ArticlesPageSchema } from '@/pages/ArticlesPage';
+import { UISchema } from '@/widgets/Page';
 
 export interface StateSchema {
 	counter: CounterSchema;
 	user: UserSchema;
+	ui: UISchema;
 
 	// Async reducers
 	loginForm?: LoginSchema;

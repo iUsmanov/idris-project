@@ -5,6 +5,7 @@ import { userReducer } from '@/entities/User';
 import { authMiddleware } from '@/features/AuthByUsername';
 import { createReducerManager } from './reducerManager';
 import { $api } from '@/shared/api/api';
+import { uiReducer } from '@/widgets/Page';
 
 export const createReduxStore = (
 	initialState?: StateSchema,
@@ -14,6 +15,7 @@ export const createReduxStore = (
 		...asyncReducers,
 		counter: counterReducer,
 		user: userReducer,
+		ui: uiReducer,
 	};
 
 	const reducerManager = createReducerManager(rootReducer);
