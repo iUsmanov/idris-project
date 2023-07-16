@@ -6,6 +6,7 @@ import { Article, ArticleView } from '../../model/types/article';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import { HStack } from '@/shared/components/Stack';
 import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton';
+import { Text } from '@/shared/components/Text/Text';
 
 interface ArticleListProps {
 	className?: string;
@@ -51,6 +52,10 @@ export const ArticleList = memo((props: ArticleListProps) => {
 
 	const renderArticles = articles.length && articles.map(renderArticle);
 	const renderSkeletons = isLoading && getSkeletons(view);
+
+	if (!articles.length && !isLoading) {
+		return <Text align='center' size='size_l' title={t('Статьи не найдены')} />;
+	}
 
 	if (view === 'LIST') {
 		return (

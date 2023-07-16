@@ -7,6 +7,7 @@ import {
 	getArticlesOrder,
 	getArticlesSearch,
 	getArticlesSort,
+	getArticlesType,
 } from '../../selectors/articlesPageSelectors';
 import { addQueryParams } from '@/shared/lib/url/addQueryParams/addQueryParams';
 
@@ -25,11 +26,13 @@ export const fetchArticlesList = createAsyncThunk<
 	const order = getArticlesOrder(getState());
 	const search = getArticlesSearch(getState());
 	const page = getArticlesNumber(getState());
+	const type = getArticlesType(getState());
 	try {
 		addQueryParams({
 			sort,
 			order,
 			search,
+			type,
 		});
 		const response = await extra.api.get<Article[]>('/articles', {
 			params: {
@@ -39,6 +42,7 @@ export const fetchArticlesList = createAsyncThunk<
 				_sort: sort,
 				_order: order,
 				q: search,
+				type: type === 'ALL' ? undefined : type,
 			},
 		});
 		if (!response.data) {

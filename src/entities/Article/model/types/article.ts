@@ -1,4 +1,4 @@
-export type ArticleType = 'IT' | 'ECONOMICS' | 'SCIENCE';
+export type ArticleType = 'ALL' | 'IT' | 'ECONOMICS' | 'SCIENCE';
 export type ArticleBlockType = 'TEXT' | 'IMAGE' | 'CODE';
 
 export interface ArticleBlockBase {

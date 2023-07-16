@@ -1,4 +1,4 @@
-import { ArticleList, ArticleSortField, ArticleView } from '@/entities/Article';
+import { ArticleList, ArticleSortField, ArticleType, ArticleView } from '@/entities/Article';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ReducersList, useDynamicModule } from '@/shared/lib/hooks/useDynamicModule/useDynamicModule';
@@ -16,6 +16,7 @@ import {
 	getArticlesOrder,
 	getArticlesSearch,
 	getArticlesSort,
+	getArticlesType,
 	getArticlesView,
 } from '../model/selectors/articlesPageSelectors';
 import { Text } from '@/shared/components/Text/Text';
@@ -31,6 +32,7 @@ import cls from './ArticlesPage.module.scss';
 import { fetchArticlesList } from '../model/services/fetchArticlesList/fetchArticlesList';
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
 import { useSearchParams } from 'react-router-dom';
+import { TabItem } from '@/shared/components/Tabs/Tabs';
 
 const reducers: ReducersList = {
 	articlesPage: articlesPageReducer,
@@ -46,6 +48,7 @@ export const ArticlesPage = memo(() => {
 	const sort = useSelector(getArticlesSort);
 	const order = useSelector(getArticlesOrder);
 	const search = useSelector(getArticlesSearch);
+	const type = useSelector(getArticlesType);
 	const [searchParams] = useSearchParams();
 
 	useDynamicModule({ reducers, saveAfterUnmount: true });
@@ -80,18 +83,18 @@ export const ArticlesPage = memo(() => {
 		(newSort: ArticleSortField) => {
 			dispatch(articlesPageActions.setSort(newSort));
 			dispatch(articlesPageActions.setPage(1));
-			debouncedFetchData();
+			fetchData();
 		},
-		[dispatch, debouncedFetchData]
+		[dispatch, fetchData]
 	);
 
 	const onChangeOrder = useCallback(
 		(newOrder: SortOrder) => {
 			dispatch(articlesPageActions.setOrder(newOrder));
 			dispatch(articlesPageActions.setPage(1));
-			debouncedFetchData();
+			fetchData();
 		},
-		[dispatch, debouncedFetchData]
+		[dispatch, fetchData]
 	);
 
 	const onChangeSearch = useCallback(
@@ -101,6 +104,15 @@ export const ArticlesPage = memo(() => {
 			debouncedFetchData();
 		},
 		[dispatch, debouncedFetchData]
+	);
+
+	const onChangeType = useCallback(
+		(tab: TabItem) => {
+			dispatch(articlesPageActions.setType(tab.value as ArticleType));
+			dispatch(articlesPageActions.setPage(1));
+			fetchData();
+		},
+		[dispatch, fetchData]
 	);
 
 	if (error) {
@@ -121,9 +133,11 @@ export const ArticlesPage = memo(() => {
 					onChangeOrder={onChangeOrder}
 					onChangeSearch={onChangeSearch}
 					onChangeSort={onChangeSort}
+					onChangeType={onChangeType}
 					order={order}
 					search={search}
 					sort={sort}
+					type={type}
 				/>
 				<ArticleViewSelector view={view} onViewClick={onChangeView} />
 			</HStack>

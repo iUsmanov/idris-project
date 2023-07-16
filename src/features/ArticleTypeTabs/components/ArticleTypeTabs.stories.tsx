@@ -1,19 +1,16 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { ArticlesFilters } from './ArticlesFilters';
+import { ArticleTypeTabs } from './ArticleTypeTabs';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
 
 const meta = {
-	title: 'shared/ArticlesFilters',
-	component: ArticlesFilters,
+	title: 'shared/ArticleTypeTabs',
+	component: ArticleTypeTabs,
 	tags: ['autodocs'],
 	argTypes: {},
 	args: {
-		order: 'asc',
-		search: 'value',
-		sort: 'createdAt',
 		type: 'ALL',
 	},
-} satisfies Meta<typeof ArticlesFilters>;
+} satisfies Meta<typeof ArticleTypeTabs>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
