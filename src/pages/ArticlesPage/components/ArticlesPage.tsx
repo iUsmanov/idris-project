@@ -28,6 +28,8 @@ import { HStack } from '@/shared/components/Stack';
 import { SortOrder } from '@/shared/types/sort';
 import { ArticlesFilters } from '@/widgets/ArticlesFilters';
 import cls from './ArticlesPage.module.scss';
+import { fetchArticlesList } from '../model/services/fetchArticlesList/fetchArticlesList';
+import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
 
 const reducers: ReducersList = {
 	articlesPage: articlesPageReducer,
@@ -56,6 +58,14 @@ export const ArticlesPage = memo(() => {
 		}
 	}, [dispatch]);
 
+	const fetchData = useCallback(() => {
+		if (__ENVIRON__ !== 'storybook') {
+			dispatch(fetchArticlesList({ replace: true }));
+		}
+	}, [dispatch]);
+
+	const debouncedFetchData = useDebounce(fetchData, 500);
+
 	const onChangeView = useCallback(
 		(view: ArticleView) => {
 			dispatch(articlesPageActions.setView(view));
@@ -67,22 +77,28 @@ export const ArticlesPage = memo(() => {
 	const onChangeSort = useCallback(
 		(newSort: ArticleSortField) => {
 			dispatch(articlesPageActions.setSort(newSort));
+			dispatch(articlesPageActions.setPage(1));
+			debouncedFetchData();
 		},
-		[dispatch]
+		[dispatch, debouncedFetchData]
 	);
 
 	const onChangeOrder = useCallback(
 		(newOrder: SortOrder) => {
 			dispatch(articlesPageActions.setOrder(newOrder));
+			dispatch(articlesPageActions.setPage(1));
+			debouncedFetchData();
 		},
-		[dispatch]
+		[dispatch, debouncedFetchData]
 	);
 
 	const onChangeSearch = useCallback(
 		(search: string) => {
 			dispatch(articlesPageActions.setSearch(search));
+			dispatch(articlesPageActions.setPage(1));
+			debouncedFetchData();
 		},
-		[dispatch]
+		[dispatch, debouncedFetchData]
 	);
 
 	if (error) {

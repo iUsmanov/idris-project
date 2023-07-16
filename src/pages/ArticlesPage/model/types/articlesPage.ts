@@ -9,13 +9,13 @@ export interface ArticlesPageSchema extends EntityState<Article> {
 	// data?: Comment[];
 	isLoading?: boolean;
 	error?: string;
+	view: ArticleView;
 	_inited: boolean;
 	// pagination
 	page: number;
 	limit: number;
 	hasMore: boolean;
 	// Filters
-	view: ArticleView;
 	order: SortOrder;
 	sort: ArticleSortField;
 	search: string;
