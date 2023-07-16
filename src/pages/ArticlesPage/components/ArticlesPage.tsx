@@ -30,6 +30,7 @@ import { ArticlesFilters } from '@/widgets/ArticlesFilters';
 import cls from './ArticlesPage.module.scss';
 import { fetchArticlesList } from '../model/services/fetchArticlesList/fetchArticlesList';
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
+import { useSearchParams } from 'react-router-dom';
 
 const reducers: ReducersList = {
 	articlesPage: articlesPageReducer,
@@ -45,11 +46,12 @@ export const ArticlesPage = memo(() => {
 	const sort = useSelector(getArticlesSort);
 	const order = useSelector(getArticlesOrder);
 	const search = useSelector(getArticlesSearch);
+	const [searchParams] = useSearchParams();
 
 	useDynamicModule({ reducers, saveAfterUnmount: true });
 
 	useInitialEffect(() => {
-		dispatch(initArticlesPage());
+		dispatch(initArticlesPage(searchParams));
 	});
 
 	const onLoadNextPart = useCallback(() => {
