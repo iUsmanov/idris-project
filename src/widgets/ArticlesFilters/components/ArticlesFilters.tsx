@@ -7,7 +7,7 @@ import { ArticleSortSelector } from '@/features/ArticleSortSelector';
 import { Card } from '@/shared/components/Card/Card';
 import { Input } from '@/shared/components/Input/Input';
 import { SortOrder } from '@/shared/types/sort';
-import { ArticleSortField } from '@/entities/Article';
+import { ArticleSortField, ArticleType } from '@/entities/Article';
 import { TabItem } from '@/shared/components/Tabs/Tabs';
 import { ArticleTypeTabs } from '@/features/ArticleTypeTabs';
 
@@ -16,11 +16,11 @@ interface ArticlesFiltersProps {
 	sort: ArticleSortField;
 	order: SortOrder;
 	search: string;
-	type: string;
+	type: ArticleType;
 	onChangeOrder: (newOrder: SortOrder) => void;
 	onChangeSort: (newSort: ArticleSortField) => void;
 	onChangeSearch: (search: string) => void;
-	onChangeType: (tab: TabItem) => void;
+	onChangeType: (tab: TabItem<ArticleType>) => void;
 }
 
 export const ArticlesFilters = memo((props: ArticlesFiltersProps) => {

@@ -107,8 +107,8 @@ export const ArticlesPage = memo(() => {
 	);
 
 	const onChangeType = useCallback(
-		(tab: TabItem) => {
-			dispatch(articlesPageActions.setType(tab.value as ArticleType));
+		(tab: TabItem<ArticleType>) => {
+			dispatch(articlesPageActions.setType(tab.value));
 			dispatch(articlesPageActions.setPage(1));
 			fetchData();
 		},

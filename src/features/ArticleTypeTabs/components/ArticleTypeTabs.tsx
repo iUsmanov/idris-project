@@ -2,18 +2,19 @@ import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { TabItem, Tabs } from '@/shared/components/Tabs/Tabs';
+import { ArticleType } from '@/entities/Article';
 
 interface ArticleTypeTabsProps {
 	className?: string;
-	type: string;
-	onChangeType: (tab: TabItem) => void;
+	type: ArticleType;
+	onChangeType: (tab: TabItem<ArticleType>) => void;
 }
 
 export const ArticleTypeTabs = memo((props: ArticleTypeTabsProps) => {
 	const { className, onChangeType, type } = props;
 	const { t } = useTranslation();
 
-	const typeTabs = useMemo<TabItem[]>(
+	const typeTabs = useMemo<TabItem<ArticleType>[]>(
 		() => [
 			{
 				content: t('Все статьи'),

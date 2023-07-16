@@ -32,7 +32,7 @@ newProps: React.ComponentPropsWithoutRef<Component>
 
 */
 
-const typedMemo: <T>(c: T) => T = memo;
+const typedMemo: <T>(props: T) => T = memo;
 
 export const Select = typedMemo(<T extends string>(props: SelectProps<T>) => {
 	const { className, options, label, onChange, value, disabled } = props;

@@ -5,24 +5,26 @@ import cls from './Tabs.module.scss';
 import { Card } from '../Card/Card';
 import { HStack } from '../Stack';
 
-export interface TabItem {
-	value: string;
+export interface TabItem<T extends string> {
+	value: T;
 	content: ReactNode;
 }
 
-interface TabsProps {
+interface TabsProps<T extends string> {
 	className?: string;
-	tabs: TabItem[];
-	value: string;
-	onTabClick: (tab: TabItem) => void;
+	tabs: TabItem<T>[];
+	value: T;
+	onTabClick: (tab: TabItem<T>) => void;
 }
 
-export const Tabs = memo((props: TabsProps) => {
+const typedMemo: <T>(props: T) => T = memo;
+
+export const Tabs = typedMemo(<T extends string>(props: TabsProps<T>) => {
 	const { className, tabs, onTabClick, value } = props;
 	const { t } = useTranslation();
 
 	const onClick = useCallback(
-		(tab: TabItem) => () => {
+		(tab: TabItem<T>) => () => {
 			onTabClick(tab);
 		},
 		[onTabClick]
