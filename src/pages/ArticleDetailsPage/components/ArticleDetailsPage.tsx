@@ -8,6 +8,7 @@ import { ArticleCommentsList } from '@/features/ArticleCommentsList';
 import { AppLink } from '@/shared/components/AppLink/AppLink';
 import { getRouteArticles } from '@/shared/const/router';
 import { Page } from '@/widgets/Page';
+import { ArticleRecommendations } from '@/features/ArticleRecommendations';
 
 export const ArticleDetailsPage = memo(() => {
 	const { t } = useTranslation('article-details');
@@ -23,6 +24,7 @@ export const ArticleDetailsPage = memo(() => {
 				{t('Назад к списку')}
 			</AppLink>
 			<ArticleDetails className={cls.articleDetails} id={id} />
+			<ArticleRecommendations />
 			<ArticleCommentsList />
 		</Page>
 	);

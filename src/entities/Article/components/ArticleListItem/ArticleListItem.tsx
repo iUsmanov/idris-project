@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { HTMLAttributeAnchorTarget, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './ArticleListItem.module.scss';
@@ -17,10 +17,11 @@ interface ArticleListItemProps {
 	className?: string;
 	article: Article;
 	view: ArticleView;
+	target?: HTMLAttributeAnchorTarget;
 }
 
 export const ArticleListItem = memo((props: ArticleListItemProps) => {
-	const { className, article, view } = props;
+	const { className, article, view, target } = props;
 	const { t } = useTranslation();
 
 	const types = <Text size='size_m' text={article.type.join(', ')} className={cls.types} />;
@@ -59,7 +60,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 	}
 
 	return (
-		<AppLink to={getRouteArticleDetails(article.id)}>
+		<AppLink to={getRouteArticleDetails(article.id)} target={target}>
 			<Card className={classNames(cls.articleListItem, {}, [className, cls[view]])}>
 				<div className={cls.image}>
 					<img src={article.img} alt='' className={cls.img} />

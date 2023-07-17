@@ -14,6 +14,7 @@ import { UISchema } from '@/widgets/Page';
 import { ArticlesSortSchema } from '@/features/ArticlesSort';
 import { ArticlesTypeSchema } from '@/features/ArticleTypeTabs';
 import { ArticlesSearchSchema } from '@/features/ArticlesSearch';
+import { ArticleRecommendationsSchema } from '@/features/ArticleRecommendations';
 
 export interface StateSchema {
 	counter: CounterSchema;
@@ -30,6 +31,7 @@ export interface StateSchema {
 	articlesSort?: ArticlesSortSchema;
 	articlesType?: ArticlesTypeSchema;
 	articlesSearch?: ArticlesSearchSchema;
+	articleRecommendations?: ArticleRecommendationsSchema;
 }
 
 export interface ReducerManager {

@@ -10,3 +10,18 @@ body,.app {
 	background: var(--bg-color);
 	min-height: 100vh;
 }
+
+*::-webkit-scrollbar {
+	width: 12px;
+	height: 8px;               /* ширина всей полосы прокрутки */
+}
+ 
+*::-webkit-scrollbar-track {
+	background: var(--card-bg);        /* цвет зоны отслеживания */
+}
+ 
+*::-webkit-scrollbar-thumb {
+	background-color: var(--inverted-primary-color);    /* цвет бегунка */
+	border-radius: 20px;       /* округлось бегунка */
+	border: 2px solid var(--primary-color);  /* отступ вокруг бегунка */
+}

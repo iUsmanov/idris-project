@@ -2,6 +2,7 @@ import { StateSchema, StoreProvider } from '@/app/providers/StoreProvider';
 import { addNewCommentReducer } from '@/entities/AddNewComment/model/slice/addNewCommentSlice';
 import { articleDetailsReducer } from '@/entities/Article/model/slice/articleDetailsSlice';
 import { articleCommentsListReducer } from '@/features/ArticleCommentsList/model/slice/articleCommentsListSlice';
+import { articleRecommendationsReducer } from '@/features/ArticleRecommendations/model/slice/articleRecommendationsSlice';
 import { articlesTypeReducer } from '@/features/ArticleTypeTabs/model/slice/articlesTypeSlice';
 import { articlesSearchReducer } from '@/features/ArticlesSearch/model/slice/articlesSearchSlice';
 import { articlesSortReducer } from '@/features/ArticlesSort/model/slice/articlesSortSlice';
@@ -23,6 +24,7 @@ const defaultAsyncReducers: ReducersList = {
 	articlesSort: articlesSortReducer,
 	articlesType: articlesTypeReducer,
 	articlesSearch: articlesSearchReducer,
+	articleRecommendations: articleRecommendationsReducer,
 };
 
 export const StoreDecorator =
