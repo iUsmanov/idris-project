@@ -1,20 +1,24 @@
-import { memo, useMemo } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './ArticlesSort.module.scss';
 import { Select, SelectOption } from '@/shared/components/Select/Select';
 import { SortOrder } from '@/shared/types/sort';
 import { HStack } from '@/shared/components/Stack';
-import { articlesSortReducer } from '../model/slice/articlesSortSlice';
+import { articlesSortActions, articlesSortReducer } from '../model/slice/articlesSortSlice';
 import { ArticlesSortField } from '../model/types/articlesSort';
 import { useSelector } from 'react-redux';
 import { getArticlesSortField, getArticlesSortOrder } from '../model/selectors/articlesSortSelectors';
 import { ReducersList, useDynamicModule } from '@/shared/lib/hooks/useDynamicModule/useDynamicModule';
+import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { initArticlesSort } from '../model/services/initArticlesSort/initArticlesSort';
+import { useSearchParams } from 'react-router-dom';
 
 interface ArticlesSortProps {
 	className?: string;
-	onChangeOrder: (newOrder: SortOrder) => void;
-	onChangeSort: (newSort: ArticlesSortField) => void;
+	onChangeOrder: () => void;
+	onChangeSort: () => void;
 }
 
 const reducers: ReducersList = {
@@ -26,6 +30,8 @@ export const ArticlesSort = memo((props: ArticlesSortProps) => {
 	const { t } = useTranslation();
 	const sort = useSelector(getArticlesSortField);
 	const order = useSelector(getArticlesSortOrder);
+	const dispatch = useAppDispatch();
+	const [searchParams] = useSearchParams();
 
 	useDynamicModule({ reducers, saveAfterUnmount: true });
 
@@ -61,15 +67,35 @@ export const ArticlesSort = memo((props: ArticlesSortProps) => {
 		[t]
 	);
 
+	useInitialEffect(() => {
+		dispatch(initArticlesSort(searchParams));
+	});
+
+	const changeSortHandler = useCallback(
+		(newSort: ArticlesSortField) => {
+			dispatch(articlesSortActions.setSort(newSort));
+			onChangeSort();
+		},
+		[dispatch, onChangeSort]
+	);
+
+	const changeOrderHandler = useCallback(
+		(newOrder: SortOrder) => {
+			dispatch(articlesSortActions.setOrder(newOrder));
+			onChangeOrder();
+		},
+		[dispatch, onChangeOrder]
+	);
+
 	return (
 		<HStack gap='8' className={classNames(cls.articlesSort, {}, [className])}>
 			<Select<ArticlesSortField>
 				value={sort}
-				onChange={onChangeSort}
+				onChange={changeSortHandler}
 				options={orderFieldOptions}
 				label={t('Сортировать ПО')}
 			/>
-			<Select value={order} onChange={onChangeOrder} options={orderOptions} label={t('по')} />
+			<Select value={order} onChange={changeOrderHandler} options={orderOptions} label={t('по')} />
 		</HStack>
 	);
 });

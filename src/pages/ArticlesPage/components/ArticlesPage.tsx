@@ -30,8 +30,6 @@ import { fetchArticlesList } from '../model/services/fetchArticlesList/fetchArti
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
 import { useSearchParams } from 'react-router-dom';
 import { TabItem } from '@/shared/components/Tabs/Tabs';
-import { ArticlesSortField, articlesSortActions } from '@/features/ArticlesSort';
-import { SortOrder } from '@/shared/types/sort';
 
 const reducers: ReducersList = {
 	articlesPage: articlesPageReducer,
@@ -76,23 +74,15 @@ export const ArticlesPage = memo(() => {
 		[dispatch]
 	);
 
-	const onChangeSort = useCallback(
-		(newSort: ArticlesSortField) => {
-			dispatch(articlesSortActions.setSort(newSort));
-			dispatch(articlesPageActions.setPage(1));
-			fetchData();
-		},
-		[dispatch, fetchData]
-	);
+	const onChangeSort = useCallback(() => {
+		dispatch(articlesPageActions.setPage(1));
+		fetchData();
+	}, [dispatch, fetchData]);
 
-	const onChangeOrder = useCallback(
-		(newOrder: SortOrder) => {
-			dispatch(articlesSortActions.setOrder(newOrder));
-			dispatch(articlesPageActions.setPage(1));
-			fetchData();
-		},
-		[dispatch, fetchData]
-	);
+	const onChangeOrder = useCallback(() => {
+		dispatch(articlesPageActions.setPage(1));
+		fetchData();
+	}, [dispatch, fetchData]);
 
 	const onChangeSearch = useCallback(
 		(search: string) => {

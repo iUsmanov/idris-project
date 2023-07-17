@@ -3,20 +3,19 @@ import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './ArticlesFilters.module.scss';
 import { VStack } from '@/shared/components/Stack';
-import { ArticlesSort, ArticlesSortField } from '@/features/ArticlesSort';
+import { ArticlesSort } from '@/features/ArticlesSort';
 import { Card } from '@/shared/components/Card/Card';
 import { Input } from '@/shared/components/Input/Input';
 import { ArticleType } from '@/entities/Article';
 import { TabItem } from '@/shared/components/Tabs/Tabs';
 import { ArticleTypeTabs } from '@/features/ArticleTypeTabs';
-import { SortOrder } from '@/shared/types/sort';
 
 interface ArticlesFiltersProps {
 	className?: string;
 	search: string;
 	type: ArticleType;
-	onChangeOrder: (newOrder: SortOrder) => void;
-	onChangeSort: (newSort: ArticlesSortField) => void;
+	onChangeOrder: () => void;
+	onChangeSort: () => void;
 	onChangeSearch: (search: string) => void;
 	onChangeType: (tab: TabItem<ArticleType>) => void;
 }
