@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { useAppDispatch } from '../useAppDispatch/useAppDispatch';
-import { ReduxStoreWithManager, StateSchemaKey } from '@/app/providers/StoreProvider';
+import { ReduxStoreWithManager, StateSchema, StateSchemaKey } from '@/app/providers/StoreProvider';
 import { useStore } from 'react-redux';
 import { Reducer } from '@reduxjs/toolkit';
 
 export type ReducersList = {
-	[name in StateSchemaKey]?: Reducer;
+	[name in StateSchemaKey]?: Reducer<NonNullable<StateSchema[name]>>;
 };
 
 // type ReducersListEntry = [StateSchemaKey, Reducer];after turn on strict-mode, not need
