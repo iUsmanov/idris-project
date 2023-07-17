@@ -5,10 +5,10 @@ import {
 	getArticlesLimit,
 	getArticlesNumber,
 	getArticlesSearch,
-	getArticlesType,
 } from '../../selectors/articlesPageSelectors';
 import { addQueryParams } from '@/shared/lib/url/addQueryParams/addQueryParams';
 import { getArticlesSortField, getArticlesSortOrder } from '@/features/ArticlesSort';
+import { getArticlesType } from '@/features/ArticleTypeTabs';
 
 interface FetchArticlesListProps {
 	replace?: boolean;

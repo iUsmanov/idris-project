@@ -1,4 +1,4 @@
-import { Article, ArticleType, ArticleView } from '@/entities/Article';
+import { Article, ArticleView } from '@/entities/Article';
 import { EntityState } from '@reduxjs/toolkit';
 
 export interface ArticlesPageSchema extends EntityState<Article> {
@@ -16,5 +16,4 @@ export interface ArticlesPageSchema extends EntityState<Article> {
 	hasMore: boolean;
 	// Filters
 	search: string;
-	type: ArticleType;
 }

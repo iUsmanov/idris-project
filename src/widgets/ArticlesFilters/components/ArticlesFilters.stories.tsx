@@ -9,7 +9,6 @@ const meta = {
 	argTypes: {},
 	args: {
 		search: 'value',
-		type: 'ALL',
 	},
 } satisfies Meta<typeof ArticlesFilters>;
 

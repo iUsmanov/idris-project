@@ -1,4 +1,4 @@
-import { ArticleList, ArticleType, ArticleView } from '@/entities/Article';
+import { ArticleList, ArticleView } from '@/entities/Article';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ReducersList, useDynamicModule } from '@/shared/lib/hooks/useDynamicModule/useDynamicModule';
@@ -14,7 +14,6 @@ import {
 	getArticlesError,
 	getArticlesIsLoading,
 	getArticlesSearch,
-	getArticlesType,
 	getArticlesView,
 } from '../model/selectors/articlesPageSelectors';
 import { Text } from '@/shared/components/Text/Text';
@@ -29,7 +28,6 @@ import cls from './ArticlesPage.module.scss';
 import { fetchArticlesList } from '../model/services/fetchArticlesList/fetchArticlesList';
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
 import { useSearchParams } from 'react-router-dom';
-import { TabItem } from '@/shared/components/Tabs/Tabs';
 
 const reducers: ReducersList = {
 	articlesPage: articlesPageReducer,
@@ -43,7 +41,6 @@ export const ArticlesPage = memo(() => {
 	const error = useSelector(getArticlesError);
 	const view = useSelector(getArticlesView);
 	const search = useSelector(getArticlesSearch);
-	const type = useSelector(getArticlesType);
 	const [searchParams] = useSearchParams();
 
 	useDynamicModule({ reducers, saveAfterUnmount: true });
@@ -93,14 +90,10 @@ export const ArticlesPage = memo(() => {
 		[dispatch, debouncedFetchData]
 	);
 
-	const onChangeType = useCallback(
-		(tab: TabItem<ArticleType>) => {
-			dispatch(articlesPageActions.setType(tab.value));
-			dispatch(articlesPageActions.setPage(1));
-			fetchData();
-		},
-		[dispatch, fetchData]
-	);
+	const onChangeType = useCallback(() => {
+		dispatch(articlesPageActions.setPage(1));
+		fetchData();
+	}, [dispatch, fetchData]);
 
 	if (error) {
 		return (
@@ -122,7 +115,6 @@ export const ArticlesPage = memo(() => {
 					onChangeSort={onChangeSort}
 					onChangeType={onChangeType}
 					search={search}
-					type={type}
 				/>
 				<ArticleViewSelector view={view} onViewClick={onChangeView} />
 			</HStack>

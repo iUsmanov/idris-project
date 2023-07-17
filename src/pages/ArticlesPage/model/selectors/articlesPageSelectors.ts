@@ -15,4 +15,3 @@ export const getArticlesInited = (state: StateSchema) =>
 
 export const getArticlesSearch = (state: StateSchema) =>
 	state.articlesPage?.search ?? initialState.search;
-export const getArticlesType = (state: StateSchema) => state.articlesPage?.type ?? initialState.type;

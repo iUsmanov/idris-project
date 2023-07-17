@@ -3,7 +3,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getArticlesInited } from '../../selectors/articlesPageSelectors';
 import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
 import { articlesPageActions } from '../../slice/articlesPageSlice';
-import { ArticleType } from '@/entities/Article';
 
 export const initArticlesPage = createAsyncThunk<void, URLSearchParams, ThunkConfig<string>>(
 	'articlesPage/initArticlesPage',
@@ -13,14 +12,9 @@ export const initArticlesPage = createAsyncThunk<void, URLSearchParams, ThunkCon
 
 		if (inited) return;
 		const searchFromURL = searchParams.get('search');
-		const typeFromURL = searchParams.get('type') as ArticleType;
 
 		if (searchFromURL) {
 			dispatch(articlesPageActions.setSearch(searchFromURL));
-		}
-
-		if (typeFromURL) {
-			dispatch(articlesPageActions.setType(typeFromURL));
 		}
 
 		dispatch(articlesPageActions.initState());

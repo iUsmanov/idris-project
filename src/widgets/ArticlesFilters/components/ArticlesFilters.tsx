@@ -6,22 +6,19 @@ import { VStack } from '@/shared/components/Stack';
 import { ArticlesSort } from '@/features/ArticlesSort';
 import { Card } from '@/shared/components/Card/Card';
 import { Input } from '@/shared/components/Input/Input';
-import { ArticleType } from '@/entities/Article';
-import { TabItem } from '@/shared/components/Tabs/Tabs';
 import { ArticleTypeTabs } from '@/features/ArticleTypeTabs';
 
 interface ArticlesFiltersProps {
 	className?: string;
 	search: string;
-	type: ArticleType;
 	onChangeOrder: () => void;
 	onChangeSort: () => void;
 	onChangeSearch: (search: string) => void;
-	onChangeType: (tab: TabItem<ArticleType>) => void;
+	onChangeType: () => void;
 }
 
 export const ArticlesFilters = memo((props: ArticlesFiltersProps) => {
-	const { className, search, onChangeOrder, onChangeSort, onChangeSearch, onChangeType, type } = props;
+	const { className, search, onChangeOrder, onChangeSort, onChangeSearch, onChangeType } = props;
 	const { t } = useTranslation();
 
 	return (
@@ -30,7 +27,7 @@ export const ArticlesFilters = memo((props: ArticlesFiltersProps) => {
 			<Card>
 				<Input placeholder={t('Поиск')} value={search} onChange={onChangeSearch} />
 			</Card>
-			<ArticleTypeTabs onChangeType={onChangeType} type={type} />
+			<ArticleTypeTabs onChangeType={onChangeType} />
 		</VStack>
 	);
 });

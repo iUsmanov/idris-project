@@ -7,9 +7,7 @@ const meta = {
 	component: ArticleTypeTabs,
 	tags: ['autodocs'],
 	argTypes: {},
-	args: {
-		type: 'ALL',
-	},
+	args: {},
 } satisfies Meta<typeof ArticleTypeTabs>;
 
 export default meta;
