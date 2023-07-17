@@ -3,6 +3,7 @@ import { addNewCommentReducer } from '@/entities/AddNewComment/model/slice/addNe
 import { articleDetailsReducer } from '@/entities/Article/model/slice/articleDetailsSlice';
 import { articleCommentsListReducer } from '@/features/ArticleCommentsList/model/slice/articleCommentsListSlice';
 import { articlesTypeReducer } from '@/features/ArticleTypeTabs/model/slice/articlesTypeSlice';
+import { articlesSearchReducer } from '@/features/ArticlesSearch/model/slice/articlesSearchSlice';
 import { articlesSortReducer } from '@/features/ArticlesSort/model/slice/articlesSortSlice';
 import { loginReducer } from '@/features/AuthByUsername/model/slice/loginSlice';
 import { profileReducer } from '@/features/Profile/model/slice/profileSlice';
@@ -21,6 +22,7 @@ const defaultAsyncReducers: ReducersList = {
 	articlesPage: articlesPageReducer,
 	articlesSort: articlesSortReducer,
 	articlesType: articlesTypeReducer,
+	articlesSearch: articlesSearchReducer,
 };
 
 export const StoreDecorator =

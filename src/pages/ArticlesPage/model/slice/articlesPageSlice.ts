@@ -15,7 +15,6 @@ export const initialState: ArticlesPageSchema = {
 	limit: 9,
 	page: 1,
 	_inited: false,
-	search: '',
 };
 
 const articlesPageAdapter = createEntityAdapter<Article>({
@@ -36,9 +35,6 @@ export const articlesPageSlice = createSlice({
 		},
 		setPage: (state, action: PayloadAction<number>) => {
 			state.page = action.payload;
-		},
-		setSearch: (state, action: PayloadAction<string>) => {
-			state.search = action.payload;
 		},
 		initState: (state) => {
 			const view = localStorage.getItem(LOCAL_STORAGE_ARTICLE_VIEW_KEY) as ArticleView;

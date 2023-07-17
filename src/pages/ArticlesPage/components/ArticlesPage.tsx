@@ -13,7 +13,6 @@ import { useSelector } from 'react-redux';
 import {
 	getArticlesError,
 	getArticlesIsLoading,
-	getArticlesSearch,
 	getArticlesView,
 } from '../model/selectors/articlesPageSelectors';
 import { Text } from '@/shared/components/Text/Text';
@@ -27,7 +26,6 @@ import { ArticlesFilters } from '@/widgets/ArticlesFilters';
 import cls from './ArticlesPage.module.scss';
 import { fetchArticlesList } from '../model/services/fetchArticlesList/fetchArticlesList';
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
-import { useSearchParams } from 'react-router-dom';
 
 const reducers: ReducersList = {
 	articlesPage: articlesPageReducer,
@@ -40,13 +38,11 @@ export const ArticlesPage = memo(() => {
 	const isLoading = useSelector(getArticlesIsLoading);
 	const error = useSelector(getArticlesError);
 	const view = useSelector(getArticlesView);
-	const search = useSelector(getArticlesSearch);
-	const [searchParams] = useSearchParams();
 
 	useDynamicModule({ reducers, saveAfterUnmount: true });
 
 	useInitialEffect(() => {
-		dispatch(initArticlesPage(searchParams));
+		dispatch(initArticlesPage());
 	});
 
 	const onLoadNextPart = useCallback(() => {
@@ -81,14 +77,10 @@ export const ArticlesPage = memo(() => {
 		fetchData();
 	}, [dispatch, fetchData]);
 
-	const onChangeSearch = useCallback(
-		(search: string) => {
-			dispatch(articlesPageActions.setSearch(search));
-			dispatch(articlesPageActions.setPage(1));
-			debouncedFetchData();
-		},
-		[dispatch, debouncedFetchData]
-	);
+	const onChangeSearch = useCallback(() => {
+		dispatch(articlesPageActions.setPage(1));
+		debouncedFetchData();
+	}, [dispatch, debouncedFetchData]);
 
 	const onChangeType = useCallback(() => {
 		dispatch(articlesPageActions.setPage(1));
@@ -108,13 +100,12 @@ export const ArticlesPage = memo(() => {
 
 	return (
 		<Page onScrollEnd={onLoadNextPart}>
-			<HStack max justify='between' align='center' className={cls.tools}>
+			<HStack max justify='between' className={cls.tools}>
 				<ArticlesFilters
 					onChangeOrder={onChangeOrder}
 					onChangeSearch={onChangeSearch}
 					onChangeSort={onChangeSort}
 					onChangeType={onChangeType}
-					search={search}
 				/>
 				<ArticleViewSelector view={view} onViewClick={onChangeView} />
 			</HStack>

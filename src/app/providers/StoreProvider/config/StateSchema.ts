@@ -13,6 +13,7 @@ import { ArticlesPageSchema } from '@/pages/ArticlesPage';
 import { UISchema } from '@/widgets/Page';
 import { ArticlesSortSchema } from '@/features/ArticlesSort';
 import { ArticlesTypeSchema } from '@/features/ArticleTypeTabs';
+import { ArticlesSearchSchema } from '@/features/ArticlesSearch';
 
 export interface StateSchema {
 	counter: CounterSchema;
@@ -28,6 +29,7 @@ export interface StateSchema {
 	articlesPage?: ArticlesPageSchema;
 	articlesSort?: ArticlesSortSchema;
 	articlesType?: ArticlesTypeSchema;
+	articlesSearch?: ArticlesSearchSchema;
 }
 
 export interface ReducerManager {
