@@ -8,9 +8,7 @@ const meta = {
 	tags: ['autodocs'],
 	argTypes: {},
 	args: {
-		order: 'asc',
 		search: 'value',
-		sort: 'createdAt',
 		type: 'ALL',
 	},
 } satisfies Meta<typeof ArticlesFilters>;

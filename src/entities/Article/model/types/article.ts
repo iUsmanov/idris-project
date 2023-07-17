@@ -42,5 +42,3 @@ export interface Article {
 }
 
 export type ArticleView = 'TILE' | 'LIST';
-
-export type ArticleSortField = 'views' | 'title' | 'createdAt';

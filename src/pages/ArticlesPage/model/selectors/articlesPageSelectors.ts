@@ -13,8 +13,6 @@ export const getArticlesNumber = (state: StateSchema) => state.articlesPage?.pag
 export const getArticlesInited = (state: StateSchema) =>
 	state.articlesPage?._inited || initialState._inited;
 
-export const getArticlesSort = (state: StateSchema) => state.articlesPage?.sort ?? initialState.sort;
-export const getArticlesOrder = (state: StateSchema) => state.articlesPage?.order ?? initialState.order;
 export const getArticlesSearch = (state: StateSchema) =>
 	state.articlesPage?.search ?? initialState.search;
 export const getArticlesType = (state: StateSchema) => state.articlesPage?.type ?? initialState.type;

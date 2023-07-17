@@ -1,17 +1,14 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { ArticleSortSelector } from './ArticleSortSelector';
+import { ArticlesSort } from './ArticlesSort';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
 
 const meta = {
-	title: 'shared/ArticleSortSelector',
-	component: ArticleSortSelector,
+	title: 'shared/ArticlesSort',
+	component: ArticlesSort,
 	tags: ['autodocs'],
 	argTypes: {},
-	args: {
-		order: 'asc',
-		sort: 'createdAt',
-	},
-} satisfies Meta<typeof ArticleSortSelector>;
+	args: {},
+} satisfies Meta<typeof ArticlesSort>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

@@ -1,4 +1,4 @@
-import { ArticleList, ArticleSortField, ArticleType, ArticleView } from '@/entities/Article';
+import { ArticleList, ArticleType, ArticleView } from '@/entities/Article';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ReducersList, useDynamicModule } from '@/shared/lib/hooks/useDynamicModule/useDynamicModule';
@@ -13,9 +13,7 @@ import { useSelector } from 'react-redux';
 import {
 	getArticlesError,
 	getArticlesIsLoading,
-	getArticlesOrder,
 	getArticlesSearch,
-	getArticlesSort,
 	getArticlesType,
 	getArticlesView,
 } from '../model/selectors/articlesPageSelectors';
@@ -26,13 +24,14 @@ import { Page } from '@/widgets/Page';
 import { fetchNextArticlesPage } from '../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
 import { initArticlesPage } from '../model/services/initArticlesPage/initArticlesPage';
 import { HStack } from '@/shared/components/Stack';
-import { SortOrder } from '@/shared/types/sort';
 import { ArticlesFilters } from '@/widgets/ArticlesFilters';
 import cls from './ArticlesPage.module.scss';
 import { fetchArticlesList } from '../model/services/fetchArticlesList/fetchArticlesList';
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
 import { useSearchParams } from 'react-router-dom';
 import { TabItem } from '@/shared/components/Tabs/Tabs';
+import { ArticlesSortField, articlesSortActions } from '@/features/ArticlesSort';
+import { SortOrder } from '@/shared/types/sort';
 
 const reducers: ReducersList = {
 	articlesPage: articlesPageReducer,
@@ -45,8 +44,6 @@ export const ArticlesPage = memo(() => {
 	const isLoading = useSelector(getArticlesIsLoading);
 	const error = useSelector(getArticlesError);
 	const view = useSelector(getArticlesView);
-	const sort = useSelector(getArticlesSort);
-	const order = useSelector(getArticlesOrder);
 	const search = useSelector(getArticlesSearch);
 	const type = useSelector(getArticlesType);
 	const [searchParams] = useSearchParams();
@@ -80,8 +77,8 @@ export const ArticlesPage = memo(() => {
 	);
 
 	const onChangeSort = useCallback(
-		(newSort: ArticleSortField) => {
-			dispatch(articlesPageActions.setSort(newSort));
+		(newSort: ArticlesSortField) => {
+			dispatch(articlesSortActions.setSort(newSort));
 			dispatch(articlesPageActions.setPage(1));
 			fetchData();
 		},
@@ -90,7 +87,7 @@ export const ArticlesPage = memo(() => {
 
 	const onChangeOrder = useCallback(
 		(newOrder: SortOrder) => {
-			dispatch(articlesPageActions.setOrder(newOrder));
+			dispatch(articlesSortActions.setOrder(newOrder));
 			dispatch(articlesPageActions.setPage(1));
 			fetchData();
 		},
@@ -134,9 +131,7 @@ export const ArticlesPage = memo(() => {
 					onChangeSearch={onChangeSearch}
 					onChangeSort={onChangeSort}
 					onChangeType={onChangeType}
-					order={order}
 					search={search}
-					sort={sort}
 					type={type}
 				/>
 				<ArticleViewSelector view={view} onViewClick={onChangeView} />

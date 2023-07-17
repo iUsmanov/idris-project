@@ -1,23 +1,33 @@
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './ArticleSortSelector.module.scss';
+import cls from './ArticlesSort.module.scss';
 import { Select, SelectOption } from '@/shared/components/Select/Select';
 import { SortOrder } from '@/shared/types/sort';
-import { ArticleSortField } from '@/entities/Article';
 import { HStack } from '@/shared/components/Stack';
+import { articlesSortReducer } from '../model/slice/articlesSortSlice';
+import { ArticlesSortField } from '../model/types/articlesSort';
+import { useSelector } from 'react-redux';
+import { getArticlesSortField, getArticlesSortOrder } from '../model/selectors/articlesSortSelectors';
+import { ReducersList, useDynamicModule } from '@/shared/lib/hooks/useDynamicModule/useDynamicModule';
 
-interface ArticleSortSelectorProps {
+interface ArticlesSortProps {
 	className?: string;
-	sort: ArticleSortField;
-	order: SortOrder;
 	onChangeOrder: (newOrder: SortOrder) => void;
-	onChangeSort: (newSort: ArticleSortField) => void;
+	onChangeSort: (newSort: ArticlesSortField) => void;
 }
 
-export const ArticleSortSelector = memo((props: ArticleSortSelectorProps) => {
-	const { className, onChangeOrder, onChangeSort, order, sort } = props;
+const reducers: ReducersList = {
+	articlesSort: articlesSortReducer,
+};
+
+export const ArticlesSort = memo((props: ArticlesSortProps) => {
+	const { className, onChangeOrder, onChangeSort } = props;
 	const { t } = useTranslation();
+	const sort = useSelector(getArticlesSortField);
+	const order = useSelector(getArticlesSortOrder);
+
+	useDynamicModule({ reducers, saveAfterUnmount: true });
 
 	const orderOptions = useMemo<SelectOption<SortOrder>[]>(
 		() => [
@@ -33,7 +43,7 @@ export const ArticleSortSelector = memo((props: ArticleSortSelectorProps) => {
 		[t]
 	);
 
-	const orderFieldOptions = useMemo<SelectOption<ArticleSortField>[]>(
+	const orderFieldOptions = useMemo<SelectOption<ArticlesSortField>[]>(
 		() => [
 			{
 				value: 'createdAt',
@@ -52,8 +62,8 @@ export const ArticleSortSelector = memo((props: ArticleSortSelectorProps) => {
 	);
 
 	return (
-		<HStack gap='8' className={classNames(cls.articleSortSelector, {}, [className])}>
-			<Select<ArticleSortField>
+		<HStack gap='8' className={classNames(cls.articlesSort, {}, [className])}>
+			<Select<ArticlesSortField>
 				value={sort}
 				onChange={onChangeSort}
 				options={orderFieldOptions}

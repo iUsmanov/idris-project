@@ -11,6 +11,7 @@ import { ArticleCommentsListSchema } from '@/features/ArticleCommentsList';
 import { AddNewCommentSchema } from '@/entities/AddNewComment';
 import { ArticlesPageSchema } from '@/pages/ArticlesPage';
 import { UISchema } from '@/widgets/Page';
+import { ArticlesSortSchema } from '@/features/ArticlesSort';
 
 export interface StateSchema {
 	counter: CounterSchema;
@@ -24,6 +25,7 @@ export interface StateSchema {
 	articleCommentsList?: ArticleCommentsListSchema;
 	addNewComment?: AddNewCommentSchema;
 	articlesPage?: ArticlesPageSchema;
+	articlesSort?: ArticlesSortSchema;
 }
 
 export interface ReducerManager {
