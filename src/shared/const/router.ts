@@ -17,3 +17,5 @@ export const getRouteAbout = () => `/about`;
 export const getRouteProfile = (id: string) => `/profiles/${id}`;
 export const getRouteArticles = () => `/articles`;
 export const getRouteArticleDetails = (id: string) => `/articles/${id}`;
+export const getRouteArticleCreate = () => `/articles/create`;
+export const getRouteArticleEdit = (id: string) => `/articles/${id}/edit`;

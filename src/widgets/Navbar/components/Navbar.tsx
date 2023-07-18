@@ -1,4 +1,4 @@
-import { FC, memo, useCallback } from 'react';
+import { memo, useCallback } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Navbar.module.scss';
 import { useTranslation } from 'react-i18next';
@@ -8,6 +8,10 @@ import { LoginModal } from '@/features/AuthByUsername';
 import { useSelector } from 'react-redux';
 import { getUserAuthData, userActions } from '@/entities/User';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { AppLink } from '@/shared/components/AppLink/AppLink';
+import { getRouteArticleCreate } from '@/shared/const/router';
+import { Text } from '@/shared/components/Text/Text';
+import { HStack } from '@/shared/components/Stack';
 interface NavbarProps {
 	className?: string;
 }
@@ -32,10 +36,15 @@ export const Navbar = memo((props: NavbarProps) => {
 	if (authData) {
 		return (
 			<header className={classNames(cls.navbar, {}, [className])}>
-				<div>{t('Articles App')}</div>
-				<Button variant='clearInverted' className={cls.login} onClick={onLogout}>
-					{t('Выйти')}
-				</Button>
+				<Text variant='inverted' size='size_m' title={t('Articles App')} className={cls.title} />
+				<HStack max align='center' justify='between'>
+					<AppLink to={getRouteArticleCreate()} variant='inverted'>
+						{t('Создать статью')}
+					</AppLink>
+					<Button variant='clearInverted' onClick={onLogout}>
+						{t('Выйти')}
+					</Button>
+				</HStack>
 			</header>
 		);
 	}

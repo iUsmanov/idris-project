@@ -6,8 +6,8 @@ export type AppRoutes =
 	| 'profiles'
 	| 'articles'
 	| 'article_details'
-	// | 'article_create'
-	// | 'article_edit'
+	| 'article_create'
+	| 'article_edit'
 	// | 'admin_panel'
 	// | 'forbidden'
 	// last

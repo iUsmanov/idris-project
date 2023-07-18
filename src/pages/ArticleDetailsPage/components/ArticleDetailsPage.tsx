@@ -6,9 +6,10 @@ import { useParams } from 'react-router-dom';
 import cls from './ArticleDetailsPage.module.scss';
 import { ArticleCommentsList } from '@/features/ArticleCommentsList';
 import { AppLink } from '@/shared/components/AppLink/AppLink';
-import { getRouteArticles } from '@/shared/const/router';
+import { getRouteArticleEdit, getRouteArticles } from '@/shared/const/router';
 import { Page } from '@/widgets/Page';
 import { ArticleRecommendations } from '@/features/ArticleRecommendations';
+import { HStack } from '@/shared/components/Stack';
 
 export const ArticleDetailsPage = memo(() => {
 	const { t } = useTranslation('article-details');
@@ -20,9 +21,14 @@ export const ArticleDetailsPage = memo(() => {
 
 	return (
 		<Page className={classNames('', {}, [])}>
-			<AppLink to={getRouteArticles()} variant='outline'>
-				{t('Назад к списку')}
-			</AppLink>
+			<HStack justify='between' align='center'>
+				<AppLink to={getRouteArticles()} variant='outline'>
+					{t('Назад к списку')}
+				</AppLink>
+				<AppLink to={getRouteArticleEdit(id)} variant='outline'>
+					{t('Редактировать')}
+				</AppLink>
+			</HStack>
 			<ArticleDetails className={cls.articleDetails} id={id} />
 			<ArticleRecommendations />
 			<ArticleCommentsList />

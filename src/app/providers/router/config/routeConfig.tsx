@@ -4,7 +4,9 @@ import { AboutPage } from '@/pages/AboutPage';
 import { createBrowserRouter } from 'react-router-dom';
 import {
 	getRouteAbout,
+	getRouteArticleCreate,
 	getRouteArticleDetails,
+	getRouteArticleEdit,
 	getRouteArticles,
 	getRouteMain,
 	getRouteProfile,
@@ -15,6 +17,7 @@ import { ProfilePage } from '@/pages/ProfilePage';
 import { RequireAuth } from '../components/RequireAuth';
 import { ArticlesPage } from '@/pages/ArticlesPage';
 import { ArticleDetailsPage } from '@/pages/ArticleDetailsPage';
+import { ArticleEditPage } from '@/pages/ArticleEditPage';
 
 export const routeConfig: Record<AppRoutes, AppRouteObject> = {
 	main: {
@@ -38,6 +41,16 @@ export const routeConfig: Record<AppRoutes, AppRouteObject> = {
 	article_details: {
 		path: getRouteArticleDetails(':id'),
 		element: <ArticleDetailsPage />,
+		authOnly: true,
+	},
+	article_create: {
+		path: getRouteArticleCreate(),
+		element: <ArticleEditPage />,
+		authOnly: true,
+	},
+	article_edit: {
+		path: getRouteArticleEdit(':id'),
+		element: <ArticleEditPage />,
 		authOnly: true,
 	},
 	not_found: {

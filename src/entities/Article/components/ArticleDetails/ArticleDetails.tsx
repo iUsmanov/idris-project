@@ -76,7 +76,14 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
 	}
 
 	if (error) {
-		return <Text align='center' title={t('Произошла ошибка при загрузке статьи')} size='size_l' />;
+		return (
+			<Text
+				align='center'
+				variant='error'
+				title={t('Произошла ошибка при загрузке статьи')}
+				size='size_l'
+			/>
+		);
 	}
 
 	return (
