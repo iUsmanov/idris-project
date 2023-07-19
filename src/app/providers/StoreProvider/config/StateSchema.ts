@@ -6,7 +6,6 @@ import { AnyAction, CombinedState, Reducer, ReducersMapObject } from '@reduxjs/t
 import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore';
 import { AxiosInstance } from 'axios';
 import { ProfileSchema } from '@/features/Profile';
-import { ArticleDetailsSchema } from '@/entities/Article';
 import { ArticleCommentsListSchema } from '@/features/ArticleCommentsList';
 import { AddNewCommentSchema } from '@/entities/AddNewComment';
 import { ArticlesPageSchema } from '@/pages/ArticlesPage';
@@ -15,6 +14,7 @@ import { ArticlesSortSchema } from '@/features/ArticlesSort';
 import { ArticlesTypeSchema } from '@/features/ArticleTypeTabs';
 import { ArticlesSearchSchema } from '@/features/ArticlesSearch';
 import { ArticleRecommendationsSchema } from '@/features/ArticleRecommendations';
+import { ArticleDetailsSchema } from '@/features/ArticleDetails';
 
 export interface StateSchema {
 	counter: CounterSchema;

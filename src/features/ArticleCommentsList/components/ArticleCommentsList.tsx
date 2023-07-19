@@ -14,7 +14,6 @@ import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitial
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { fetchArticleCommentsByArticleId } from '../model/services/fetchArticleCommentsByArticleId/fetchArticleCommentsByArticleId';
 import { useParams } from 'react-router-dom';
-import { getArticleDetailsError } from '@/entities/Article';
 import { AddNewComment } from '@/entities/AddNewComment';
 import { Text } from '@/shared/components/Text/Text';
 import { sendArticleComment } from '../model/services/sendArticleComment/sendArticleComment';
@@ -42,7 +41,6 @@ export const ArticleCommentsList = memo((props: ArticleCommentsListProps) => {
 	const isSendLoading = useSelector(getArticleCommentsListIsSendLoading);
 	const commentsError = useSelector(getArticleCommentsListCommentsError);
 	const sendError = useSelector(getArticleCommentsListSendError);
-	const articleError = useSelector(getArticleDetailsError);
 	const { id } = useParams<{ id: string }>();
 
 	useDynamicModule({ reducers });
@@ -53,14 +51,11 @@ export const ArticleCommentsList = memo((props: ArticleCommentsListProps) => {
 
 	const sendNewComment = useCallback(
 		(text: string) => {
-			dispatch(sendArticleComment(text));
+			if (!id) return;
+			dispatch(sendArticleComment({ articleId: id, text }));
 		},
-		[dispatch]
+		[dispatch, id]
 	);
-
-	if (articleError) {
-		return null;
-	}
 
 	return (
 		<>

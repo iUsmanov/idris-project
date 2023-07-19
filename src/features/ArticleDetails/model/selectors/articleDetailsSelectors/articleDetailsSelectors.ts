@@ -1,5 +1,5 @@
 import { StateSchema } from '@/app/providers/StoreProvider';
-import { initialState } from '../slice/articleDetailsSlice';
+import { initialState } from '../../slice/articleDetailsSlice';
 
 export const getArticleDetailsData = (state: StateSchema) => state?.articleDetails?.data;
 export const getArticleDetailsIsLoading = (state: StateSchema) =>

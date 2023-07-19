@@ -1,7 +1,7 @@
 import { StateSchema, StoreProvider } from '@/app/providers/StoreProvider';
 import { addNewCommentReducer } from '@/entities/AddNewComment/model/slice/addNewCommentSlice';
-import { articleDetailsReducer } from '@/entities/Article/model/slice/articleDetailsSlice';
 import { articleCommentsListReducer } from '@/features/ArticleCommentsList/model/slice/articleCommentsListSlice';
+import { articleDetailsReducer } from '@/features/ArticleDetails/model/slice/articleDetailsSlice';
 import { articleRecommendationsReducer } from '@/features/ArticleRecommendations/model/slice/articleRecommendationsSlice';
 import { articlesTypeReducer } from '@/features/ArticleTypeTabs/model/slice/articlesTypeSlice';
 import { articlesSearchReducer } from '@/features/ArticlesSearch/model/slice/articlesSearchSlice';

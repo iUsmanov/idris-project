@@ -1,8 +1,10 @@
-import { Meta, StoryObj } from '@storybook/react';
-import { ArticleDetails } from './ArticleDetails';
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
-import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator';
-import { Article } from '../../model/types/article';
+import { StateSchema } from '@/app/providers/StoreProvider';
+import {
+	getArticleDetailsData,
+	getArticleDetailsError,
+	getArticleDetailsIsLoading,
+} from './articleDetailsSelectors';
+import { Article } from '@/entities/Article';
 
 const article: Article = {
 	id: '1',
@@ -38,39 +40,47 @@ const article: Article = {
 	],
 };
 
-const meta = {
-	title: 'entities/ArticleDetails',
-	component: ArticleDetails,
-	tags: ['autodocs'],
-	argTypes: {},
-	args: {
-		id: '1',
-	},
-	decorators: [StoreDecorator({ articleDetails: { data: article } })],
-} satisfies Meta<typeof ArticleDetails>;
+describe('getArticleDetailsData', () => {
+	test('getDataSuccess', () => {
+		const state: DeepPartial<StateSchema> = {
+			articleDetails: {
+				data: article,
+			},
+		};
+		expect(getArticleDetailsData(state as StateSchema)).toEqual(article);
+	});
+	test('getDataUndefined', () => {
+		const state: DeepPartial<StateSchema> = {};
+		expect(getArticleDetailsData(state as StateSchema)).toEqual(undefined);
+	});
+});
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+describe('getArticleDetailsError', () => {
+	test('getErrorSuccess', () => {
+		const state: DeepPartial<StateSchema> = {
+			articleDetails: {
+				error: 'error',
+			},
+		};
+		expect(getArticleDetailsError(state as StateSchema)).toEqual('error');
+	});
+	test('getErrorUndefined', () => {
+		const state: DeepPartial<StateSchema> = {};
+		expect(getArticleDetailsError(state as StateSchema)).toEqual(undefined);
+	});
+});
 
-export const PrimaryLight: Story = {
-	args: {},
-	decorators: [],
-};
-
-export const PrimaryDark: Story = {
-	args: {},
-	decorators: [ThemeDecorator('app-dark-theme')],
-};
-
-export const PrimaryOrange: Story = {
-	args: {},
-	decorators: [ThemeDecorator('app-orange-theme')],
-};
-
-export const LoadingLight: Story = {
-	decorators: [StoreDecorator({ articleDetails: { isLoading: true } })],
-};
-
-export const ErrorLight: Story = {
-	decorators: [StoreDecorator({ articleDetails: { error: 'error' } })],
-};
+describe('getArticleDetailsIsLoading', () => {
+	test('getIsLoadingTrue', () => {
+		const state: DeepPartial<StateSchema> = {
+			articleDetails: {
+				isLoading: true,
+			},
+		};
+		expect(getArticleDetailsIsLoading(state as StateSchema)).toEqual(true);
+	});
+	test('getIsLoadingFalse', () => {
+		const state: DeepPartial<StateSchema> = {};
+		expect(getArticleDetailsIsLoading(state as StateSchema)).toEqual(false);
+	});
+});

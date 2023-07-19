@@ -1,8 +1,6 @@
-export { ArticleDetails } from './components/ArticleDetails/ArticleDetails';
 export { ArticleList } from './components/ArticleList/ArticleList';
 export type { Article, ArticleView, ArticleType } from './model/types/article';
-export type { ArticleDetailsSchema } from './model/types/articleDetailsSchema';
-export {
-	getArticleDetailsError,
-	getArticleDetailsData,
-} from './model/selectors/articleDetailsSelectors';
+export { ArticleBlock } from './model/types/article';
+export { ArticleTextBlockComponent } from './components/ArticleTextBlockComponent/ArticleTextBlockComponent';
+export { ArticleImageBlockComponent } from './components/ArticleImageBlockComponent/ArticleImageBlockComponent';
+export { ArticleCodeBlockComponent } from './components/ArticleCodeBlockComponent/ArticleCodeBlockComponent';

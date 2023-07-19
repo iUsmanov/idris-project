@@ -2,39 +2,44 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { Comment } from '@/entities/Comment';
 import { getUserAuthData } from '@/entities/User';
-import { getArticleDetailsData } from '@/entities/Article';
 import { fetchArticleCommentsByArticleId } from '../fetchArticleCommentsByArticleId/fetchArticleCommentsByArticleId';
 
-export const sendArticleComment = createAsyncThunk<Comment, string, ThunkConfig<string>>(
-	'articleComments/sendArticleComment',
-	async (text, thunkAPI) => {
-		const { rejectWithValue, extra, getState, dispatch } = thunkAPI;
+interface SendArticleCommentProps {
+	text: string;
+	articleId: string;
+}
 
-		const article = getArticleDetailsData(getState());
-		const user = getUserAuthData(getState());
+export const sendArticleComment = createAsyncThunk<
+	Comment,
+	SendArticleCommentProps,
+	ThunkConfig<string>
+>('articleComments/sendArticleComment', async (props, thunkAPI) => {
+	const { rejectWithValue, extra, getState, dispatch } = thunkAPI;
+	const { articleId, text } = props;
 
-		if (!text || !user || !article) {
-			return rejectWithValue('noData');
-		}
+	const user = getUserAuthData(getState());
 
-		const body: DeepPartial<Comment> = {
-			text,
-			userId: user.id,
-			articleId: article.id,
-		};
-
-		try {
-			const response = await extra.api.post<Comment>(`/comments`, body);
-
-			if (!response.data) {
-				throw new Error();
-			}
-
-			dispatch(fetchArticleCommentsByArticleId(article.id));
-			return response.data;
-		} catch (error) {
-			console.log(error);
-			return rejectWithValue('error');
-		}
+	if (!text || !user || !articleId) {
+		return rejectWithValue('noData');
 	}
-);
+
+	const body: DeepPartial<Comment> = {
+		text,
+		userId: user.id,
+		articleId: articleId,
+	};
+
+	try {
+		const response = await extra.api.post<Comment>(`/comments`, body);
+
+		if (!response.data) {
+			throw new Error();
+		}
+
+		dispatch(fetchArticleCommentsByArticleId(articleId));
+		return response.data;
+	} catch (error) {
+		console.log(error);
+		return rejectWithValue('error');
+	}
+});

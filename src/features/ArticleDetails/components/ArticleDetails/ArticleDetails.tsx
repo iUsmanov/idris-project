@@ -11,7 +11,7 @@ import {
 	getArticleDetailsData,
 	getArticleDetailsError,
 	getArticleDetailsIsLoading,
-} from '../../model/selectors/articleDetailsSelectors';
+} from '../../model/selectors/articleDetailsSelectors/articleDetailsSelectors';
 import { Text } from '@/shared/components/Text/Text';
 import { Shimmer, ShimmerType } from '@/shared/components/Shimmer/Shimmer';
 import { Avatar } from '@/shared/components/Avatar/Avatar';
@@ -19,15 +19,19 @@ import { HStack } from '@/shared/components/Stack';
 import EyeIcon from '@/shared/assets/icons/eye-20-20.svg';
 import CalendarIcon from '@/shared/assets/icons/calendar-20-20.svg';
 import { Icon } from '@/shared/components/Icon/Icon';
-import { ArticleBlock } from '../../model/types/article';
-import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
-import { ArticleImageBlockComponent } from '../ArticleImageBlockComponent/ArticleImageBlockComponent';
-import { ArticleCodeBlockComponent } from '../ArticleCodeBlockComponent/ArticleCodeBlockComponent';
+
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
+import {
+	ArticleBlock,
+	ArticleCodeBlockComponent,
+	ArticleImageBlockComponent,
+	ArticleTextBlockComponent,
+} from '@/entities/Article';
+import { ArticleDetailsHeader } from '../ArticleDetailsHeader/ArticleDetailsHeader';
+import { useParams } from 'react-router-dom';
 
 interface ArticleDetailsProps {
 	className?: string;
-	id: string;
 }
 
 const reducers: ReducersList = {
@@ -45,16 +49,18 @@ const skeletons: ShimmerType = {
 };
 
 export const ArticleDetails = memo((props: ArticleDetailsProps) => {
-	const { className, id } = props;
+	const { className } = props;
 	const { t } = useTranslation('article-details');
 	const dispatch = useAppDispatch();
 	const article = useSelector(getArticleDetailsData);
 	const isLoading = useSelector(getArticleDetailsIsLoading);
 	const error = useSelector(getArticleDetailsError);
+	const { id } = useParams<{ id: string }>();
 
 	useDynamicModule({ reducers });
 
 	useInitialEffect(() => {
+		if (!id) return;
 		dispatch(fetchArticleById(id));
 	});
 
@@ -70,6 +76,10 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
 				return null;
 		}
 	}, []);
+
+	if (!id) {
+		return <div className={classNames('', {}, [])}>{t('Статья не найдена')}</div>;
+	}
 
 	if (isLoading) {
 		return <Shimmer skeletons={skeletons} />;
@@ -88,6 +98,7 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
 
 	return (
 		<div className={classNames(cls.articleDetails, {}, [className])}>
+			<ArticleDetailsHeader />
 			<Avatar justify='center' src={article?.img} size={200} />
 			<Text title={article?.title} text={article?.subtitle} size='size_l' />
 			<HStack gap='8' align='center'>

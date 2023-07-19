@@ -129,7 +129,7 @@ describe('articleCommentsListSlice.test', () => {
 		expect(
 			articleCommentsListReducer(
 				state as ArticleCommentsListSchema,
-				sendArticleComment.rejected(null, '', '', 'error')
+				sendArticleComment.rejected(null, '', { articleId: '1', text: '' }, 'error')
 			)
 		).toEqual(expects);
 	});
