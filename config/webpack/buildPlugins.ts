@@ -4,6 +4,7 @@ import { BuildOptions } from './types/config';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import CopyPlugin from 'copy-webpack-plugin';
 
 export function buildPlugins(options: BuildOptions): webpack.WebpackPluginInstance[] {
 	const plugins: webpack.WebpackPluginInstance[] = [
@@ -32,6 +33,9 @@ export function buildPlugins(options: BuildOptions): webpack.WebpackPluginInstan
 			new MiniCssExtractPlugin({
 				filename: 'css/[name].[contenthash:8].css',
 				chunkFilename: 'css/[name].[contenthash:8].css',
+			}),
+			new CopyPlugin({
+				patterns: [{ from: options.buildPaths.locales, to: options.buildPaths.buildLocales }],
 			})
 		);
 	}
