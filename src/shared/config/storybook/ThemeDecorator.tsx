@@ -1,6 +1,6 @@
 // ThemeProvider импортируется из высшего слоя, что плохо
 // Не вижу смысла i18n для storybook
-import { ThemeProvider } from '@/app/providers/ThemeProvider';
+import { ThemeProvider } from '@/app/providers/ThemeProvider/testing';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 import { Theme } from '@/shared/types/theme';
 import { StoryContext, StoryFn } from '@storybook/react';
