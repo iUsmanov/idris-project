@@ -33,7 +33,7 @@ module.exports = {
 		// project: './tsconfig.json',
 		// tsconfigRootDir: __dirname,
 	},
-	plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks'],
+	plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks', 'fsd-paths-guard'],
 	rules: {
 		'react/display-name': 'off',
 		'@typescript-eslint/ban-ts-comment': 'off',
@@ -61,6 +61,21 @@ module.exports = {
 		],
 		'react-hooks/rules-of-hooks': 'error',
 		'react-hooks/exhaustive-deps': 'error',
+		'fsd-paths-guard/relative-path-checker': ['error', { alias: '@' }],
+		'fsd-paths-guard/public-api-imports': [
+			'error',
+			{
+				alias: '@',
+				testFilesPatterns: ['**/*.test.*', '**/*.StoreDecorator.ts', '**/*.stories.ts'],
+			},
+		],
+		'fsd-paths-guard/hierarchy-imports-between-layers': [
+			'error',
+			{
+				alias: '@',
+				ignoreImportPatterns: ['**/StoreProvider', '**/testing'],
+			},
+		],
 	},
 	globals: {
 		__IS_DEV__: true,
