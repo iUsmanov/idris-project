@@ -1,7 +1,7 @@
 import { Currency } from '@/entities/Currency/testing';
 import { validateProfileErrors } from './validateProfileData';
 import { Country } from '@/entities/Country/testing';
-import { Profile, ValidateProfileError } from '../../types/profile';
+import { Profile, ValidateProfileError } from '@/entities/Profile/testing';
 
 describe('validateProfileErrors.test', () => {
 	test('With no errors', () => {

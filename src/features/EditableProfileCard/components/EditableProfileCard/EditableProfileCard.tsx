@@ -4,7 +4,6 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import { useSelector } from 'react-redux';
 import { getProfileIsLoading } from '../../model/selectors/getProfileIsLoading/getProfileIsLoading';
 import { getProfileError } from '../../model/selectors/getProfileError/getProfileError';
-import { ProfileCard } from '@/entities/ProfileCard';
 import { ReducersList, useDynamicModule } from '@/shared/lib/hooks/useDynamicModule/useDynamicModule';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { fetchProfileData } from '../../model/services/fetchProfileData/fetchProfileData';
@@ -17,6 +16,7 @@ import { Country } from '@/entities/Country';
 import { getProfileValidateErrors } from '../../model/selectors/getProfileValidateErrors/getProfileValidateErrors';
 import { useParams } from 'react-router-dom';
 import { VStack } from '@/shared/components/Stack';
+import { ProfileCard } from '@/entities/Profile';
 
 interface EditableProfileCardProps {
 	className?: string;

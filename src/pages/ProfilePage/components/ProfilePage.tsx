@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { EditableProfileCard } from '@/features/Profile';
 import { Page } from '@/widgets/Page';
+import { EditableProfileCard } from '@/features/EditableProfileCard';
 
 interface ProfilePageProps {
 	className?: string;

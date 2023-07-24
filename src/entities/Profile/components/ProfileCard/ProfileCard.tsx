@@ -5,13 +5,11 @@ import cls from './ProfileCard.module.scss';
 import { Flex, HStack, VStack } from '@/shared/components/Stack';
 import { Text } from '@/shared/components/Text/Text';
 import { Input } from '@/shared/components/Input/Input';
-// TODO
-// eslint-disable-next-line fsd-paths-guard/hierarchy-imports-between-layers
-import { Profile } from '@/features/Profile';
 import { Loader } from '@/shared/components/Loader/Loader';
 import { Avatar } from '@/shared/components/Avatar/Avatar';
 import { Currency, CurrencySelect } from '@/entities/Currency';
 import { Country, CountrySelect } from '@/entities/Country';
+import { Profile } from '../../model/types/profile';
 
 interface ProfileCardProps {
 	className?: string;

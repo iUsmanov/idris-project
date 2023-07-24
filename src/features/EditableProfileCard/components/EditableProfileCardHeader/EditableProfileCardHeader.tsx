@@ -8,9 +8,9 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { profileActions } from '../../model/slice/profileSlice';
 import { updateProfileData } from '../../model/services/updateProfileData/updateProfileData';
 import cls from './EditableProfileCardHeader.module.scss';
-import { ValidateProfileError } from '../../model/types/profile';
 import { useSelector } from 'react-redux';
 import { getProfileCanEdit } from '../../model/selectors/getProfileCanEdit/getProfileCanEdit';
+import { ValidateProfileError } from '@/entities/Profile';
 
 interface EditableProfileCardHeaderProps {
 	className?: string;

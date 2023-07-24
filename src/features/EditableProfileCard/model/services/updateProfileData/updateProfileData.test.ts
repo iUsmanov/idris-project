@@ -2,7 +2,7 @@ import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk
 import { updateProfileData } from './updateProfileData';
 import { Currency } from '@/entities/Currency/testing';
 import { Country } from '@/entities/Country/testing';
-import { Profile } from '../../types/profile';
+import { Profile } from '@/entities/Profile/testing';
 
 describe('updateProfileData.test', () => {
 	test('Success update', async () => {

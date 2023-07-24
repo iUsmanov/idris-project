@@ -7,7 +7,7 @@ import { articlesTypeReducer } from '@/features/ArticleTypeTabs/testing';
 import { articlesSearchReducer } from '@/features/ArticlesSearch/testing';
 import { articlesSortReducer } from '@/features/ArticlesSort/testing';
 import { loginReducer } from '@/features/AuthByUsername/testing';
-import { profileReducer } from '@/features/Profile/testing';
+import { profileReducer } from '@/features/EditableProfileCard/testing';
 import { articlesPageReducer } from '@/pages/ArticlesPage/testing';
 import { ReducersList } from '@/shared/lib/hooks/useDynamicModule/useDynamicModule';
 import { ReducersMapObject } from '@reduxjs/toolkit';
