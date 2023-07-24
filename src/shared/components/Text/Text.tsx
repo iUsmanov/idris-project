@@ -13,15 +13,27 @@ interface TextProps {
 	variant?: TextVariant;
 	align?: TextAling;
 	size?: TextSize;
+	tags?: [keyof HTMLElementTagNameMap, keyof HTMLElementTagNameMap] | [keyof HTMLElementTagNameMap];
 }
 
 export const Text = memo((props: TextProps) => {
-	const { className, text, title, variant = 'primary', align = 'left', size = 'size_s' } = props;
+	const {
+		className,
+		text,
+		title,
+		variant = 'primary',
+		align = 'left',
+		size = 'size_s',
+		tags = ['p', 'p'],
+	} = props;
+
+	const TitleTag = tags[0];
+	const TextTag = tags[1] ? tags[1] : 'p';
 
 	return (
 		<div className={classNames(cls.text, {}, [className, cls[variant], cls[align], cls[size]])}>
-			{title && <p className={cls.title}>{title}</p>}
-			{text && <p className={cls.text}>{text}</p>}
+			{title && <TitleTag className={cls.title}>{title}</TitleTag>}
+			{text && <TextTag className={cls.text}>{text}</TextTag>}
 		</div>
 	);
 });
