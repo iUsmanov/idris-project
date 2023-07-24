@@ -1,6 +1,6 @@
-import { Currency } from '@/entities/Currency';
+import { Currency } from '@/entities/Currency/testing';
 import { validateProfileErrors } from './validateProfileData';
-import { Country } from '@/entities/Country';
+import { Country } from '@/entities/Country/testing';
 import { Profile, ValidateProfileError } from '../../types/profile';
 
 describe('validateProfileErrors.test', () => {

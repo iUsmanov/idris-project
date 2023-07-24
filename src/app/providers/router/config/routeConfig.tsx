@@ -11,7 +11,7 @@ import {
 	getRouteMain,
 	getRouteProfile,
 } from '@/shared/const/router';
-import { RootLayout } from '@/app/RootLayout';
+import { RootLayout } from '../../../RootLayout';
 import { NotFoundPage } from '@/pages/NotFoundPage';
 import { ProfilePage } from '@/pages/ProfilePage';
 import { RequireAuth } from '../components/RequireAuth';

@@ -1,8 +1,8 @@
 import type { Preview } from '@storybook/react';
-import { StyleDecorator } from '../../src/shared/config/storybook/StyleDecorator';
-import { ThemeDecorator } from '../../src/shared/config/storybook/ThemeDecorator';
-import { RouterDecorator } from '../../src/shared/config/storybook/RouterDecorator';
-import { I18nDecorator } from '../../src/shared/config/storybook/I18nDecorator';
+import { StyleDecorator } from '@/shared/config/storybook/StyleDecorator';
+import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
+import { RouterDecorator } from '@/shared/config/storybook/RouterDecorator';
+import { I18nDecorator } from '@/shared/config/storybook/I18nDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator';
 
 const preview: Preview = {

@@ -16,6 +16,7 @@ import { Currency } from '@/entities/Currency';
 import { Country } from '@/entities/Country';
 import { getProfileValidateErrors } from '../../model/selectors/getProfileValidateErrors/getProfileValidateErrors';
 import { useParams } from 'react-router-dom';
+import { VStack } from '@/shared/components/Stack';
 
 interface EditableProfileCardProps {
 	className?: string;
@@ -116,7 +117,7 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
 	);
 
 	return (
-		<div className={classNames('', {}, [className])}>
+		<VStack max gap='16' className={classNames('', {}, [className])}>
 			<EditableProfileCardHeader readonly={readonly} profileValidateErrors={profileValidateErrors} />
 			<ProfileCard
 				data={formData}
@@ -131,6 +132,6 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
 				onChangeCurrency={onChangeCurrency}
 				onChangeCountry={onChangeCountry}
 			/>
-		</div>
+		</VStack>
 	);
 });

@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ArticleDetailsPage } from './ArticleDetailsPage';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
-import { Article } from '@/entities/Article';
+import { Article } from '@/entities/Article/testing';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator';
 import { Dictionary } from '@reduxjs/toolkit';
-import { Comment } from '@/entities/Comment';
+import { Comment } from '@/entities/Comment/testing';
 import Image from '@/shared/assets/tests/storybook.jpg';
 
 const article: Article = {

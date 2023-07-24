@@ -66,7 +66,12 @@ module.exports = {
 			'error',
 			{
 				alias: '@',
-				testFilesPatterns: ['**/*.test.*', '**/storybook/*Decorator.tsx', '**/*.stories.{ts,tsx}'],
+				testFilesPatterns: [
+					'**/*.test.*',
+					'**/storybook/*Decorator.tsx',
+					'**/*.stories.{ts,tsx}',
+					'**/lib/tests/**/*.*',
+				],
 			},
 		],
 		'fsd-paths-guard/hierarchy-imports-between-layers': [

@@ -5,6 +5,8 @@ import cls from './ProfileCard.module.scss';
 import { Flex, HStack, VStack } from '@/shared/components/Stack';
 import { Text } from '@/shared/components/Text/Text';
 import { Input } from '@/shared/components/Input/Input';
+// TODO
+// eslint-disable-next-line fsd-paths-guard/hierarchy-imports-between-layers
 import { Profile } from '@/features/Profile';
 import { Loader } from '@/shared/components/Loader/Loader';
 import { Avatar } from '@/shared/components/Avatar/Avatar';
@@ -45,7 +47,11 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
 
 	if (isLoading) {
 		return (
-			<HStack justify='center' className={classNames(cls.profileCard, {}, [className, cls.loading])}>
+			<HStack
+				max
+				justify='center'
+				className={classNames(cls.profileCard, {}, [className, cls.loading])}
+			>
 				<Loader size='max' />
 			</HStack>
 		);
@@ -56,6 +62,7 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
 			<Flex
 				justify='center'
 				align='center'
+				max
 				className={classNames(cls.profileCard, {}, [className, cls.error])}
 			>
 				<Text
@@ -70,50 +77,52 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
 	}
 
 	return (
-		<div className={classNames(cls.profileCard, { [cls.editing]: !readonly }, [className])}>
-			<Avatar src={data?.avatar} size={150} />
-			<VStack gap={'16'}>
-				<Input
-					onChange={onChangeFirstOrLastName}
-					readOnly={readonly}
-					value={data?.first}
-					placeholder={t('Ваше имя')}
-					name='firstName'
-				/>
-				<Input
-					onChange={onChangeFirstOrLastName}
-					readOnly={readonly}
-					value={data?.lastname}
-					placeholder={t('Ваша фамилия')}
-					name='lastName'
-				/>
-				<Input
-					onChange={onChangeAge}
-					readOnly={readonly}
-					value={data?.age}
-					placeholder={t('Ваш возраст')}
-				/>
-				<Input
-					onChange={onChangeCity}
-					readOnly={readonly}
-					value={data?.city}
-					placeholder={t('Город')}
-				/>
-				<Input
-					onChange={onChangeUsername}
-					readOnly={readonly}
-					value={data?.username}
-					placeholder={t('Введите имя пользователя')}
-				/>
-				<Input
-					onChange={onChangeAvatar}
-					readOnly={readonly}
-					value={data?.avatar}
-					placeholder={t('Введите ссылку на аватар')}
-				/>
-				<CurrencySelect disabled={readonly} value={data?.currency} onChange={onChangeCurrency} />
-				<CountrySelect disabled={readonly} value={data?.country} onChange={onChangeCountry} />
-			</VStack>
-		</div>
+		<VStack
+			gap={'16'}
+			max
+			className={classNames(cls.profileCard, { [cls.editing]: !readonly }, [className])}
+		>
+			<Avatar max justify='center' src={data?.avatar} size={150} />
+			<Input
+				onChange={onChangeFirstOrLastName}
+				readOnly={readonly}
+				value={data?.first}
+				placeholder={t('Ваше имя')}
+				name='firstName'
+			/>
+			<Input
+				onChange={onChangeFirstOrLastName}
+				readOnly={readonly}
+				value={data?.lastname}
+				placeholder={t('Ваша фамилия')}
+				name='lastName'
+			/>
+			<Input
+				onChange={onChangeAge}
+				readOnly={readonly}
+				value={data?.age}
+				placeholder={t('Ваш возраст')}
+			/>
+			<Input
+				onChange={onChangeCity}
+				readOnly={readonly}
+				value={data?.city}
+				placeholder={t('Город')}
+			/>
+			<Input
+				onChange={onChangeUsername}
+				readOnly={readonly}
+				value={data?.username}
+				placeholder={t('Введите имя пользователя')}
+			/>
+			<Input
+				onChange={onChangeAvatar}
+				readOnly={readonly}
+				value={data?.avatar}
+				placeholder={t('Введите ссылку на аватар')}
+			/>
+			<CurrencySelect disabled={readonly} value={data?.currency} onChange={onChangeCurrency} />
+			<CountrySelect disabled={readonly} value={data?.country} onChange={onChangeCountry} />
+		</VStack>
 	);
 });

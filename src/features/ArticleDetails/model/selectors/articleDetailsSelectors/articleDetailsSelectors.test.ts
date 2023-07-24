@@ -1,10 +1,10 @@
-import { StateSchema } from '@/app/providers/StoreProvider';
+import { StateSchema } from '@/app/providers/StoreProvider/testing';
 import {
 	getArticleDetailsData,
 	getArticleDetailsError,
 	getArticleDetailsIsLoading,
 } from './articleDetailsSelectors';
-import { Article } from '@/entities/Article';
+import { Article } from '@/entities/Article/testing';
 
 const article: Article = {
 	id: '1',

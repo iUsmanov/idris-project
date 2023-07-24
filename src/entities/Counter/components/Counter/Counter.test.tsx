@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Counter } from './Counter';
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender';
-import { StateSchema } from '@/app/providers/StoreProvider';
+import { StateSchema } from '@/app/providers/StoreProvider/testing';
 
 describe('Counter.test', () => {
 	test('Just render', async () => {

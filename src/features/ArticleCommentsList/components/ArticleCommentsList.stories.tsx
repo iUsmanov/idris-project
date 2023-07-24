@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { ArticleCommentsList } from './ArticleCommentsList';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator';
-import { Comment } from '@/entities/Comment';
+import { Comment } from '@/entities/Comment/testing';
 import Image from '@/shared/assets/tests/storybook.jpg';
 import { Dictionary } from '@reduxjs/toolkit';
 

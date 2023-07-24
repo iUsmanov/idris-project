@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ArticlesPage } from './ArticlesPage';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
-import { Article } from '@/entities/Article';
+import { Article } from '@/entities/Article/testing';
 import { Dictionary } from '@reduxjs/toolkit';
 import Image from '@/shared/assets/tests/storybook.jpg';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator';

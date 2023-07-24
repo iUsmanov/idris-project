@@ -1,4 +1,4 @@
-import { Comment } from '@/entities/Comment';
+import { Comment } from '@/entities/Comment/testing';
 import Image from '@/shared/assets/tests/storybook.jpg';
 import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 import { fetchArticleCommentsByArticleId } from './fetchArticleCommentsByArticleId';

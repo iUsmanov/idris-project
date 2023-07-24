@@ -1,7 +1,6 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './ArticleDetailsHeader.module.scss';
 import { HStack } from '@/shared/components/Stack';
 import { AppLink } from '@/shared/components/AppLink/AppLink';
 import { getRouteArticleEdit, getRouteArticles } from '@/shared/const/router';

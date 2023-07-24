@@ -1,5 +1,5 @@
-import { StateSchema } from '@/app/providers/StoreProvider';
-import { ThunkExtraArg } from '@/app/providers/StoreProvider/config/StateSchema';
+import { StateSchema } from '@/app/providers/StoreProvider/testing';
+import { ThunkExtraArg } from '@/app/providers/StoreProvider/testing';
 import { AsyncThunkAction } from '@reduxjs/toolkit';
 import axios, { AxiosInstance, AxiosStatic } from 'axios';
 
