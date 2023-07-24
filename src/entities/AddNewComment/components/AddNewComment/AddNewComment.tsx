@@ -47,6 +47,7 @@ export const AddNewComment = memo((props: AddNewCommentProps) => {
 		<>
 			{error && <Text variant='error' title={t('Произошла непредвиденная ошибка')} />}
 			<HStack
+				max
 				justify='between'
 				align='center'
 				className={classNames(cls.addNewComment, {}, [className])}

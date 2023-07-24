@@ -13,9 +13,8 @@ import {
 	getArticleDetailsIsLoading,
 } from '../../model/selectors/articleDetailsSelectors/articleDetailsSelectors';
 import { Text } from '@/shared/components/Text/Text';
-import { Shimmer, ShimmerType } from '@/shared/components/Shimmer/Shimmer';
 import { Avatar } from '@/shared/components/Avatar/Avatar';
-import { HStack, VStack } from '@/shared/components/Stack';
+import { Flex, HStack, VStack } from '@/shared/components/Stack';
 import EyeIcon from '@/shared/assets/icons/eye-20-20.svg';
 import CalendarIcon from '@/shared/assets/icons/calendar-20-20.svg';
 import { Icon } from '@/shared/components/Icon/Icon';
@@ -29,6 +28,7 @@ import {
 } from '@/entities/Article';
 import { ArticleDetailsHeader } from '../ArticleDetailsHeader/ArticleDetailsHeader';
 import { useParams } from 'react-router-dom';
+import { Skeleton } from '@/shared/components/Skeleton/Skeleton';
 
 interface ArticleDetailsProps {
 	className?: string;
@@ -36,16 +36,6 @@ interface ArticleDetailsProps {
 
 const reducers: ReducersList = {
 	articleDetails: articleDetailsReducer,
-};
-
-const skeletons: ShimmerType = {
-	ver: [
-		{ width: 200, height: 200, borderRadius: '50%', margin: '0 auto' },
-		{ width: 300, height: 32, marginTop: 20 },
-		{ width: 600, height: 24, marginTop: 15 },
-		{ width: '100%', height: 200, marginTop: 15 },
-		{ width: '100%', height: 200, marginTop: 15 },
-	],
 };
 
 export const ArticleDetails = memo((props: ArticleDetailsProps) => {
@@ -82,7 +72,17 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
 	}
 
 	if (isLoading) {
-		return <Shimmer skeletons={skeletons} />;
+		return (
+			<VStack max gap='16' justify={'center'} className={classNames('', {}, [className])}>
+				<Flex max justify='center' align='center'>
+					<Skeleton width={200} height={200} borderRadius='50%' />
+				</Flex>
+				<Skeleton width={300} height={32} />
+				<Skeleton width={600} height={24} />
+				<Skeleton width={'100%'} height={200} />
+				<Skeleton width={'100%'} height={200} />
+			</VStack>
+		);
 	}
 
 	if (error) {

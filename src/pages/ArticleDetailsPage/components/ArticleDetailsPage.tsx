@@ -1,12 +1,12 @@
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import cls from './ArticleDetailsPage.module.scss';
 import { ArticleCommentsList } from '@/features/ArticleCommentsList';
 import { Page } from '@/widgets/Page';
 import { ArticleRecommendations } from '@/features/ArticleRecommendations';
 import { ArticleDetails, getArticleDetailsError } from '@/features/ArticleDetails';
 import { useSelector } from 'react-redux';
+import { VStack } from '@/shared/components/Stack';
 
 export const ArticleDetailsPage = memo(() => {
 	const { t } = useTranslation('article-details');
@@ -14,13 +14,15 @@ export const ArticleDetailsPage = memo(() => {
 
 	return (
 		<Page className={classNames('', {}, [])}>
-			<ArticleDetails className={cls.articleDetails} />
-			{!error && (
-				<>
-					<ArticleRecommendations />
-					<ArticleCommentsList />
-				</>
-			)}
+			<VStack gap='16' max>
+				<ArticleDetails />
+				{!error && (
+					<>
+						<ArticleRecommendations />
+						<ArticleCommentsList />
+					</>
+				)}
+			</VStack>
 		</Page>
 	);
 });

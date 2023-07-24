@@ -4,9 +4,9 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './CommentsList.module.scss';
 import { Comment } from '../../model/types/comment';
 import { CommentCard } from '../CommentCard/CommentCard';
-import { Shimmer, ShimmerType } from '@/shared/components/Shimmer/Shimmer';
 import { Text } from '@/shared/components/Text/Text';
-import { VStack } from '@/shared/components/Stack';
+import { HStack, VStack } from '@/shared/components/Stack';
+import { Skeleton } from '@/shared/components/Skeleton/Skeleton';
 
 interface CommentsListProps {
 	className?: string;
@@ -15,30 +15,28 @@ interface CommentsListProps {
 	error?: string;
 }
 
-const skeletons: ShimmerType = {
-	ver: [
-		{
-			hor: [
-				{ width: 30, height: 30, borderRadius: '50%' },
-				{ width: 120, height: 20, margin: 'auto 0', marginLeft: 10 },
-			],
-		},
-		{
-			ver: [{ height: 60, marginTop: 20 }],
-		},
-	],
-};
-
 export const CommentsList = memo((props: CommentsListProps) => {
 	const { className, comments, error, isLoading } = props;
 	const { t } = useTranslation();
 
 	if (isLoading) {
 		return (
-			<>
-				<Shimmer className={cls.skeleton} skeletons={skeletons} />
-				<Shimmer className={cls.skeleton} skeletons={skeletons} />
-			</>
+			<VStack max gap='16'>
+				<VStack max gap='8' className={classNames(cls.commentCard, {}, [className])}>
+					<HStack gap='8' align='center'>
+						<Skeleton width={30} height={30} borderRadius='50%' />
+						<Skeleton width={120} height={20} />
+					</HStack>
+					<Skeleton width={'100%'} height={60} />
+				</VStack>
+				<VStack max gap='8' className={classNames(cls.commentCard, {}, [className])}>
+					<HStack gap='8' align='center'>
+						<Skeleton width={30} height={30} borderRadius='50%' />
+						<Skeleton width={120} height={20} />
+					</HStack>
+					<Skeleton width={'100%'} height={60} />
+				</VStack>
+			</VStack>
 		);
 	}
 
