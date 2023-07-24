@@ -6,6 +6,7 @@ import { Comment } from '../../model/types/comment';
 import { CommentCard } from '../CommentCard/CommentCard';
 import { Shimmer, ShimmerType } from '@/shared/components/Shimmer/Shimmer';
 import { Text } from '@/shared/components/Text/Text';
+import { VStack } from '@/shared/components/Stack';
 
 interface CommentsListProps {
 	className?: string;
@@ -53,7 +54,7 @@ export const CommentsList = memo((props: CommentsListProps) => {
 	}
 
 	return (
-		<div className={classNames(cls.commentsList, {}, [className])}>
+		<VStack max gap='16' className={classNames(cls.commentsList, {}, [className])}>
 			{comments?.length ? (
 				comments.map((comment) => (
 					<CommentCard className={cls.commentCard} key={comment.id} comment={comment} />
@@ -61,6 +62,6 @@ export const CommentsList = memo((props: CommentsListProps) => {
 			) : (
 				<Text size='size_l' text={t('Комментарии отсутствуют')} />
 			)}
-		</div>
+		</VStack>
 	);
 });

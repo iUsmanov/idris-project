@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './CommentCard.module.scss';
 import { Comment } from '../../model/types/comment';
-import { HStack } from '@/shared/components/Stack';
+import { HStack, VStack } from '@/shared/components/Stack';
 import { Text } from '@/shared/components/Text/Text';
 import { Avatar } from '@/shared/components/Avatar/Avatar';
 import { AppLink } from '@/shared/components/AppLink/AppLink';
@@ -19,9 +19,9 @@ export const CommentCard = memo((props: CommentCardProps) => {
 	const { t } = useTranslation();
 
 	return (
-		<div className={classNames(cls.commentCard, {}, [className])}>
+		<VStack max gap='8' className={classNames(cls.commentCard, {}, [className])}>
 			<AppLink to={getRouteProfile(comment.userId)}>
-				<HStack align='center' className={cls.header}>
+				<HStack gap='8' align='center' className={cls.header}>
 					{comment.user?.avatar ? (
 						<Avatar src={comment.user?.avatar} size={30} />
 					) : (
@@ -31,6 +31,6 @@ export const CommentCard = memo((props: CommentCardProps) => {
 				</HStack>
 			</AppLink>
 			<Text text={comment.text} size='size_m' />
-		</div>
+		</VStack>
 	);
 });

@@ -23,7 +23,7 @@ export const ArticleDetailsHeader = memo((props: ArticleDetailsHeaderProps) => {
 	}
 
 	return (
-		<HStack justify='between' align='center'>
+		<HStack max justify='between' align='center'>
 			<AppLink to={getRouteArticles()} variant='outline'>
 				{t('Назад к списку')}
 			</AppLink>

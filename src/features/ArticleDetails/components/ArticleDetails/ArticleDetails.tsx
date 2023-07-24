@@ -15,7 +15,7 @@ import {
 import { Text } from '@/shared/components/Text/Text';
 import { Shimmer, ShimmerType } from '@/shared/components/Shimmer/Shimmer';
 import { Avatar } from '@/shared/components/Avatar/Avatar';
-import { HStack } from '@/shared/components/Stack';
+import { HStack, VStack } from '@/shared/components/Stack';
 import EyeIcon from '@/shared/assets/icons/eye-20-20.svg';
 import CalendarIcon from '@/shared/assets/icons/calendar-20-20.svg';
 import { Icon } from '@/shared/components/Icon/Icon';
@@ -97,19 +97,21 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
 	}
 
 	return (
-		<div className={classNames(cls.articleDetails, {}, [className])}>
+		<VStack max gap='16' className={classNames(cls.articleDetails, {}, [className])}>
 			<ArticleDetailsHeader />
-			<Avatar justify='center' src={article?.img} size={200} />
-			<Text title={article?.title} text={article?.subtitle} size='size_l' />
-			<HStack gap='8' align='center'>
-				<Icon Svg={EyeIcon} />
-				<Text text={String(article?.views)} size='size_m' />
-			</HStack>
-			<HStack gap='8' align='center'>
-				<Icon Svg={CalendarIcon} />
-				<Text text={article?.createdAt} size='size_m' />
-			</HStack>
+			<Avatar justify='center' max src={article?.img} size={200} />
+			<VStack max gap='8'>
+				<Text title={article?.title} text={article?.subtitle} size='size_l' />
+				<HStack gap='8' align='center'>
+					<Icon Svg={EyeIcon} />
+					<Text text={String(article?.views)} size='size_m' />
+				</HStack>
+				<HStack gap='8' align='center'>
+					<Icon Svg={CalendarIcon} />
+					<Text text={article?.createdAt} size='size_m' />
+				</HStack>
+			</VStack>
 			{article?.blocks.map(renderBlock)}
-		</div>
+		</VStack>
 	);
 });
