@@ -52,7 +52,7 @@ export const ListBox = memo((props: ListBoxProps) => {
 				onChange={onChange}
 				disabled={disabled}
 			>
-				<HListbox.Button className={cls.trigger}>
+				<HListbox.Button as={'div'}>
 					<Button disabled={disabled} variant='outline'>
 						{value ?? defaultValue}
 					</Button>
