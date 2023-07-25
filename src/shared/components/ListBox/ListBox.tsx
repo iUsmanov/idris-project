@@ -4,6 +4,7 @@ import cls from './ListBox.module.scss';
 import { Listbox as HListbox } from '@headlessui/react';
 import { Button } from '../Button/Button';
 import { HStack } from '../Stack';
+import { DropdownDirection } from '@/shared/types/ui';
 
 interface ListBoxProps {
 	className?: string;
@@ -23,8 +24,6 @@ export interface ListBoxOption {
 	disabled?: boolean;
 }
 
-type DropdownDirection = 'top' | 'bottom';
-
 export const ListBox = memo((props: ListBoxProps) => {
 	const {
 		className,
@@ -34,7 +33,7 @@ export const ListBox = memo((props: ListBoxProps) => {
 		value,
 		disabled,
 		defaultValue,
-		direction = 'bottom',
+		direction = 'bottomRight',
 		compact,
 	} = props;
 

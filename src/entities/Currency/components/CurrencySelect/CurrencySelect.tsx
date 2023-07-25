@@ -33,7 +33,7 @@ export const CurrencySelect = memo((props: CurrencySelectProps) => {
 			label={t('Укажите валюту')}
 			options={options}
 			disabled={disabled}
-			direction='top'
+			direction='topRight'
 		/>
 	);
 });
