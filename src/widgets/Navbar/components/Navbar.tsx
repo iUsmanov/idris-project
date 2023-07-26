@@ -52,7 +52,7 @@ export const Navbar = memo((props: NavbarProps) => {
 
 	if (authData) {
 		return (
-			<header className={classNames(cls.navbar, {}, [className])}>
+			<HStack Tag='header' align='center' max className={classNames(cls.navbar, {}, [className])}>
 				<Text variant='inverted' size='size_m' title={t('Articles App')} className={cls.title} />
 				<HStack max align='center' justify='between'>
 					<AppLink to={getRouteArticleCreate()} variant='inverted'>
@@ -71,22 +71,28 @@ export const Navbar = memo((props: NavbarProps) => {
 						direction='bottomLeft'
 					/>
 				</HStack>
-			</header>
+			</HStack>
 		);
 	}
 
 	return (
-		<header className={classNames(cls.navbar, {}, [className])}>
+		<HStack
+			Tag='header'
+			justify='between'
+			align='center'
+			max
+			className={classNames(cls.navbar, {}, [className])}
+		>
 			<LoginModal
 				isOpened={isAuthModalOpened}
 				isMounted={isAuthModalMounted}
 				onOpenToggle={onAuthModalOpenToggle}
 				onMountToggle={onAuthModalMountToggle}
 			/>
-			<div>{t('Articles App')}</div>
+			<Text variant='inverted' size='size_m' title={t('Articles App')} className={cls.title} />
 			<Button variant='clearInverted' className={cls.login} onClick={onAuthModalMountAndOpen}>
 				{t('Войти')}
 			</Button>
-		</header>
+		</HStack>
 	);
 });

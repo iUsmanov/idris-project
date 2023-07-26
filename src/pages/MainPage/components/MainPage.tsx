@@ -39,16 +39,6 @@ export const MainPage = memo(() => {
 		<Page>
 			{t('Главная страница')}
 			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<Dropdown direction='bottomRight' items={items} trigger={<Button>OPEN</Button>} />
-			<ListBox options={listBoxItems} defaultValue='Selcte' onChange={() => console.log('h')} />
 		</Page>
 	);
 });

@@ -12,10 +12,10 @@ interface AppLinkProps extends LinkProps {
 }
 
 const AppLink = forwardRef((props: AppLinkProps) => {
-	const { variant = 'primary', to, className, children, ...otherProps } = props;
+	const { variant = 'primary', className, children, ...otherProps } = props;
 
 	return (
-		<Link {...otherProps} to={to} className={classNames(cls.appLink, {}, [className, cls[variant]])}>
+		<Link {...otherProps} className={classNames(cls.appLink, {}, [className, cls[variant]])}>
 			{children}
 		</Link>
 	);
