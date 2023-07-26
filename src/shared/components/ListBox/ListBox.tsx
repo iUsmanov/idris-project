@@ -43,11 +43,15 @@ export const ListBox = memo((props: ListBoxProps) => {
 	);
 
 	return (
-		<HStack align='center' gap='4'>
+		<HStack
+			align='center'
+			gap='4'
+			className={classNames('', { [cls.disabled]: disabled }, [className])}
+		>
 			{label && <span>{`${label}>`}</span>}
 			<HListbox
 				as={'div'}
-				className={classNames(cls.listBox, { [cls.disabled]: disabled }, [className])}
+				className={classNames(cls.listBox, {}, [])}
 				value={value}
 				onChange={onChange}
 				disabled={disabled}
