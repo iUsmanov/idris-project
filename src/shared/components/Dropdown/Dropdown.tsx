@@ -12,7 +12,7 @@ interface DropdownProps {
 	direction?: DropdownDirection;
 }
 
-interface DropdownItem {
+export interface DropdownItem {
 	disabled?: boolean;
 	content: ReactNode;
 	onClick?: VoidFunction;
@@ -44,6 +44,7 @@ export const Dropdown = memo((props: DropdownProps) => {
 									disabled={item.disabled}
 									type='button'
 									className={classNames(cls.item, { [cls.active]: active }, [])}
+									onClick={item.onClick}
 								>
 									{item.content}
 								</button>

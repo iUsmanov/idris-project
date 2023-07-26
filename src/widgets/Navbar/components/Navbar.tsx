@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Navbar.module.scss';
 import { useTranslation } from 'react-i18next';
@@ -9,9 +9,12 @@ import { useSelector } from 'react-redux';
 import { getUserAuthData, userActions } from '@/entities/User';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { AppLink } from '@/shared/components/AppLink/AppLink';
-import { getRouteArticleCreate } from '@/shared/const/router';
+import { getRouteArticleCreate, getRouteProfile } from '@/shared/const/router';
 import { Text } from '@/shared/components/Text/Text';
 import { HStack } from '@/shared/components/Stack';
+import { Dropdown, DropdownItem } from '@/shared/components/Dropdown/Dropdown';
+import { Avatar } from '@/shared/components/Avatar/Avatar';
+
 interface NavbarProps {
 	className?: string;
 }
@@ -33,6 +36,20 @@ export const Navbar = memo((props: NavbarProps) => {
 		dispatch(userActions.logout());
 	}, [dispatch]);
 
+	const items = useMemo<DropdownItem[]>(
+		() => [
+			{
+				content: t('Выйти'),
+				onClick: onLogout,
+			},
+			{
+				content: t('Профиль'),
+				href: authData?.id ? getRouteProfile(authData?.id) : '*',
+			},
+		],
+		[authData?.id, onLogout, t]
+	);
+
 	if (authData) {
 		return (
 			<header className={classNames(cls.navbar, {}, [className])}>
@@ -41,9 +58,18 @@ export const Navbar = memo((props: NavbarProps) => {
 					<AppLink to={getRouteArticleCreate()} variant='inverted'>
 						{t('Создать статью')}
 					</AppLink>
-					<Button variant='clearInverted' onClick={onLogout}>
-						{t('Выйти')}
-					</Button>
+					<Dropdown
+						items={items}
+						trigger={
+							<Avatar
+								size={30}
+								src={
+									'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/800px-Unofficial_JavaScript_logo_2.svg.png'
+								}
+							/>
+						}
+						direction='bottomLeft'
+					/>
 				</HStack>
 			</header>
 		);
