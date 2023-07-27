@@ -15,11 +15,13 @@ import { ArticlesSearchSchema } from '@/features/ArticlesSearch';
 import { ArticleRecommendationsSchema } from '@/features/ArticleRecommendations';
 import { ArticleDetailsSchema } from '@/features/ArticleDetails';
 import { ProfileSchema } from '@/entities/Profile';
+import { rtkApi } from '@/shared/api/rtkApi';
 
 export interface StateSchema {
 	counter: CounterSchema;
 	user: UserSchema;
 	ui: UISchema;
+	[rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
 
 	// Async reducers
 	loginForm?: LoginSchema;

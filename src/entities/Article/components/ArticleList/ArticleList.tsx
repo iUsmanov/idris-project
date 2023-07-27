@@ -59,10 +59,10 @@ export const ArticleList = memo((props: ArticleListProps) => {
 		[target, view]
 	);
 
-	const renderArticles = articles.length && articles.map(renderArticle);
+	const renderArticles = articles && articles.length && articles.map(renderArticle);
 	const renderSkeletons = isLoading && getSkeletons(view);
 
-	if (!articles.length && !isLoading) {
+	if ((!articles || !articles.length) && !isLoading) {
 		return <Text align='center' size='size_l' title={t('Статьи не найдены')} />;
 	}
 

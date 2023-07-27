@@ -18,6 +18,7 @@ import { ArticleList } from '@/entities/Article';
 import { Text } from '@/shared/components/Text/Text';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { fetchArticleRecommendations } from '../model/services/fetchArticleRecommendations/fetchArticleRecommendations';
+import { useGetArticleRecommendationsQuery } from '../api/articleRecommendationsApi';
 
 interface ArticleRecommendationsProps {
 	className?: string;
@@ -34,6 +35,11 @@ export const ArticleRecommendations = memo((props: ArticleRecommendationsProps) 
 	const recommendations = useSelector(getArticleRecommendations.selectAll);
 	const isLoading = useSelector(getArticleRecommendationsIsLoading);
 	const error = useSelector(getArticleRecommendationsError);
+	const {
+		data: rtkRecommendations,
+		isLoading: rtkIsLoading,
+		error: rtkError,
+	} = useGetArticleRecommendationsQuery(8);
 
 	useDynamicModule({ reducers });
 
@@ -41,7 +47,7 @@ export const ArticleRecommendations = memo((props: ArticleRecommendationsProps) 
 		dispatch(fetchArticleRecommendations());
 	});
 
-	if (error) {
+	if (rtkError) {
 		return (
 			<Text
 				align='center'
@@ -58,8 +64,8 @@ export const ArticleRecommendations = memo((props: ArticleRecommendationsProps) 
 			<ArticleList
 				target='_blank'
 				className={cls.recommendations}
-				articles={recommendations}
-				isLoading={isLoading}
+				articles={rtkRecommendations}
+				isLoading={rtkIsLoading}
 			/>
 		</VStack>
 	);
