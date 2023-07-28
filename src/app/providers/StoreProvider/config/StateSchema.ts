@@ -12,7 +12,6 @@ import { UISchema } from '@/widgets/Page';
 import { ArticlesSortSchema } from '@/features/ArticlesSort';
 import { ArticlesTypeSchema } from '@/features/ArticleTypeTabs';
 import { ArticlesSearchSchema } from '@/features/ArticlesSearch';
-import { ArticleRecommendationsSchema } from '@/features/ArticleRecommendations';
 import { ArticleDetailsSchema } from '@/features/ArticleDetails';
 import { ProfileSchema } from '@/entities/Profile';
 import { rtkApi } from '@/shared/api/rtkApi';
@@ -33,7 +32,6 @@ export interface StateSchema {
 	articlesSort?: ArticlesSortSchema;
 	articlesType?: ArticlesTypeSchema;
 	articlesSearch?: ArticlesSearchSchema;
-	articleRecommendations?: ArticleRecommendationsSchema;
 }
 
 export interface ReducerManager {

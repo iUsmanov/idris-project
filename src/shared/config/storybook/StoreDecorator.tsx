@@ -2,7 +2,6 @@ import { StateSchema, StoreProvider } from '@/app/providers/StoreProvider/testin
 import { addNewCommentReducer } from '@/entities/AddNewComment/testing';
 import { articleCommentsListReducer } from '@/features/ArticleCommentsList/testing';
 import { articleDetailsReducer } from '@/features/ArticleDetails/testing';
-import { articleRecommendationsReducer } from '@/features/ArticleRecommendations/testing';
 import { articlesTypeReducer } from '@/features/ArticleTypeTabs/testing';
 import { articlesSearchReducer } from '@/features/ArticlesSearch/testing';
 import { articlesSortReducer } from '@/features/ArticlesSort/testing';
@@ -24,7 +23,6 @@ const defaultAsyncReducers: ReducersList = {
 	articlesSort: articlesSortReducer,
 	articlesType: articlesTypeReducer,
 	articlesSearch: articlesSearchReducer,
-	articleRecommendations: articleRecommendationsReducer,
 };
 
 export const StoreDecorator =
