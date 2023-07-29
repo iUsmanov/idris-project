@@ -1,3 +1,9 @@
+describe('articlesInfiniteListSlice.test', () => {
+	test('', () => {
+		('');
+	});
+});
+
 // import { StateSchema } from '@/app/providers/StoreProvider/testing';
 // import {
 // 	getArticlesError,

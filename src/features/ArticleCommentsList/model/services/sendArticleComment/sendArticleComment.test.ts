@@ -1,3 +1,9 @@
+describe('articlesInfiniteListSlice.test', () => {
+	test('', () => {
+		('');
+	});
+});
+
 // import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 // import { sendArticleComment } from './sendArticleComment';
 // import { Comment } from '@/entities/Comment';

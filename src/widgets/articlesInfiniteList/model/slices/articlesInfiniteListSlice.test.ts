@@ -1,3 +1,9 @@
+describe('articlesInfiniteListSlice.test', () => {
+	test('', () => {
+		('');
+	});
+});
+
 // import Image from '@/shared/assets/tests/storybook.jpg';
 // import { ArticlesPageSchema } from '../types/articlesPage';
 // import { articlesPageActions, articlesPageReducer } from './articlesPageSlice';

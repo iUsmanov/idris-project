@@ -1,0 +1,5 @@
+describe('articlesInfiniteListSlice.test', () => {
+	test('', () => {
+		('');
+	});
+});

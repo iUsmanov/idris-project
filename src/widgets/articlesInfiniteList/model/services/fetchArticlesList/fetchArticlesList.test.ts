@@ -1,3 +1,9 @@
+describe('articlesInfiniteListSlice.test', () => {
+	test('', () => {
+		('');
+	});
+});
+
 // import Image from '@/shared/assets/tests/storybook.jpg';
 // import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 // import { Article } from '@/entities/Article';
