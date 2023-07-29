@@ -1,1 +1,1 @@
-export { Profile, ProfileSchema, ValidateProfileError } from './model/types/profile';
+export { Profile } from './model/types/profile';

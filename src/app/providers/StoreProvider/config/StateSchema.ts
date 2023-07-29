@@ -12,7 +12,7 @@ import { ArticlesSortSchema } from '@/features/ArticlesSort';
 import { ArticlesTypeSchema } from '@/features/ArticleTypeTabs';
 import { ArticlesSearchSchema } from '@/features/ArticlesSearch';
 import { ArticleDetailsSchema } from '@/features/ArticleDetails';
-import { ProfileSchema } from '@/entities/Profile';
+import { ProfileSchema } from '@/features/EditableProfileCard';
 import { rtkApi } from '@/shared/api/rtkApi';
 import { ArticlesInfiniteListSchema } from '@/widgets/articlesInfiniteList';
 

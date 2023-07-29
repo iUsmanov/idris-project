@@ -10,7 +10,9 @@ const meta = {
 	component: EditableProfileCard,
 	tags: ['autodocs'],
 	argTypes: {},
-	args: {},
+	args: {
+		id: '1',
+	},
 	decorators: [
 		StoreDecorator({
 			profile: {
@@ -35,12 +37,6 @@ const meta = {
 			},
 		}),
 	],
-	parameters: {
-		router: {
-			path: '/profiles/:id',
-			route: '/profiles/1',
-		},
-	},
 } satisfies Meta<typeof EditableProfileCard>;
 
 export default meta;

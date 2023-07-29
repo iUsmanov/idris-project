@@ -3,7 +3,8 @@ import { profileActions, profileReducer } from './profileSlice';
 import { Country } from '@/entities/Country/testing';
 import { fetchProfileData } from '../services/fetchProfileData/fetchProfileData';
 import { updateProfileData } from '../services/updateProfileData/updateProfileData';
-import { Profile, ProfileSchema, ValidateProfileError } from '@/entities/Profile/testing';
+import { Profile } from '@/entities/Profile/testing';
+import { ProfileSchema, ValidateProfileError } from '../types/editableProfileCardSchema';
 
 describe('profileSlice.test', () => {
 	const data: Profile = {

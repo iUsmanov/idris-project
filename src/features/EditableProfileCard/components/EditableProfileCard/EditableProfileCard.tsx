@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect } from 'react';
+import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useSelector } from 'react-redux';
@@ -14,12 +14,13 @@ import { getProfileFormData } from '../../model/selectors/getProfileFormData/get
 import { Currency } from '@/entities/Currency';
 import { Country } from '@/entities/Country';
 import { getProfileValidateErrors } from '../../model/selectors/getProfileValidateErrors/getProfileValidateErrors';
-import { useParams } from 'react-router-dom';
 import { VStack } from '@/shared/components/Stack';
 import { ProfileCard } from '@/entities/Profile';
+import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 
 interface EditableProfileCardProps {
 	className?: string;
+	id: string;
 }
 
 const initialReducers: ReducersList = {
@@ -27,7 +28,7 @@ const initialReducers: ReducersList = {
 };
 
 export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
-	const { className } = props;
+	const { className, id } = props;
 	const { t } = useTranslation('profile');
 	const dispatch = useAppDispatch();
 	const formData = useSelector(getProfileFormData);
@@ -35,23 +36,22 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
 	const error = useSelector(getProfileError);
 	const readonly = useSelector(getProfileReadonly);
 	const profileValidateErrors = useSelector(getProfileValidateErrors);
-	const { id } = useParams<{ id: string }>();
 
 	useDynamicModule({ reducers: initialReducers });
 
-	// useInitialEffect(() => {
-	// if (id) {
-	// 	dispatch(fetchProfileData(id));
-	// }
-	// });
-
-	useEffect(() => {
-		if (__ENVIRON__ !== 'storybook') {
-			if (id) {
-				dispatch(fetchProfileData(id));
-			}
+	useInitialEffect(() => {
+		if (id) {
+			dispatch(fetchProfileData(id));
 		}
-	}, [dispatch, id]);
+	});
+
+	// useEffect(() => {
+	// 	if (__ENVIRON__ !== 'storybook') {
+	// 		if (id) {
+	// 			dispatch(fetchProfileData(id));
+	// 		}
+	// 	}
+	// }, [dispatch, id]);
 
 	const onChangeFirstOrLastName = useCallback(
 		(value: string, name?: string) => {

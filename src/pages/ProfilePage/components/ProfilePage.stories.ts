@@ -37,6 +37,12 @@ const meta = {
 			},
 		}),
 	],
+	parameters: {
+		router: {
+			path: '/profiles/:id',
+			route: '/profiles/1',
+		},
+	},
 } satisfies Meta<typeof ProfilePage>;
 
 export default meta;

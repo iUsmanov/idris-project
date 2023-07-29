@@ -11,7 +11,7 @@ interface AppLinkProps extends LinkProps {
 	children: ReactNode;
 }
 
-const AppLink = forwardRef((props: AppLinkProps) => {
+const AppLink = forwardRef((props: AppLinkProps, ref) => {
 	const { variant = 'primary', className, children, ...otherProps } = props;
 
 	return (
