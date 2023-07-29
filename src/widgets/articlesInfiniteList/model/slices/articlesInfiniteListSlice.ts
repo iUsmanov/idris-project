@@ -1,11 +1,11 @@
 import { PayloadAction, createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 import { StateSchema } from '@/app/providers/StoreProvider';
 import { Article, ArticleView } from '@/entities/Article';
-import { ArticlesPageSchema } from '../types/articlesPage';
 import { fetchArticlesList } from '../services/fetchArticlesList/fetchArticlesList';
 import { LOCAL_STORAGE_ARTICLE_VIEW_KEY } from '@/shared/const/localStorage';
+import { ArticlesInfiniteListSchema } from '../types/articlesInfiniteListSchema';
 
-export const initialState: ArticlesPageSchema = {
+export const initialState: ArticlesInfiniteListSchema = {
 	ids: [],
 	entities: {},
 	isLoading: false,
@@ -17,17 +17,17 @@ export const initialState: ArticlesPageSchema = {
 	_inited: false,
 };
 
-const articlesPageAdapter = createEntityAdapter<Article>({
+const articlesInfiniteListAdapter = createEntityAdapter<Article>({
 	selectId: (article) => article.id,
 });
 
-export const getArticles = articlesPageAdapter.getSelectors<StateSchema>(
-	(state) => state.articlesPage || articlesPageAdapter.getInitialState()
+export const getArticlesInfiniteList = articlesInfiniteListAdapter.getSelectors<StateSchema>(
+	(state) => state.articlesInfiniteList || articlesInfiniteListAdapter.getInitialState()
 );
 
-export const articlesPageSlice = createSlice({
-	name: 'articlesPageSlice',
-	initialState: articlesPageAdapter.getInitialState<ArticlesPageSchema>(initialState),
+export const articlesInfiniteListSlice = createSlice({
+	name: 'articlesInfiniteListSlice',
+	initialState: articlesInfiniteListAdapter.getInitialState<ArticlesInfiniteListSchema>(initialState),
 	reducers: {
 		setView: (state, action: PayloadAction<ArticleView>) => {
 			state.view = action.payload;
@@ -51,7 +51,7 @@ export const articlesPageSlice = createSlice({
 				state.isLoading = true;
 
 				if (action.meta.arg.replace) {
-					articlesPageAdapter.removeAll(state);
+					articlesInfiniteListAdapter.removeAll(state);
 				}
 			})
 			.addCase(fetchArticlesList.fulfilled, (state, action /* : PayloadAction<Article[]> */) => {
@@ -60,9 +60,9 @@ export const articlesPageSlice = createSlice({
 				state.hasMore = action.payload.length === state.limit;
 
 				if (action.meta.arg.replace) {
-					articlesPageAdapter.setAll(state, action.payload);
+					articlesInfiniteListAdapter.setAll(state, action.payload);
 				} else {
-					articlesPageAdapter.addMany(state, action.payload);
+					articlesInfiniteListAdapter.addMany(state, action.payload);
 				}
 			})
 			.addCase(fetchArticlesList.rejected, (state, action) => {
@@ -72,5 +72,5 @@ export const articlesPageSlice = createSlice({
 	},
 });
 
-export const { actions: articlesPageActions } = articlesPageSlice;
-export const { reducer: articlesPageReducer } = articlesPageSlice;
+export const { actions: articlesInfiniteListActions } = articlesInfiniteListSlice;
+export const { reducer: articlesInfiniteListReducer } = articlesInfiniteListSlice;

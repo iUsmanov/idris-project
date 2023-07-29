@@ -1,7 +1,7 @@
 import { Article, ArticleView } from '@/entities/Article';
 import { EntityState } from '@reduxjs/toolkit';
 
-export interface ArticlesPageSchema extends EntityState<Article> {
+export interface ArticlesInfiniteListSchema extends EntityState<Article> {
 	// ids: string[];
 	// entities: Record<any, any>;
 	// =======

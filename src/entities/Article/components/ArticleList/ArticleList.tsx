@@ -4,7 +4,7 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './ArticleList.module.scss';
 import { Article, ArticleView } from '../../model/types/article';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
-import { HStack } from '@/shared/components/Stack';
+import { HStack, VStack } from '@/shared/components/Stack';
 import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton';
 import { Text } from '@/shared/components/Text/Text';
 
@@ -31,11 +31,11 @@ const getSkeletons = (view: ArticleView) => {
 		);
 	} else {
 		return (
-			<div className={classNames(cls.articleList, {}, [/* className,  */ cls[view]])}>
+			<VStack max className={classNames(cls.articleList, {}, [/* className,  */ cls[view]])}>
 				{new Array(3).fill(0).map((item, index) => (
 					<ArticleListItemSkeleton key={index} view={view} className={cls.card} />
 				))}
-			</div>
+			</VStack>
 		);
 	}
 };
@@ -68,15 +68,20 @@ export const ArticleList = memo((props: ArticleListProps) => {
 
 	if (view === 'LIST') {
 		return (
-			<div className={classNames(cls.articleList, {}, [className, cls[view]])}>
+			<VStack max className={classNames(cls.articleList, {}, [className, cls[view]])}>
 				{renderArticles}
 				{renderSkeletons}
-			</div>
+			</VStack>
 		);
 	}
 
 	return (
-		<HStack gap='32' wrap='wrap' className={classNames(cls.articleList, {}, [className, cls[view]])}>
+		<HStack
+			gap='32'
+			wrap='wrap'
+			max
+			className={classNames(cls.articleList, {}, [className, cls[view]])}
+		>
 			{renderArticles}
 			{renderSkeletons}
 		</HStack>

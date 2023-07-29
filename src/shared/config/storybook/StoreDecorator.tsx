@@ -7,8 +7,8 @@ import { articlesSearchReducer } from '@/features/ArticlesSearch/testing';
 import { articlesSortReducer } from '@/features/ArticlesSort/testing';
 import { loginReducer } from '@/features/AuthByUsername/testing';
 import { profileReducer } from '@/features/EditableProfileCard/testing';
-import { articlesPageReducer } from '@/pages/ArticlesPage/testing';
 import { ReducersList } from '@/shared/lib/hooks/useDynamicModule/useDynamicModule';
+import { articlesInfiniteListReducer } from '@/widgets/articlesInfiniteList/testing';
 import { ReducersMapObject } from '@reduxjs/toolkit';
 import { StoryFn } from '@storybook/react';
 
@@ -19,7 +19,7 @@ const defaultAsyncReducers: ReducersList = {
 	articleDetails: articleDetailsReducer,
 	articleCommentsList: articleCommentsListReducer,
 	addNewComment: addNewCommentReducer,
-	articlesPage: articlesPageReducer,
+	articlesInfiniteList: articlesInfiniteListReducer,
 	articlesSort: articlesSortReducer,
 	articlesType: articlesTypeReducer,
 	articlesSearch: articlesSearchReducer,

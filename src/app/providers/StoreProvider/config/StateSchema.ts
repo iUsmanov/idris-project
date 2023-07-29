@@ -7,7 +7,6 @@ import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore';
 import { AxiosInstance } from 'axios';
 import { ArticleCommentsListSchema } from '@/features/ArticleCommentsList';
 import { AddNewCommentSchema } from '@/entities/AddNewComment';
-import { ArticlesPageSchema } from '@/pages/ArticlesPage';
 import { UISchema } from '@/widgets/Page';
 import { ArticlesSortSchema } from '@/features/ArticlesSort';
 import { ArticlesTypeSchema } from '@/features/ArticleTypeTabs';
@@ -15,6 +14,7 @@ import { ArticlesSearchSchema } from '@/features/ArticlesSearch';
 import { ArticleDetailsSchema } from '@/features/ArticleDetails';
 import { ProfileSchema } from '@/entities/Profile';
 import { rtkApi } from '@/shared/api/rtkApi';
+import { ArticlesInfiniteListSchema } from '@/widgets/articlesInfiniteList';
 
 export interface StateSchema {
 	counter: CounterSchema;
@@ -28,7 +28,7 @@ export interface StateSchema {
 	articleDetails?: ArticleDetailsSchema;
 	articleCommentsList?: ArticleCommentsListSchema;
 	addNewComment?: AddNewCommentSchema;
-	articlesPage?: ArticlesPageSchema;
+	articlesInfiniteList?: ArticlesInfiniteListSchema;
 	articlesSort?: ArticlesSortSchema;
 	articlesType?: ArticlesTypeSchema;
 	articlesSearch?: ArticlesSearchSchema;

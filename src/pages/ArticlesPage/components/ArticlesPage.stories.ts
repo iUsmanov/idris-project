@@ -143,7 +143,7 @@ const meta = {
 	args: {},
 	decorators: [
 		StoreDecorator({
-			articlesPage: {
+			articlesInfiniteList: {
 				ids: ['1', '2', '3'],
 				entities: entities,
 			},
@@ -173,7 +173,7 @@ export const ErrorLight: Story = {
 	args: {},
 	decorators: [
 		StoreDecorator({
-			articlesPage: {
+			articlesInfiniteList: {
 				error: 'error',
 			},
 		}),
@@ -184,7 +184,7 @@ export const LoadingLight: Story = {
 	args: {},
 	decorators: [
 		StoreDecorator({
-			articlesPage: {
+			articlesInfiniteList: {
 				isLoading: true,
 			},
 		}),
@@ -195,7 +195,7 @@ export const ListLight: Story = {
 	args: {},
 	decorators: [
 		StoreDecorator({
-			articlesPage: {
+			articlesInfiniteList: {
 				ids: ['1', '2', '3'],
 				entities: entities,
 				view: 'LIST',
@@ -208,7 +208,7 @@ export const TileLight: Story = {
 	args: {},
 	decorators: [
 		StoreDecorator({
-			articlesPage: {
+			articlesInfiniteList: {
 				ids: ['1', '2', '3'],
 				entities: entities,
 				view: 'TILE',

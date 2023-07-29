@@ -17,7 +17,7 @@ export const ArticleListItemSkeleton = memo((props: ArticleListItemSkeletonProps
 	if (view === 'LIST') {
 		return (
 			<Card className={classNames(cls.articleListItem, {}, [className, cls[view]])}>
-				<HStack justify='between' align='center' className={cls.header}>
+				<HStack max justify='between' align='center' className={cls.header}>
 					<HStack gap='8' align='center'>
 						<Skeleton width={30} height={30} borderRadius='50%' />
 						<Skeleton width={150} height={16} />
