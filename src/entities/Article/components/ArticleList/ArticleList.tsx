@@ -1,4 +1,4 @@
-import { HTMLAttributeAnchorTarget, memo, useCallback } from 'react';
+import { HTMLAttributeAnchorTarget, memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './ArticleList.module.scss';
@@ -10,39 +10,39 @@ import { Text } from '@/shared/components/Text/Text';
 
 interface ArticleListProps {
 	className?: string;
-	articles: Article[];
+	articles?: Article[];
 	isLoading?: boolean;
 	view?: ArticleView;
 	target?: HTMLAttributeAnchorTarget;
 }
 
-const getSkeletons = (view: ArticleView) => {
-	if (view === 'TILE') {
-		return (
-			<HStack
-				gap='32'
-				wrap='wrap'
-				className={classNames(cls.articleList, {}, [/* className,  */ cls[view]])}
-			>
-				{new Array(9).fill(0).map((item, index) => (
-					<ArticleListItemSkeleton key={index} view={view} className={cls.card} />
-				))}
-			</HStack>
-		);
-	} else {
-		return (
-			<VStack max className={classNames(cls.articleList, {}, [/* className,  */ cls[view]])}>
-				{new Array(3).fill(0).map((item, index) => (
-					<ArticleListItemSkeleton key={index} view={view} className={cls.card} />
-				))}
-			</VStack>
-		);
-	}
-};
-
 export const ArticleList = memo((props: ArticleListProps) => {
 	const { className, articles, isLoading, view = 'TILE', target } = props;
 	const { t } = useTranslation();
+
+	const skeletons = useMemo(() => {
+		if (view === 'TILE') {
+			return (
+				<HStack
+					gap='32'
+					wrap='wrap'
+					className={classNames(cls.articleList, {}, [className, cls[view]])}
+				>
+					{new Array(9).fill(0).map((item, index) => (
+						<ArticleListItemSkeleton key={index} view={view} className={cls.card} />
+					))}
+				</HStack>
+			);
+		} else {
+			return (
+				<VStack max className={classNames(cls.articleList, {}, [className, cls[view]])}>
+					{new Array(3).fill(0).map((item, index) => (
+						<ArticleListItemSkeleton key={index} view={view} className={cls.card} />
+					))}
+				</VStack>
+			);
+		}
+	}, [className, view]);
 
 	const renderArticle = useCallback(
 		(article: Article) => {
@@ -60,7 +60,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
 	);
 
 	const renderArticles = articles && articles.length && articles.map(renderArticle);
-	const renderSkeletons = isLoading && getSkeletons(view);
+	const renderSkeletons = isLoading && skeletons;
 
 	if ((!articles || !articles.length) && !isLoading) {
 		return <Text align='center' size='size_l' title={t('Статьи не найдены')} />;

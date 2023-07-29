@@ -56,6 +56,18 @@ export default {
 
 	// In jest.config.js add (if you haven't already)
 	setupFilesAfterEnv: ['<rootDir>config/jest/setupTests.ts'],
+	reporters: [
+		'default',
+		[
+			'jest-html-reporters',
+			{
+				publicPath: '<rootDir>/reports/jest',
+				filename: 'report.html',
+				openReport: true,
+				inlineSource: true,
+			},
+		],
+	],
 
 	// All imported modules in your tests should be mocked automatically
 	// automock: false,
