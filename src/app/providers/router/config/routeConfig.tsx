@@ -4,11 +4,14 @@ import { AboutPage } from '@/pages/AboutPage';
 import { createBrowserRouter } from 'react-router-dom';
 import {
 	getRouteAbout,
+	getRouteAdminPanel,
 	getRouteArticleCreate,
 	getRouteArticleDetails,
 	getRouteArticleEdit,
 	getRouteArticles,
+	getRouteForbidden,
 	getRouteMain,
+	getRouteNotFound,
 	getRouteProfile,
 } from '@/shared/const/router';
 import { RootLayout } from '../../../RootLayout';
@@ -18,6 +21,9 @@ import { RequireAuth } from '../components/RequireAuth';
 import { ArticlesPage } from '@/pages/ArticlesPage';
 import { ArticleDetailsPage } from '@/pages/ArticleDetailsPage';
 import { ArticleEditPage } from '@/pages/ArticleEditPage';
+import { AdminPanelPage } from '@/pages/AdminPanelPage';
+import { RequireRoles } from '../components/RequireRoles';
+import { ForbiddenPage } from '@/pages/ForbiddenPage';
 
 export const routeConfig: Record<AppRoutes, AppRouteObject> = {
 	main: {
@@ -53,8 +59,18 @@ export const routeConfig: Record<AppRoutes, AppRouteObject> = {
 		element: <ArticleEditPage />,
 		authOnly: true,
 	},
+	admin_panel: {
+		path: getRouteAdminPanel(),
+		element: <AdminPanelPage />,
+		authOnly: true,
+		roles: ['ADMIN', 'MANAGER'],
+	},
+	forbidden: {
+		path: getRouteForbidden(),
+		element: <ForbiddenPage />,
+	},
 	not_found: {
-		path: '*',
+		path: getRouteNotFound(),
 		element: <NotFoundPage />,
 	},
 };
@@ -63,6 +79,11 @@ const routes = Object.values(routeConfig).map((route) => {
 	if (route.authOnly) {
 		const routeElement = route.element;
 		route.element = <RequireAuth>{routeElement as JSX.Element}</RequireAuth>;
+	}
+
+	if (route.roles) {
+		const routeElement = route.element;
+		route.element = <RequireRoles roles={route.roles}>{routeElement as JSX.Element}</RequireRoles>;
 	}
 
 	return route;

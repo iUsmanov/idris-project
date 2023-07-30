@@ -1,3 +1,5 @@
+// eslint-disable-next-line fsd-paths-guard/hierarchy-imports-between-layers
+import { UserRole } from '@/entities/User';
 import { RouteObject } from 'react-router-dom';
 
 export type AppRoutes =
@@ -8,11 +10,12 @@ export type AppRoutes =
 	| 'article_details'
 	| 'article_create'
 	| 'article_edit'
-	// | 'admin_panel'
-	// | 'forbidden'
+	| 'admin_panel'
+	| 'forbidden'
 	// last
 	| 'not_found';
 
 export type AppRouteObject = RouteObject & {
 	authOnly?: boolean;
+	roles?: UserRole[];
 };

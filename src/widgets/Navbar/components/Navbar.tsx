@@ -6,10 +6,10 @@ import { Button } from '@/shared/components/Button/Button';
 import { useModal } from '@/shared/lib/hooks/useModal/useModal';
 import { LoginModal } from '@/features/AuthByUsername';
 import { useSelector } from 'react-redux';
-import { getUserAuthData, userActions } from '@/entities/User';
+import { getIsAdminOrManager, getUserAuthData, userActions } from '@/entities/User';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { AppLink } from '@/shared/components/AppLink/AppLink';
-import { getRouteArticleCreate, getRouteProfile } from '@/shared/const/router';
+import { getRouteAdminPanel, getRouteArticleCreate, getRouteProfile } from '@/shared/const/router';
 import { Text } from '@/shared/components/Text/Text';
 import { HStack } from '@/shared/components/Stack';
 import { Dropdown, DropdownItem } from '@/shared/components/Dropdown/Dropdown';
@@ -23,6 +23,7 @@ export const Navbar = memo((props: NavbarProps) => {
 	const { className } = props;
 	const { t } = useTranslation();
 	const authData = useSelector(getUserAuthData);
+	const isAdminOrManager = useSelector(getIsAdminOrManager);
 	const dispatch = useAppDispatch();
 	const {
 		isOpened: isAuthModalOpened,
@@ -38,16 +39,28 @@ export const Navbar = memo((props: NavbarProps) => {
 
 	const items = useMemo<DropdownItem[]>(
 		() => [
+			...(isAdminOrManager
+				? [
+						{
+							content: t('Админка'),
+							href: getRouteAdminPanel(),
+						},
+				  ]
+				: []),
 			{
 				content: t('Выйти'),
 				onClick: onLogout,
 			},
-			{
-				content: t('Профиль'),
-				href: authData?.id ? getRouteProfile(authData?.id) : '*',
-			},
+			...(authData?.id
+				? [
+						{
+							content: t('Профиль'),
+							href: getRouteProfile(authData?.id),
+						},
+				  ]
+				: []),
 		],
-		[authData?.id, onLogout, t]
+		[authData?.id, isAdminOrManager, onLogout, t]
 	);
 
 	if (authData) {
