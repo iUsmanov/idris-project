@@ -14,6 +14,7 @@ interface TextProps {
 	align?: TextAling;
 	size?: TextSize;
 	tags?: [keyof HTMLElementTagNameMap, keyof HTMLElementTagNameMap] | [keyof HTMLElementTagNameMap];
+	'data-testid'?: string;
 }
 
 export const Text = memo((props: TextProps) => {
@@ -25,6 +26,7 @@ export const Text = memo((props: TextProps) => {
 		align = 'left',
 		size = 'size_s',
 		tags = ['p', 'p'],
+		'data-testid': dataTestId = 'Text',
 	} = props;
 
 	const TitleTag = tags[0];
@@ -32,8 +34,16 @@ export const Text = memo((props: TextProps) => {
 
 	return (
 		<div className={classNames(cls.text, {}, [className, cls[variant], cls[align], cls[size]])}>
-			{title && <TitleTag className={cls.title}>{title}</TitleTag>}
-			{text && <TextTag className={cls.text}>{text}</TextTag>}
+			{title && (
+				<TitleTag className={cls.title} data-testid={`${dataTestId}.Title`}>
+					{title}
+				</TitleTag>
+			)}
+			{text && (
+				<TextTag className={cls.text} data-testid={`${dataTestId}.Text`}>
+					{text}
+				</TextTag>
+			)}
 		</div>
 	);
 });

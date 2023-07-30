@@ -44,15 +44,27 @@ export const EditableProfileCardHeader = memo((props: EditableProfileCardHeaderP
 				{canEdit && (
 					<>
 						{readonly ? (
-							<Button onClick={onEdit} variant={'outline'}>
+							<Button
+								onClick={onEdit}
+								variant={'outline'}
+								data-testid='EditableProfileCardHeader.EditButton'
+							>
 								{t('Редактировать')}
 							</Button>
 						) : (
 							<HStack gap='8'>
-								<Button onClick={onCancelEdit} variant={'outlineRed'}>
+								<Button
+									onClick={onCancelEdit}
+									variant={'outlineRed'}
+									data-testid='EditableProfileCardHeader.CancelButton'
+								>
 									{t('Отменить')}
 								</Button>
-								<Button onClick={onEditSave} variant={'outline'}>
+								<Button
+									onClick={onEditSave}
+									variant={'outline'}
+									data-testid='EditableProfileCardHeader.SaveButton'
+								>
 									{t('Сохранить')}
 								</Button>
 							</HStack>
@@ -63,7 +75,13 @@ export const EditableProfileCardHeader = memo((props: EditableProfileCardHeaderP
 			<div>
 				{profileValidateErrors?.length &&
 					profileValidateErrors?.map((err) => (
-						<Text size='size_l' key={err} variant='error' text={t(err)} />
+						<Text
+							size='size_l'
+							key={err}
+							variant='error'
+							text={t(err)}
+							data-testid='EditableProfileCardHeader.ErrorText'
+						/>
 					))}
 			</div>
 		</>

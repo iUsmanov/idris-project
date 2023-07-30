@@ -63,7 +63,7 @@ export default {
 			{
 				publicPath: '<rootDir>/reports/jest',
 				filename: 'report.html',
-				openReport: true,
+				// openReport: true,
 				inlineSource: true,
 			},
 		],

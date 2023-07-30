@@ -80,13 +80,14 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
 			max
 			className={classNames(cls.profileCard, { [cls.editing]: !readonly }, [className])}
 		>
-			<Avatar max justify='center' src={data?.avatar} size={150} />
+			<Avatar max justify='center' src={data?.avatar} size={150} data-testid='ProfileCard.Avatar' />
 			<Input
 				onChange={onChangeFirstOrLastName}
 				readOnly={readonly}
 				value={data?.first}
 				placeholder={t('Ваше имя')}
 				name='firstName'
+				data-testid='ProfileCard.InputFirstName'
 			/>
 			<Input
 				onChange={onChangeFirstOrLastName}
@@ -94,33 +95,48 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
 				value={data?.lastname}
 				placeholder={t('Ваша фамилия')}
 				name='lastName'
+				data-testid='ProfileCard.InputLastName'
 			/>
 			<Input
 				onChange={onChangeAge}
 				readOnly={readonly}
 				value={data?.age}
 				placeholder={t('Ваш возраст')}
+				data-testid='ProfileCard.InputAge'
 			/>
 			<Input
 				onChange={onChangeCity}
 				readOnly={readonly}
 				value={data?.city}
 				placeholder={t('Город')}
+				data-testid='ProfileCard.InputCity'
 			/>
 			<Input
 				onChange={onChangeUsername}
 				readOnly={readonly}
 				value={data?.username}
 				placeholder={t('Введите имя пользователя')}
+				data-testid='ProfileCard.InputUsername'
 			/>
 			<Input
 				onChange={onChangeAvatar}
 				readOnly={readonly}
 				value={data?.avatar}
 				placeholder={t('Введите ссылку на аватар')}
+				data-testid='ProfileCard.InputAvatar'
 			/>
-			<CurrencySelect disabled={readonly} value={data?.currency} onChange={onChangeCurrency} />
-			<CountrySelect disabled={readonly} value={data?.country} onChange={onChangeCountry} />
+			<CurrencySelect
+				disabled={readonly}
+				value={data?.currency}
+				onChange={onChangeCurrency}
+				data-testid='ProfileCard.CurrencySelect'
+			/>
+			<CountrySelect
+				disabled={readonly}
+				value={data?.country}
+				onChange={onChangeCountry}
+				data-testid='ProfileCard.CountrySelect'
+			/>
 		</VStack>
 	);
 });
