@@ -5,11 +5,12 @@ import { buildSvgrLoader } from './loaders/buildSvgrLoader';
 import { buildBabelLoader } from './loaders/buildBabelLoader';
 
 export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
-	const typescriptLoader = {
-		test: /\.tsx?$/,
-		use: 'ts-loader',
-		exclude: /node_modules/,
-	};
+	// Если не юзаем typescriptLoader, нужен babelLoader
+	// const typescriptLoader = {
+	// 	test: /\.tsx?$/,
+	// 	use: 'ts-loader',
+	// 	exclude: /node_modules/,
+	// };
 
 	const svgrLoader = buildSvgrLoader();
 
@@ -19,9 +20,11 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
 		// dependency: { not: ['url'] },
 	};
 
-	const babelLoader = buildBabelLoader(options.isDev);
+	// const babelLoader = buildBabelLoader(options.isDev);
+	const codeBabelLoader = buildBabelLoader(options.isDev, false);
+	const tsxCodeBabelLoader = buildBabelLoader(options.isDev, true);
 
 	const scssLoader = buildScssLoader(options.isDev);
 
-	return [babelLoader, typescriptLoader, scssLoader, svgrLoader, assetsLoader];
+	return [assetsLoader, svgrLoader, codeBabelLoader, tsxCodeBabelLoader, scssLoader];
 }
