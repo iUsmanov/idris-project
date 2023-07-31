@@ -4,7 +4,7 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
 import { Article } from '../../model/types/article';
 import Image from '@/shared/assets/tests/storybook.jpg';
 
-const articles: Article[] = [
+export const articles: Article[] = [
 	{
 		id: '1',
 		title: 'Javascript news СВЕЖАЯ',

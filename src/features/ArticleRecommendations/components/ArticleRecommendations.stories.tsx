@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { ArticleRecommendations } from './ArticleRecommendations';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
+import { articles } from '@/entities/Article/testing';
 
 const meta = {
 	title: 'shared/ArticleRecommendations',
@@ -8,6 +9,16 @@ const meta = {
 	tags: ['autodocs'],
 	argTypes: {},
 	args: {},
+	parameters: {
+		mockData: [
+			{
+				url: `${__API__}/articles?_limit=8`,
+				method: 'GET',
+				status: 200,
+				response: articles,
+			},
+		],
+	},
 } satisfies Meta<typeof ArticleRecommendations>;
 
 export default meta;

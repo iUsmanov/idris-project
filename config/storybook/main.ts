@@ -7,7 +7,12 @@ import webpack, { RuleSetRule } from 'webpack';
 const config: StorybookConfig = {
 	stories: ['../../src/**/*.stories.@(js|jsx|ts|tsx)'],
 	staticDirs: ['../../public'],
-	addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-interactions'],
+	addons: [
+		'@storybook/addon-links',
+		'@storybook/addon-essentials',
+		'@storybook/addon-interactions',
+		'storybook-addon-mock',
+	],
 	framework: {
 		name: '@storybook/react-webpack5',
 		options: {},
@@ -45,7 +50,7 @@ const config: StorybookConfig = {
 				...config.plugins,
 				new webpack.DefinePlugin({
 					__IS_DEV__: JSON.stringify(true),
-					__API__: JSON.stringify(''),
+					__API__: JSON.stringify('https://storybook-api.story'),
 					__ENVIRON__: JSON.stringify('storybook'),
 				}),
 			];

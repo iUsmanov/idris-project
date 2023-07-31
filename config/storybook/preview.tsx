@@ -4,6 +4,7 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
 import { RouterDecorator } from '@/shared/config/storybook/RouterDecorator';
 import { I18nDecorator } from '@/shared/config/storybook/I18nDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator';
+import { SuspenseDecorator } from '@/shared/config/storybook/SuspenseDecorator';
 
 const preview: Preview = {
 	parameters: {
@@ -16,6 +17,7 @@ const preview: Preview = {
 		},
 	},
 	decorators: [
+		SuspenseDecorator,
 		StyleDecorator,
 		ThemeDecorator('app-light-theme'),
 		RouterDecorator,
