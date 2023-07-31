@@ -15,7 +15,8 @@
 		"paths": {
 			"@/*": ["./src/*"],
 			"test-utils": ["./utils/test-utils"]
-		}
+		},
+		"isolatedModules": true
 	},
 	"ts-node": {
 		"compilerOptions": {
