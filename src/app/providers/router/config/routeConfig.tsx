@@ -14,7 +14,8 @@ import {
 	getRouteNotFound,
 	getRouteProfile,
 } from '@/shared/const/router';
-import { RootLayout } from '../../../RootLayout';
+// eslint-disable-next-line fsd-paths-guard/hierarchy-imports-between-layers
+import { RootLayout } from '@/app/RootLayout';
 import { NotFoundPage } from '@/pages/NotFoundPage';
 import { ProfilePage } from '@/pages/ProfilePage';
 import { RequireAuth } from '../components/RequireAuth';

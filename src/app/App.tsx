@@ -1,5 +1,5 @@
 import { memo, useEffect } from 'react';
-import { AppRouter } from './providers/router';
+import { AppRouter } from './providers/router/components/AppRouter';
 import { Navbar } from '@/widgets/Navbar';
 import { Sidebar } from '@/widgets/Sidebar';
 import { HStack } from '@/shared/components/Stack';

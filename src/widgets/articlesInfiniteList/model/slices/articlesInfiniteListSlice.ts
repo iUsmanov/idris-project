@@ -4,18 +4,7 @@ import { Article, ArticleView } from '@/entities/Article';
 import { fetchArticlesList } from '../services/fetchArticlesList/fetchArticlesList';
 import { LOCAL_STORAGE_ARTICLE_VIEW_KEY } from '@/shared/const/localStorage';
 import { ArticlesInfiniteListSchema } from '../types/articlesInfiniteListSchema';
-
-export const initialState: ArticlesInfiniteListSchema = {
-	ids: [],
-	entities: {},
-	isLoading: false,
-	error: undefined,
-	view: 'TILE',
-	hasMore: true,
-	limit: 9,
-	page: 1,
-	_inited: false,
-};
+import { initialState } from '../consts/articlesInfiniteListConsts';
 
 const articlesInfiniteListAdapter = createEntityAdapter<Article>({
 	selectId: (article) => article.id,
