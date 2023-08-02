@@ -13,9 +13,9 @@ import { AppLink } from '@/shared/components/AppLink/AppLink';
 import { getRouteAdminPanel, getRouteArticleCreate, getRouteProfile } from '@/shared/const/router';
 import { Text } from '@/shared/components/Text/Text';
 import { HStack } from '@/shared/components/Stack';
-import { Dropdown, DropdownItem } from '@/shared/components/Dropdown/Dropdown';
 import { Avatar } from '@/shared/components/Avatar/Avatar';
 import { Icon } from '@/shared/components/Icon/Icon';
+import { Dropdown, DropdownItem } from '@/shared/components/Popups';
 
 interface NavbarProps {
 	className?: string;

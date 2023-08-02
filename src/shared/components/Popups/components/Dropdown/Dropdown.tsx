@@ -3,7 +3,8 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Dropdown.module.scss';
 import { Menu } from '@headlessui/react';
 import { DropdownDirection } from '@/shared/types/ui';
-import { AppLink } from '../AppLink/AppLink';
+import { AppLink } from '../../../AppLink/AppLink';
+import popupsCls from '../../styles/Popups.module.scss';
 
 interface DropdownProps {
 	className?: string;
@@ -23,11 +24,11 @@ export const Dropdown = memo((props: DropdownProps) => {
 	const { className, items, trigger, direction = 'bottomRight' } = props;
 
 	return (
-		<Menu as={'div'} className={classNames(cls.dropdown, {}, [className])}>
+		<Menu as={'div'} className={classNames(popupsCls.popup, {}, [className])}>
 			<Menu.Button as='div' className={cls.btn}>
 				{trigger}
 			</Menu.Button>
-			<Menu.Items className={classNames(cls.menu, {}, [cls[direction]])}>
+			<Menu.Items className={classNames(cls.menu, {}, [popupsCls[direction]])}>
 				{items.map((item, index) => {
 					let itemInner;
 					if (item.onClick) {
@@ -35,7 +36,7 @@ export const Dropdown = memo((props: DropdownProps) => {
 							<button
 								disabled={item.disabled}
 								type='button'
-								className={classNames(cls.item, { [cls.active]: active }, [])}
+								className={classNames(cls.item, { [popupsCls.active]: active }, [])}
 								onClick={item.onClick}
 							>
 								{item.content}
@@ -46,7 +47,7 @@ export const Dropdown = memo((props: DropdownProps) => {
 					if (item.href) {
 						itemInner = ({ active }: { active: boolean }) => (
 							<AppLink
-								className={classNames(cls.item, { [cls.active]: active }, [])}
+								className={classNames(cls.item, { [popupsCls.active]: active }, [])}
 								to={item.href as string}
 							>
 								{item.content}
