@@ -1,13 +1,17 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { Popover } from './Popover';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
+import { Button } from '@/shared/components/Button/Button';
 
 const meta = {
 	title: 'shared/Popover',
 	component: Popover,
 	tags: ['autodocs'],
 	argTypes: {},
-	args: {},
+	args: {
+		children: 'Text',
+		trigger: <Button variant='outline'>Button</Button>,
+	},
 } satisfies Meta<typeof Popover>;
 
 export default meta;

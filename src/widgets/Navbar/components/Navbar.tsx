@@ -16,6 +16,7 @@ import { HStack } from '@/shared/components/Stack';
 import { Avatar } from '@/shared/components/Avatar/Avatar';
 import { Icon } from '@/shared/components/Icon/Icon';
 import { Dropdown, DropdownItem, Popover } from '@/shared/components/Popups';
+import { NotificationsList } from '@/entities/Notification';
 
 interface NavbarProps {
 	className?: string;
@@ -81,7 +82,7 @@ export const Navbar = memo((props: NavbarProps) => {
 								</Button>
 							}
 						>
-							<div>{t('Ваше имя')}</div>
+							<NotificationsList className={cls.notifications} />
 						</Popover>
 						<Dropdown
 							items={items}
