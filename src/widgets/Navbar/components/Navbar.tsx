@@ -1,7 +1,6 @@
 import { memo, useCallback, useMemo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Navbar.module.scss';
-import NotificationIcon from '@/shared/assets/icons/notification-20-20.svg';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/shared/components/Button/Button';
 import { useModal } from '@/shared/lib/hooks/useModal/useModal';
@@ -14,9 +13,8 @@ import { getRouteAdminPanel, getRouteArticleCreate, getRouteProfile } from '@/sh
 import { Text } from '@/shared/components/Text/Text';
 import { HStack } from '@/shared/components/Stack';
 import { Avatar } from '@/shared/components/Avatar/Avatar';
-import { Icon } from '@/shared/components/Icon/Icon';
-import { Dropdown, DropdownItem, Popover } from '@/shared/components/Popups';
-import { NotificationsList } from '@/entities/Notification';
+import { Dropdown, DropdownItem } from '@/shared/components/Popups';
+import { NotificationsPopup } from '@/features/notificationsPopup';
 
 interface NavbarProps {
 	className?: string;
@@ -75,15 +73,7 @@ export const Navbar = memo((props: NavbarProps) => {
 						{t('Создать статью')}
 					</AppLink>
 					<HStack align='center' gap='16'>
-						<Popover
-							trigger={
-								<Button variant='clear'>
-									<Icon Svg={NotificationIcon} variant='inverted' />
-								</Button>
-							}
-						>
-							<NotificationsList className={cls.notifications} />
-						</Popover>
+						<NotificationsPopup />
 						<Dropdown
 							items={items}
 							trigger={<Avatar size={30} src={authData.avatar} />}
