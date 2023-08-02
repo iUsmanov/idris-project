@@ -52,12 +52,12 @@ export const ListBox = memo((props: ListBoxProps) => {
 			{label && <span>{`${label}>`}</span>}
 			<HListbox
 				as={'div'}
-				className={classNames(popupsCls.popup, {}, [])}
+				className={classNames('', {}, [popupsCls.popup])}
 				value={value}
 				onChange={onChange}
 				disabled={disabled}
 			>
-				<HListbox.Button as={'div'}>
+				<HListbox.Button as={'div'} className={popupsCls.trigger}>
 					<Button disabled={disabled} variant='outline'>
 						{value ?? defaultValue}
 					</Button>

@@ -24,8 +24,8 @@ export const Dropdown = memo((props: DropdownProps) => {
 	const { className, items, trigger, direction = 'bottomRight' } = props;
 
 	return (
-		<Menu as={'div'} className={classNames(popupsCls.popup, {}, [className])}>
-			<Menu.Button as='div' className={cls.btn}>
+		<Menu as={'div'} className={classNames('', {}, [className, popupsCls.popup])}>
+			<Menu.Button as='div' className={popupsCls.trigger}>
 				{trigger}
 			</Menu.Button>
 			<Menu.Items className={classNames(cls.menu, {}, [popupsCls[direction]])}>

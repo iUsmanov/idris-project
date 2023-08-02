@@ -15,7 +15,7 @@ import { Text } from '@/shared/components/Text/Text';
 import { HStack } from '@/shared/components/Stack';
 import { Avatar } from '@/shared/components/Avatar/Avatar';
 import { Icon } from '@/shared/components/Icon/Icon';
-import { Dropdown, DropdownItem } from '@/shared/components/Popups';
+import { Dropdown, DropdownItem, Popover } from '@/shared/components/Popups';
 
 interface NavbarProps {
 	className?: string;
@@ -74,9 +74,15 @@ export const Navbar = memo((props: NavbarProps) => {
 						{t('Создать статью')}
 					</AppLink>
 					<HStack align='center' gap='16'>
-						<Button variant='clear'>
-							<Icon Svg={NotificationIcon} variant='inverted' />
-						</Button>
+						<Popover
+							trigger={
+								<Button variant='clear'>
+									<Icon Svg={NotificationIcon} variant='inverted' />
+								</Button>
+							}
+						>
+							<div>{t('Ваше имя')}</div>
+						</Popover>
 						<Dropdown
 							items={items}
 							trigger={<Avatar size={30} src={authData.avatar} />}
