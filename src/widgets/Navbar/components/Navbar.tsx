@@ -1,6 +1,7 @@
 import { memo, useCallback, useMemo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Navbar.module.scss';
+import NotificationIcon from '@/shared/assets/icons/notification-20-20.svg';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/shared/components/Button/Button';
 import { useModal } from '@/shared/lib/hooks/useModal/useModal';
@@ -14,6 +15,7 @@ import { Text } from '@/shared/components/Text/Text';
 import { HStack } from '@/shared/components/Stack';
 import { Dropdown, DropdownItem } from '@/shared/components/Dropdown/Dropdown';
 import { Avatar } from '@/shared/components/Avatar/Avatar';
+import { Icon } from '@/shared/components/Icon/Icon';
 
 interface NavbarProps {
 	className?: string;
@@ -71,11 +73,16 @@ export const Navbar = memo((props: NavbarProps) => {
 					<AppLink to={getRouteArticleCreate()} variant='inverted'>
 						{t('Создать статью')}
 					</AppLink>
-					<Dropdown
-						items={items}
-						trigger={<Avatar size={30} src={authData.avatar} />}
-						direction='bottomLeft'
-					/>
+					<HStack align='center' gap='16'>
+						<Button variant='clear'>
+							<Icon Svg={NotificationIcon} variant='inverted' />
+						</Button>
+						<Dropdown
+							items={items}
+							trigger={<Avatar size={30} src={authData.avatar} />}
+							direction='bottomLeft'
+						/>
+					</HStack>
 				</HStack>
 			</HStack>
 		);
