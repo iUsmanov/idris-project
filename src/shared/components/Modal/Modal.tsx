@@ -1,8 +1,8 @@
 import { ReactNode, memo, useCallback, useEffect } from 'react';
 import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Modal.module.scss';
-import { Flex } from '../Stack';
 import { Portal } from '../Portal/Portal';
+import { Overlay } from '../Overlay/Overlay';
 
 interface ModalProps {
 	className?: string;
@@ -14,14 +14,7 @@ interface ModalProps {
 }
 
 export const Modal = memo((props: ModalProps) => {
-	const {
-		className,
-		children,
-		container,
-		isOpened = false,
-		isMounted = false,
-		onModalClose
-	} = props;
+	const { className, children, container, isOpened = false, isMounted = false, onModalClose } = props;
 
 	const onContentClick = useCallback((event: React.MouseEvent) => {
 		event.stopPropagation();
@@ -50,11 +43,11 @@ export const Modal = memo((props: ModalProps) => {
 	return (
 		<Portal container={container} isMounted={isMounted}>
 			<div className={classNames(cls.modal, mods, [className])}>
-				<Flex justify='center' align='center' className={cls.overlay} onClick={onModalClose}>
+				<Overlay onClick={onModalClose} centering>
 					<div onClick={onContentClick} className={cls.content}>
 						{children}
 					</div>
-				</Flex>
+				</Overlay>
 			</div>
 		</Portal>
 	);
