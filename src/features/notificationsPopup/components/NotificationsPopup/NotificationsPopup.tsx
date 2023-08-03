@@ -31,7 +31,7 @@ export const NotificationsPopup = memo((props: NotificationsPopupProps) => {
 				</Popover>
 			</DesktopView>
 			<MobileView>
-				<NotificationsDrawer className={cls.mobileNotifications} />
+				<NotificationsDrawer />
 			</MobileView>
 		</>
 	);
