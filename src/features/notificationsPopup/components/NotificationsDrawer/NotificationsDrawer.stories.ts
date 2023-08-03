@@ -1,16 +1,14 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { Overlay } from './Overlay';
+import { NotificationsDrawer } from './NotificationsDrawer';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
 
 const meta = {
-	title: 'shared/Overlay',
-	component: Overlay,
+	title: 'shared/NotificationsDrawer',
+	component: NotificationsDrawer,
 	tags: ['autodocs'],
 	argTypes: {},
-	args: {
-		children: 'Text',
-	},
-} satisfies Meta<typeof Overlay>;
+	args: {},
+} satisfies Meta<typeof NotificationsDrawer>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

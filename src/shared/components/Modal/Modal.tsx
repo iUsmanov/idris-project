@@ -11,10 +11,19 @@ interface ModalProps {
 	isOpened?: boolean;
 	isMounted?: boolean;
 	onModalClose?: () => void;
+	isDrawer?: boolean;
 }
 
 export const Modal = memo((props: ModalProps) => {
-	const { className, children, container, isOpened = false, isMounted = false, onModalClose } = props;
+	const {
+		className,
+		children,
+		container,
+		isOpened = false,
+		isMounted = false,
+		onModalClose,
+		isDrawer,
+	} = props;
 
 	const onContentClick = useCallback((event: React.MouseEvent) => {
 		event.stopPropagation();
@@ -40,11 +49,31 @@ export const Modal = memo((props: ModalProps) => {
 		[cls.opened]: isOpened,
 	};
 
+	if (isDrawer) {
+		return (
+			<Portal container={container} isMounted={isMounted}>
+				<div className={classNames(cls.modal, mods, [className])}>
+					<Overlay onClick={onModalClose}>
+						<div
+							onClick={onContentClick}
+							className={classNames(cls.drawerContent, {}, [cls.content])}
+						>
+							{children}
+						</div>
+					</Overlay>
+				</div>
+			</Portal>
+		);
+	}
+
 	return (
 		<Portal container={container} isMounted={isMounted}>
 			<div className={classNames(cls.modal, mods, [className])}>
 				<Overlay onClick={onModalClose} centering>
-					<div onClick={onContentClick} className={cls.content}>
+					<div
+						onClick={onContentClick}
+						className={classNames(cls.modalContent, {}, [cls.content])}
+					>
 						{children}
 					</div>
 				</Overlay>
