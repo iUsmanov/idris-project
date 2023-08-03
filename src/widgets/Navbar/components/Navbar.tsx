@@ -1,4 +1,4 @@
-import { memo, useCallback, useMemo } from 'react';
+import { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Navbar.module.scss';
 import { useTranslation } from 'react-i18next';
@@ -6,15 +6,13 @@ import { Button } from '@/shared/components/Button/Button';
 import { useModal } from '@/shared/lib/hooks/useModal/useModal';
 import { LoginModal } from '@/features/AuthByUsername';
 import { useSelector } from 'react-redux';
-import { getIsAdminOrManager, getUserAuthData, userActions } from '@/entities/User';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { getUserAuthData } from '@/entities/User';
 import { AppLink } from '@/shared/components/AppLink/AppLink';
-import { getRouteAdminPanel, getRouteArticleCreate, getRouteProfile } from '@/shared/const/router';
+import { getRouteArticleCreate } from '@/shared/const/router';
 import { Text } from '@/shared/components/Text/Text';
 import { HStack } from '@/shared/components/Stack';
-import { Avatar } from '@/shared/components/Avatar/Avatar';
-import { Dropdown, DropdownItem } from '@/shared/components/Popups';
 import { NotificationsPopup } from '@/features/notificationsPopup';
+import { AvatarDropdown } from '@/features/avatarDropdown';
 
 interface NavbarProps {
 	className?: string;
@@ -24,8 +22,6 @@ export const Navbar = memo((props: NavbarProps) => {
 	const { className } = props;
 	const { t } = useTranslation();
 	const authData = useSelector(getUserAuthData);
-	const isAdminOrManager = useSelector(getIsAdminOrManager);
-	const dispatch = useAppDispatch();
 	const {
 		isOpened: isAuthModalOpened,
 		isMounted: isAuthModalMounted,
@@ -33,36 +29,6 @@ export const Navbar = memo((props: NavbarProps) => {
 		onMountToggle: onAuthModalMountToggle,
 		onMountAndOpen: onAuthModalMountAndOpen,
 	} = useModal();
-
-	const onLogout = useCallback(() => {
-		dispatch(userActions.logout());
-	}, [dispatch]);
-
-	const items = useMemo<DropdownItem[]>(
-		() => [
-			...(isAdminOrManager
-				? [
-						{
-							content: t('Админка'),
-							href: getRouteAdminPanel(),
-						},
-				  ]
-				: []),
-			{
-				content: t('Выйти'),
-				onClick: onLogout,
-			},
-			...(authData?.id
-				? [
-						{
-							content: t('Профиль'),
-							href: getRouteProfile(authData?.id),
-						},
-				  ]
-				: []),
-		],
-		[authData?.id, isAdminOrManager, onLogout, t]
-	);
 
 	if (authData) {
 		return (
@@ -74,11 +40,7 @@ export const Navbar = memo((props: NavbarProps) => {
 					</AppLink>
 					<HStack align='center' gap='16'>
 						<NotificationsPopup />
-						<Dropdown
-							items={items}
-							trigger={<Avatar size={30} src={authData.avatar} />}
-							direction='bottomLeft'
-						/>
+						<AvatarDropdown />
 					</HStack>
 				</HStack>
 			</HStack>
