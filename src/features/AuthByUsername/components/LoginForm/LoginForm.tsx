@@ -18,8 +18,7 @@ import { ReducersList, useDynamicModule } from '@/shared/lib/hooks/useDynamicMod
 export interface LoginFormProps {
 	className?: string;
 	isOpened?: boolean;
-	onOpenToggle?: (bool: boolean) => void;
-	onMountToggle?: (bool: boolean) => void;
+	onModalClose?: () => void;
 }
 
 const initialReducers: ReducersList = {
@@ -27,7 +26,7 @@ const initialReducers: ReducersList = {
 };
 
 export const LoginForm = memo((props: LoginFormProps) => {
-	const { className, isOpened, onMountToggle, onOpenToggle } = props;
+	const { className, isOpened, onModalClose } = props;
 	const { t } = useTranslation();
 	const dispatch = useAppDispatch();
 	const username = useSelector(getLoginUsername);
@@ -55,11 +54,10 @@ export const LoginForm = memo((props: LoginFormProps) => {
 		if (__ENVIRON__ !== 'storybook') {
 			const action = await dispatch(loginByUsername({ username, password }));
 			if (action.meta.requestStatus === 'fulfilled') {
-				onOpenToggle?.(false);
-				onMountToggle?.(false);
+				onModalClose?.();
 			}
 		}
-	}, [dispatch, onMountToggle, onOpenToggle, password, username]);
+	}, [dispatch, onModalClose, password, username]);
 
 	return (
 		<div className={classNames(cls.loginForm, {}, [className])}>

@@ -25,9 +25,8 @@ export const Navbar = memo((props: NavbarProps) => {
 	const {
 		isOpened: isAuthModalOpened,
 		isMounted: isAuthModalMounted,
-		onOpenToggle: onAuthModalOpenToggle,
-		onMountToggle: onAuthModalMountToggle,
-		onMountAndOpen: onAuthModalMountAndOpen,
+		onMountAndOpen: onAuthModalOpen,
+		onUnmountAndClose: onAuthModalClose,
 	} = useModal();
 
 	if (authData) {
@@ -58,11 +57,10 @@ export const Navbar = memo((props: NavbarProps) => {
 			<LoginModal
 				isOpened={isAuthModalOpened}
 				isMounted={isAuthModalMounted}
-				onOpenToggle={onAuthModalOpenToggle}
-				onMountToggle={onAuthModalMountToggle}
+				onModalClose={onAuthModalClose}
 			/>
 			<Text variant='inverted' size='size_m' title={t('Articles App')} className={cls.title} />
-			<Button variant='clearInverted' className={cls.login} onClick={onAuthModalMountAndOpen}>
+			<Button variant='clearInverted' className={cls.login} onClick={onAuthModalOpen}>
 				{t('Войти')}
 			</Button>
 		</HStack>

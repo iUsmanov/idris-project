@@ -5,8 +5,7 @@ interface UseModalProps {}
 interface UseModalReturn {
 	isOpened: boolean;
 	isMounted: boolean;
-	onOpenToggle: (bool: boolean) => void;
-	onMountToggle: (bool: boolean) => void;
+	onUnmountAndClose: () => void;
 	onMountAndOpen: VoidFunction;
 }
 
@@ -14,8 +13,8 @@ export const useModal = (): UseModalReturn => {
 	// const {} = props;
 	const [isOpened, setOpened] = useState<boolean>(false);
 	const [isMounted, setIsMounted] = useState<boolean>(false);
-	const timerRef = useRef<undefined | ReturnType<typeof setTimeout>>(undefined);
-
+	const openTimerRef = useRef<undefined | ReturnType<typeof setTimeout>>(undefined);
+	const closeTimerRef = useRef<undefined | ReturnType<typeof setTimeout>>(undefined);
 	const onMountToggle = useCallback((bool: boolean) => {
 		setIsMounted(bool);
 	}, []);
@@ -27,22 +26,31 @@ export const useModal = (): UseModalReturn => {
 	const onMountAndOpen = useCallback(() => {
 		if (isMounted) return;
 		onMountToggle(true);
-		timerRef.current = setTimeout(() => {
+		openTimerRef.current = setTimeout(() => {
 			onOpenToggle(true);
 		}, 0);
 	}, [isMounted, onMountToggle, onOpenToggle]);
 
+	const onUnmountAndClose = useCallback(() => {
+		if (!isMounted) return;
+		onOpenToggle?.(false);
+
+		closeTimerRef.current = setTimeout(() => {
+			onMountToggle?.(false);
+		}, 300);
+	}, [isMounted, onMountToggle, onOpenToggle]);
+
 	useEffect(() => {
 		return () => {
-			clearTimeout(timerRef.current);
+			clearTimeout(openTimerRef.current);
+			clearTimeout(closeTimerRef.current);
 		};
 	}, []);
 
 	return {
 		isOpened,
-		onOpenToggle,
 		isMounted,
-		onMountToggle,
+		onUnmountAndClose,
 		onMountAndOpen,
 	};
 };

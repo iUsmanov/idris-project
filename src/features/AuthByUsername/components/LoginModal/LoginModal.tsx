@@ -8,12 +8,11 @@ interface LoginModalProps {
 	className?: string;
 	isOpened?: boolean;
 	isMounted?: boolean;
-	onOpenToggle?: (bool: boolean) => void;
-	onMountToggle?: (bool: boolean) => void;
+	onModalClose?: () => void;
 }
 
 export const LoginModal = memo((props: LoginModalProps) => {
-	const { className, isOpened, onMountToggle, isMounted, onOpenToggle } = props;
+	const { className, isOpened, isMounted, onModalClose } = props;
 
 	return (
 		<Modal
@@ -21,15 +20,10 @@ export const LoginModal = memo((props: LoginModalProps) => {
 			container={document.body}
 			isOpened={isOpened}
 			isMounted={isMounted}
-			onOpenToggle={onOpenToggle}
-			onMountToggle={onMountToggle}
+			onModalClose={onModalClose}
 		>
 			<Suspense fallback={<Loader size='min' />}>
-				<LoginFormAsync
-					isOpened={isOpened}
-					onOpenToggle={onOpenToggle}
-					onMountToggle={onMountToggle}
-				/>
+				<LoginFormAsync isOpened={isOpened} onModalClose={onModalClose} />
 			</Suspense>
 		</Modal>
 	);

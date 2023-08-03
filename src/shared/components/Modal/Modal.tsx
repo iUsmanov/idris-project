@@ -1,4 +1,4 @@
-import { ReactNode, memo, useCallback, useEffect, useRef } from 'react';
+import { ReactNode, memo, useCallback, useEffect } from 'react';
 import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Modal.module.scss';
 import { Flex } from '../Stack';
@@ -10,8 +10,7 @@ interface ModalProps {
 	children: ReactNode;
 	isOpened?: boolean;
 	isMounted?: boolean;
-	onOpenToggle?: (bool: boolean) => void;
-	onMountToggle?: (bool: boolean) => void;
+	onModalClose?: () => void;
 }
 
 export const Modal = memo((props: ModalProps) => {
@@ -21,35 +20,17 @@ export const Modal = memo((props: ModalProps) => {
 		container,
 		isOpened = false,
 		isMounted = false,
-		onOpenToggle,
-		onMountToggle,
+		onModalClose
 	} = props;
-	const timerRef = useRef<undefined | ReturnType<typeof setTimeout>>(undefined);
 
 	const onContentClick = useCallback((event: React.MouseEvent) => {
 		event.stopPropagation();
 	}, []);
 
-	const closeHandler = useCallback(() => {
-		if (!isMounted) return;
-		onOpenToggle?.(false);
-
-		timerRef.current = setTimeout(() => {
-			onMountToggle?.(false);
-		}, 300);
-	}, [isMounted, onMountToggle, onOpenToggle]);
-
-	useEffect(() => {
-		return () => {
-			clearTimeout(timerRef.current);
-		};
-	}, []);
-
 	useEffect(() => {
 		const onEscapeClose = (event: KeyboardEvent) => {
 			if (event.key === 'Escape') {
-				console.log('ESCAPE');
-				closeHandler();
+				onModalClose?.();
 			}
 		};
 
@@ -60,7 +41,7 @@ export const Modal = memo((props: ModalProps) => {
 		return () => {
 			document.removeEventListener('keydown', onEscapeClose);
 		};
-	}, [closeHandler, isOpened]);
+	}, [onModalClose, isOpened]);
 
 	const mods: Mods = {
 		[cls.opened]: isOpened,
@@ -69,7 +50,7 @@ export const Modal = memo((props: ModalProps) => {
 	return (
 		<Portal container={container} isMounted={isMounted}>
 			<div className={classNames(cls.modal, mods, [className])}>
-				<Flex justify='center' align='center' className={cls.overlay} onClick={closeHandler}>
+				<Flex justify='center' align='center' className={cls.overlay} onClick={onModalClose}>
 					<div onClick={onContentClick} className={cls.content}>
 						{children}
 					</div>
