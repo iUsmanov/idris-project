@@ -4,9 +4,9 @@ import { NotificationsList } from '@/entities/Notification';
 import { Icon } from '@/shared/components/Icon/Icon';
 import { Button } from '@/shared/components/Button/Button';
 import NotificationIcon from '@/shared/assets/icons/notification-20-20.svg';
-import { Modal } from '@/shared/components/Modal/Modal';
 import { useModal } from '@/shared/lib/hooks/useModal/useModal';
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { Drawer } from '@/shared/components/Drawer/Drawer';
 
 interface NotificationsDrawerProps {
 	className?: string;
@@ -21,15 +21,14 @@ export const NotificationsDrawer = memo((props: NotificationsDrawerProps) => {
 			<Button variant='clear' onClick={onMountAndOpen}>
 				<Icon Svg={NotificationIcon} variant='inverted' />
 			</Button>
-			<Modal
+			<Drawer
 				container={document.body}
-				isDrawer={true}
 				isMounted={isMounted}
 				isOpened={isOpened}
-				onModalClose={onUnmountAndClose}
+				onDrawerClose={onUnmountAndClose}
 			>
 				<NotificationsList className={classNames(cls.mobileNotifications, {}, [className])} />
-			</Modal>
+			</Drawer>
 		</>
 	);
 });
