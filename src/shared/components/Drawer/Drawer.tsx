@@ -3,8 +3,7 @@ import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Drawer.module.scss';
 import { Portal } from '../Portal/Portal';
 import { Overlay } from '../Overlay/Overlay';
-import { a, useSpring, config } from '@react-spring/web';
-import { useDrag } from '@use-gesture/react';
+import { useAnimationLibs } from '@/shared/lib/components/AnimationProvider/AnimationProvider';
 
 interface DrawerProps {
 	className?: string;
@@ -17,10 +16,11 @@ interface DrawerProps {
 
 const height = window.innerHeight;
 
-export const Drawer = memo((props: DrawerProps) => {
+const DrawerComponent = memo((props: DrawerProps) => {
 	const { className, children, container, isOpened = false, isMounted = false, onDrawerClose } = props;
+	const { Spring, Gesture } = useAnimationLibs();
 
-	const [{ y }, api] = useSpring(() => ({ y: height }));
+	const [{ y }, api] = Spring.useSpring(() => ({ y: height }));
 
 	const openDrawer = useCallback(() => {
 		api.start({ y: 0, immediate: false });
@@ -36,12 +36,12 @@ export const Drawer = memo((props: DrawerProps) => {
 		api.start({
 			y: height,
 			immediate: false,
-			config: { ...config.stiff, velocity },
+			config: { ...Spring.config.stiff, velocity },
 			onResolve: onDrawerClose,
 		});
 	};
 
-	const bind = useDrag(
+	const bind = Gesture.useDrag(
 		({ last, velocity: [, vy], direction: [, dy], movement: [, my], cancel }) => {
 			if (my < -70) cancel();
 
@@ -69,17 +69,25 @@ export const Drawer = memo((props: DrawerProps) => {
 	return (
 		<Portal container={container} isMounted={isMounted}>
 			<div className={classNames(cls.modal, mods, [className])}>
-				<Overlay onClick={closeDrawer}>
-					<a.div
+				<Overlay onClick={() => closeDrawer()}>
+					<Spring.a.div
 						onClick={onContentClick}
 						style={{ display, bottom: `calc(-100vh + ${height - 100}px)`, y }}
 						className={classNames(cls.drawerContent, {}, [cls.sheet])}
 						{...bind()}
 					>
 						{children}
-					</a.div>
+					</Spring.a.div>
 				</Overlay>
 			</div>
 		</Portal>
 	);
+});
+
+export const Drawer = memo((props: DrawerProps) => {
+	const { isLoaded } = useAnimationLibs();
+
+	if (!isLoaded) return null;
+
+	return <DrawerComponent {...props} />;
 });

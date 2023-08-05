@@ -7,7 +7,9 @@ const meta = {
 	component: Drawer,
 	tags: ['autodocs'],
 	argTypes: {},
-	args: {},
+	args: {
+		children: 'Text'
+	},
 } satisfies Meta<typeof Drawer>;
 
 export default meta;
