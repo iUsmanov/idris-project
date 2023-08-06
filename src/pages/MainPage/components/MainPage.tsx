@@ -1,5 +1,4 @@
 import { RatingCard } from '@/entities/Rating';
-import { StarRating } from '@/shared/components/StarRating/StarRating';
 import { Page } from '@/widgets/Page';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';

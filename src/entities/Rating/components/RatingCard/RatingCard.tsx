@@ -26,7 +26,7 @@ export const RatingCard = memo((props: RatingCardProps) => {
 	const { className, feedbackTitle, hasFeedback, onAccept, onCancel, title, rate = 0 } = props;
 	const [starsCount, setStarsCount] = useState(rate);
 	const [feedback, setFeedback] = useState<string>('');
-	const { t } = useTranslation();
+	const { t } = useTranslation(['translation', 'article-details']);
 	const {
 		isMounted,
 		isOpened,
@@ -64,10 +64,10 @@ export const RatingCard = memo((props: RatingCardProps) => {
 	);
 
 	return (
-		<Card className={classNames('', {}, [className])}>
+		<Card className={classNames('', {}, [className])} max>
 			<VStack align='center' gap='8'>
-				<Text title={title} />
-				<StarRating size={40} onSelect={onSelectStars} />
+				<Text title={starsCount ? t('Спасибо за оценку!') : title} />
+				<StarRating selectedStars={starsCount} size={40} onSelect={onSelectStars} />
 			</VStack>
 			<DesktopView>
 				<Modal

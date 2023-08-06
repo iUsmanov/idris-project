@@ -7,10 +7,15 @@ import { ArticleRecommendations } from '@/features/ArticleRecommendations';
 import { ArticleDetails, getArticleDetailsError } from '@/features/ArticleDetails';
 import { useSelector } from 'react-redux';
 import { VStack } from '@/shared/components/Stack';
+import { ArticleRating } from '@/features/articleRating';
+import { useParams } from 'react-router-dom';
 
 export const ArticleDetailsPage = memo(() => {
 	const { t } = useTranslation('article-details');
 	const error = useSelector(getArticleDetailsError);
+	const { id } = useParams<{ id: string }>();
+
+	if(!id) return null;
 
 	return (
 		<Page className={classNames('', {}, [])}>
@@ -18,6 +23,7 @@ export const ArticleDetailsPage = memo(() => {
 				<ArticleDetails />
 				{!error && (
 					<>
+						<ArticleRating articleId={id} />
 						<ArticleRecommendations />
 						<ArticleCommentsList />
 					</>
