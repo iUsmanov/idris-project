@@ -8,7 +8,7 @@ const meta = {
 	tags: ['autodocs'],
 	argTypes: {},
 	args: {
-		
+		articleId: '1',
 	},
 } satisfies Meta<typeof ArticleRating>;
 
