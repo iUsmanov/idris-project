@@ -2,7 +2,7 @@ import { memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './ArticlesSort.module.scss';
-import { Select, SelectOption } from '@/shared/components/Select/Select';
+import { Select, SelectOption } from '@/shared/components/Select';
 import { SortOrder } from '@/shared/types/sort';
 import { HStack } from '@/shared/components/Stack';
 import { articlesSortActions, articlesSortReducer } from '../model/slice/articlesSortSlice';

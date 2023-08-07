@@ -1,7 +1,7 @@
 import { memo, useState } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Sidebar.module.scss';
-import { Button } from '@/shared/components/Button/Button';
+import { Button } from '@/shared/components/Button';
 import { ThemeSwitcher } from '@/features/ThemeSwitcher';
 import { Flex, VStack } from '@/shared/components/Stack';
 import { LangSwitcher } from '@/features/LangSwitcher';

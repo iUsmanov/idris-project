@@ -5,7 +5,7 @@ import cls from './NotificationsList.module.scss';
 import { useGetNotificationsQuery } from '../../api/notificationsApi';
 import { VStack } from '@/shared/components/Stack';
 import { NotificationItem } from '../NotificationItem/NotificationItem';
-import { Skeleton } from '@/shared/components/Skeleton/Skeleton';
+import { Skeleton } from '@/shared/components/Skeleton';
 
 interface NotificationsListProps {
 	className?: string;

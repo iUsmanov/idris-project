@@ -4,9 +4,9 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './CommentsList.module.scss';
 import { Comment } from '../../model/types/comment';
 import { CommentCard } from '../CommentCard/CommentCard';
-import { Text } from '@/shared/components/Text/Text';
+import { Text } from '@/shared/components/Text';
 import { HStack, VStack } from '@/shared/components/Stack';
-import { Skeleton } from '@/shared/components/Skeleton/Skeleton';
+import { Skeleton } from '@/shared/components/Skeleton';
 
 interface CommentsListProps {
 	className?: string;

@@ -6,7 +6,7 @@ import { RatingCard } from '@/entities/Rating';
 import { useGetArticleRatingQuery, usePostArticleRatingMutation } from '../../api/articleRatingApi';
 import { getUserAuthData } from '@/entities/User';
 import { useSelector } from 'react-redux';
-import { Skeleton } from '@/shared/components/Skeleton/Skeleton';
+import { Skeleton } from '@/shared/components/Skeleton';
 
 export interface ArticleRatingProps {
 	className?: string;

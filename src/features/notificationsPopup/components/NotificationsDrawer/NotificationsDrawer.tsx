@@ -1,12 +1,12 @@
 import { memo } from 'react';
 import cls from './NotificationsDrawer.module.scss';
 import { NotificationsList } from '@/entities/Notification';
-import { Icon } from '@/shared/components/Icon/Icon';
-import { Button } from '@/shared/components/Button/Button';
+import { Icon } from '@/shared/components/Icon';
+import { Button } from '@/shared/components/Button';
 import NotificationIcon from '@/shared/assets/icons/notification-20-20.svg';
 import { useModal } from '@/shared/lib/hooks/useModal/useModal';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Drawer } from '@/shared/components/Drawer/Drawer';
+import { Drawer } from '@/shared/components/Drawer';
 
 interface NotificationsDrawerProps {
 	className?: string;

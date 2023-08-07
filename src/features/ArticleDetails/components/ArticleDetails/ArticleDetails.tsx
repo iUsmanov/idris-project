@@ -12,12 +12,12 @@ import {
 	getArticleDetailsError,
 	getArticleDetailsIsLoading,
 } from '../../model/selectors/articleDetailsSelectors/articleDetailsSelectors';
-import { Text } from '@/shared/components/Text/Text';
-import { Avatar } from '@/shared/components/Avatar/Avatar';
+import { Text } from '@/shared/components/Text';
+import { Avatar } from '@/shared/components/Avatar';
 import { Flex, HStack, VStack } from '@/shared/components/Stack';
 import EyeIcon from '@/shared/assets/icons/eye-20-20.svg';
 import CalendarIcon from '@/shared/assets/icons/calendar-20-20.svg';
-import { Icon } from '@/shared/components/Icon/Icon';
+import { Icon } from '@/shared/components/Icon';
 
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 import {
@@ -28,7 +28,7 @@ import {
 } from '@/entities/Article';
 import { ArticleDetailsHeader } from '../ArticleDetailsHeader/ArticleDetailsHeader';
 import { useParams } from 'react-router-dom';
-import { Skeleton } from '@/shared/components/Skeleton/Skeleton';
+import { Skeleton } from '@/shared/components/Skeleton';
 
 interface ArticleDetailsProps {
 	className?: string;

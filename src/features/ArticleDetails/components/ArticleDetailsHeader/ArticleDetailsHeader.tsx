@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { HStack } from '@/shared/components/Stack';
-import { AppLink } from '@/shared/components/AppLink/AppLink';
+import { AppLink } from '@/shared/components/AppLink';
 import { getRouteArticleEdit, getRouteArticles } from '@/shared/const/router';
 import { useSelector } from 'react-redux';
 import { getArticleCanEdit } from '../../model/selectors/getArticleCanEdit/getArticleCanEdit';

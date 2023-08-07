@@ -1,8 +1,8 @@
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Card } from '@/shared/components/Card/Card';
-import { Input } from '@/shared/components/Input/Input';
+import { Card } from '@/shared/components/Card';
+import { Input } from '@/shared/components/Input';
 import { useSearchParams } from 'react-router-dom';
 import { articlesSearchActions, articlesSearchReducer } from '../model/slice/articlesSearchSlice';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';

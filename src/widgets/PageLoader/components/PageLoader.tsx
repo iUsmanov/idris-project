@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './PageLoader.module.scss';
-import { Loader } from '@/shared/components/Loader/Loader';
+import { Loader } from '@/shared/components/Loader';
 import { HStack } from '@/shared/components/Stack';
 
 interface PageLoaderProps {

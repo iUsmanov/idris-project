@@ -2,9 +2,9 @@ import { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './ArticleListItem.module.scss';
 import { ArticleView } from '../../model/types/article';
-import { Card } from '@/shared/components/Card/Card';
+import { Card } from '@/shared/components/Card';
 import { HStack } from '@/shared/components/Stack';
-import { Skeleton } from '@/shared/components/Skeleton/Skeleton';
+import { Skeleton } from '@/shared/components/Skeleton';
 
 interface ArticleListItemSkeletonProps {
 	className?: string;

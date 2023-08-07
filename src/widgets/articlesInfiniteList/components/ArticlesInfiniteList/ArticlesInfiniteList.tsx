@@ -25,7 +25,7 @@ import { ArticleTypeTabs } from '@/features/ArticleTypeTabs';
 import { ArticlesSearch } from '@/features/ArticlesSearch';
 import { ArticlesSort } from '@/features/ArticlesSort';
 import { HStack, VStack } from '@/shared/components/Stack';
-import { Text } from '@/shared/components/Text/Text';
+import { Text } from '@/shared/components/Text';
 
 interface ArticlesInfiniteListProps {
 	className?: string;

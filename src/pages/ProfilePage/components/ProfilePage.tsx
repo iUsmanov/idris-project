@@ -4,7 +4,7 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import { Page } from '@/widgets/Page';
 import { EditableProfileCard } from '@/features/EditableProfileCard';
 import { useParams } from 'react-router-dom';
-import { Text } from '@/shared/components/Text/Text';
+import { Text } from '@/shared/components/Text';
 
 interface ProfilePageProps {
 	className?: string;

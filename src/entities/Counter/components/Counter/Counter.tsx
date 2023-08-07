@@ -3,7 +3,7 @@ import cls from './Counter.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { counterActions } from '../../model/slices/counterSlice';
 import { getCounterValue } from '../../model/selectors/getCounterValue/getCounterValue';
-import { Button } from '@/shared/components/Button/Button';
+import { Button } from '@/shared/components/Button';
 import { memo } from 'react';
 
 export const Counter = memo(() => {

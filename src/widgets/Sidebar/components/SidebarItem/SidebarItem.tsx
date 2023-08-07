@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './SidebarItem.module.scss';
-import { AppLink } from '@/shared/components/AppLink/AppLink';
+import { AppLink } from '@/shared/components/AppLink';
 import { HStack } from '@/shared/components/Stack';
 import { useSelector } from 'react-redux';
 import { getUserAuthData } from '@/entities/User';

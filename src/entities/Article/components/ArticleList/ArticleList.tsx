@@ -6,7 +6,7 @@ import { Article, ArticleView } from '../../model/types/article';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import { HStack, VStack } from '@/shared/components/Stack';
 import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton';
-import { Text } from '@/shared/components/Text/Text';
+import { Text } from '@/shared/components/Text';
 
 interface ArticleListProps {
 	className?: string;

@@ -1,5 +1,5 @@
 import { memo, useEffect, useState } from 'react';
-import { Button } from '@/shared/components/Button/Button';
+import { Button } from '@/shared/components/Button';
 
 export const BugButton = memo(() => {
 	const [error, setError] = useState<boolean>(false);

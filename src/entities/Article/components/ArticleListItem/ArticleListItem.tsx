@@ -3,14 +3,14 @@ import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './ArticleListItem.module.scss';
 import { Article, ArticleTextBlock, ArticleView } from '../../model/types/article';
-import { Card } from '@/shared/components/Card/Card';
-import { Text } from '@/shared/components/Text/Text';
+import { Card } from '@/shared/components/Card';
+import { Text } from '@/shared/components/Text';
 import { HStack } from '@/shared/components/Stack';
-import { Icon } from '@/shared/components/Icon/Icon';
+import { Icon } from '@/shared/components/Icon';
 import EyeIcon from '@/shared/assets/icons/eye-20-20.svg';
-import { Avatar } from '@/shared/components/Avatar/Avatar';
+import { Avatar } from '@/shared/components/Avatar';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
-import { AppLink } from '@/shared/components/AppLink/AppLink';
+import { AppLink } from '@/shared/components/AppLink';
 import { getRouteArticleDetails } from '@/shared/const/router';
 
 interface ArticleListItemProps {

@@ -6,8 +6,8 @@ import { ArticleView } from '@/entities/Article';
 import ListIcon from '@/shared/assets/icons/list-24-24.svg';
 import TileIcon from '@/shared/assets/icons/tiled-24-24.svg';
 import { HStack } from '@/shared/components/Stack';
-import { Button } from '@/shared/components/Button/Button';
-import { Icon } from '@/shared/components/Icon/Icon';
+import { Button } from '@/shared/components/Button';
+import { Icon } from '@/shared/components/Icon';
 
 interface ArticleViewSelectorProps {
 	className?: string;

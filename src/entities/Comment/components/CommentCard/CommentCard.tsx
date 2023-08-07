@@ -4,9 +4,9 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './CommentCard.module.scss';
 import { Comment } from '../../model/types/comment';
 import { HStack, VStack } from '@/shared/components/Stack';
-import { Text } from '@/shared/components/Text/Text';
-import { Avatar } from '@/shared/components/Avatar/Avatar';
-import { AppLink } from '@/shared/components/AppLink/AppLink';
+import { Text } from '@/shared/components/Text';
+import { Avatar } from '@/shared/components/Avatar';
+import { AppLink } from '@/shared/components/AppLink';
 import { getRouteProfile } from '@/shared/const/router';
 
 interface CommentCardProps {

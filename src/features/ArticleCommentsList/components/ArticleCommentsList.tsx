@@ -14,7 +14,7 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { fetchArticleCommentsByArticleId } from '../model/services/fetchArticleCommentsByArticleId/fetchArticleCommentsByArticleId';
 import { useParams } from 'react-router-dom';
 import { AddNewComment } from '@/entities/AddNewComment';
-import { Text } from '@/shared/components/Text/Text';
+import { Text } from '@/shared/components/Text';
 import { sendArticleComment } from '../model/services/sendArticleComment/sendArticleComment';
 import {
 	getArticleCommentsListCommentsError,

@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './NotificationItem.module.scss';
 import { Notification } from '../../model/types/notification';
-import { Card } from '@/shared/components/Card/Card';
-import { Text } from '@/shared/components/Text/Text';
+import { Card } from '@/shared/components/Card';
+import { Text } from '@/shared/components/Text';
 
 interface NotificationItemProps {
 	className?: string;

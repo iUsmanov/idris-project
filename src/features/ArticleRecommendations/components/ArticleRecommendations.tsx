@@ -4,7 +4,7 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './ArticleRecommendations.module.scss';
 import { VStack } from '@/shared/components/Stack';
 import { ArticleList } from '@/entities/Article';
-import { Text } from '@/shared/components/Text/Text';
+import { Text } from '@/shared/components/Text';
 import { useGetArticleRecommendationsQuery } from '../api/articleRecommendationsApi';
 
 interface ArticleRecommendationsProps {
