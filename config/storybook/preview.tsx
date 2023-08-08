@@ -39,22 +39,21 @@ export const globalTypes = {
 			showName: true,
 		},
 	},
-
-	// theme: {
-	// 	name: 'Theme',
-	// 	description: 'Global theme for components',
-	// 	toolbar: {
-	// 		// https://5a375b97f4b14f0020b0cda3-wbeulgbetj.chromatic.com/?path=/story/basics-icon--labels
-	// 		icon: 'circlehollow',
-	// 		items: [
-	// 			{ value: 'app-light-theme', title: 'Light' },
-	// 			{ value: 'app-dark-theme', title: 'Dark' },
-	// 			{ value: 'app-dark-orange', title: 'Orange' },
-	// 		],
-	// 		showName: true,
-	// 		dynamicTitle: true,
-	// 	},
-	// },
+	theme: {
+		name: 'Theme',
+		description: 'Global theme for components',
+		toolbar: {
+			// https://5a375b97f4b14f0020b0cda3-wbeulgbetj.chromatic.com/?path=/story/basics-icon--labels
+			icon: 'circlehollow',
+			items: [
+				{ value: 'app-light-theme', title: 'Light' },
+				{ value: 'app-dark-theme', title: 'Dark' },
+				{ value: 'app-orange-theme', title: 'Orange' },
+			],
+			showName: true,
+			dynamicTitle: true,
+		},
+	},
 };
 
 export default preview;
