@@ -1,7 +1,7 @@
 import { StateSchema } from '@/app/providers/StoreProvider/testing';
 import { ThunkExtraArg } from '@/app/providers/StoreProvider/testing';
 import { AsyncThunkAction } from '@reduxjs/toolkit';
-import axios, { AxiosInstance, AxiosStatic } from 'axios';
+import axios, { AxiosStatic } from 'axios';
 
 type Thunk<Return, Arg, RejectedValue> = (
 	arg: Arg

@@ -33,7 +33,14 @@ module.exports = {
 		// project: './tsconfig.json',
 		// tsconfigRootDir: __dirname,
 	},
-	plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks', 'fsd-paths-guard'],
+	plugins: [
+		'react',
+		'@typescript-eslint',
+		'i18next',
+		'react-hooks',
+		'fsd-paths-guard',
+		'unused-imports',
+	],
 	rules: {
 		'react/display-name': 'off',
 		'@typescript-eslint/ban-ts-comment': 'off',
@@ -81,6 +88,8 @@ module.exports = {
 				ignoreImportPatterns: ['**/StoreProvider', '**/testing'],
 			},
 		],
+		'unused-imports/no-unused-imports': 'error',
+		'@typescript-eslint/no-explicit-any': 'warn',
 	},
 	globals: {
 		__IS_DEV__: true,
@@ -97,3 +106,4 @@ module.exports = {
 		},
 	},
 };
+// @typescript-eslint/eslint-plugin@latest @typescript-eslint/parser@latest eslint@latest eslint-plugin-react@latest eslint-plugin-storybook@latest eslint-config-prettier@latest eslint-plugin-i18next@latest

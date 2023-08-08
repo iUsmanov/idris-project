@@ -1,4 +1,4 @@
-import { ReactNode, memo } from 'react';
+import { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Glinter.module.scss';
 

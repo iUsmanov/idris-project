@@ -8,7 +8,6 @@ import { Country } from '@/entities/Country/testing';
 import { Profile } from '@/entities/Profile/testing';
 import { profileReducer } from '../../model/slice/profileSlice';
 import { $api } from '@/shared/api/api';
-import axios from 'axios';
 
 // =====PAL
 /* 
