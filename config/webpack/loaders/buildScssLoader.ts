@@ -4,6 +4,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 export function buildScssLoader(isDev: boolean): webpack.RuleSetRule {
 	const scssLoader = {
 		test: /\.s[ac]ss$/i,
+		exclude: /node_modules/,
 		use: [
 			isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
 			{

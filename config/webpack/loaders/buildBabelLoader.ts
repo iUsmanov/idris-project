@@ -8,6 +8,7 @@ export function buildBabelLoader(isDev: boolean, isTsx?: boolean): webpack.RuleS
 		use: {
 			loader: 'babel-loader',
 			options: {
+				cacheDirectory: true,
 				presets: ['@babel/preset-env'],
 				plugins: [
 					isDev && 'react-refresh/babel',
