@@ -13,7 +13,6 @@ import {
 	getArticleDetailsIsLoading,
 } from '../../model/selectors/articleDetailsSelectors/articleDetailsSelectors';
 import { Text } from '@/shared/components/Text';
-import { Avatar } from '@/shared/components/Avatar';
 import { Flex, HStack, VStack } from '@/shared/components/Stack';
 import EyeIcon from '@/shared/assets/icons/eye-20-20.svg';
 import CalendarIcon from '@/shared/assets/icons/calendar-20-20.svg';
@@ -29,6 +28,7 @@ import {
 import { ArticleDetailsHeader } from '../ArticleDetailsHeader/ArticleDetailsHeader';
 import { useParams } from 'react-router-dom';
 import { Skeleton } from '@/shared/components/Skeleton';
+import { AppImage } from '@/shared/components/AppImage';
 
 interface ArticleDetailsProps {
 	className?: string;
@@ -99,7 +99,7 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
 	return (
 		<VStack max gap='16' className={classNames(cls.articleDetails, {}, [className])}>
 			<ArticleDetailsHeader />
-			<Avatar justify='center' max src={article?.img} size={200} />
+			<AppImage src={article?.img} className={cls.preview} />
 			<VStack max gap='8'>
 				<Text title={article?.title} text={article?.subtitle} size='size_l' />
 				<HStack gap='8' align='center'>

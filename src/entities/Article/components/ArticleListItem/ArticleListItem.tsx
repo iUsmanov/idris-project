@@ -12,6 +12,8 @@ import { Avatar } from '@/shared/components/Avatar';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 import { AppLink } from '@/shared/components/AppLink';
 import { getRouteArticleDetails } from '@/shared/const/router';
+import { AppImage } from '@/shared/components/AppImage';
+import { Skeleton } from '@/shared/components/Skeleton';
 
 interface ArticleListItemProps {
 	className?: string;
@@ -46,7 +48,12 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 				<Text size='size_m' text={article.title} />
 				{types}
 				<div className={cls.image}>
-					<img src={article.img} alt='' className={cls.img} />
+					<AppImage
+						loadingFallback={<Skeleton width={'100%'} height={250} />}
+						src={article.img}
+						alt={article.title}
+						className={cls.img}
+					/>
 				</div>
 				{textBlock && <ArticleTextBlockComponent block={textBlock} className={cls.textBlock} />}
 				<HStack align='center' justify='between'>
@@ -63,7 +70,12 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 		<AppLink to={getRouteArticleDetails(article.id)} target={target}>
 			<Card className={classNames(cls.articleListItem, {}, [className, cls[view]])}>
 				<div className={cls.image}>
-					<img src={article.img} alt='' className={cls.img} />
+					<AppImage
+						loadingFallback={<Skeleton width={200} height={200} />}
+						src={article.img}
+						alt={article.title}
+						className={cls.img}
+					/>
 					<Text size='size_m' className={cls.createdAt} text={article.createdAt} />
 				</div>
 				<HStack justify='between'>
