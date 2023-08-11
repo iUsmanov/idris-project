@@ -7,7 +7,7 @@ import { Page } from '@/widgets/Page';
 export const NotFoundPage = memo(() => {
 	const { t } = useTranslation();
 	return (
-		<Page>
+		<Page data-testid='NotFoundPage'>
 			<HStack justify='center' align='center' className={cls.notFoundPage}>
 				{t('Страница не найдена')}
 			</HStack>

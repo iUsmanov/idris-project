@@ -5,5 +5,5 @@ import { useTranslation } from 'react-i18next';
 export const AdminPanelPage = memo(() => {
 	const { t } = useTranslation();
 
-	return <Page>ADMINPANELPAGE</Page>;
+	return <Page data-testid='AdminPanelPage'>ADMINPANELPAGE</Page>;
 });

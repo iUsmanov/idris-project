@@ -26,7 +26,7 @@ import { AdminPanelPage } from '@/pages/AdminPanelPage';
 import { RequireRoles } from '../components/RequireRoles';
 import { ForbiddenPage } from '@/pages/ForbiddenPage';
 
-export const routeConfig: Record<AppRoutes, AppRouteObject> = {
+const routeConfig: Record<AppRoutes, AppRouteObject> = {
 	main: {
 		path: getRouteMain(),
 		element: <MainPage />,
@@ -76,7 +76,7 @@ export const routeConfig: Record<AppRoutes, AppRouteObject> = {
 	},
 };
 
-const routes = Object.values(routeConfig).map((route) => {
+export const routes = Object.values(routeConfig).map((route) => {
 	if (route.authOnly) {
 		const routeElement = route.element;
 		route.element = <RequireAuth>{routeElement as JSX.Element}</RequireAuth>;
