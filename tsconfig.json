@@ -22,7 +22,8 @@
 		"compilerOptions": {
 			"module": "CommonJS"
 		}
-	}
+	},
+	"exclude": ["./cypress.config.ts", "./cypress/e2e/**/*.*"]
 	// "include": [
 	// 	"./config/jest/jest.config.ts",
 	// 	"./config/jest/setupTests.ts",

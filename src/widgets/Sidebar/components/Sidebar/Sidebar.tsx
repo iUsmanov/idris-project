@@ -19,6 +19,7 @@ export const Sidebar = memo((props: SidebarProps) => {
 	const { t } = useTranslation();
 	const [collapsed, setCollapsed] = useState<boolean>(false);
 	const sidebarItemsList = useSelector(getSidebarItems);
+
 	return (
 		<section
 			data-testid={'sidebar'}

@@ -21,7 +21,7 @@ export const ArticlesPage = memo(() => {
 	}, [dispatch]);
 
 	return (
-		<Page onScrollEnd={onLoadNextPart}>
+		<Page onScrollEnd={onLoadNextPart} data-testid='ArticlesPage'>
 			{/* Не забывать, что если здесь появится контент, который будет ниже, использовать констркуцию {!error && <>{JSX}</>} */}
 			<ArticlesInfiniteList />
 		</Page>
