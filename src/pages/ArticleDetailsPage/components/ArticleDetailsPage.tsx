@@ -9,8 +9,9 @@ import { useSelector } from 'react-redux';
 import { VStack } from '@/shared/components/Stack';
 import { ArticleRating } from '@/features/articleRating';
 import { useParams } from 'react-router-dom';
-import { getFeatureFlag } from '@/shared/lib/featureFlags';
+import { getFeatureFlag, toggleFeatures } from '@/shared/lib/featureFlags';
 import { Counter } from '@/entities/Counter';
+import { Card } from '@/shared/components/Card';
 
 export const ArticleDetailsPage = memo(() => {
 	const { t } = useTranslation('article-details');
@@ -21,6 +22,12 @@ export const ArticleDetailsPage = memo(() => {
 
 	if (!id) return null;
 
+	const articleRatingCard = toggleFeatures({
+		name: 'isArticleRatingEnabled',
+		on: () => <ArticleRating articleId={id} />,
+		off: () => <Card max>{t('Оценка статей скоро появится!')}</Card>,
+	});
+
 	return (
 		<Page className={classNames('', {}, [])}>
 			<VStack gap='16' max>
@@ -28,7 +35,7 @@ export const ArticleDetailsPage = memo(() => {
 				{!error && (
 					<>
 						{isCounterEnabled && <Counter />}
-						{isArticleRatingEnabled && <ArticleRating articleId={id} />}
+						{articleRatingCard}
 						<ArticleRecommendations />
 						<ArticleCommentsList />
 					</>
