@@ -9,13 +9,17 @@ import { useSelector } from 'react-redux';
 import { VStack } from '@/shared/components/Stack';
 import { ArticleRating } from '@/features/articleRating';
 import { useParams } from 'react-router-dom';
+import { getFeatureFlag } from '@/shared/lib/featureFlags';
+import { Counter } from '@/entities/Counter';
 
 export const ArticleDetailsPage = memo(() => {
 	const { t } = useTranslation('article-details');
 	const error = useSelector(getArticleDetailsError);
 	const { id } = useParams<{ id: string }>();
+	const isArticleRatingEnabled = getFeatureFlag('isArticleRatingEnabled');
+	const isCounterEnabled = getFeatureFlag('isCounterEnabled');
 
-	if(!id) return null;
+	if (!id) return null;
 
 	return (
 		<Page className={classNames('', {}, [])}>
@@ -23,7 +27,8 @@ export const ArticleDetailsPage = memo(() => {
 				<ArticleDetails />
 				{!error && (
 					<>
-						<ArticleRating articleId={id} />
+						{isCounterEnabled && <Counter />}
+						{isArticleRatingEnabled && <ArticleRating articleId={id} />}
 						<ArticleRecommendations />
 						<ArticleCommentsList />
 					</>
