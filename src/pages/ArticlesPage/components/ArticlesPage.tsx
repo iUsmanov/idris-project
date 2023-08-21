@@ -8,6 +8,7 @@ import {
 	fetchNextArticlesPage,
 	getArticlesInfiniteListError,
 } from '@/widgets/articlesInfiniteList';
+import { ArticlesPageGreeting } from '@/features/articlesPageGreeting';
 
 export const ArticlesPage = memo(() => {
 	const { t } = useTranslation();
@@ -22,8 +23,13 @@ export const ArticlesPage = memo(() => {
 
 	return (
 		<Page onScrollEnd={onLoadNextPart} data-testid='ArticlesPage'>
-			{/* Не забывать, что если здесь появится контент, который будет ниже, использовать констркуцию {!error && <>{JSX}</>} */}
 			<ArticlesInfiniteList />
+			{/* Не забывать, что если здесь появится контент, который будет ниже, использовать констркуцию {!error && <>{JSX}</>} */}
+			{!error && (
+				<>
+					<ArticlesPageGreeting />
+				</>
+			)}
 		</Page>
 	);
 });
