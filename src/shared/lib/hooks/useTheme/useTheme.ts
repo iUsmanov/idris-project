@@ -1,13 +1,13 @@
 import { useContext, useEffect } from 'react';
 import { Theme } from '@/shared/types/theme';
 import { ThemeContext } from '@/shared/lib/context/ThemeContext';
-import { LOCAL_STORAGE_THEME_KEY } from '@/shared/const/localStorage';
-import { defaultTheme } from '@/shared/const/theme';
 
 interface UseThemeResult {
 	theme: Theme;
-	changeTheme: () => void;
+	changeTheme: (saveAction?: (theme: Theme) => void) => void;
 }
+
+export const defaultTheme: Theme = 'app-light-theme';
 
 export function useTheme(): UseThemeResult {
 	const { theme, setTheme } = useContext(ThemeContext);
@@ -16,7 +16,7 @@ export function useTheme(): UseThemeResult {
 		document.body.classList.add(defaultTheme);
 	}, []);
 
-	const changeTheme = () => {
+	const changeTheme = (saveAction?: (theme: Theme) => void) => {
 		let newTheme;
 		switch (theme) {
 			case 'app-light-theme':
@@ -39,11 +39,13 @@ export function useTheme(): UseThemeResult {
 		}
 
 		setTheme?.(newTheme);
-		localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
+		// localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
+
+		saveAction?.(newTheme);
 	};
 
 	return {
-		theme: theme || 'app-light-theme',
+		theme: theme || defaultTheme,
 		changeTheme,
 	};
 }
