@@ -1,3 +1,4 @@
+// ! Этот файл устарел
 import { Node, Project, SyntaxKind } from 'ts-morph';
 
 const removeFeatureName = process.argv[2];
@@ -48,10 +49,6 @@ files.forEach((sourceFile) => {
 				?.getText()
 				.slice(1, -1);
 
-			// console.log(onFunction?.getText());
-			// console.log(offFunction?.getText());
-			// console.log(featureName);
-
 			if (featureName !== removeFeatureName) return;
 
 			if (featureState === 'on') {
@@ -66,4 +63,3 @@ files.forEach((sourceFile) => {
 });
 
 project.save();
-// npx ts-node ./scripts/refactoring/removeFeatureFlag.ts
