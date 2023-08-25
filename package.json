@@ -32,6 +32,7 @@
 		"storybook:build": "storybook build -c ./config/storybook",
 		"prepare": "husky install",
 		"generate:slice": "node ./scripts/createSlice/index.js",
+		"remove-feature": "ts-node ./scripts/refactoring/removeFeatureFlag/removeFeatureFlag.ts",
 		"postinstall": "node ./scripts/clear-cache.js"
 	},
 	"author": "",

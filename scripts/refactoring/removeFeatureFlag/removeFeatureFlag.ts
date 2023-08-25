@@ -1,12 +1,15 @@
 // npx ts-node ./scripts/refactoring/removeFeatureFlag/removeFeatureFlag.ts isArticleRatingEnabled on
+// npm run remove-feature isArticleRatingEnabled on
 import { Project, SyntaxKind } from 'ts-morph';
-import { errorProcess } from './errorProcess';
+import { processError } from './processError';
+import { processToggleFunction } from './processToggleFunction';
+import { processToggleComponent } from './processToggleComponent';
 
 const project = new Project({});
 const removeFeatureName = process.argv[2];
 const stateToggle = process.argv[3];
 
-errorProcess(removeFeatureName, stateToggle);
+processError(removeFeatureName, stateToggle);
 
 project.addSourceFilesAtPaths('src/**/ArticleDetailsPage.{ts,tsx}');
 // project.addSourceFilesAtPaths('src/**/*.{ts,tsx}');
@@ -18,28 +21,12 @@ sourceFiles.forEach((sourceFile) => {
 			node.isKind(SyntaxKind.CallExpression) &&
 			node.getExpression().getText() === 'toggleFeatures'
 		) {
-			const objectOptions = node.getFirstChildByKind(SyntaxKind.ObjectLiteralExpression);
-			if (!objectOptions) return;
-
-			const featureNameProperty = objectOptions.getProperty('name');
-			const onFeatureProperty = objectOptions.getProperty('on');
-			const offFeatureProperty = objectOptions.getProperty('off');
-
-			const featureName = featureNameProperty
-				?.getFirstChildByKind(SyntaxKind.StringLiteral)
-				?.getLiteralValue();
-			const onFeatureFunction = onFeatureProperty?.getFirstChildByKind(SyntaxKind.ArrowFunction);
-			const offFeatureFunction = offFeatureProperty?.getFirstChildByKind(SyntaxKind.ArrowFunction);
-
-			if (featureName !== removeFeatureName) return;
-
-			if (stateToggle === 'on') {
-				node.replaceWithText(onFeatureFunction?.getBodyText() ?? '');
-			}
-
-			if (stateToggle === 'off') {
-				node.replaceWithText(offFeatureFunction?.getBodyText() ?? '');
-			}
+			processToggleFunction(node, removeFeatureName, stateToggle);
+		} else if (
+			node.isKind(SyntaxKind.JsxSelfClosingElement) &&
+			node.getFirstChildByKind(SyntaxKind.Identifier)?.getText() === 'ToggleFeatures'
+		) {
+			processToggleComponent(node, removeFeatureName, stateToggle);
 		}
 	});
 });

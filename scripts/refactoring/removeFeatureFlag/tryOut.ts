@@ -1,4 +1,4 @@
-// ! Этот файл устарел
+// ! Этот файл вышел из употребления!
 import { Node, Project, SyntaxKind } from 'ts-morph';
 
 const removeFeatureName = process.argv[2];

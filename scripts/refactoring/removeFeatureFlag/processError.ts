@@ -1,4 +1,4 @@
-export function errorProcess(removeFeatureName: string, stateToggle: string) {
+export function processError(removeFeatureName: string, stateToggle: string) {
 	if (!removeFeatureName) {
 		throw new Error('Укажите фичу-флаг!');
 	}
