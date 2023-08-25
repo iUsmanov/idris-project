@@ -1,4 +1,5 @@
 import { Node, SyntaxKind } from 'ts-morph';
+import { getFirstJsxDescendant } from './helpers';
 
 export function processToggleComponent(node: Node, removeFeatureName: string, stateToggle: string) {
 	const attributes = node.getFirstChildByKind(SyntaxKind.JsxAttributes);
@@ -6,14 +7,20 @@ export function processToggleComponent(node: Node, removeFeatureName: string, st
 	let cancel: boolean = false;
 
 	attributes?.forEachChild((attribute) => {
-		const featureName = attribute?.getFirstChildByKind(SyntaxKind.StringLiteral)?.getLiteralValue();
-		if (!featureName) return;
+		const attributeName = attribute.getFirstChild()?.getText();
+		if (attributeName !== 'name') return;
+		const attributeValue = attribute.getLastChild();
+
+		let featureName = attributeValue?.getText();
+
+		if (featureName?.startsWith('{')) {
+			featureName = featureName.slice(2, -2);
+		} else {
+			featureName = featureName?.slice(1, -1);
+		}
 
 		if (featureName !== removeFeatureName) {
-			const nameAttribute = attribute?.getFirstChildByKind(SyntaxKind.Identifier)?.getText();
-			if (nameAttribute === 'name') {
-				cancel = true;
-			}
+			cancel = true;
 		}
 	});
 
@@ -23,15 +30,23 @@ export function processToggleComponent(node: Node, removeFeatureName: string, st
 
 	attributes?.forEachChild((attribute) => {
 		const attributeName = attribute.getFirstChild()?.getText();
-		const attributeInner = attribute.getLastChild()?.getText().slice(1, -1);
+		if (attributeName !== stateToggle) return;
 
-		if (attributeName === stateToggle) {
-			if (attributeInner?.startsWith('(')) {
-				replaceExpression = attributeInner.slice(1, -1);
-			} else {
-				replaceExpression = attributeInner;
+		const attributeValue = attribute.getLastChild();
+		let attributeValueText = attributeValue?.getText();
+
+		if (
+			attributeValue &&
+			getFirstJsxDescendant(attributeValue) &&
+			!attributeValue?.getFirstChildByKind(SyntaxKind.BinaryExpression)
+		) {
+			attributeValueText = attributeValueText?.slice(1, -1);
+			if (attributeValueText?.startsWith('(')) {
+				attributeValueText = attributeValueText.slice(1, -1);
 			}
 		}
+
+		replaceExpression = attributeValueText;
 	});
 
 	node.replaceWithText(replaceExpression ?? '');

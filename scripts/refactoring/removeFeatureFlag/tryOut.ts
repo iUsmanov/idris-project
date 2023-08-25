@@ -1,4 +1,10 @@
 // ! Этот файл вышел из употребления!
+// ! Этот файл вышел из употребления!
+// ! Этот файл вышел из употребления!
+// ! Этот файл вышел из употребления!
+// ! Этот файл вышел из употребления!
+// ! Этот файл вышел из употребления!
+// ! Этот файл вышел из употребления!
 import { Node, Project, SyntaxKind } from 'ts-morph';
 
 const removeFeatureName = process.argv[2];
@@ -63,3 +69,129 @@ files.forEach((sourceFile) => {
 });
 
 project.save();
+
+/* 
+
+
+/* 
+
+import { Node, SyntaxKind } from 'ts-morph';
+import { getFirstJsxDescendant } from './helpers';
+import { log } from 'console';
+
+export function processToggleComponent(node: Node, removeFeatureName: string, stateToggle: string) {
+	const attributes = node.getFirstChildByKind(SyntaxKind.JsxAttributes);
+
+	let cancel: boolean = false;
+
+	attributes?.forEachChild((attribute) => {
+		const featureName = attribute?.getFirstChildByKind(SyntaxKind.StringLiteral)?.getLiteralValue();
+		if (!featureName) return;
+
+		if (featureName !== removeFeatureName) {
+			const nameAttribute = attribute?.getFirstChildByKind(SyntaxKind.Identifier)?.getText();
+			if (nameAttribute === 'name') {
+				cancel = true;
+			}
+		}
+	});
+
+	if (cancel) return;
+
+	let replaceExpression;
+
+	attributes?.forEachChild((attribute) => {
+		const attributeName = attribute.getFirstChild()?.getText();
+		if (attributeName !== 'name' && attributeName !== stateToggle) return;
+		const attributeValue = attribute.getLastChild();
+		// log(attributeValue?.getText());
+		// log(attributeValue?.getKindName());
+
+		// ===============
+		let attributeValueText = attributeValue?.getText().slice(1, -1);
+
+		if (
+			attributeValue?.getFirstChildByKind(SyntaxKind.StringLiteral) ||
+			attributeValue?.isKind(SyntaxKind.StringLiteral)
+		) {
+			if (
+				attributeValueText?.startsWith("'") ||
+				attributeValueText?.startsWith('"') ||
+				attributeValueText?.startsWith('`')
+			) {
+				attributeValueText = attributeValueText.slice(1, -1);
+			}
+		} else if (attributeValue && getFirstJsxDescendant(attributeValue)) {
+			if (attributeValueText?.startsWith('(')) {
+				attributeValueText = attributeValueText.slice(1, -1);
+			}
+		} else {
+			attributeValueText = '{' + attributeValueText + '}';
+		}
+
+		if (attributeName === stateToggle) {
+			replaceExpression = attributeValueText;
+		}
+	});
+
+	node.replaceWithText(replaceExpression ?? '');
+}
+
+*/
+/* 
+
+import { Node, SyntaxKind } from 'ts-morph';
+import { getFirstJsxDescendant } from './helpers';
+
+export function processToggleComponent(node: Node, removeFeatureName: string, stateToggle: string) {
+	const attributes = node.getFirstChildByKind(SyntaxKind.JsxAttributes);
+
+	let cancel: boolean = false;
+
+	attributes?.forEachChild((attribute) => {
+		const featureName = attribute?.getFirstChildByKind(SyntaxKind.StringLiteral)?.getLiteralValue();
+		if (!featureName) return;
+
+		if (featureName !== removeFeatureName) {
+			const nameAttribute = attribute?.getFirstChildByKind(SyntaxKind.Identifier)?.getText();
+			if (nameAttribute === 'name') {
+				cancel = true;
+			}
+		}
+	});
+
+	if (cancel) return;
+
+	let replaceExpression;
+
+	attributes?.forEachChild((attribute) => {
+		const attributeName = attribute.getFirstChild()?.getText();
+		if (attributeName !== 'name' && attributeName !== stateToggle) return;
+		const attributeValue = attribute.getFirstChildByKindOrThrow(SyntaxKind.JsxExpression);
+
+		let attributeValueText = attributeValue?.getText().slice(1, -1);
+
+		if (attributeValue?.getFirstChildByKind(SyntaxKind.StringLiteral)) {
+			if (
+				attributeValueText?.startsWith("'") ||
+				attributeValueText?.startsWith('"') ||
+				attributeValueText?.startsWith('`')
+			) {
+				attributeValueText = attributeValueText.slice(1, -1);
+			}
+		} else if (getFirstJsxDescendant(attributeValue)) {
+			if (attributeValueText?.startsWith('(')) {
+				attributeValueText = attributeValueText.slice(1, -1);
+			}
+		} else {
+			attributeValueText = '{' + attributeValueText + '}';
+		}
+
+		if (attributeName === stateToggle) {
+			replaceExpression = attributeValueText;
+		}
+	});
+
+	node.replaceWithText(replaceExpression ?? '');
+}
+ */

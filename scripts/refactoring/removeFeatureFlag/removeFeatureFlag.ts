@@ -1,4 +1,3 @@
-// npx ts-node ./scripts/refactoring/removeFeatureFlag/removeFeatureFlag.ts isArticleRatingEnabled on
 // npm run remove-feature isArticleRatingEnabled on
 import { Project, SyntaxKind } from 'ts-morph';
 import { processError } from './processError';
@@ -11,8 +10,8 @@ const stateToggle = process.argv[3];
 
 processError(removeFeatureName, stateToggle);
 
-project.addSourceFilesAtPaths('src/**/ArticleDetailsPage.{ts,tsx}');
-// project.addSourceFilesAtPaths('src/**/*.{ts,tsx}');
+// project.addSourceFilesAtPaths('src/pages/ArticleDetailsPage/components/ArticleDetailsPage.tsx');
+project.addSourceFilesAtPaths('src/**/*.{ts,tsx}');
 const sourceFiles = project.getSourceFiles();
 
 sourceFiles.forEach((sourceFile) => {

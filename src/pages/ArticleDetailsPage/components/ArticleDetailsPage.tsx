@@ -44,6 +44,15 @@ export const ArticleDetailsPage = memo(() => {
 						<ToggleFeatures
 							name='isArticleRatingEnabled'
 							on={<ArticleRating articleId={id} />}
+							off={articleRatingCard && <ArticleRating articleId={id} />}
+						/>
+						<ToggleFeatures
+							name={'isArticleRatingEnabled'}
+							on={
+								<div>
+									<div>{articleRatingCard}</div>
+								</div>
+							}
 							off={articleRatingCard}
 						/>
 						<ToggleFeatures
