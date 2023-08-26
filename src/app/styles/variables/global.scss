@@ -34,4 +34,21 @@
 	--overlay-color: rgba(0 0 0 / 60%);
 	--red-light: #f00;
 	--red-dark: #ce0505;
+
+	// isBeautyDesign
+	
+	--font-family-text-beauty: 'Nunito Sans', sans-serif;
+	--font-family-header-beauty: 'Roboto', sans-serif;
+
+	// s
+	--font-s-beauty: var(--font-size-s) / var(--font-line-s) var(--font-family-text-beauty);
+
+	// m
+	--font-m-beauty: var(--font-size-m) / var(--font-line-m) var(--font-family-text-beauty);
+
+	// l
+	--font-l-beauty: var(--font-size-l) / var(--font-line-l) var(--font-family-header-beauty);
+
+	// xl
+	--font-xl-beauty: var(--font-size-xl) / var(--font-line-xl) var(--font-family-header-beauty);
 }
