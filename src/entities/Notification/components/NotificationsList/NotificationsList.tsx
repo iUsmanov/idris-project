@@ -14,11 +14,11 @@ interface NotificationsListProps {
 export const NotificationsList = memo((props: NotificationsListProps) => {
 	const { className } = props;
 	const { t } = useTranslation();
-	const {data, isLoading, error} = useGetNotificationsQuery(null, {
-		pollingInterval: 5000
+	const { data, isLoading, error } = useGetNotificationsQuery(null, {
+		pollingInterval: 5000,
 	});
 
-	if(isLoading) {
+	if (isLoading) {
 		return (
 			<VStack gap='16' max className={classNames(cls.notificationsList, {}, [className])}>
 				<Skeleton width={'100%'} borderRadius='8px' height={'80px'} />
@@ -28,9 +28,9 @@ export const NotificationsList = memo((props: NotificationsListProps) => {
 		);
 	}
 
-	return <VStack gap='16' max className={classNames(cls.notificationsList, {}, [className])}>
-		{data?.map(item => (
-			<NotificationItem key={item.id} item={item} />
-		))}
-	</VStack>;
+	return (
+		<VStack gap='16' max className={classNames(cls.notificationsList, {}, [className])}>
+			{data?.map((item) => <NotificationItem key={item.id} item={item} />)}
+		</VStack>
+	);
 });

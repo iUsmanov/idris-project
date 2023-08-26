@@ -7,9 +7,7 @@ const meta = {
 	component: ArticlesInfiniteList,
 	tags: ['autodocs'],
 	argTypes: {},
-	args: {
-		
-	},
+	args: {},
 } satisfies Meta<typeof ArticlesInfiniteList>;
 
 export default meta;

@@ -149,7 +149,10 @@
 		}
 	},
 	"lint-staged": {
-		"**/*.{ts,tsx}": ["prettier --list-different", "eslint"],
+		"**/*.{ts,tsx}": [
+			"prettier --list-different",
+			"eslint"
+		],
 		"**/*.{css,scss}": "stylelint"
 	}
 }

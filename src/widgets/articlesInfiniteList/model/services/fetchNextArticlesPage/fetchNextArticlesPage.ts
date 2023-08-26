@@ -1,7 +1,11 @@
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
-import { getArticlesInfiniteListHasMore, getArticlesInfiniteListIsLoading, getArticlesInfiniteListNumber } from '../../selectors/articlesInfiniteListSelectors';
+import {
+	getArticlesInfiniteListHasMore,
+	getArticlesInfiniteListIsLoading,
+	getArticlesInfiniteListNumber,
+} from '../../selectors/articlesInfiniteListSelectors';
 import { articlesInfiniteListActions } from '../../slices/articlesInfiniteListSlice';
 
 export const fetchNextArticlesPage = createAsyncThunk<void, void, ThunkConfig<string>>(

@@ -13,9 +13,15 @@ interface OverlayProps {
 export const Overlay = memo((props: OverlayProps) => {
 	const { className, centering = false, children, onClick, ...otherProps } = props;
 
-	if(centering) {
+	if (centering) {
 		return (
-			<Flex {...otherProps} justify='center' align='center'className={classNames(cls.overlay, {}, [className])} onClick={onClick}>
+			<Flex
+				{...otherProps}
+				justify='center'
+				align='center'
+				className={classNames(cls.overlay, {}, [className])}
+				onClick={onClick}
+			>
 				{children}
 			</Flex>
 		);

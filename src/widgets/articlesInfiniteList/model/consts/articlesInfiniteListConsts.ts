@@ -1,4 +1,4 @@
-import { ArticlesInfiniteListSchema } from "../types/articlesInfiniteListSchema";
+import { ArticlesInfiniteListSchema } from '../types/articlesInfiniteListSchema';
 
 export const initialState: ArticlesInfiniteListSchema = {
 	ids: [],

@@ -7,9 +7,7 @@ const meta = {
 	component: AvatarDropdown,
 	tags: ['autodocs'],
 	argTypes: {},
-	args: {
-		
-	},
+	args: {},
 } satisfies Meta<typeof AvatarDropdown>;
 
 export default meta;

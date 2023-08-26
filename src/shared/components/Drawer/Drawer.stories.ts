@@ -8,7 +8,7 @@ const meta = {
 	tags: ['autodocs'],
 	argTypes: {},
 	args: {
-		children: 'Text'
+		children: 'Text',
 	},
 } satisfies Meta<typeof Drawer>;
 

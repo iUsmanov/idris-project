@@ -7,9 +7,7 @@ const meta = {
 	component: NotificationsPopup,
 	tags: ['autodocs'],
 	argTypes: {},
-	args: {
-		
-	},
+	args: {},
 } satisfies Meta<typeof NotificationsPopup>;
 
 export default meta;
