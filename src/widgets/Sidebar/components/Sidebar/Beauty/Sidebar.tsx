@@ -4,6 +4,7 @@ import cls from './Sidebar.module.scss';
 import { useTranslation } from 'react-i18next';
 import { getSidebarItems } from '../../../model/selectors/items';
 import { useSelector } from 'react-redux';
+import { AppLogo } from '@/shared/components/AppLogo';
 
 export interface SidebarProps {
 	className?: string;
@@ -20,7 +21,7 @@ export const Sidebar = memo((props: SidebarProps) => {
 			data-testid={'sidebar'}
 			className={classNames(cls.sidebar, { [cls.collapsed]: collapsed }, [className])}
 		>
-			514806
+			<AppLogo className={cls.appLogo} />
 		</section>
 	);
 });
