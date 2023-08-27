@@ -64,15 +64,17 @@ sourceFiles.forEach((sourceFile) => {
 	const sliceDir = project.getDirectory(sliceDirPath);
 	const indexFilePath = sliceDirPath + '/index.ts';
 	const indexFile = sliceDir?.getSourceFile(indexFilePath);
+	const createdAsyncFilePath = `./${indexFile?.getRelativePathTo(createdAsyncFile)}`;
 
 	indexFile?.addExportDeclaration({
-		namedExports: (writer) =>
-			writer.writeLine(
-				`export { ${sourceFileName}Async as ${sourceFileName}Beauty } from '${createdAsyncFile.getRelativePathTo(
-					createdAsyncFile
-				)}'`
-			),
+		namedExports: (writer) => writer.write(`${sourceFileName}Async as ${sourceFileName}Beauty`),
+		moduleSpecifier: `${createdAsyncFilePath.slice(0, -4)}`,
 	});
+
+	// const decs = indexFile?.getExportDeclarations();
+	// decs?.forEach((dec) => {
+	// 	log(dec.getText());
+	// });
 });
 
 project.save();
