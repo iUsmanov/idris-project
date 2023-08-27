@@ -12,6 +12,7 @@ import { getScrollByPath } from '../UI/model/selectors/getScrollSave';
 import { StateSchema } from '@/app/providers/StoreProvider';
 import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle';
 import { TestProps } from '@/shared/types/tests';
+import { toggleFeatures } from '@/shared/lib/featureFlags';
 
 interface PageProps extends TestProps {
 	className?: string;
@@ -46,7 +47,15 @@ export const Page = (props: PageProps) => {
 			data-testid={dataTestId ?? 'Page'}
 			onScroll={onScrollEnd && onScroll}
 			ref={wrapperRef}
-			className={classNames(cls.page, {}, [className])}
+			className={classNames(
+				toggleFeatures({
+					name: 'isBeautyDesign',
+					on: () => cls.pageBeauty,
+					off: () => cls.page,
+				}),
+				{},
+				[className]
+			)}
 		>
 			{children}
 			{onScrollEnd && <div ref={triggerRef} />}

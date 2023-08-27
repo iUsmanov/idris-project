@@ -8,7 +8,8 @@ import { getUserInited } from '@/entities/User';
 import { useSelector } from 'react-redux';
 import { initAuthData } from '@/entities/User';
 import { PageLoader } from '@/widgets/PageLoader';
-import { toggleFeatures } from '@/shared/lib/featureFlags';
+import { ToggleFeatures, toggleFeatures } from '@/shared/lib/featureFlags';
+import { MainLayout } from '@/shared/layouts';
 
 export const App = memo(() => {
 	const dispatch = useAppDispatch();
@@ -28,37 +29,38 @@ export const App = memo(() => {
 		return <PageLoader />;
 	}
 
-	// return (
-	// 	<ToggleFeatures
-	// 		name='isBeautyDesign'
-	// 		on={
-	// 			<div className={'app'}>
-	// 				<Navbar />
-	// 				<HStack>
-	// 					<Sidebar />
-	// 					<AppRouter />
-	// 				</HStack>
-	// 			</div>
-	// 		}
-	// 		off={
-	// 			<div className={'app'}>
-	// 				<Navbar />
-	// 				<HStack>
-	// 					<Sidebar />
-	// 					<AppRouter />
-	// 				</HStack>
-	// 			</div>
-	// 		}
-	// 	/>
-	// );
-
 	return (
 		<div className={'app'}>
-			<Navbar />
-			<HStack>
-				<Sidebar />
-				<AppRouter />
-			</HStack>
+			<ToggleFeatures
+				name='isBeautyDesign'
+				on={
+					<MainLayout
+						content={<AppRouter />}
+						header={<Navbar />}
+						sidebar={<Sidebar />}
+						toolbar={<div>7003849</div>}
+					/>
+				}
+				off={
+					<>
+						<Navbar />
+						<HStack>
+							<Sidebar />
+							<AppRouter />
+						</HStack>
+					</>
+				}
+			/>
 		</div>
 	);
 });
+
+// 	return (
+// 		<div className={'app'}>
+// 			<Navbar />
+// 			<HStack>
+// 				<Sidebar />
+// 				<AppRouter />
+// 			</HStack>
+// 		</div>
+// 	);

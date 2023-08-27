@@ -13,6 +13,8 @@ import { Text } from '@/shared/components/Text';
 import { HStack } from '@/shared/components/Stack';
 import { NotificationsPopup } from '@/features/notificationsPopup';
 import { AvatarDropdown } from '@/features/avatarDropdown';
+import { ToggleFeatures } from '@/shared/lib/featureFlags';
+import { NavbarBeauty } from './Beauty/Navbar.async';
 
 interface NavbarProps {
 	className?: string;
@@ -31,18 +33,34 @@ export const Navbar = memo((props: NavbarProps) => {
 
 	if (authData) {
 		return (
-			<HStack Tag='header' align='center' max className={classNames(cls.navbar, {}, [className])}>
-				<Text variant='inverted' size='size_m' title={t('Articles App')} className={cls.title} />
-				<HStack max align='center' justify='between'>
-					<AppLink to={getRouteArticleCreate()} variant='inverted'>
-						{t('Создать статью')}
-					</AppLink>
-					<HStack align='center' gap='16'>
-						<NotificationsPopup />
-						<AvatarDropdown />
+			<ToggleFeatures
+				name='isBeautyDesign'
+				on={<NavbarBeauty />}
+				off={
+					<HStack
+						Tag='header'
+						align='center'
+						max
+						className={classNames(cls.navbar, {}, [className])}
+					>
+						<Text
+							variant='inverted'
+							size='size_m'
+							title={t('Articles App')}
+							className={cls.title}
+						/>
+						<HStack max align='center' justify='between'>
+							<AppLink to={getRouteArticleCreate()} variant='inverted'>
+								{t('Создать статью')}
+							</AppLink>
+							<HStack align='center' gap='16'>
+								<NotificationsPopup />
+								<AvatarDropdown />
+							</HStack>
+						</HStack>
 					</HStack>
-				</HStack>
-			</HStack>
+				}
+			/>
 		);
 	}
 
