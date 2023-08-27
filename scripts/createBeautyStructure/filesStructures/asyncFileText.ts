@@ -1,9 +1,12 @@
 import { firstCharLowerCase } from '../helpers';
 
 export function asyncFileText(componentName: string) {
-	return `import { lazy } from 'react';
+	return `import { FC, lazy } from 'react';
+import { ${componentName}Props } from './${componentName}';
 
-export const ${componentName}Async = lazy(() =>
+const ${componentName}Async = lazy<FC<${componentName}Props>>(() =>
 	import('./${componentName}').then((module) => ({ default: module.${componentName} }))
-);	`;
+);
+
+export { ${componentName}Async as ${componentName}Beauty };`;
 }

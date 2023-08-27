@@ -5,9 +5,6 @@ import { mainFileText } from './filesStructures/mainFileText';
 import { storyFileText } from './filesStructures/storyFileText';
 import { asyncFileText } from './filesStructures/asyncFileText';
 import { scssFileText } from './filesStructures/scssFileText';
-import path from 'path';
-
-const srcDirPath = path.join(__dirname, '..', '..', 'src');
 
 const project = new Project({});
 
@@ -37,44 +34,14 @@ sourceFiles.forEach((sourceFile) => {
 
 	const createdDir = sourceFileDirectory.createDirectory('Beauty');
 
-	let layer = '';
-	const sourceFileDirPath = sourceFileDirectory.getPath();
-
-	if (sourceFileDirPath.includes('widgets')) {
-		layer = 'widgets';
-	}
-	if (sourceFileDirPath.includes('features')) {
-		layer = 'features';
-	}
-	if (sourceFileDirPath.includes('entities')) {
-		layer = 'entities';
-	}
-
 	createdDir.createSourceFile(`${sourceFileName}.tsx`, mainFileText(sourceFileName));
-	createdDir.createSourceFile(`${sourceFileName}.test.tsx`, ``);
-	createdDir.createSourceFile(`${sourceFileName}.stories.ts`, storyFileText(sourceFileName, layer));
-	const createdAsyncFile = createdDir.createSourceFile(
-		`${sourceFileName}.async.tsx`,
-		asyncFileText(sourceFileName)
-	);
+	createdDir.createSourceFile(`${sourceFileName}.async.tsx`, asyncFileText(sourceFileName));
 	createdDir.createSourceFile(`${sourceFileName}.module.scss`, scssFileText(sourceFileName));
-
-	const sourceFileDirectoryPath = sourceFileDirectory.getPath();
-	const sliceDirPath = sourceFileDirectoryPath.split('/').slice(0, 8).join('/'); /*  + '/index.ts' */
-	const sliceDir = project.getDirectory(sliceDirPath);
-	const indexFilePath = sliceDirPath + '/index.ts';
-	const indexFile = sliceDir?.getSourceFile(indexFilePath);
-	const createdAsyncFilePath = `./${indexFile?.getRelativePathTo(createdAsyncFile)}`;
-
-	indexFile?.addExportDeclaration({
-		namedExports: (writer) => writer.write(`${sourceFileName}Async as ${sourceFileName}Beauty`),
-		moduleSpecifier: `${createdAsyncFilePath.slice(0, -4)}`,
-	});
-
-	// const decs = indexFile?.getExportDeclarations();
-	// decs?.forEach((dec) => {
-	// 	log(dec.getText());
-	// });
 });
 
 project.save();
+
+// const srcDirPath = path.join(__dirname, '..', '..', 'src');
+// const sourceFileDirectoryPath = sourceFileDirectory.getPath();
+// const sliceDirPath = sourceFileDirectoryPath.split('/').slice(0, 8).join('/'); /*  + '/index.ts' */
+// const sliceDir = project.getDirectory(sliceDirPath);
