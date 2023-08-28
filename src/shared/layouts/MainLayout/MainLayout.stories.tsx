@@ -7,7 +7,11 @@ const meta = {
 	component: MainLayout,
 	tags: ['autodocs'],
 	argTypes: {},
-	args: {},
+	args: {
+		header: <div>header</div>,
+		sidebar: <div>sidebar</div>,
+		content: <div>content</div>,
+	},
 } satisfies Meta<typeof MainLayout>;
 
 export default meta;

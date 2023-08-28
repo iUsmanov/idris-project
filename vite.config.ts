@@ -8,6 +8,23 @@ export default defineConfig({
 		react(),
 		svgr({
 			exportAsDefault: true,
+			svgrOptions: {
+				icon: true,
+				svgoConfig: {
+					// plugins: [
+					// 	{
+					// 		name: 'convertColors',
+					// 		params: {
+					// 			currentColor: true,
+					// 		},
+					// 	},
+					// ],
+				},
+				// replaceAttrValues: {
+				// 	'/#[0-9A-F]{6}/g': 'red',
+				// 	'#FFC700': 'currentColor',
+				// },
+			},
 		}),
 	],
 	resolve: {

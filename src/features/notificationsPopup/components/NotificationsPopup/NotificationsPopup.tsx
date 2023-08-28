@@ -23,7 +23,7 @@ export const NotificationsPopup = memo((props: NotificationsPopupProps) => {
 					className={classNames(cls.notificationsPopup, {}, [className])}
 					trigger={
 						<Button variant='clear'>
-							<Icon Svg={NotificationIcon} variant='inverted' />
+							<Icon width={20} height={20} Svg={NotificationIcon} variant='inverted' />
 						</Button>
 					}
 				>
