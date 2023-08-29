@@ -57,32 +57,3 @@ export const AnimationProvider = memo((props: AnimationProvider) => {
 
 	return <AnimationContext.Provider value={value}>{children}</AnimationContext.Provider>;
 });
-
-/* 
-
-1) Сначало переносим шаред-компонент в папку депрекейтед
-2) Создаём папку Beauty вместе с содержимым 
-3) создаём главный компонент с заготовленной структурой
-4) Надо сделать DeprecatedSharedProvider & BeautyShatredProvider
-5) В главном Shared компоненте должна быть Просто тоггле-фича
-
-Провайдеры должны использоваться прямо в отдельных компонентах
-
-DeviceViews
-Stack
-Overlay
-Drawer
-Modal
-Portal
-AppImage
-Avatar
-
-Glinter
-Shimmer
-
-Select
-Loader
-
-AppLogo
-
- */
