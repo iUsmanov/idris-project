@@ -1,24 +1,15 @@
-import { CSSProperties, memo } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './Skeleton.module.scss';
+import { memo } from 'react';
+import { ToggleFeatures } from '@/shared/lib/featureFlags';
+import { SkeletonBeautyProps, SkeletonBeauty } from './Beauty/Skeleton';
+import { SkeletonMatrixProps, SkeletonMatrix } from './Matrix/Skeleton';
 
-interface SkeletonProps {
-	className?: string;
-	width: string | number;
-	height: string | number;
-	borderRadius?: string;
-	style?: CSSProperties;
-}
-
+export type SkeletonProps = SkeletonMatrixProps | SkeletonBeautyProps;
 export const Skeleton = memo((props: SkeletonProps) => {
-	const { className, borderRadius, height, width, style } = props;
-
-	const styles: CSSProperties = {
-		...style,
-		width,
-		height,
-		borderRadius,
-	};
-
-	return <div style={styles} className={classNames(cls.skeleton, {}, [className])}></div>;
+	return (
+		<ToggleFeatures
+			name='isBeautyDesign'
+			on={<SkeletonBeauty {...(props as SkeletonBeautyProps)} />}
+			off={<SkeletonMatrix {...(props as SkeletonMatrixProps)} />}
+		/>
+	);
 });

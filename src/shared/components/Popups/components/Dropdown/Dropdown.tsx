@@ -1,67 +1,15 @@
-import { Fragment, ReactNode, memo } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './Dropdown.module.scss';
-import { Menu } from '@headlessui/react';
-import { DropdownDirection } from '@/shared/types/ui';
-import { AppLink } from '../../../AppLink/AppLink';
-import popupsCls from '../../styles/Popups.module.scss';
+import { memo } from 'react';
+import { ToggleFeatures } from '@/shared/lib/featureFlags';
+import { DropdownBeautyProps, DropdownBeauty } from './Beauty/Dropdown';
+import { DropdownMatrixProps, DropdownMatrix } from './Matrix/Dropdown';
 
-interface DropdownProps {
-	className?: string;
-	items: DropdownItem[];
-	trigger: ReactNode;
-	direction?: DropdownDirection;
-}
-
-export interface DropdownItem {
-	disabled?: boolean;
-	content: ReactNode;
-	onClick?: VoidFunction;
-	href?: string;
-}
-
+export type DropdownProps = DropdownMatrixProps | DropdownBeautyProps;
 export const Dropdown = memo((props: DropdownProps) => {
-	const { className, items, trigger, direction = 'bottomRight' } = props;
-
 	return (
-		<Menu as={'div'} className={classNames('', {}, [className, popupsCls.popup])}>
-			<Menu.Button as='div' className={popupsCls.trigger}>
-				{trigger}
-			</Menu.Button>
-			<Menu.Items className={classNames(cls.menu, {}, [popupsCls[direction]])}>
-				{items.map((item, index) => {
-					let itemInner;
-					if (item.onClick) {
-						itemInner = ({ active }: { active: boolean }) => (
-							<button
-								disabled={item.disabled}
-								type='button'
-								className={classNames(cls.item, { [popupsCls.active]: active }, [])}
-								onClick={item.onClick}
-							>
-								{item.content}
-							</button>
-						);
-					}
-
-					if (item.href) {
-						itemInner = ({ active }: { active: boolean }) => (
-							<AppLink
-								className={classNames(cls.item, { [popupsCls.active]: active }, [])}
-								to={item.href as string}
-							>
-								{item.content}
-							</AppLink>
-						);
-					}
-
-					return (
-						<Menu.Item key={index} as={Fragment} disabled={item.disabled}>
-							{itemInner}
-						</Menu.Item>
-					);
-				})}
-			</Menu.Items>
-		</Menu>
+		<ToggleFeatures
+			name='isBeautyDesign'
+			on={<DropdownBeauty {...(props as DropdownBeautyProps)} />}
+			off={<DropdownMatrix {...(props as DropdownMatrixProps)} />}
+		/>
 	);
 });

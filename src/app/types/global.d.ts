@@ -27,3 +27,7 @@ type DeepPartial<T> = T extends object
 type OptionalRecord<K extends keyof any, T> = {
 	[P in K]?: T;
 };
+
+declare namespace React {
+	function lazy<T extends ComponentType<any>>(factory: () => Promise<{ default: T }>): T;
+}

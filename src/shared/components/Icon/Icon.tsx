@@ -1,17 +1,15 @@
 import { memo } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './Icon.module.scss';
+import { ToggleFeatures } from '@/shared/lib/featureFlags';
+import { IconBeautyProps, IconBeauty } from './Beauty/Icon';
+import { IconMatrixProps, IconMatrix } from './Matrix/Icon';
 
-interface IconProps extends React.SVGProps<SVGSVGElement> {
-	className?: string;
-	Svg: React.FC<React.SVGProps<SVGSVGElement>>;
-	variant?: IconVariant;
-}
-
-type IconVariant = 'primary' | 'inverted';
-
+export type IconProps = IconMatrixProps | IconBeautyProps;
 export const Icon = memo((props: IconProps) => {
-	const { className, Svg, variant = 'primary', ...otherProps } = props;
-
-	return <Svg {...otherProps} className={classNames('', {}, [className, cls[variant]])} />;
+	return (
+		<ToggleFeatures
+			name='isBeautyDesign'
+			on={<IconBeauty {...(props as IconBeautyProps)} />}
+			off={<IconMatrix {...(props as IconMatrixProps)} />}
+		/>
+	);
 });

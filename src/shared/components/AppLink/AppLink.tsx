@@ -1,26 +1,15 @@
-import { ReactNode, forwardRef, memo } from 'react';
-import cls from './AppLink.module.scss';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import { Link, LinkProps } from 'react-router-dom';
+import { memo } from 'react';
+import { ToggleFeatures } from '@/shared/lib/featureFlags';
+import { AppLinkBeautyProps, AppLinkBeauty } from './Beauty/AppLink';
+import { AppLinkMatrixProps, AppLinkMatrix } from './Matrix/AppLink';
 
-export type AppLinkVariant = 'primary' | 'inverted' | 'red' | 'outline';
-
-interface AppLinkProps extends LinkProps {
-	className?: string;
-	variant?: AppLinkVariant;
-	children: ReactNode;
-}
-
-const AppLink = forwardRef((props: AppLinkProps, ref) => {
-	const { variant = 'primary', className, children, ...otherProps } = props;
-
+export type AppLinkProps = AppLinkMatrixProps | AppLinkBeautyProps;
+export const AppLink = memo((props: AppLinkProps) => {
 	return (
-		<Link {...otherProps} className={classNames(cls.appLink, {}, [className, cls[variant]])}>
-			{children}
-		</Link>
+		<ToggleFeatures
+			name='isBeautyDesign'
+			on={<AppLinkBeauty {...(props as AppLinkBeautyProps)} />}
+			off={<AppLinkMatrix {...(props as AppLinkMatrixProps)} />}
+		/>
 	);
 });
-
-const MemoizedAppLink = memo(AppLink);
-
-export { MemoizedAppLink as AppLink };

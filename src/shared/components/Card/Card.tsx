@@ -1,25 +1,15 @@
-import { HTMLAttributes, ReactNode, memo } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './Card.module.scss';
+import { memo } from 'react';
+import { ToggleFeatures } from '@/shared/lib/featureFlags';
+import { CardBeautyProps, CardBeauty } from './Beauty/Card';
+import { CardMatrixProps, CardMatrix } from './Matrix/Card';
 
-export type CardVariant = 'primary' | 'outline';
-
-interface CardProps extends HTMLAttributes<HTMLDivElement> {
-	className?: string;
-	children: ReactNode;
-	variant?: CardVariant;
-	max?: boolean;
-}
-
+export type CardProps = CardMatrixProps | CardBeautyProps;
 export const Card = memo((props: CardProps) => {
-	const { className, children, max, variant = 'primary', ...otherProps } = props;
-
 	return (
-		<div
-			{...otherProps}
-			className={classNames(cls.card, { [cls.max]: max }, [className, cls[variant]])}
-		>
-			{children}
-		</div>
+		<ToggleFeatures
+			name='isBeautyDesign'
+			on={<CardBeauty {...(props as CardBeautyProps)} />}
+			off={<CardMatrix {...(props as CardMatrixProps)} />}
+		/>
 	);
 });

@@ -10,7 +10,7 @@ import { Skeleton } from '../Skeleton';
 
 type ExProps = Omit<FlexProps, 'direction' | 'children' | 'wrap' | 'gap'>;
 
-export interface AvatarProps extends ExProps {
+interface AvatarProps extends ExProps {
 	alt?: string;
 	src?: string;
 	size?: number;

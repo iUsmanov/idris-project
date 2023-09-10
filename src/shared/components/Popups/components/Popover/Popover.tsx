@@ -1,31 +1,15 @@
-import { ReactNode, memo } from 'react';
-import { useTranslation } from 'react-i18next';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './Popover.module.scss';
-import popupsCls from '../../styles/Popups.module.scss';
-import { Popover as HPopover } from '@headlessui/react';
-import { DropdownDirection } from '@/shared/types/ui';
+import { memo } from 'react';
+import { ToggleFeatures } from '@/shared/lib/featureFlags';
+import { PopoverBeautyProps, PopoverBeauty } from './Beauty/Popover';
+import { PopoverMatrixProps, PopoverMatrix } from './Matrix/Popover';
 
-interface PopoverProps {
-	className?: string;
-	trigger: ReactNode;
-	direction?: DropdownDirection;
-	children: ReactNode;
-}
-
+export type PopoverProps = PopoverMatrixProps | PopoverBeautyProps;
 export const Popover = memo((props: PopoverProps) => {
-	const { className, trigger, direction = 'bottomLeft', children } = props;
-	const { t } = useTranslation();
-
 	return (
-		<HPopover as={'div'} className={classNames('', {}, [className, popupsCls.popup])}>
-			<HPopover.Button as='div' className={popupsCls.trigger}>
-				{trigger}
-			</HPopover.Button>
-
-			<HPopover.Panel className={classNames(cls.panel, {}, [popupsCls[direction]])}>
-				{children}
-			</HPopover.Panel>
-		</HPopover>
+		<ToggleFeatures
+			name='isBeautyDesign'
+			on={<PopoverBeauty {...(props as PopoverBeautyProps)} />}
+			off={<PopoverMatrix {...(props as PopoverMatrixProps)} />}
+		/>
 	);
 });
