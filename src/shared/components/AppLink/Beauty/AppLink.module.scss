@@ -1,3 +1,19 @@
 .appLink {
-	// =
+	cursor: pointer;
+
+	&:hover {
+		opacity: 0.8;
+		fill-opacity: 0.8;
+		stroke-opacity: 0.8;
+	}
+}
+
+// Variants
+
+.primary {
+	color: var(--text-beauty);
+}
+
+.red {
+	color: var(--cancel-beauty);
 }

@@ -7,8 +7,11 @@ import { HStack } from '@/shared/components/Stack';
 import { useSelector } from 'react-redux';
 import { getUserAuthData } from '@/entities/User';
 import { SidebarItemType } from '../../model/types/sidebar';
+import { ToggleFeatures } from '@/shared/lib/featureFlags';
+import { SidebarItemBeauty } from './Beauty/SidebarItem.async';
 
 interface SidebarItemProps {
+	className?: string;
 	item: SidebarItemType;
 	collapsed?: boolean;
 }
@@ -23,15 +26,21 @@ export const SidebarItem = memo((props: SidebarItemProps) => {
 	}
 
 	return (
-		<AppLink
-			variant='inverted'
-			className={classNames(cls.item, { [cls.collapsed]: collapsed }, [])}
-			to={item.path}
-		>
-			<HStack align='center'>
-				<item.Icon className={cls.icon} />
-				<span className={cls.link}>{t(item.text)}</span>
-			</HStack>
-		</AppLink>
+		<ToggleFeatures
+			name='isBeautyDesign'
+			on={<SidebarItemBeauty {...props} />}
+			off={
+				<AppLink
+					variant='inverted'
+					className={classNames(cls.item, { [cls.collapsed]: collapsed }, [])}
+					to={item.path}
+				>
+					<HStack align='center'>
+						<item.Icon className={cls.icon} />
+						<span className={cls.link}>{t(item.text)}</span>
+					</HStack>
+				</AppLink>
+			}
+		/>
 	);
 });

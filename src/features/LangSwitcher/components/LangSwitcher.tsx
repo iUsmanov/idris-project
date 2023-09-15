@@ -34,3 +34,19 @@ export const LangSwitcher = memo((props: LangSwitcherProps) => {
 		</Button>
 	);
 });
+/* 
+		<ToggleFeatures
+			name='isBeautyDesign'
+			on={
+				<Button className={classNames('', {}, [className])} variant='clear' onClick={langToggle}>
+					{short ? t('Короткий язык') : t('Язык')}
+				</Button>
+			}
+			off={
+				<Button className={classNames('', {}, [className])} variant='clear' onClick={langToggle}>
+					{short ? t('Короткий язык') : t('Язык')}
+				</Button>
+			}
+		/>
+
+*/

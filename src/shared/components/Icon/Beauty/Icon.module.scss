@@ -1,3 +1,16 @@
 .icon {
-	// =
+	color: var(--icon-beauty);
+}
+
+.button {
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline-color: transparent;
+	background: transparent;
+	cursor: pointer;
+}
+
+.button:hover .icon {
+	color: var(--accent-beauty);
 }

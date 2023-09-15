@@ -1,7 +1,9 @@
-import { memo } from 'react';
-import { useTranslation } from 'react-i18next';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './ThemeSwitcher.module.scss';
+import { memo, useCallback } from 'react';
+import ThemeIcon from '@/shared/assets/icons/theme.svg';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
+import { saveUserSettings } from '@/entities/User';
+import { Icon } from '@/shared/components/Icon';
 
 export interface ThemeSwitcherProps {
 	className?: string;
@@ -9,7 +11,14 @@ export interface ThemeSwitcherProps {
 
 export const ThemeSwitcher = memo((props: ThemeSwitcherProps) => {
 	const { className } = props;
-	const { t } = useTranslation();
+	const { changeTheme } = useTheme();
+	const dispatch = useAppDispatch();
 
-	return <div className={classNames(cls.themeSwitcher, {}, [className])}></div>;
+	const onChangeTheme = useCallback(() => {
+		changeTheme((newTheme) => {
+			dispatch(saveUserSettings({ theme: newTheme }));
+		});
+	}, [changeTheme, dispatch]);
+
+	return <Icon Svg={ThemeIcon} clickable onClick={onChangeTheme} />;
 });

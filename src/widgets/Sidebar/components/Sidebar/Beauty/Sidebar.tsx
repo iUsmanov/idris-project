@@ -5,6 +5,12 @@ import { useTranslation } from 'react-i18next';
 import { getSidebarItems } from '../../../model/selectors/items';
 import { useSelector } from 'react-redux';
 import { AppLogo } from '@/shared/components/AppLogo';
+import { Flex, VStack } from '@/shared/components/Stack';
+import { SidebarItem } from '../../SidebarItem/SidebarItem';
+import ArrowIcon from '@/shared/assets/icons/arrow-bottom.svg';
+import { Icon } from '@/shared/components/Icon';
+import { ThemeSwitcher } from '@/features/ThemeSwitcher';
+import { LangSwitcher } from '@/features/LangSwitcher';
 
 export interface SidebarProps {
 	className?: string;
@@ -21,7 +27,29 @@ export const Sidebar = memo((props: SidebarProps) => {
 			data-testid={'sidebar'}
 			className={classNames(cls.sidebar, { [cls.collapsed]: collapsed }, [className])}
 		>
-			<AppLogo className={cls.appLogo} />
+			<AppLogo className={cls.appLogo} size={collapsed ? 30 : 50} />
+			<VStack Tag='nav' gap='16' className={cls.items}>
+				{sidebarItemsList.map((item) => (
+					<SidebarItem key={item.text} item={item} collapsed={collapsed} />
+				))}
+			</VStack>
+			<Icon
+				Svg={ArrowIcon}
+				className={cls.collapseButton}
+				data-testid={'collapseButton'}
+				onClick={() => setCollapsed((prev) => !prev)}
+				clickable
+			/>
+			<Flex
+				direction={collapsed ? 'column' : 'row'}
+				justify='center'
+				align='center'
+				max
+				className={cls.switchers}
+			>
+				<ThemeSwitcher />
+				<LangSwitcher className={cls.langSwitcher} short={collapsed} />
+			</Flex>
 		</section>
 	);
 });

@@ -1,5 +1,4 @@
-import { memo } from 'react';
-import { useTranslation } from 'react-i18next';
+import { memo, Ref } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Icon.module.scss';
 import {
@@ -7,16 +6,51 @@ import {
 	useBeautySharedComponents,
 } from '@/shared/lib/components/BeautySharedProvider/BeautySharedProvider';
 
-export interface IconBeautyProps {
+type SvgProps = Omit<React.SVGProps<SVGSVGElement>, 'onClick'>;
+
+interface IconBeautyBaseProps extends SvgProps {
 	className?: string;
+	Svg: React.FC<React.SVGProps<SVGSVGElement>>;
+	ref?: Ref<SVGSVGElement>;
 }
 
-export const Icon = memo((props: IconBeautyProps) => {
-	const { className } = props;
-	const { t } = useTranslation();
+interface NonClickableIconBeautyProps extends IconBeautyBaseProps {
+	clickable?: false;
+}
 
-	return <div className={classNames(cls.icon, {}, [className])}></div>;
+interface ClickableIconBeautyProps extends IconBeautyBaseProps {
+	clickable: true;
+	onClick: () => void;
+}
+
+export type IconBeautyProps = NonClickableIconBeautyProps | ClickableIconBeautyProps;
+
+export const Icon = memo((props: IconBeautyProps) => {
+	const { className, Svg, ref, width = 32, height = 32, clickable, ...otherProps } = props;
+
+	const icon = (
+		<Svg
+			ref={ref}
+			{...otherProps}
+			width={width}
+			height={height}
+			className={classNames(cls.icon, {}, [className])}
+			onClick={undefined}
+		/>
+	);
+
+	if (clickable) {
+		return (
+			<button type='button' className={cls.button} onClick={props.onClick} style={{ width, height }}>
+				{icon}
+			</button>
+		);
+	}
+
+	return icon;
 });
+
+// export type TypeOfIcon = typeof Icon;
 
 const IconAsync = (props: IconBeautyProps) => {
 	const { isLoaded, Icon } = useBeautySharedComponents();
