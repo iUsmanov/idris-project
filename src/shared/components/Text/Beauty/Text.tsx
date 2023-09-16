@@ -1,21 +1,55 @@
-import { memo } from 'react';
-import { useTranslation } from 'react-i18next';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './Text.module.scss';
 import {
 	BeautySharedProvider,
 	useBeautySharedComponents,
 } from '@/shared/lib/components/BeautySharedProvider/BeautySharedProvider';
+import { memo } from 'react';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import cls from './Text.module.scss';
+
+export type TextVariant = 'primary' | 'error' | 'accent';
+export type TextAling = 'left' | 'center' | 'right';
+export type TextSize = 'size_s' | 'size_m' | 'size_l';
 
 export interface TextBeautyProps {
 	className?: string;
+	text?: string;
+	title?: string;
+	variant?: TextVariant;
+	align?: TextAling;
+	size?: TextSize;
+	tags?: [keyof HTMLElementTagNameMap, keyof HTMLElementTagNameMap] | [keyof HTMLElementTagNameMap];
+	'data-testid'?: string;
 }
 
 export const Text = memo((props: TextBeautyProps) => {
-	const { className } = props;
-	const { t } = useTranslation();
+	const {
+		className,
+		text,
+		title,
+		variant = 'primary',
+		align = 'left',
+		size = 'size_s',
+		tags = ['p', 'p'],
+		'data-testid': dataTestId = 'Text',
+	} = props;
 
-	return <div className={classNames(cls.text, {}, [className])}></div>;
+	const TitleTag = tags[0];
+	const TextTag = tags[1] ? tags[1] : 'p';
+
+	return (
+		<div className={classNames(cls.text, {}, [className, cls[variant], cls[align], cls[size]])}>
+			{title && (
+				<TitleTag className={cls.title} data-testid={`${dataTestId}.Title`}>
+					{title}
+				</TitleTag>
+			)}
+			{text && (
+				<TextTag className={cls.text} data-testid={`${dataTestId}.Text`}>
+					{text}
+				</TextTag>
+			)}
+		</div>
+	);
 });
 
 const TextAsync = (props: TextBeautyProps) => {

@@ -1,3 +1,69 @@
+.title {
+	color: var(--text-beauty);
+}
+
 .text {
-	// =
+	color: var(--text-beauty);
+}
+
+.error {
+	.title {
+		color: var(--red-light);
+	}
+
+	.text {
+		color: var(--red-dark);
+	}
+}
+
+.accent {
+	.title {
+		color: var(--accent-beauty);
+	}
+
+	.text {
+		color: var(--accent-beauty);
+	}
+}
+
+.left {
+	text-align: left;
+}
+
+.right {
+	text-align: right;
+}
+
+.center {
+	text-align: center;
+}
+
+.size_s {
+	.title {
+		font: var(--font-m-beauty);
+	}
+
+	.text {
+		font: var(--font-s-beauty);
+	}
+}
+
+.size_m {
+	.title {
+		font: var(--font-l-beauty);
+	}
+
+	.text {
+		font: var(--font-m-beauty);
+	}
+}
+
+.size_l {
+	.title {
+		font: var(--font-xl-beauty);
+	}
+
+	.text {
+		font: var(--font-l-beauty);
+	}
 }
