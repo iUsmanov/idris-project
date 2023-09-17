@@ -15,7 +15,7 @@ export const Navbar = memo((props: NavbarProps) => {
 	const { t } = useTranslation();
 
 	return (
-		<HStack Tag='header' align='center' max className={classNames(cls.navbar, {}, [className])}>
+		<HStack Tag='header' align='start' max className={classNames(cls.navbar, {}, [className])}>
 			<NotificationsPopup />
 			<AvatarDropdown />
 		</HStack>

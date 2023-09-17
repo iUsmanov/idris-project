@@ -7,6 +7,8 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { getRouteAdminPanel, getRouteProfile } from '@/shared/const/router';
 import { Avatar } from '@/shared/components/Avatar';
 import { Dropdown, DropdownItem } from '@/shared/components/Popups';
+import { ToggleFeatures } from '@/shared/lib/featureFlags';
+import { AvatarDropdownBeauty } from './Beauty/AvatarDropdown.async';
 
 interface AvatarDropdownProps {
 	className?: string;
@@ -52,11 +54,17 @@ export const AvatarDropdown = memo((props: AvatarDropdownProps) => {
 	if (!authData) return null;
 
 	return (
-		<Dropdown
-			className={classNames('', {}, [className])}
-			items={items}
-			trigger={<Avatar size={30} fallbackInverted src={authData.avatar} />}
-			direction='bottomLeft'
+		<ToggleFeatures
+			name='isBeautyDesign'
+			on={<AvatarDropdownBeauty {...props} />}
+			off={
+				<Dropdown
+					className={classNames('', {}, [className])}
+					items={items}
+					trigger={<Avatar size={30} fallbackInverted src={authData.avatar} />}
+					direction='bottomLeft'
+				/>
+			}
 		/>
 	);
 });

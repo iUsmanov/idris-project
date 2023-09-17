@@ -7,6 +7,7 @@ import { FlexProps } from '../Stack/Flex/Flex';
 import { AppImage } from '../AppImage';
 import { Icon } from '../Icon';
 import { Skeleton } from '../Skeleton';
+import { ToggleFeatures } from '@/shared/lib/featureFlags';
 
 type ExProps = Omit<FlexProps, 'direction' | 'children' | 'wrap' | 'gap'>;
 
@@ -23,11 +24,17 @@ export const Avatar = memo((props: AvatarProps) => {
 	const styles = useMemo<CSSProperties>(() => ({ width: size, height: size }), [size]);
 
 	const errorFallback = (
-		<Icon
-			Svg={UserAvatarIcon}
-			variant={fallbackInverted ? 'inverted' : 'primary'}
-			width={size}
-			height={size}
+		<ToggleFeatures
+			name='isBeautyDesign'
+			on={<Icon Svg={UserAvatarIcon} width={size} height={size} />}
+			off={
+				<Icon
+					Svg={UserAvatarIcon}
+					variant={fallbackInverted ? 'inverted' : 'primary'}
+					width={size}
+					height={size}
+				/>
+			}
 		/>
 	);
 

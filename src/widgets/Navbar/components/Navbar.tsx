@@ -35,7 +35,7 @@ export const Navbar = memo((props: NavbarProps) => {
 		return (
 			<ToggleFeatures
 				name='isBeautyDesign'
-				on={<NavbarBeauty />}
+				on={<NavbarBeauty {...props} />}
 				off={
 					<HStack
 						Tag='header'

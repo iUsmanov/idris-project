@@ -2,6 +2,12 @@
 	position: relative;
 }
 
+.items {
+	border-radius: 18px;
+	border: 1px solid var(--accent-beauty);
+	overflow: hidden;
+}
+
 .trigger {
 	background-color: transparent;
 	border: none;
@@ -30,7 +36,7 @@
 }
 
 .active{
-	background-color: var(--inverted-primary-color) !important;
+	background-color: var(--light-bg-beauty) !important;
 }
 
 .disabled {

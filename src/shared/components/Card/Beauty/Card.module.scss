@@ -1,3 +1,32 @@
 .card {
-	// =
+	padding: 24px;
+	border-radius: 12px;
+}
+
+.primary {
+	background: var(--dark-bg-beauty);
+}
+
+.outline {
+	border: 1px solid var(--accent-beauty);
+}
+
+.max {
+	width: 100%;
+}
+
+.padding-0 {
+	padding: 0;
+}
+
+.padding-8 {
+	padding: 8px;
+}
+
+.padding-16 {
+	padding: 16px;
+}
+
+.padding-24 {
+	padding: 24px;
 }

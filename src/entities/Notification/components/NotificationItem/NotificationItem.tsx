@@ -5,6 +5,8 @@ import cls from './NotificationItem.module.scss';
 import { Notification } from '../../model/types/notification';
 import { Card } from '@/shared/components/Card';
 import { Text } from '@/shared/components/Text';
+import { NotificationItemBeauty } from './Beauty/NotificationItem.async';
+import { ToggleFeatures } from '@/shared/lib/featureFlags';
 
 interface NotificationItemProps {
 	className?: string;
@@ -16,9 +18,15 @@ export const NotificationItem = memo((props: NotificationItemProps) => {
 	const { t } = useTranslation();
 
 	const content = (
-		<Card variant='outline' className={classNames(cls.notificationItem, {}, [className])}>
-			<Text title={item.title} text={item.description} tags={['h4']} />
-		</Card>
+		<ToggleFeatures
+			name='isBeautyDesign'
+			on={<NotificationItemBeauty {...props} />}
+			off={
+				<Card variant='outline' className={classNames(cls.notificationItem, {}, [className])}>
+					<Text title={item.title} text={item.description} tags={['h4']} />
+				</Card>
+			}
+		/>
 	);
 
 	if (item.href) {
