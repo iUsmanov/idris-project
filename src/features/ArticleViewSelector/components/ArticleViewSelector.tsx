@@ -8,6 +8,8 @@ import TileIcon from '@/shared/assets/icons/tiled-24-24.svg';
 import { HStack } from '@/shared/components/Stack';
 import { Button } from '@/shared/components/Button';
 import { Icon } from '@/shared/components/Icon';
+import { ToggleFeatures } from '@/shared/lib/featureFlags';
+import { ArticleViewSelectorBeauty } from './Beauty/ArticleViewSelector.async';
 
 interface ArticleViewSelectorProps {
 	className?: string;
@@ -43,17 +45,23 @@ export const ArticleViewSelector = memo((props: ArticleViewSelectorProps) => {
 	);
 
 	return (
-		<HStack className={classNames(cls.articleViewSelector, {}, [className])}>
-			{viewTypes.map((viewType) => (
-				<Button key={viewType.view} variant='clear' onClick={onClick(viewType.view)}>
-					<Icon
-						width={24}
-						height={24}
-						Svg={viewType.Icon}
-						className={classNames('', { [cls.notSelected]: viewType.view !== view }, [])}
-					/>
-				</Button>
-			))}
-		</HStack>
+		<ToggleFeatures
+			name='isBeautyDesign'
+			on={<ArticleViewSelectorBeauty {...props} />}
+			off={
+				<HStack className={classNames(cls.articleViewSelector, {}, [className])}>
+					{viewTypes.map((viewType) => (
+						<Button key={viewType.view} variant='clear' onClick={onClick(viewType.view)}>
+							<Icon
+								width={24}
+								height={24}
+								Svg={viewType.Icon}
+								className={classNames('', { [cls.notSelected]: viewType.view !== view }, [])}
+							/>
+						</Button>
+					))}
+				</HStack>
+			}
+		/>
 	);
 });

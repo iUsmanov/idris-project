@@ -26,6 +26,8 @@ import { ArticlesSearch } from '@/features/ArticlesSearch';
 import { ArticlesSort } from '@/features/ArticlesSort';
 import { HStack, VStack } from '@/shared/components/Stack';
 import { Text } from '@/shared/components/Text';
+import { ToggleFeatures } from '@/shared/lib/featureFlags';
+import { ArticlesInfiniteListBeauty } from './Beauty/ArticlesInfiniteList.async';
 
 interface ArticlesInfiniteListProps {
 	className?: string;
@@ -99,21 +101,27 @@ export const ArticlesInfiniteList = memo((props: ArticlesInfiniteListProps) => {
 	}
 
 	return (
-		<VStack max gap='16'>
-			<HStack max justify='between'>
-				<VStack gap='16' className={classNames('', {}, [className])}>
-					<ArticlesSort onChangeOrder={onChangeOrder} onChangeSort={onChangeSort} />
-					<ArticlesSearch onChangeSearch={onChangeSearch} />
-					<ArticleTypeTabs onChangeType={onChangeType} />
+		<ToggleFeatures
+			name='isBeautyDesign'
+			on={<ArticlesInfiniteListBeauty {...props} />}
+			off={
+				<VStack max gap='16'>
+					<HStack max justify='between'>
+						<VStack gap='16' className={classNames('', {}, [className])}>
+							<ArticlesSort onChangeOrder={onChangeOrder} onChangeSort={onChangeSort} />
+							<ArticlesSearch onChangeSearch={onChangeSearch} />
+							<ArticleTypeTabs onChangeType={onChangeType} />
+						</VStack>
+						<ArticleViewSelector view={view} onViewClick={onChangeView} />
+					</HStack>
+					<ArticleList
+						className={classNames('', {}, [className])}
+						articles={articles}
+						isLoading={isLoading}
+						view={view}
+					/>
 				</VStack>
-				<ArticleViewSelector view={view} onViewClick={onChangeView} />
-			</HStack>
-			<ArticleList
-				className={classNames('', {}, [className])}
-				articles={articles}
-				isLoading={isLoading}
-				view={view}
-			/>
-		</VStack>
+			}
+		/>
 	);
 });

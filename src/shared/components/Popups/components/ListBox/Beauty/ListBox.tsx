@@ -11,25 +11,27 @@ import { Button } from '@/shared/components/Button';
 import { HStack } from '@/shared/components/Stack';
 import { DropdownDirection } from '@/shared/types/ui';
 
-export interface ListBoxBeautyProps {
+export interface ListBoxBeautyProps<T extends string> {
 	className?: string;
-	options: ListBoxOption[];
+	options: ListBoxOption<T>[];
 	label?: string;
-	value?: string;
-	onChange: (value: string) => void;
+	value?: T;
+	onChange: (value: T) => void;
 	disabled?: boolean;
 	defaultValue?: string;
 	direction?: DropdownDirection;
 	compact?: boolean;
 }
 
-export interface ListBoxOption {
-	value: string;
+export interface ListBoxOption<T extends string> {
+	value: T;
 	content: ReactNode;
 	disabled?: boolean;
 }
 
-export const ListBox = memo((props: ListBoxBeautyProps) => {
+const typedMemo: <T>(props: T) => T = memo;
+
+export const ListBox = typedMemo(<T extends string>(props: ListBoxBeautyProps<T>) => {
 	const {
 		className,
 		options,
@@ -47,6 +49,10 @@ export const ListBox = memo((props: ListBoxBeautyProps) => {
 		[compact, options, label]
 	);
 
+	const selectedItem = useMemo(() => {
+		return options.find((option) => option.value === value);
+	}, [options, value]);
+
 	return (
 		<HStack
 			align='center'
@@ -62,8 +68,8 @@ export const ListBox = memo((props: ListBoxBeautyProps) => {
 				disabled={disabled}
 			>
 				<HListbox.Button as={'div'} className={popupsCls.trigger}>
-					<Button disabled={disabled} variant='outline'>
-						{value ?? defaultValue}
+					<Button disabled={disabled} variant='filled'>
+						{selectedItem?.content ?? defaultValue}
 					</Button>
 				</HListbox.Button>
 				<HListbox.Options
@@ -99,7 +105,9 @@ export const ListBox = memo((props: ListBoxBeautyProps) => {
 	);
 });
 
-const ListBoxAsync = (props: ListBoxBeautyProps) => {
+export type TypeOfListBox = typeof ListBox;
+
+const ListBoxAsync = <T extends string>(props: ListBoxBeautyProps<T>) => {
 	const { isLoaded, ListBox } = useBeautySharedComponents();
 
 	if (!isLoaded) return null;
@@ -107,7 +115,7 @@ const ListBoxAsync = (props: ListBoxBeautyProps) => {
 	return <ListBox {...props} />;
 };
 
-export const ListBoxBeauty = (props: ListBoxBeautyProps) => {
+export const ListBoxBeauty = <T extends string>(props: ListBoxBeautyProps<T>) => {
 	return (
 		<BeautySharedProvider>
 			<ListBoxAsync {...props} />

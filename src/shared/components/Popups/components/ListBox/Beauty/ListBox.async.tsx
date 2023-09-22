@@ -1,6 +1,6 @@
-import { FC, lazy } from 'react';
-import { ListBoxBeautyProps } from './ListBox';
+import { lazy } from 'react';
+import { TypeOfListBox } from './ListBox';
 
-export const ListBoxAsync = lazy<FC<ListBoxBeautyProps>>(() =>
+export const ListBoxAsync = lazy<TypeOfListBox>(() =>
 	import('./ListBox').then((module) => ({ default: module.ListBox }))
 );

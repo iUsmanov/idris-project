@@ -1,3 +1,11 @@
 .tabs {
 	// =
 }
+
+.tab {
+	cursor: pointer;
+}
+
+.selected {
+	padding: 8px 16px;
+}

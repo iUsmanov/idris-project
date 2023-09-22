@@ -24,7 +24,7 @@ import {
 } from 'react';
 
 type AppLinkType = FC<AppLinkBeautyProps>;
-type TabsType = FC<TabsBeautyProps>;
+type TabsType = <T extends string>(props: TabsBeautyProps<T>) => JSX.Element;
 type ButtonType = FC<ButtonBeautyProps>;
 type CardType = FC<CardBeautyProps>;
 type CodeType = FC<CodeBeautyProps>;
@@ -34,7 +34,7 @@ type SkeletonType = FC<SkeletonBeautyProps>;
 type StarRatingType = FC<StarRatingBeautyProps>;
 type TextType = FC<TextBeautyProps>;
 type DropdownType = FC<DropdownBeautyProps>;
-type ListBoxType = FC<ListBoxBeautyProps>;
+type ListBoxType = <T extends string>(props: ListBoxBeautyProps<T>) => JSX.Element;
 type PopoverType = FC<PopoverBeautyProps>;
 
 interface BeautySharedContextPayload {

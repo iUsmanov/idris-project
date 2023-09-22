@@ -25,6 +25,14 @@
 	outline-color: transparent;
 }
 
+.filled {
+	border: none;
+	outline-color: transparent;
+	border-radius: 34px;
+	padding: 8px 16px;
+	background-color: var(--light-bg-beauty);
+}
+
 .square {
 	padding: 0;
 }

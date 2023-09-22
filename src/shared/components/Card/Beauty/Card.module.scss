@@ -1,10 +1,21 @@
 .card {
 	padding: 24px;
+}
+	
+.border-normal {
 	border-radius: 12px;
+}
+	
+.border-round {
+	border-radius: 40px;
 }
 
 .primary {
 	background: var(--dark-bg-beauty);
+}
+
+.light {
+	background: var(--light-bg-beauty);
 }
 
 .outline {
@@ -29,4 +40,8 @@
 
 .padding-24 {
 	padding: 24px;
+}
+
+.flex {
+	display: flex;
 }

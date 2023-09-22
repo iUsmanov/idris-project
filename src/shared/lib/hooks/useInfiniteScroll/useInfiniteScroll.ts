@@ -3,14 +3,14 @@ import { MutableRefObject, useEffect } from 'react';
 export interface UseInfiniteScroll {
 	callback?: () => void;
 	triggerRef: MutableRefObject<HTMLElement>;
-	wrapperRef: MutableRefObject<HTMLElement>;
+	wrapperRef?: MutableRefObject<HTMLElement>;
 }
 
 export function useInfiniteScroll(props: UseInfiniteScroll) {
 	const { callback, triggerRef, wrapperRef } = props;
 
 	useEffect(() => {
-		const wrapperElement = wrapperRef.current;
+		const wrapperElement = wrapperRef?.current || undefined;
 		const triggerElement = triggerRef.current;
 		let observer: IntersectionObserver | null = null;
 		if (callback) {
@@ -23,22 +23,7 @@ export function useInfiniteScroll(props: UseInfiniteScroll) {
 			const rootCallback: IntersectionObserverCallback = ([entry]) => {
 				if (entry.isIntersecting) {
 					callback();
-					let flag = false;
-					if (flag) return;
-					if (wrapperElement.scrollHeight <= wrapperElement.offsetHeight + 300) {
-						const repeatedCallback = () => {
-							if (wrapperElement.scrollHeight <= wrapperElement.offsetHeight + 300) {
-								setTimeout(() => {
-									callback();
-									repeatedCallback();
-								}, 10);
-							}
-						};
-
-						repeatedCallback();
-					} else {
-						flag = true;
-					}
+					// Here
 				}
 			};
 
@@ -55,3 +40,24 @@ export function useInfiniteScroll(props: UseInfiniteScroll) {
 		};
 	}, [callback, triggerRef, wrapperRef]);
 }
+/* 
+// After callback called
+let flag = false;
+if (flag) return;
+if (wrapperElement.scrollHeight <= wrapperElement.offsetHeight + 300) {
+	const repeatedCallback = () => {
+		if (wrapperElement.scrollHeight <= wrapperElement.offsetHeight + 300) {
+			setTimeout(() => {
+				console.log(wrapperElement.scrollHeight, wrapperElement.offsetHeight);
+				console.log(5464654);
+				callback();
+				repeatedCallback();
+			}, 10);
+		}
+	};
+	repeatedCallback();
+} else {
+	flag = true;
+}
+
+*/

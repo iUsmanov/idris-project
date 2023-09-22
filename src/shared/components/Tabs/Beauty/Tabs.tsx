@@ -1,24 +1,63 @@
-import { memo } from 'react';
-import { useTranslation } from 'react-i18next';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './Tabs.module.scss';
 import {
 	BeautySharedProvider,
 	useBeautySharedComponents,
 } from '@/shared/lib/components/BeautySharedProvider/BeautySharedProvider';
+import { ReactNode, memo, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import cls from './Tabs.module.scss';
+import { Card } from '@/shared/components/Card';
+import { Flex, FlexDirection } from '@/shared/components/Stack';
 
-export interface TabsBeautyProps {
-	className?: string;
+export interface TabItem<T extends string> {
+	value: T;
+	content: ReactNode;
 }
 
-export const Tabs = memo((props: TabsBeautyProps) => {
-	const { className } = props;
+export interface TabsBeautyProps<T extends string> {
+	className?: string;
+	tabs: TabItem<T>[];
+	value: T;
+	onTabClick: (tab: TabItem<T>) => void;
+	direction?: FlexDirection;
+}
+
+export const typedMemo: <T>(props: T) => T = memo;
+
+export const Tabs = typedMemo(<T extends string>(props: TabsBeautyProps<T>) => {
+	const { className, tabs, onTabClick, value, direction = 'row' } = props;
 	const { t } = useTranslation();
 
-	return <div className={classNames(cls.tabs, {}, [className])}></div>;
+	const onClick = useCallback(
+		(tab: TabItem<T>) => () => {
+			onTabClick(tab);
+		},
+		[onTabClick]
+	);
+
+	return (
+		<Flex direction={direction} gap='8' className={classNames(cls.tabs, {}, [className])}>
+			{tabs.map((tab) => {
+				const isSelected = tab.value === value;
+				return (
+					<Card
+						key={tab.value}
+						className={classNames(cls.tab, { [cls.selected]: isSelected }, [])}
+						variant={isSelected ? 'light' : 'primary'}
+						onClick={onClick(tab)}
+						border='round'
+					>
+						{tab.content}
+					</Card>
+				);
+			})}
+		</Flex>
+	);
 });
 
-const TabsAsync = (props: TabsBeautyProps) => {
+export type TypeOfTabs = typeof Tabs;
+
+const TabsAsync = <T extends string>(props: TabsBeautyProps<T>) => {
 	const { isLoaded, Tabs } = useBeautySharedComponents();
 
 	if (!isLoaded) return null;
@@ -26,7 +65,7 @@ const TabsAsync = (props: TabsBeautyProps) => {
 	return <Tabs {...props} />;
 };
 
-export const TabsBeauty = (props: TabsBeautyProps) => {
+export const TabsBeauty = <T extends string>(props: TabsBeautyProps<T>) => {
 	return (
 		<BeautySharedProvider>
 			<TabsAsync {...props} />

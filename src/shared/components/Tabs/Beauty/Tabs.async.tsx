@@ -1,6 +1,6 @@
-import { FC, lazy } from 'react';
-import { TabsBeautyProps } from './Tabs';
+import { lazy } from 'react';
+import { TypeOfTabs } from './Tabs';
 
-export const TabsAsync = lazy<FC<TabsBeautyProps>>(() =>
+export const TabsAsync = lazy<TypeOfTabs>(() =>
 	import('./Tabs').then((module) => ({ default: module.Tabs }))
 );

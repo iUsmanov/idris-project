@@ -2,39 +2,39 @@ import { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
 import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Flex.module.scss';
 
-export type FlexJustify = 'left' | 'center' | 'right' | 'between';
-export type FlexAlign = 'start' | 'center' | 'end';
+type FlexJustify = 'left' | 'center' | 'right' | 'between';
+type FlexAlign = 'start' | 'center' | 'end';
 export type FlexDirection = 'row' | 'column' | 'rowReverse' | 'columnReverse';
-export type FlexGap = '4' | '8' | '16' | '32';
-export type FlexWrap = 'wrap' | 'nowrap' | 'wrapReverse';
+type FlexGap = '4' | '8' | '16' | '32';
+type FlexWrap = 'wrap' | 'nowrap' | 'wrapReverse';
 
-const justifyClasses: Record<FlexJustify, string> = {
+export const justifyClasses: Record<FlexJustify, string> = {
 	left: cls.justifyLeft,
 	center: cls.justifyCenter,
 	right: cls.justifyRight,
 	between: cls.justifyBetween,
 };
 
-const alignClasses: Record<FlexAlign, string> = {
+export const alignClasses: Record<FlexAlign, string> = {
 	start: cls.alignStart,
 	center: cls.alignCenter,
 	end: cls.alignEnd,
 };
 
-const directionClasses: Record<FlexDirection, string> = {
+export const directionClasses: Record<FlexDirection, string> = {
 	row: cls.directionRow,
 	column: cls.directionColumn,
 	rowReverse: cls.directionRowReverse,
 	columnReverse: cls.directionColumnReverse,
 };
 
-const wrapClasses: Record<FlexWrap, string> = {
+export const wrapClasses: Record<FlexWrap, string> = {
 	wrap: cls.wrap,
 	nowrap: cls.nowrap,
 	wrapReverse: cls.wrapReverse,
 };
 
-const gapClasses: Record<FlexGap, string> = {
+export const gapClasses: Record<FlexGap, string> = {
 	4: cls.gap4,
 	8: cls.gap8,
 	16: cls.gap16,

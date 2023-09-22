@@ -30,7 +30,11 @@ export const Page = (props: PageProps) => {
 
 	useInfiniteScroll({
 		triggerRef,
-		wrapperRef,
+		wrapperRef: toggleFeatures({
+			name: 'isBeautyDesign',
+			on: () => undefined,
+			off: () => wrapperRef,
+		}),
 		callback: onScrollEnd,
 	});
 

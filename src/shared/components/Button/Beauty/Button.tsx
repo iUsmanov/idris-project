@@ -15,7 +15,7 @@ export interface ButtonBeautyProps extends ButtonHTMLAttributes<HTMLButtonElemen
 	fullWidth?: boolean;
 }
 
-export type ButtonVariant = 'outline' | 'clear';
+export type ButtonVariant = 'outline' | 'clear' | 'filled';
 
 export type ButtonSize = 'size_m' | 'size_l' | 'size_xl';
 
