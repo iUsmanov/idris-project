@@ -26,6 +26,7 @@ export const ArticlesSearch = memo((props: ArticlesSearchProps) => {
 			placeholder={t('Поиск')}
 			value={search}
 			onChange={changeSearchHandler}
+			size={'s'}
 		/>
 	);
 });

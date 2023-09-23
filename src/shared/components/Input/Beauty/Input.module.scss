@@ -3,7 +3,6 @@
 	padding: 8px 16px;
 	border: 2px solid var(--icon-beauty);
 	width: 100%;
-	height: 32px;
 }
 
 .input {
@@ -40,4 +39,16 @@
 	.addonLeft svg, .addonRight svg{
 		color: var(--accent-beauty);
 	}
+}
+
+.size_s {
+	height: 32px;
+}
+
+.size_m {
+	height: 38px;
+}
+
+.size_l {
+	height: 44px;
 }

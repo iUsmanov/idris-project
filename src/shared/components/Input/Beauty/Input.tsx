@@ -6,8 +6,10 @@ import { ChangeEvent, InputHTMLAttributes, ReactNode, memo, useEffect, useRef, u
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Input.module.scss';
 import { HStack } from '@/shared/components/Stack';
+import { Text } from '../../Text';
 
-type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'>;
+type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value' | 'size'>;
+type InputSize = 's' | 'm' | 'l';
 
 export interface InputBeautyProps extends HTMLInputProps {
 	className?: string;
@@ -20,6 +22,8 @@ export interface InputBeautyProps extends HTMLInputProps {
 	name?: string;
 	addonLeft?: ReactNode;
 	addonRight?: ReactNode;
+	label?: string;
+	size?: InputSize;
 }
 
 export const Input = memo((props: InputBeautyProps) => {
@@ -34,6 +38,8 @@ export const Input = memo((props: InputBeautyProps) => {
 		name,
 		addonLeft,
 		addonRight,
+		label,
+		size = 'm',
 		...otherProps
 	} = props;
 	const [isFocused, setIsFocused] = useState<boolean>(false);
@@ -64,7 +70,7 @@ export const Input = memo((props: InputBeautyProps) => {
 		}
 	}, [autoFocus]);
 
-	return (
+	const input = (
 		<HStack
 			align='center'
 			className={classNames(
@@ -75,7 +81,7 @@ export const Input = memo((props: InputBeautyProps) => {
 					[cls.withAddonLeft]: Boolean(addonLeft),
 					[cls.withAddonRight]: Boolean(addonRight),
 				},
-				[className]
+				[className, cls['size_' + size]]
 			)}
 		>
 			{addonLeft && <div className={cls.addonLeft}>{addonLeft}</div>}
@@ -95,6 +101,17 @@ export const Input = memo((props: InputBeautyProps) => {
 			{addonRight && <div className={cls.addonRight}>{addonRight}</div>}
 		</HStack>
 	);
+
+	if (label) {
+		return (
+			<HStack gap='8' max>
+				<Text text={label} />
+				{input}
+			</HStack>
+		);
+	}
+
+	return input;
 });
 
 const InputAsync = (props: InputBeautyProps) => {
