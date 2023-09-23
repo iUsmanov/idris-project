@@ -5,11 +5,13 @@ import {
 import { Fragment, ReactNode, memo, useMemo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './ListBox.module.scss';
+import ArrowIcon from '@/shared/assets/icons/arrow-bottom.svg';
 import popupsCls from '../../../styles/PopupsBeauty.module.scss';
 import { Listbox as HListbox } from '@headlessui/react';
 import { Button } from '@/shared/components/Button';
 import { HStack } from '@/shared/components/Stack';
 import { DropdownDirection } from '@/shared/types/ui';
+import { Icon } from '@/shared/components/Icon';
 
 export interface ListBoxBeautyProps<T extends string> {
 	className?: string;
@@ -68,7 +70,7 @@ export const ListBox = typedMemo(<T extends string>(props: ListBoxBeautyProps<T>
 				disabled={disabled}
 			>
 				<HListbox.Button as={'div'} className={popupsCls.trigger}>
-					<Button disabled={disabled} variant='filled'>
+					<Button disabled={disabled} variant='filled' addonRight={<Icon Svg={ArrowIcon} />}>
 						{selectedItem?.content ?? defaultValue}
 					</Button>
 				</HListbox.Button>

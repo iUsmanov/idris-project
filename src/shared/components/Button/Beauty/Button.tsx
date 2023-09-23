@@ -13,6 +13,8 @@ export interface ButtonBeautyProps extends ButtonHTMLAttributes<HTMLButtonElemen
 	square?: boolean;
 	size?: ButtonSize;
 	fullWidth?: boolean;
+	addonLeft?: ReactNode;
+	addonRight?: ReactNode;
 }
 
 export type ButtonVariant = 'outline' | 'clear' | 'filled';
@@ -27,12 +29,15 @@ export const Button = memo((props: ButtonBeautyProps) => {
 		square,
 		size = 'size_m',
 		fullWidth,
+		addonLeft,
+		addonRight,
 		...otherProps
 	} = props;
 
 	const mods: Mods = {
 		[cls.square]: square,
 		[cls.fullWidth]: fullWidth,
+		[cls.withAddon]: Boolean(addonLeft) || Boolean(addonRight),
 	};
 	return (
 		<button
@@ -40,7 +45,9 @@ export const Button = memo((props: ButtonBeautyProps) => {
 			type='button'
 			className={classNames(cls.button, mods, [className, cls[variant], cls[size]])}
 		>
+			{addonLeft && <div className={cls.addonLeft}>{addonLeft}</div>}
 			{children}
+			{addonRight && <div className={cls.addonRight}>{addonRight}</div>}
 		</button>
 	);
 });

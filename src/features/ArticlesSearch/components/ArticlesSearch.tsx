@@ -1,50 +1,34 @@
-import { memo, useCallback } from 'react';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Card } from '@/shared/components/Card';
 import { Input } from '@/shared/components/Input';
-import { useSearchParams } from 'react-router-dom';
-import { articlesSearchActions, articlesSearchReducer } from '../model/slice/articlesSearchSlice';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { getArticlesSearch } from '../model/selectors/getArticlesSearch';
-import { ReducersList, useDynamicModule } from '@/shared/lib/hooks/useDynamicModule/useDynamicModule';
-import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
-import { initArticlesSearch } from '../model/services/initArticlesSearch/initArticlesSearch';
+import { useArticlesSearch } from '../lib/hooks/useArticlesSearch';
+import { ToggleFeatures } from '@/shared/lib/featureFlags';
+import { ArticlesSearchBeauty } from './Beauty/ArticlesSearch.async';
 
 interface ArticlesSearchProps {
 	className?: string;
 	onChangeSearch: () => void;
 }
 
-const reducers: ReducersList = {
-	articlesSearch: articlesSearchReducer,
-};
-
 export const ArticlesSearch = memo((props: ArticlesSearchProps) => {
 	const { className, onChangeSearch } = props;
 	const { t } = useTranslation();
-	const dispatch = useAppDispatch();
-	const [searchParams] = useSearchParams();
 	const search = useSelector(getArticlesSearch);
-
-	useDynamicModule({ reducers, saveAfterUnmount: true });
-
-	useInitialEffect(() => {
-		dispatch(initArticlesSearch(searchParams));
-	});
-
-	const changeSearchHandler = useCallback(
-		(search: string) => {
-			dispatch(articlesSearchActions.setSearch(search));
-			onChangeSearch();
-		},
-		[dispatch, onChangeSearch]
-	);
+	const { changeSearchHandler } = useArticlesSearch(onChangeSearch);
 
 	return (
-		<Card className={classNames('', {}, [className])}>
-			<Input placeholder={t('Поиск')} value={search} onChange={changeSearchHandler} />
-		</Card>
+		<ToggleFeatures
+			name='isBeautyDesign'
+			on={<ArticlesSearchBeauty {...props} />}
+			off={
+				<Card className={classNames('', {}, [className])}>
+					<Input placeholder={t('Поиск')} value={search} onChange={changeSearchHandler} />
+				</Card>
+			}
+		/>
 	);
 });

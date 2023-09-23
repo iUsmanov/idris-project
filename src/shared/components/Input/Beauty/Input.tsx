@@ -1,21 +1,100 @@
-import { memo } from 'react';
-import { useTranslation } from 'react-i18next';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './Input.module.scss';
 import {
 	BeautySharedProvider,
 	useBeautySharedComponents,
 } from '@/shared/lib/components/BeautySharedProvider/BeautySharedProvider';
+import { ChangeEvent, InputHTMLAttributes, ReactNode, memo, useEffect, useRef, useState } from 'react';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import cls from './Input.module.scss';
+import { HStack } from '@/shared/components/Stack';
 
-export interface InputBeautyProps {
+type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'>;
+
+export interface InputBeautyProps extends HTMLInputProps {
 	className?: string;
+	placeholder?: string;
+	type?: string;
+	value?: string | number;
+	onChange?: (value: string, name?: string) => void;
+	autoFocus?: boolean;
+	readOnly?: boolean;
+	name?: string;
+	addonLeft?: ReactNode;
+	addonRight?: ReactNode;
 }
 
 export const Input = memo((props: InputBeautyProps) => {
-	const { className } = props;
-	const { t } = useTranslation();
+	const {
+		className,
+		placeholder,
+		type = 'text',
+		value = '',
+		onChange,
+		autoFocus,
+		readOnly,
+		name,
+		addonLeft,
+		addonRight,
+		...otherProps
+	} = props;
+	const [isFocused, setIsFocused] = useState<boolean>(false);
+	const ref = useRef<HTMLInputElement>(null);
 
-	return <div className={classNames(cls.input, {}, [className])}></div>;
+	const onFocus = () => {
+		setIsFocused(true);
+	};
+
+	const onBlur = () => {
+		setIsFocused(false);
+	};
+
+	const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+		if (name) {
+			onChange?.(event.target.value, name);
+		} else {
+			onChange?.(event.target.value);
+		}
+	};
+
+	useEffect(() => {
+		if (autoFocus) {
+			onFocus();
+			setTimeout(() => {
+				ref.current?.focus();
+			}, 30);
+		}
+	}, [autoFocus]);
+
+	return (
+		<HStack
+			align='center'
+			className={classNames(
+				cls.componentWrapper,
+				{
+					[cls.readonly]: readOnly,
+					[cls.focused]: isFocused,
+					[cls.withAddonLeft]: Boolean(addonLeft),
+					[cls.withAddonRight]: Boolean(addonRight),
+				},
+				[className]
+			)}
+		>
+			{addonLeft && <div className={cls.addonLeft}>{addonLeft}</div>}
+			<input
+				{...otherProps}
+				ref={ref}
+				type={type}
+				className={cls.input}
+				value={value}
+				onChange={changeHandler}
+				onFocus={onFocus}
+				onBlur={onBlur}
+				autoFocus={autoFocus}
+				readOnly={readOnly}
+				placeholder={placeholder}
+			/>
+			{addonRight && <div className={cls.addonRight}>{addonRight}</div>}
+		</HStack>
+	);
 });
 
 const InputAsync = (props: InputBeautyProps) => {

@@ -1,10 +1,20 @@
+.addonLeft svg, .addonRight svg{
+	color: var(--hint-beauty);
+}
+
 .button {
+	display: flex;
+	align-items: center;
 	cursor: pointer;
 	padding: 6px 15px;
 	color: var(--text-beauty);
 	
 	&:hover {
 		color: var(--accent-beauty);
+
+		.addonLeft svg, .addonRight svg{
+			color: var(--accent-beauty);
+		}
 	}
 }
 
@@ -29,12 +39,19 @@
 	border: none;
 	outline-color: transparent;
 	border-radius: 34px;
-	padding: 8px 16px;
 	background-color: var(--light-bg-beauty);
+}
+
+.withAddon {
+	padding: 0 16px;
 }
 
 .square {
 	padding: 0;
+}
+
+.addonLeft, .addonRight{
+	display: flex;
 }
 
 .square.size_m {
