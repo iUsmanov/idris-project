@@ -17,6 +17,7 @@ export interface TextBeautyProps {
 	variant?: TextVariant;
 	align?: TextAling;
 	size?: TextSize;
+	bold?: boolean;
 	tags?: [keyof HTMLElementTagNameMap, keyof HTMLElementTagNameMap] | [keyof HTMLElementTagNameMap];
 	'data-testid'?: string;
 }
@@ -30,6 +31,7 @@ export const Text = memo((props: TextBeautyProps) => {
 		align = 'left',
 		size = 'size_s',
 		tags = ['p', 'p'],
+		bold,
 		'data-testid': dataTestId = 'Text',
 	} = props;
 
@@ -37,7 +39,14 @@ export const Text = memo((props: TextBeautyProps) => {
 	const TextTag = tags[1] ? tags[1] : 'p';
 
 	return (
-		<div className={classNames(cls.text, {}, [className, cls[variant], cls[align], cls[size]])}>
+		<div
+			className={classNames(cls.text, { [cls.bold]: bold }, [
+				className,
+				cls[variant],
+				cls[align],
+				cls[size],
+			])}
+		>
 			{title && (
 				<TitleTag className={cls.title} data-testid={`${dataTestId}.Title`}>
 					{title}

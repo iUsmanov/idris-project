@@ -1,21 +1,30 @@
-import { memo } from 'react';
-import { useTranslation } from 'react-i18next';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './Skeleton.module.scss';
 import {
 	BeautySharedProvider,
 	useBeautySharedComponents,
 } from '@/shared/lib/components/BeautySharedProvider/BeautySharedProvider';
+import { CSSProperties, memo } from 'react';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import cls from './Skeleton.module.scss';
 
 export interface SkeletonBeautyProps {
 	className?: string;
+	width: string | number;
+	height: string | number;
+	borderRadius?: string;
+	style?: CSSProperties;
 }
 
 export const Skeleton = memo((props: SkeletonBeautyProps) => {
-	const { className } = props;
-	const { t } = useTranslation();
+	const { className, borderRadius, height, width, style } = props;
 
-	return <div className={classNames(cls.skeleton, {}, [className])}></div>;
+	const styles: CSSProperties = {
+		...style,
+		width,
+		height,
+		borderRadius,
+	};
+
+	return <div style={styles} className={classNames(cls.skeleton, {}, [className])}></div>;
 });
 
 const SkeletonAsync = (props: SkeletonBeautyProps) => {

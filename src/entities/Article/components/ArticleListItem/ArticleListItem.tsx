@@ -14,6 +14,8 @@ import { AppLink } from '@/shared/components/AppLink';
 import { getRouteArticleDetails } from '@/shared/const/router';
 import { AppImage } from '@/shared/components/AppImage';
 import { Skeleton } from '@/shared/components/Skeleton';
+import { ToggleFeatures } from '@/shared/lib/featureFlags';
+import { ArticleListItemBeauty } from './Beauty/ArticleListItem.async';
 
 interface ArticleListItemProps {
 	className?: string;
@@ -37,53 +39,67 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 	if (view === 'LIST') {
 		const textBlock = article.blocks.find((block) => block.type === 'TEXT') as ArticleTextBlock;
 		return (
-			<Card className={classNames(cls.articleListItem, {}, [className, cls[view]])}>
-				<HStack justify='between' align='center' className={cls.header}>
-					<HStack gap='8' align='center'>
-						<Avatar size={30} src={article.user?.avatar} />
-						<Text size='size_m' text={article.user?.username} />
-					</HStack>
-					<Text size='size_m' text={article.createdAt} />
-				</HStack>
-				<Text size='size_m' text={article.title} />
-				{types}
-				<div className={cls.image}>
-					<AppImage
-						loadingFallback={<Skeleton width={'100%'} height={250} />}
-						src={article.img}
-						alt={article.title}
-						className={cls.img}
-					/>
-				</div>
-				{textBlock && <ArticleTextBlockComponent block={textBlock} className={cls.textBlock} />}
-				<HStack align='center' justify='between'>
-					<AppLink to={getRouteArticleDetails(article.id)} variant='outline'>
-						{t('Читать далее...')}
-					</AppLink>
-					{views}
-				</HStack>
-			</Card>
+			<ToggleFeatures
+				name='isBeautyDesign'
+				on={<ArticleListItemBeauty {...props} />}
+				off={
+					<Card className={classNames(cls.articleListItem, {}, [className, cls[view]])}>
+						<HStack justify='between' align='center' className={cls.header}>
+							<HStack gap='8' align='center'>
+								<Avatar size={30} src={article.user?.avatar} />
+								<Text size='size_m' text={article.user?.username} />
+							</HStack>
+							<Text size='size_m' text={article.createdAt} />
+						</HStack>
+						<Text size='size_m' text={article.title} />
+						{types}
+						<div className={cls.image}>
+							<AppImage
+								loadingFallback={<Skeleton width={'100%'} height={250} />}
+								src={article.img}
+								alt={article.title}
+								className={cls.img}
+							/>
+						</div>
+						{textBlock && (
+							<ArticleTextBlockComponent block={textBlock} className={cls.textBlock} />
+						)}
+						<HStack align='center' justify='between'>
+							<AppLink to={getRouteArticleDetails(article.id)} variant='outline'>
+								{t('Читать далее...')}
+							</AppLink>
+							{views}
+						</HStack>
+					</Card>
+				}
+			/>
 		);
 	}
 
 	return (
-		<AppLink to={getRouteArticleDetails(article.id)} target={target}>
-			<Card className={classNames(cls.articleListItem, {}, [className, cls[view]])}>
-				<div className={cls.image}>
-					<AppImage
-						loadingFallback={<Skeleton width={200} height={200} />}
-						src={article.img}
-						alt={article.title}
-						className={cls.img}
-					/>
-					<Text size='size_m' className={cls.createdAt} text={article.createdAt} />
-				</div>
-				<HStack justify='between'>
-					{types}
-					{views}
-				</HStack>
-				<Text size='size_m' text={article.title} className={cls.title} />
-			</Card>
-		</AppLink>
+		<ToggleFeatures
+			name='isBeautyDesign'
+			on={<ArticleListItemBeauty {...props} />}
+			off={
+				<AppLink to={getRouteArticleDetails(article.id)} target={target}>
+					<Card className={classNames(cls.articleListItem, {}, [className, cls[view]])}>
+						<div className={cls.image}>
+							<AppImage
+								loadingFallback={<Skeleton width={200} height={200} />}
+								src={article.img}
+								alt={article.title}
+								className={cls.img}
+							/>
+							<Text size='size_m' className={cls.createdAt} text={article.createdAt} />
+						</div>
+						<HStack justify='between'>
+							{types}
+							{views}
+						</HStack>
+						<Text size='size_m' text={article.title} className={cls.title} />
+					</Card>
+				</AppLink>
+			}
+		/>
 	);
 });

@@ -7,7 +7,7 @@ import {
 } from '@/shared/lib/components/BeautySharedProvider/BeautySharedProvider';
 import { LinkProps, NavLink } from 'react-router-dom';
 
-export type AppLinkVariant = 'primary' | 'red';
+export type AppLinkVariant = 'primary' | 'red' | 'outline';
 
 export interface AppLinkBeautyProps extends LinkProps {
 	className?: string;

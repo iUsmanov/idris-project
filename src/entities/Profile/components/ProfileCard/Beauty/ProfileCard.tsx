@@ -9,7 +9,7 @@ import { Country, CountrySelect } from '@/entities/Country';
 import { Profile } from '../../../model/types/profile';
 import { Card } from '@/shared/components/Card';
 import { Avatar } from '@/shared/components/Avatar';
-import { Skeleton } from '@/shared/components/Skeleton/Matrix/Skeleton';
+import { Skeleton } from '@/shared/components/Skeleton';
 
 interface ProfileCardProps {
 	className?: string;
