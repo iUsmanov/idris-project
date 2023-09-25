@@ -20,5 +20,6 @@ export const getRouteArticleDetails = (id: string) => `/articles/${id}`;
 export const getRouteArticleCreate = () => `/articles/create`;
 export const getRouteArticleEdit = (id: string) => `/articles/${id}/edit`;
 export const getRouteAdminPanel = () => `/admin`;
+export const getRouteSettings = () => `/settings`;
 export const getRouteForbidden = () => `/forbidden`;
 export const getRouteNotFound = () => `/*`;

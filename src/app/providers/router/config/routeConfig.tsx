@@ -13,6 +13,7 @@ import {
 	getRouteMain,
 	getRouteNotFound,
 	getRouteProfile,
+	getRouteSettings,
 } from '@/shared/const/router';
 // eslint-disable-next-line fsd-paths-guard/hierarchy-imports-between-layers
 import { RootLayout } from '@/app/RootLayout';
@@ -25,6 +26,7 @@ import { ArticleEditPage } from '@/pages/ArticleEditPage';
 import { AdminPanelPage } from '@/pages/AdminPanelPage';
 import { RequireRoles } from '../components/RequireRoles';
 import { ForbiddenPage } from '@/pages/ForbiddenPage';
+import { SettingsPage } from '@/pages/settingsPage';
 
 const routeConfig: Record<AppRoutes, AppRouteObject> = {
 	main: {
@@ -63,6 +65,12 @@ const routeConfig: Record<AppRoutes, AppRouteObject> = {
 	admin_panel: {
 		path: getRouteAdminPanel(),
 		element: <AdminPanelPage />,
+		authOnly: true,
+		roles: ['ADMIN', 'MANAGER'],
+	},
+	settings: {
+		path: getRouteSettings(),
+		element: <SettingsPage />,
 		authOnly: true,
 		roles: ['ADMIN', 'MANAGER'],
 	},

@@ -11,6 +11,7 @@ export type AppRoutes =
 	| 'article_create'
 	| 'article_edit'
 	| 'admin_panel'
+	| 'settings'
 	| 'forbidden'
 	// last
 	| 'not_found';
