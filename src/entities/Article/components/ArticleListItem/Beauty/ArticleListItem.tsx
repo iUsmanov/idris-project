@@ -5,7 +5,7 @@ import cls from './ArticleListItem.module.scss';
 import { Article, ArticleTextBlock, ArticleView } from '../../../model/types/article';
 import { Card } from '@/shared/components/Card';
 import { Text } from '@/shared/components/Text';
-import { HStack } from '@/shared/components/Stack';
+import { HStack, VStack } from '@/shared/components/Stack';
 import { Icon } from '@/shared/components/Icon';
 import EyeIcon from '@/shared/assets/icons/eye.svg';
 import { Avatar } from '@/shared/components/Avatar';
@@ -25,7 +25,12 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 	const { className, article, view, target } = props;
 	const { t } = useTranslation();
 
-	const types = <Text size='size_s' text={article.type.join(', ')} className={cls.types} />;
+	const userInfo = (
+		<>
+			<Avatar size={32} src={article.user?.avatar} />
+			<Text bold size='size_m' text={article.user?.username} />
+		</>
+	);
 	const views = (
 		<HStack align='center' gap='8'>
 			<Icon Svg={EyeIcon} />
@@ -45,8 +50,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 				padding='24'
 			>
 				<HStack gap='8' align='center' className={cls.header}>
-					<Avatar size={32} src={article.user?.avatar} />
-					<Text bold size='size_m' text={article.user?.username} />
+					{userInfo}
 					<Text size='size_m' text={article.createdAt} />
 				</HStack>
 				<Text size='size_l' bold text={article.title} />
@@ -74,7 +78,14 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 
 	return (
 		<AppLink to={getRouteArticleDetails(article.id)} target={target}>
-			<Card className={classNames(cls.articleListItem, {}, [className, cls[view]])}>
+			<Card
+				flex
+				direction='column'
+				gap='8'
+				border='round'
+				padding='0'
+				className={classNames(cls.articleListItem, {}, [className, cls[view]])}
+			>
 				<div className={cls.image}>
 					<AppImage
 						loadingFallback={<Skeleton width={200} height={200} />}
@@ -82,13 +93,19 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 						alt={article.title}
 						className={cls.img}
 					/>
-					<Text size='size_m' className={cls.createdAt} text={article.createdAt} />
 				</div>
-				<HStack justify='between'>
-					{types}
-					{views}
-				</HStack>
-				<Text size='size_m' text={article.title} className={cls.title} />
+				<VStack gap='4' className={cls.info} max>
+					<Text size='size_l' text={article.title} className={cls.title} />
+					<VStack justify='right' max gap='4' className={cls.footer}>
+						<HStack justify='between' align='center' max>
+							<Text size='size_m' className={cls.createdAt} text={article.createdAt} />
+							{views}
+						</HStack>
+						<HStack gap='8' align='center'>
+							{userInfo}
+						</HStack>
+					</VStack>
+				</VStack>
 			</Card>
 		</AppLink>
 	);

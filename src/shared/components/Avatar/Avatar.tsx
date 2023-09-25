@@ -5,9 +5,7 @@ import UserAvatarIcon from '@/shared/assets/icons/user-32-32.png';
 import { Flex } from '../Stack';
 import { FlexProps } from '../Stack/Flex/Flex';
 import { AppImage } from '../AppImage';
-import { Icon } from '../Icon';
 import { Skeleton } from '../Skeleton';
-import { ToggleFeatures } from '@/shared/lib/featureFlags';
 
 type ExProps = Omit<FlexProps, 'direction' | 'children' | 'wrap' | 'gap'>;
 
@@ -23,20 +21,7 @@ export const Avatar = memo((props: AvatarProps) => {
 
 	const styles = useMemo<CSSProperties>(() => ({ width: size, height: size }), [size]);
 
-	const errorFallback = (
-		<ToggleFeatures
-			name='isBeautyDesign'
-			on={<Icon Svg={UserAvatarIcon} width={size} height={size} />}
-			off={
-				<Icon
-					Svg={UserAvatarIcon}
-					variant={fallbackInverted ? 'inverted' : 'primary'}
-					width={size}
-					height={size}
-				/>
-			}
-		/>
-	);
+	const errorFallback = <AppImage src={UserAvatarIcon} width={size} height={size} />;
 
 	const loadingFallback = <Skeleton width={size} height={size} borderRadius='50%' />;
 
@@ -54,3 +39,22 @@ export const Avatar = memo((props: AvatarProps) => {
 		</Flex>
 	);
 });
+
+/* 
+
+	const errorFallback = (
+		<ToggleFeatures
+			name='isBeautyDesign'
+			on={<Icon Svg={UserAvatarIcon} width={size} height={size} />}
+			off={
+				<Icon
+					Svg={UserAvatarIcon}
+					variant={fallbackInverted ? 'inverted' : 'primary'}
+					width={size}
+					height={size}
+				/>
+			}
+		/>
+	);
+
+*/

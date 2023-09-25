@@ -3,15 +3,10 @@
 }
 
 .TILE {
-	width: 230px;
+	width: 240px;
+	height: 350px;
+	overflow: hidden;
 	transition: all .2s;
-
-	.createdAt {
-		display: none;
-		position: absolute;
-		right: 5px; 
-		top: 0;
-	}
 
 	&:hover {
 		opacity: 0.8;
@@ -24,9 +19,13 @@
 
 	.image {
 		position: relative;
-		width: 200px;
-		height: 200px;
-		margin-bottom: 8px;
+		width: 240px;
+
+		// TODO What ?
+		// height: 140px;
+
+		max-height: 140px;
+		min-height: 140px;
 	}
 
 	.img {
@@ -38,23 +37,18 @@
 		object-fit: cover;
 	}
 
-	.types p{
-		width: 115px;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
+	.info {
+		padding: 8px 8px 16px;
+		height: 100%;
 	}
 
-	.views {
-		margin-right: 8px;
+	.footer {
+		height: 100%;
 	}
 
-	.title p{
-		width: 200px;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-	}
+	// .views {
+	// 	margin-right: 8px;
+	// }
 }
 
 .LIST {

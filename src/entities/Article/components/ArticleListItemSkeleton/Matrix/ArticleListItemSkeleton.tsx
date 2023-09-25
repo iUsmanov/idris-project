@@ -1,17 +1,18 @@
 import { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './ArticleListItem.module.scss';
-import { ArticleView } from '../../model/types/article';
+import cls from '../../ArticleListItem/ArticleListItem.module.scss';
+import { ArticleView } from '../../../model/types/article';
 import { Card } from '@/shared/components/Card';
 import { HStack } from '@/shared/components/Stack';
 import { Skeleton } from '@/shared/components/Skeleton';
+import { ToggleFeatures } from '@/shared/lib/featureFlags';
 
-interface ArticleListItemSkeletonProps {
+export interface ArticleListItemSkeletonMatrixProps {
 	className?: string;
 	view: ArticleView;
 }
 
-export const ArticleListItemSkeleton = memo((props: ArticleListItemSkeletonProps) => {
+export const ArticleListItemSkeleton = memo((props: ArticleListItemSkeletonMatrixProps) => {
 	const { className, view } = props;
 
 	if (view === 'LIST') {
@@ -36,7 +37,11 @@ export const ArticleListItemSkeleton = memo((props: ArticleListItemSkeletonProps
 	return (
 		<Card className={classNames(cls.articleListItem, {}, [className, cls[view]])}>
 			<div className={cls.image}>
-				<Skeleton width={200} height={200} className={cls.img} />
+				<ToggleFeatures
+					name='isBeautyDesign'
+					on={<Skeleton width={240} height={140} className={cls.img} />}
+					off={<Skeleton width={200} height={200} className={cls.img} />}
+				/>
 			</div>
 			<Skeleton width={130} height={16} style={{ marginBottom: 8 }} />
 			<Skeleton width={150} height={16} className={cls.title} />

@@ -5,8 +5,10 @@ import cls from './ArticleList.module.scss';
 import { Article, ArticleView } from '../../model/types/article';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import { HStack, VStack } from '@/shared/components/Stack';
-import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton';
 import { Text } from '@/shared/components/Text';
+import { ToggleFeatures } from '@/shared/lib/featureFlags';
+import { ArticleListBeauty } from './Beauty/ArticleList.async';
+import { ArticleListItemSkeleton } from '../ArticleListItemSkeleton/ArticleListItemSkeleton';
 
 interface ArticleListProps {
 	className?: string;
@@ -23,15 +25,21 @@ export const ArticleList = memo((props: ArticleListProps) => {
 	const skeletons = useMemo(() => {
 		if (view === 'TILE') {
 			return (
-				<HStack
-					gap='32'
-					wrap='wrap'
-					className={classNames(cls.articleList, {}, [className, cls[view]])}
-				>
-					{new Array(9).fill(0).map((item, index) => (
-						<ArticleListItemSkeleton key={index} view={view} className={cls.card} />
-					))}
-				</HStack>
+				<ToggleFeatures
+					name='isBeautyDesign'
+					on={<ArticleListBeauty {...props} />}
+					off={
+						<HStack
+							gap='32'
+							wrap='wrap'
+							className={classNames(cls.articleList, {}, [className, cls[view]])}
+						>
+							{new Array(9).fill(0).map((item, index) => (
+								<ArticleListItemSkeleton key={index} view={view} className={cls.card} />
+							))}
+						</HStack>
+					}
+				/>
 			);
 		} else {
 			return (
@@ -42,7 +50,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
 				</VStack>
 			);
 		}
-	}, [className, view]);
+	}, [className, props, view]);
 
 	const renderArticle = useCallback(
 		(article: Article) => {
@@ -63,27 +71,45 @@ export const ArticleList = memo((props: ArticleListProps) => {
 	const renderSkeletons = isLoading && skeletons;
 
 	if ((!articles || !articles.length) && !isLoading) {
-		return <Text align='center' size='size_l' title={t('Статьи не найдены')} />;
+		return (
+			<ToggleFeatures
+				name='isBeautyDesign'
+				on={<ArticleListBeauty {...props} />}
+				off={<Text align='center' size='size_l' title={t('Статьи не найдены')} />}
+			/>
+		);
 	}
 
 	if (view === 'LIST') {
 		return (
-			<VStack max className={classNames(cls.articleList, {}, [className, cls[view]])}>
-				{renderArticles}
-				{renderSkeletons}
-			</VStack>
+			<ToggleFeatures
+				name='isBeautyDesign'
+				on={<ArticleListBeauty {...props} />}
+				off={
+					<VStack max className={classNames(cls.articleList, {}, [className, cls[view]])}>
+						{renderArticles}
+						{renderSkeletons}
+					</VStack>
+				}
+			/>
 		);
 	}
 
 	return (
-		<HStack
-			gap='32'
-			wrap='wrap'
-			max
-			className={classNames(cls.articleList, {}, [className, cls[view]])}
-		>
-			{renderArticles}
-			{renderSkeletons}
-		</HStack>
+		<ToggleFeatures
+			name='isBeautyDesign'
+			on={<ArticleListBeauty {...props} />}
+			off={
+				<HStack
+					gap='32'
+					wrap='wrap'
+					max
+					className={classNames(cls.articleList, {}, [className, cls[view]])}
+				>
+					{renderArticles}
+					{renderSkeletons}
+				</HStack>
+			}
+		/>
 	);
 });
