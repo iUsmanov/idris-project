@@ -55,6 +55,7 @@ export const LoginForm = memo((props: LoginFormProps) => {
 			const action = await dispatch(loginByUsername({ username, password }));
 			if (action.meta.requestStatus === 'fulfilled') {
 				onModalClose?.();
+				window.location.reload();
 			}
 		}
 	}, [dispatch, onModalClose, password, username]);
