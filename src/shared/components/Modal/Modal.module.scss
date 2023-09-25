@@ -12,11 +12,22 @@
 
 .modalContent {
 	padding: 20px;
-	background-color: var(--bg-color);
 	transition: transform .3s;
 	border-radius: 12px;
 	max-width: 60%;
 	transform: scale(0.5);
+}
+
+.modalBeauty{
+	.modalContent {
+		background-color: var(--light-bg-beauty);
+	}
+}
+
+.modalMatrix{
+	.modalContent {
+		background-color: var(--bg-color);
+	}
 }
 
 .opened {

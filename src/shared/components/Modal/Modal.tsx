@@ -3,6 +3,7 @@ import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Modal.module.scss';
 import { Portal } from '../Portal/Portal';
 import { Overlay } from '../Overlay/Overlay';
+import { toggleFeatures } from '@/shared/lib/featureFlags';
 
 interface ModalProps {
 	className?: string;
@@ -42,7 +43,16 @@ export const Modal = memo((props: ModalProps) => {
 
 	return (
 		<Portal container={container} isMounted={isMounted}>
-			<div className={classNames(cls.modal, mods, [className])}>
+			<div
+				className={classNames(cls.modal, mods, [
+					className,
+					toggleFeatures({
+						name: 'isBeautyDesign',
+						on: () => cls.modalBeauty,
+						off: () => cls.modalMatrix,
+					}),
+				])}
+			>
 				<Overlay onClick={onModalClose} centering>
 					<div onClick={onContentClick} className={classNames(cls.modalContent, {}, [])}>
 						{children}

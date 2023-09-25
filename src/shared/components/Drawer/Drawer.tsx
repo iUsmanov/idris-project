@@ -7,6 +7,7 @@ import {
 	AnimationProvider,
 	useAnimationLibs,
 } from '@/shared/lib/components/AnimationProvider/AnimationProvider';
+import { toggleFeatures } from '@/shared/lib/featureFlags';
 
 interface DrawerProps {
 	className?: string;
@@ -71,7 +72,16 @@ const DrawerComponent = memo((props: DrawerProps) => {
 
 	return (
 		<Portal container={container} isMounted={isMounted}>
-			<div className={classNames(cls.modal, mods, [className])}>
+			<div
+				className={classNames(cls.modal, mods, [
+					className,
+					toggleFeatures({
+						name: 'isBeautyDesign',
+						on: () => cls.modalBeauty,
+						off: () => cls.modalMatrix,
+					}),
+				])}
+			>
 				<Overlay onClick={() => closeDrawer()}>
 					<Spring.a.div
 						onClick={onContentClick}
