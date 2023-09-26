@@ -19,16 +19,13 @@ import CalendarIcon from '@/shared/assets/icons/calendar-20-20.svg';
 import { Icon } from '@/shared/components/Icon';
 
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
-import {
-	ArticleBlock,
-	ArticleCodeBlockComponent,
-	ArticleImageBlockComponent,
-	ArticleTextBlockComponent,
-} from '@/entities/Article';
-import { ArticleDetailsHeader } from '../ArticleDetailsHeader/ArticleDetailsHeader';
 import { useParams } from 'react-router-dom';
 import { Skeleton } from '@/shared/components/Skeleton';
 import { AppImage } from '@/shared/components/AppImage';
+import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
+import { ArticleImageBlockComponent } from '../ArticleImageBlockComponent/ArticleImageBlockComponent';
+import { ArticleCodeBlockComponent } from '../ArticleCodeBlockComponent/ArticleCodeBlockComponent';
+import { ArticleBlock } from '../../model/types/article';
 
 interface ArticleDetailsProps {
 	className?: string;
@@ -98,7 +95,6 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
 
 	return (
 		<VStack max gap='16' className={classNames(cls.articleDetails, {}, [className])}>
-			<ArticleDetailsHeader />
 			<AppImage src={article?.img} className={cls.preview} />
 			<VStack max gap='8'>
 				<Text title={article?.title} text={article?.subtitle} size='size_l' />

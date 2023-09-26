@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { ArticleCommentsList } from '@/features/ArticleCommentsList';
 import { Page } from '@/widgets/Page';
 import { ArticleRecommendations } from '@/features/ArticleRecommendations';
-import { ArticleDetails, getArticleDetailsError } from '@/features/ArticleDetails';
 import { useSelector } from 'react-redux';
 import { VStack } from '@/shared/components/Stack';
 import { ArticleRating } from '@/features/articleRating';
@@ -12,6 +11,8 @@ import { useParams } from 'react-router-dom';
 import { ToggleFeatures } from '@/shared/lib/featureFlags';
 import { Counter } from '@/entities/Counter';
 import { Card } from '@/shared/components/Card';
+import { ArticleDetails, getArticleDetailsError } from '@/entities/Article';
+import { ArticleDetailsHeader } from '@/features/ArticleDetailsHeader';
 
 export const ArticleDetailsPage = memo(() => {
 	const { t } = useTranslation('article-details');
@@ -23,6 +24,7 @@ export const ArticleDetailsPage = memo(() => {
 	return (
 		<Page className={classNames('', {}, [])}>
 			<VStack gap='16' max>
+				<ArticleDetailsHeader />
 				<ArticleDetails />
 				{!error && (
 					<>

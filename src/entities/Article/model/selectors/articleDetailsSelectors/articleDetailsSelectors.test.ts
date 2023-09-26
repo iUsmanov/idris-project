@@ -1,7 +1,10 @@
-import { Article } from '@/entities/Article/testing';
-import { fetchArticleById } from '../services/fetchArticleById/fetchArticleById';
-import { ArticleDetailsSchema } from '../types/articleDetailsSchema';
-import { articleDetailsReducer } from './articleDetailsSlice';
+import { StateSchema } from '@/app/providers/StoreProvider/testing';
+import {
+	getArticleDetailsData,
+	getArticleDetailsError,
+	getArticleDetailsIsLoading,
+} from './articleDetailsSelectors';
+import { Article } from '../../types/article';
 
 const article: Article = {
 	id: '1',
@@ -37,49 +40,47 @@ const article: Article = {
 	],
 };
 
-describe('articleDetailsSlice.test', () => {
-	test('fetchArticleById pending', () => {
-		const state: DeepPartial<ArticleDetailsSchema> = {
-			isLoading: false,
+describe('getArticleDetailsData', () => {
+	test('getDataSuccess', () => {
+		const state: DeepPartial<StateSchema> = {
+			articleDetails: {
+				data: article,
+			},
 		};
-		const expected = {
-			data: undefined,
-			error: undefined,
-			isLoading: true,
-		};
-		expect(articleDetailsReducer(state as ArticleDetailsSchema, fetchArticleById.pending)).toEqual(
-			expected
-		);
+		expect(getArticleDetailsData(state as StateSchema)).toEqual(article);
 	});
-	test('fetchArticleById fulfilled', () => {
-		const state: DeepPartial<ArticleDetailsSchema> = {
-			isLoading: true,
-		};
-		const payload: Article = article;
-		const expected = {
-			data: payload,
-			isLoading: false,
-		};
-		expect(
-			articleDetailsReducer(
-				state as ArticleDetailsSchema,
-				fetchArticleById.fulfilled(payload, '', '')
-			)
-		).toEqual(expected);
+	test('getDataUndefined', () => {
+		const state: DeepPartial<StateSchema> = {};
+		expect(getArticleDetailsData(state as StateSchema)).toEqual(undefined);
 	});
-	test('fetchArticleById rejected', () => {
-		const state: DeepPartial<ArticleDetailsSchema> = {
-			isLoading: true,
+});
+
+describe('getArticleDetailsError', () => {
+	test('getErrorSuccess', () => {
+		const state: DeepPartial<StateSchema> = {
+			articleDetails: {
+				error: 'error',
+			},
 		};
-		const expected = {
-			error: 'error',
-			isLoading: false,
+		expect(getArticleDetailsError(state as StateSchema)).toEqual('error');
+	});
+	test('getErrorUndefined', () => {
+		const state: DeepPartial<StateSchema> = {};
+		expect(getArticleDetailsError(state as StateSchema)).toEqual(undefined);
+	});
+});
+
+describe('getArticleDetailsIsLoading', () => {
+	test('getIsLoadingTrue', () => {
+		const state: DeepPartial<StateSchema> = {
+			articleDetails: {
+				isLoading: true,
+			},
 		};
-		expect(
-			articleDetailsReducer(
-				state as ArticleDetailsSchema,
-				fetchArticleById.rejected(null, '', '', 'error')
-			)
-		).toEqual(expected);
+		expect(getArticleDetailsIsLoading(state as StateSchema)).toEqual(true);
+	});
+	test('getIsLoadingFalse', () => {
+		const state: DeepPartial<StateSchema> = {};
+		expect(getArticleDetailsIsLoading(state as StateSchema)).toEqual(false);
 	});
 });

@@ -1,7 +1,6 @@
 import { memo, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './UIDesignSwitcher.module.scss';
 import { ListBox, ListBoxOption } from '@/shared/components/Popups';
 import { getFeatureFlag, toggleFeatures, updateFeatureFlags } from '@/shared/lib/featureFlags';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -73,7 +72,7 @@ export const UIDesignSwitcher = memo((props: UIDesignSwitcherProps) => {
 					onChange={onChange}
 					options={options}
 					value={isBeautyDesign ? 'beauty' : 'matrix'}
-					className={classNames(cls.UIDesignSwitcher, {}, [className])}
+					className={classNames('', {}, [className])}
 				/>
 			)}
 		</HStack>

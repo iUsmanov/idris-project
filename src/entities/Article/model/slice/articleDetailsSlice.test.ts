@@ -1,8 +1,7 @@
-import { Meta, StoryObj } from '@storybook/react';
-import { ArticleDetails } from './ArticleDetails';
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
-import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator';
-import { Article } from '@/entities/Article/testing';
+import { fetchArticleById } from '../services/fetchArticleById/fetchArticleById';
+import { Article } from '../types/article';
+import { ArticleDetailsSchema } from '../types/articleDetailsSchema';
+import { articleDetailsReducer } from './articleDetailsSlice';
 
 const article: Article = {
 	id: '1',
@@ -38,37 +37,49 @@ const article: Article = {
 	],
 };
 
-const meta = {
-	title: 'entities/ArticleDetails',
-	component: ArticleDetails,
-	tags: ['autodocs'],
-	argTypes: {},
-	args: {},
-	decorators: [StoreDecorator({ articleDetails: { data: article } })],
-} satisfies Meta<typeof ArticleDetails>;
-
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const PrimaryLight: Story = {
-	args: {},
-	decorators: [],
-};
-
-export const PrimaryDark: Story = {
-	args: {},
-	decorators: [ThemeDecorator('app-dark-theme')],
-};
-
-export const PrimaryOrange: Story = {
-	args: {},
-	decorators: [ThemeDecorator('app-orange-theme')],
-};
-
-export const LoadingLight: Story = {
-	decorators: [StoreDecorator({ articleDetails: { isLoading: true } })],
-};
-
-export const ErrorLight: Story = {
-	decorators: [StoreDecorator({ articleDetails: { error: 'error' } })],
-};
+describe('articleDetailsSlice.test', () => {
+	test('fetchArticleById pending', () => {
+		const state: DeepPartial<ArticleDetailsSchema> = {
+			isLoading: false,
+		};
+		const expected = {
+			data: undefined,
+			error: undefined,
+			isLoading: true,
+		};
+		expect(articleDetailsReducer(state as ArticleDetailsSchema, fetchArticleById.pending)).toEqual(
+			expected
+		);
+	});
+	test('fetchArticleById fulfilled', () => {
+		const state: DeepPartial<ArticleDetailsSchema> = {
+			isLoading: true,
+		};
+		const payload: Article = article;
+		const expected = {
+			data: payload,
+			isLoading: false,
+		};
+		expect(
+			articleDetailsReducer(
+				state as ArticleDetailsSchema,
+				fetchArticleById.fulfilled(payload, '', '')
+			)
+		).toEqual(expected);
+	});
+	test('fetchArticleById rejected', () => {
+		const state: DeepPartial<ArticleDetailsSchema> = {
+			isLoading: true,
+		};
+		const expected = {
+			error: 'error',
+			isLoading: false,
+		};
+		expect(
+			articleDetailsReducer(
+				state as ArticleDetailsSchema,
+				fetchArticleById.rejected(null, '', '', 'error')
+			)
+		).toEqual(expected);
+	});
+});
