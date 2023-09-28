@@ -11,39 +11,82 @@ import { useParams } from 'react-router-dom';
 import { ToggleFeatures } from '@/shared/lib/featureFlags';
 import { Counter } from '@/entities/Counter';
 import { Card } from '@/shared/components/Card';
-import { ArticleDetails, getArticleDetailsError } from '@/entities/Article';
-import { ArticleDetailsHeader } from '@/features/ArticleDetailsHeader';
+import { ArticleDetails, getArticleDetailsData, getArticleDetailsError } from '@/entities/Article';
+import { ArticleDetailsHeader, ArticleDetailsHeaderBeauty } from '@/features/ArticleDetailsHeader';
+import { StickyContentLayout } from '@/shared/layouts';
 
 export const ArticleDetailsPage = memo(() => {
 	const { t } = useTranslation('article-details');
 	const error = useSelector(getArticleDetailsError);
 	const { id } = useParams<{ id: string }>();
+	const article = useSelector(getArticleDetailsData);
 
-	if (!id) return null;
+	if (!id || !article) return null;
 
 	return (
-		<Page className={classNames('', {}, [])}>
-			<VStack gap='16' max>
-				<ArticleDetailsHeader />
-				<ArticleDetails />
-				{!error && (
-					<>
-						<ToggleFeatures
-							name='isCounterEnabled'
-							on={<Counter />}
-							off={<Card max>{t('Счётчик скоро появится!')}</Card>}
+		<ToggleFeatures
+			name='isBeautyDesign'
+			on={
+				<StickyContentLayout
+					content={
+						<Page className={classNames('', {}, [])}>
+							<VStack gap='16' max>
+								<Card padding='24' border='round'>
+									<ArticleDetails />
+								</Card>
+								{!error && (
+									<>
+										<ToggleFeatures
+											name='isCounterEnabled'
+											on={<Counter />}
+											off={<Card max>{t('Счётчик скоро появится!')}</Card>}
+										/>
+										<ToggleFeatures
+											name='isArticleRatingEnabled'
+											on={<ArticleRating articleId={id} />}
+											off={<Card max>{t('Оценка статей скоро появится!')}</Card>}
+										/>
+										<ArticleRecommendations />
+										<ArticleCommentsList />
+									</>
+								)}
+							</VStack>
+						</Page>
+					}
+					right={
+						<ArticleDetailsHeaderBeauty
+							author={article.user}
+							createdAt={article.createdAt}
+							views={article.views}
 						/>
-						<ToggleFeatures
-							name='isArticleRatingEnabled'
-							on={<ArticleRating articleId={id} />}
-							off={<Card max>{t('Оценка статей скоро появится!')}</Card>}
-						/>
-						<ArticleRecommendations />
-						<ArticleCommentsList />
-					</>
-				)}
-			</VStack>
-		</Page>
+					}
+				/>
+			}
+			off={
+				<Page className={classNames('', {}, [])}>
+					<VStack gap='16' max>
+						<ArticleDetailsHeader />
+						<ArticleDetails />
+						{!error && (
+							<>
+								<ToggleFeatures
+									name='isCounterEnabled'
+									on={<Counter />}
+									off={<Card max>{t('Счётчик скоро появится!')}</Card>}
+								/>
+								<ToggleFeatures
+									name='isArticleRatingEnabled'
+									on={<ArticleRating articleId={id} />}
+									off={<Card max>{t('Оценка статей скоро появится!')}</Card>}
+								/>
+								<ArticleRecommendations />
+								<ArticleCommentsList />
+							</>
+						)}
+					</VStack>
+				</Page>
+			}
+		/>
 	);
 });
 

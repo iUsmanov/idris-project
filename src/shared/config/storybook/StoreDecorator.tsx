@@ -1,7 +1,7 @@
 import { StateSchema, StoreProvider } from '@/app/providers/StoreProvider/testing';
 import { addNewCommentReducer } from '@/entities/AddNewComment/testing';
+import { articleDetailsReducer } from '@/entities/Article/testing';
 import { articleCommentsListReducer } from '@/features/ArticleCommentsList/testing';
-import { articleDetailsReducer } from '@/features/ArticleDetails/testing';
 import { articlesTypeReducer } from '@/features/ArticleTypeTabs/testing';
 import { articlesSearchReducer } from '@/features/ArticlesSearch/testing';
 import { articlesSortReducer } from '@/features/ArticlesSort/testing';

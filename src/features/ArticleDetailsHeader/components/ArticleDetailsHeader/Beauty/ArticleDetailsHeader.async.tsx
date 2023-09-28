@@ -1,7 +1,7 @@
 import { FC, lazy } from 'react';
-import { ArticleDetailsHeaderProps } from './ArticleDetailsHeader';
+import { ArticleDetailsHeaderPropsBeauty } from './ArticleDetailsHeader';
 
-const ArticleDetailsHeaderAsync = lazy<FC<ArticleDetailsHeaderProps>>(() =>
+const ArticleDetailsHeaderAsync = lazy<FC<ArticleDetailsHeaderPropsBeauty>>(() =>
 	import('./ArticleDetailsHeader').then((module) => ({ default: module.ArticleDetailsHeader }))
 );
 

@@ -36,6 +36,7 @@ export interface Article {
 	type: ArticleType[];
 	blocks: ArticleBlock[];
 	user?: {
+		id: string;
 		username: string;
 		avatar: string;
 	};

@@ -11,10 +11,10 @@ import { UISchema } from '@/widgets/Page';
 import { ArticlesSortSchema } from '@/features/ArticlesSort';
 import { ArticlesTypeSchema } from '@/features/ArticleTypeTabs';
 import { ArticlesSearchSchema } from '@/features/ArticlesSearch';
-import { ArticleDetailsSchema } from '@/features/ArticleDetails';
 import { ProfileSchema } from '@/features/EditableProfileCard';
 import { rtkApi } from '@/shared/api/rtkApi';
 import { ArticlesInfiniteListSchema } from '@/widgets/articlesInfiniteList';
+import { ArticleDetailsSchema } from '@/entities/Article';
 
 export interface StateSchema {
 	counter: CounterSchema;
