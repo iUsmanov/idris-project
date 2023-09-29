@@ -6,7 +6,7 @@ import { Card } from '@/shared/components/Card';
 import { Text } from '@/shared/components/Text';
 import { Notification } from '../../../model/types/notification';
 
-interface NotificationItemProps {
+export interface NotificationItemProps {
 	className?: string;
 	item: Notification;
 }

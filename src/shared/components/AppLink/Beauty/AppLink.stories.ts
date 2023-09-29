@@ -7,7 +7,10 @@ const meta = {
 	component: AppLink,
 	tags: ['autodocs'],
 	argTypes: {},
-	args: {},
+	args: {
+		to: '',
+		children: 'AppLink',
+	},
 } satisfies Meta<typeof AppLink>;
 
 export default meta;

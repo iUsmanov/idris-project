@@ -12,7 +12,7 @@ import { ListBox } from '@/shared/components/Popups';
 import { VStack } from '@/shared/components/Stack';
 import { Text } from '@/shared/components/Text';
 
-interface ArticlesSortProps {
+export interface ArticlesSortProps {
 	className?: string;
 	onChangeOrder: () => void;
 	onChangeSort: () => void;

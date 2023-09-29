@@ -14,7 +14,7 @@ import { getRouteArticleDetails } from '@/shared/const/router';
 import { AppImage } from '@/shared/components/AppImage';
 import { Skeleton } from '@/shared/components/Skeleton';
 
-interface ArticleListItemProps {
+export interface ArticleListItemProps {
 	className?: string;
 	article: Article;
 	view: ArticleView;

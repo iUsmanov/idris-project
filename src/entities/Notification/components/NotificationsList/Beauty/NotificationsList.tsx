@@ -7,7 +7,7 @@ import { Skeleton } from '@/shared/components/Skeleton';
 import { NotificationItem } from '../../NotificationItem/NotificationItem';
 import { useGetNotificationsQuery } from '../../../api/notificationsApi';
 
-interface NotificationsListProps {
+export interface NotificationsListProps {
 	className?: string;
 }
 

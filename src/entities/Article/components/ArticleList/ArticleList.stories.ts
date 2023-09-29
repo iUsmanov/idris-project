@@ -15,6 +15,7 @@ export const articles: Article[] = [
 		userId: '1',
 		type: ['IT'],
 		user: {
+			id: '1',
 			username: 'Autor',
 			avatar: Image,
 		},
@@ -89,6 +90,7 @@ export const articles: Article[] = [
 		userId: '1',
 		type: ['IT'],
 		user: {
+			id: '1',
 			username: 'Autor',
 			avatar: Image,
 		},
@@ -115,6 +117,7 @@ export const articles: Article[] = [
 		userId: '1',
 		type: ['IT'],
 		user: {
+			id: '1',
 			username: 'Autor',
 			avatar: Image,
 		},
@@ -141,6 +144,7 @@ export const articles: Article[] = [
 		userId: '1',
 		type: ['IT'],
 		user: {
+			id: '1',
 			username: 'Autor',
 			avatar: Image,
 		},

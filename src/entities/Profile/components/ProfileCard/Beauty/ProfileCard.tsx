@@ -11,7 +11,7 @@ import { Card } from '@/shared/components/Card';
 import { Avatar } from '@/shared/components/Avatar';
 import { Skeleton } from '@/shared/components/Skeleton';
 
-interface ProfileCardProps {
+export interface ProfileCardProps {
 	className?: string;
 	data?: Profile;
 	isLoading?: boolean;

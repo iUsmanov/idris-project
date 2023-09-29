@@ -2,12 +2,20 @@ import { Meta, StoryObj } from '@storybook/react';
 import { ListBox } from './ListBox';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
 
+const people = [
+	{ content: 'Durward Reyno', value: 'Durward Reynolds', disabled: false },
+	{ content: 'Kenton Towne', value: 'Kenton Towne', disabled: false },
+	{ content: 'Therese Wunsc', value: 'Therese Wunsch', disabled: false },
+	{ content: 'Benedict Kess', value: 'Benedict Kessler', disabled: true },
+	{ content: 'Katelyn Rohan', value: 'Katelyn Rohan', disabled: false },
+];
+
 const meta = {
 	title: 'shared/ListBox',
 	component: ListBox,
 	tags: ['autodocs'],
 	argTypes: {},
-	args: {},
+	args: { options: people },
 } satisfies Meta<typeof ListBox>;
 
 export default meta;

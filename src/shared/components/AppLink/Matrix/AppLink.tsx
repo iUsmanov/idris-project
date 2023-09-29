@@ -2,7 +2,7 @@ import {
 	MatrixSharedProvider,
 	useMatrixSharedComponents,
 } from '@/shared/lib/components/MatrixSharedProvider/MatrixSharedProvider';
-import { ReactNode, forwardRef, memo } from 'react';
+import { ReactNode, memo } from 'react';
 import cls from './AppLink.module.scss';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Link, LinkProps } from 'react-router-dom';
@@ -15,7 +15,7 @@ export interface AppLinkMatrixProps extends LinkProps {
 	children: ReactNode;
 }
 
-const AppLink = forwardRef((props: AppLinkMatrixProps, ref) => {
+export const AppLink = memo((props: AppLinkMatrixProps) => {
 	const { variant = 'primary', className, children, ...otherProps } = props;
 
 	return (
@@ -24,10 +24,6 @@ const AppLink = forwardRef((props: AppLinkMatrixProps, ref) => {
 		</Link>
 	);
 });
-
-const MemoizedAppLink = memo(AppLink);
-
-export { MemoizedAppLink as AppLink };
 
 const AppLinkAsync = (props: AppLinkMatrixProps) => {
 	const { isLoaded, AppLink } = useMatrixSharedComponents();

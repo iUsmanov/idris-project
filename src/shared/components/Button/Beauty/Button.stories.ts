@@ -7,7 +7,9 @@ const meta = {
 	component: Button,
 	tags: ['autodocs'],
 	argTypes: {},
-	args: {},
+	args: {
+		children: 'Button',
+	},
 } satisfies Meta<typeof Button>;
 
 export default meta;

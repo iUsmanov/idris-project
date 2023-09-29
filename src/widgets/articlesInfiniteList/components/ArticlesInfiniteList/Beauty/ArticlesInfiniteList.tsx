@@ -29,7 +29,7 @@ import { Text } from '@/shared/components/Text';
 import { StickyContentLayout } from '@/shared/layouts';
 import { Card } from '@/shared/components/Card';
 
-interface ArticlesInfiniteListProps {
+export interface ArticlesInfiniteListProps {
 	className?: string;
 }
 

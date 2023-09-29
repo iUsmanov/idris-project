@@ -8,7 +8,7 @@ import SearchIcon from '@/shared/assets/icons/search.svg';
 import { Icon } from '@/shared/components/Icon';
 import { classNames } from '@/shared/lib/classNames/classNames';
 
-interface ArticlesSearchProps {
+export interface ArticlesSearchProps {
 	className?: string;
 	onChangeSearch: () => void;
 }

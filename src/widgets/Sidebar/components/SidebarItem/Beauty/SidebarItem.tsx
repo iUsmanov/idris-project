@@ -9,7 +9,7 @@ import { getUserAuthData } from '@/entities/User';
 import { SidebarItemType } from '../../../model/types/sidebar';
 import { Icon } from '@/shared/components/Icon';
 
-interface SidebarItemProps {
+export interface SidebarItemProps {
 	className?: string;
 	item: SidebarItemType;
 	collapsed?: boolean;

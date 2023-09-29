@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './ArticleScoreboard.module.scss';
+import cls from './ArticleDetailsHeader.module.scss';
 import { User } from '@/entities/User';
 import { HStack } from '@/shared/components/Stack';
 import { Avatar } from '@/shared/components/Avatar';

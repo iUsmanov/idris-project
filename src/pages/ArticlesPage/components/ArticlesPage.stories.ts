@@ -17,6 +17,7 @@ const entities: Dictionary<Article> = {
 		userId: '1',
 		type: ['IT'],
 		user: {
+			id: '1',
 			username: 'Autor',
 			avatar: Image,
 		},
@@ -91,6 +92,7 @@ const entities: Dictionary<Article> = {
 		userId: '1',
 		type: ['IT'],
 		user: {
+			id: '1',
 			username: 'Autor',
 			avatar: Image,
 		},
@@ -117,6 +119,7 @@ const entities: Dictionary<Article> = {
 		userId: '1',
 		type: ['IT'],
 		user: {
+			id: '1',
 			username: 'Autor',
 			avatar: Image,
 		},

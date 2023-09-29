@@ -7,23 +7,38 @@ const meta = {
 	component: Skeleton,
 	tags: ['autodocs'],
 	argTypes: {},
-	args: {},
+	args: { height: 100, width: 100 },
 } satisfies Meta<typeof Skeleton>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const NormalLight: Story = {
+export const PrimaryLight: Story = {
 	args: {},
 	decorators: [],
 };
 
-export const NormalDark: Story = {
+export const PrimaryDark: Story = {
 	args: {},
 	decorators: [ThemeDecorator('app-dark-theme')],
 };
 
-export const NormalOrange: Story = {
+export const PrimaryOrange: Story = {
 	args: {},
 	decorators: [ThemeDecorator('app-orange-theme')],
+};
+
+export const CircleLight: Story = {
+	args: {
+		borderRadius: '50%',
+	},
+	decorators: [],
+};
+
+export const BigLight: Story = {
+	args: {
+		width: 500,
+		height: 200,
+	},
+	decorators: [],
 };

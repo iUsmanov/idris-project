@@ -8,7 +8,7 @@ import TileIcon from '@/shared/assets/icons/tile.svg';
 import { Icon } from '@/shared/components/Icon';
 import { Card } from '@/shared/components/Card';
 
-interface ArticleViewSelectorProps {
+export interface ArticleViewSelectorProps {
 	className?: string;
 	view: ArticleView;
 	onViewClick?: (view: ArticleView) => void;

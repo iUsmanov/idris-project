@@ -8,7 +8,7 @@ import NotificationIcon from '@/shared/assets/icons/notification.svg';
 import { DesktopView, MobileView } from '@/shared/components/DeviceViews';
 import { NotificationsDrawer } from '../../NotificationsDrawer/NotificationsDrawer';
 
-interface NotificationsPopupProps {
+export interface NotificationsPopupProps {
 	className?: string;
 }
 

@@ -1,4 +1,4 @@
-import { ReactNode, forwardRef, memo } from 'react';
+import { ReactNode, memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './AppLink.module.scss';
 import {
@@ -16,7 +16,7 @@ export interface AppLinkBeautyProps extends LinkProps {
 	activeClassName?: string;
 }
 
-export const AppLink = forwardRef((props: AppLinkBeautyProps, ref) => {
+export const AppLink = memo((props: AppLinkBeautyProps) => {
 	const { variant = 'primary', className, children, activeClassName = '', ...otherProps } = props;
 
 	return (

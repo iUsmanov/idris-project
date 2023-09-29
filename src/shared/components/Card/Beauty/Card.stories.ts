@@ -7,7 +7,9 @@ const meta = {
 	component: Card,
 	tags: ['autodocs'],
 	argTypes: {},
-	args: {},
+	args: {
+		children: 'Text',
+	},
 } satisfies Meta<typeof Card>;
 
 export default meta;
