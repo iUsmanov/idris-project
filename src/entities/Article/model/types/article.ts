@@ -1,3 +1,5 @@
+import { User } from '@/entities/User';
+
 export type ArticleType = 'ALL' | 'IT' | 'ECONOMICS' | 'SCIENCE';
 export type ArticleBlockType = 'TEXT' | 'IMAGE' | 'CODE';
 
@@ -35,11 +37,7 @@ export interface Article {
 	userId: string;
 	type: ArticleType[];
 	blocks: ArticleBlock[];
-	user?: {
-		id: string;
-		username: string;
-		avatar: string;
-	};
+	user: User;
 }
 
 export type ArticleView = 'TILE' | 'LIST';

@@ -21,7 +21,7 @@ export const ArticleDetailsPage = memo(() => {
 	const { id } = useParams<{ id: string }>();
 	const article = useSelector(getArticleDetailsData);
 
-	if (!id || !article) return null;
+	if (!id) return null;
 
 	return (
 		<ToggleFeatures
@@ -55,9 +55,9 @@ export const ArticleDetailsPage = memo(() => {
 					}
 					right={
 						<ArticleDetailsHeaderBeauty
-							author={article.user}
-							createdAt={article.createdAt}
-							views={article.views}
+							author={article?.user}
+							createdAt={article?.createdAt}
+							views={article?.views}
 						/>
 					}
 				/>

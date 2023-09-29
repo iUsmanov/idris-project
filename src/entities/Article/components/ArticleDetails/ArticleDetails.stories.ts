@@ -36,6 +36,10 @@ const article: Article = {
 			code: "const path = require('path');\n\nconst server = jsonServer.create();\n\nconst router = jsonServer.router(path.resolve(__dirname, 'db.json'));\n\nserver.use(jsonServer.defaults({}));\nserver.use(jsonServer.bodyParser);",
 		},
 	],
+	user: {
+		id: '1',
+		username: 'admin',
+	},
 };
 
 const meta = {

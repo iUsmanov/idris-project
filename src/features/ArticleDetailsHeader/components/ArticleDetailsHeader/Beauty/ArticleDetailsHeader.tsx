@@ -16,8 +16,8 @@ import { Card } from '@/shared/components/Card';
 export interface ArticleDetailsHeaderPropsBeauty {
 	className?: string;
 	author?: User;
-	createdAt: string;
-	views: number;
+	createdAt?: string;
+	views?: number;
 }
 
 export const ArticleDetailsHeader = memo((props: ArticleDetailsHeaderPropsBeauty) => {
@@ -26,7 +26,7 @@ export const ArticleDetailsHeader = memo((props: ArticleDetailsHeaderPropsBeauty
 	const canEdit = useSelector(getArticleCanEdit);
 	const { id } = useParams<{ id: string }>();
 
-	if (!id || !author) {
+	if (!id || !author || !createdAt || !views) {
 		return <div className={classNames('', {}, [])}>{t('Статья не найдена')}</div>;
 	}
 
