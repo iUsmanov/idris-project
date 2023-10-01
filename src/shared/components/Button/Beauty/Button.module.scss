@@ -24,8 +24,13 @@
 
 .outline {
 	background: none;
-	border: 1px solid var(--text-beauty);
+	border: 2px solid var(--icon-beauty);
 	color: var(--text-beauty);
+	border-radius: 34px;
+
+	&:hover {
+		border: 2px solid var(--accent-beauty);
+	}
 }
 
 .clear {
