@@ -3,6 +3,8 @@
 	"Комментарии": "Comments",
 	"Назад к списку": "Back to list",
 	"Рекомендуем": "Recommend",
+	"Просмотров_one": "{{count}} view",
+	"Просмотров_other": "{{count}} views",
 	"Оценка статей скоро появится!": "Article rating comming soon",
 	"Спасибо за оценку!": "Thank you for rating!"
 }

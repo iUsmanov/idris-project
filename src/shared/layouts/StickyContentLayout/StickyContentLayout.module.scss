@@ -5,15 +5,15 @@
 	gap: 16px;
 }
 
-.left {
-	grid-area: left;
-}
-
 .content {
 	grid-area: content;
 	width: 100%;
 	max-width: 1200px;
 	justify-self: center;
+}
+
+.left {
+	grid-area: left;
 }
 
 .right {

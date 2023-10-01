@@ -14,6 +14,7 @@ import { Card } from '@/shared/components/Card';
 import { ArticleDetails, getArticleDetailsData, getArticleDetailsError } from '@/entities/Article';
 import { ArticleDetailsHeader, ArticleDetailsHeaderBeauty } from '@/features/ArticleDetailsHeader';
 import { StickyContentLayout } from '@/shared/layouts';
+import cls from './ArticleDetailsPage.module.scss';
 
 export const ArticleDetailsPage = memo(() => {
 	const { t } = useTranslation('article-details');
@@ -30,8 +31,8 @@ export const ArticleDetailsPage = memo(() => {
 				<StickyContentLayout
 					content={
 						<Page className={classNames('', {}, [])}>
-							<VStack gap='16' max>
-								<Card padding='24' border='round'>
+							<VStack gap='16' className={cls.articleDetails}>
+								<Card padding='24' border='round' max>
 									<ArticleDetails />
 								</Card>
 								{!error && (

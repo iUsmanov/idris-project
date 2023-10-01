@@ -22,7 +22,7 @@ export interface ArticleDetailsHeaderPropsBeauty {
 
 export const ArticleDetailsHeader = memo((props: ArticleDetailsHeaderPropsBeauty) => {
 	const { className, author, createdAt, views } = props;
-	const { t } = useTranslation('article-details');
+	const { t } = useTranslation(['article-details', 'translation']);
 	const canEdit = useSelector(getArticleCanEdit);
 	const { id } = useParams<{ id: string }>();
 
@@ -49,7 +49,7 @@ export const ArticleDetailsHeader = memo((props: ArticleDetailsHeaderPropsBeauty
 					{t('Редактировать')}
 				</AppLink>
 			)}
-			<Text text={String(views) + ' ' + 'просмотров'} />
+			<Text size='size_m' text={t('Просмотров', { count: views })} />
 		</Card>
 	);
 });
