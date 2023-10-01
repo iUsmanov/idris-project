@@ -2,11 +2,12 @@ import {
 	MatrixSharedProvider,
 	useMatrixSharedComponents,
 } from '@/shared/lib/components/MatrixSharedProvider/MatrixSharedProvider';
-import { memo, useCallback, useState } from 'react';
+import { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './StarRating.module.scss';
 import StarIcon from '@/shared/assets/icons/star.svg';
 import { Icon } from '@/shared/components/Icon';
+import { useStarRating } from '../lib/hooks/useStarRating';
 
 export interface StarRatingMatrixProps {
 	className?: string;
@@ -15,37 +16,11 @@ export interface StarRatingMatrixProps {
 	selectedStars?: number;
 }
 
-const stars = [1, 2, 3, 4, 5];
-
 export const StarRating = memo((props: StarRatingMatrixProps) => {
 	const { className, size = 30, selectedStars = 0, onSelect } = props;
-	const [currentStarsCount, setCurrentStarsCount] = useState(selectedStars);
-	const [isSelected, setIsSelected] = useState(Boolean(selectedStars));
-
-	const onHover = useCallback(
-		(starsCount: number) => () => {
-			if (!isSelected) {
-				setCurrentStarsCount(starsCount);
-			}
-		},
-		[isSelected]
-	);
-
-	const onLeave = useCallback(() => {
-		if (!isSelected) {
-			setCurrentStarsCount(0);
-		}
-	}, [isSelected]);
-
-	const onClick = useCallback(
-		(starsCount: number) => () => {
-			if (!isSelected) {
-				onSelect?.(starsCount);
-				setCurrentStarsCount(starsCount);
-				setIsSelected(true);
-			}
-		},
-		[isSelected, onSelect]
+	const { currentStarsCount, isSelected, onClick, onHover, onLeave, stars } = useStarRating(
+		selectedStars,
+		onSelect
 	);
 
 	return (

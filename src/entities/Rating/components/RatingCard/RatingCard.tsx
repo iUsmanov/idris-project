@@ -11,6 +11,7 @@ import { useModal } from '@/shared/lib/hooks/useModal/useModal';
 import { Button } from '@/shared/components/Button';
 import { DesktopView, MobileView } from '@/shared/components/DeviceViews';
 import { Drawer } from '@/shared/components/Drawer';
+import { ToggleFeatures } from '@/shared/lib/featureFlags';
 
 interface RatingCardProps {
 	className?: string;
@@ -63,8 +64,8 @@ export const RatingCard = memo((props: RatingCardProps) => {
 		</>
 	);
 
-	return (
-		<Card className={classNames('', {}, [className])} max>
+	const content = (
+		<>
 			<VStack align='center' gap='8'>
 				<Text title={starsCount ? t('Спасибо за оценку!') : title} />
 				<StarRating selectedStars={starsCount} size={40} onSelect={onSelectStars} />
@@ -104,6 +105,22 @@ export const RatingCard = memo((props: RatingCardProps) => {
 					</VStack>
 				</Drawer>
 			</MobileView>
-		</Card>
+		</>
+	);
+
+	return (
+		<ToggleFeatures
+			name='isBeautyDesign'
+			on={
+				<Card border='round' padding='24' className={classNames('', {}, [className])} max>
+					{content}
+				</Card>
+			}
+			off={
+				<Card className={classNames('', {}, [className])} max>
+					{content}
+				</Card>
+			}
+		/>
 	);
 });

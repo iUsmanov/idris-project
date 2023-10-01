@@ -1,3 +1,15 @@
 .starRating {
-	// =
+	cursor: pointer;
+}
+
+.normal {
+	fill: none;
+}
+
+.hovered {
+	fill: var(--icon-beauty);
+}
+
+.selected {
+	cursor: auto;
 }
