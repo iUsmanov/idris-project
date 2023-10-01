@@ -1,11 +1,7 @@
-import { memo, useCallback } from 'react';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './ArticleDetails.module.scss';
-import { ReducersList, useDynamicModule } from '@/shared/lib/hooks/useDynamicModule/useDynamicModule';
-import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { fetchArticleById } from '../../model/services/fetchArticleById/fetchArticleById';
 import { useSelector } from 'react-redux';
 import {
 	getArticleDetailsData,
@@ -17,52 +13,30 @@ import { Flex, HStack, VStack } from '@/shared/components/Stack';
 import EyeIcon from '@/shared/assets/icons/eye-20-20.svg';
 import CalendarIcon from '@/shared/assets/icons/calendar-20-20.svg';
 import { Icon } from '@/shared/components/Icon';
-
-import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { useParams } from 'react-router-dom';
 import { Skeleton } from '@/shared/components/Skeleton';
 import { AppImage } from '@/shared/components/AppImage';
-import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
-import { ArticleImageBlockComponent } from '../ArticleImageBlockComponent/ArticleImageBlockComponent';
-import { ArticleCodeBlockComponent } from '../ArticleCodeBlockComponent/ArticleCodeBlockComponent';
-import { ArticleBlock } from '../../model/types/article';
+import { ArticleDetailsBeauty } from './Beauty/ArticleDetails.async';
+import { getFeatureFlag } from '@/shared/lib/featureFlags';
+import { useArticleDetails } from '../../lib/hooks/useArticleDetails';
 
 interface ArticleDetailsProps {
 	className?: string;
 }
 
-const reducers: ReducersList = {
-	articleDetails: articleDetailsReducer,
-};
-
 export const ArticleDetails = memo((props: ArticleDetailsProps) => {
 	const { className } = props;
 	const { t } = useTranslation('article-details');
-	const dispatch = useAppDispatch();
 	const article = useSelector(getArticleDetailsData);
 	const isLoading = useSelector(getArticleDetailsIsLoading);
 	const error = useSelector(getArticleDetailsError);
 	const { id } = useParams<{ id: string }>();
+	const isBeautyDesign = getFeatureFlag('isBeautyDesign');
+	const { renderArticleBlock } = useArticleDetails(id, cls);
 
-	useDynamicModule({ reducers });
-
-	useInitialEffect(() => {
-		if (!id) return;
-		dispatch(fetchArticleById(id));
-	});
-
-	const renderBlock = useCallback((block: ArticleBlock) => {
-		switch (block.type) {
-			case 'TEXT':
-				return <ArticleTextBlockComponent key={block.id} className={cls.block} block={block} />;
-			case 'IMAGE':
-				return <ArticleImageBlockComponent key={block.id} className={cls.block} block={block} />;
-			case 'CODE':
-				return <ArticleCodeBlockComponent key={block.id} className={cls.block} block={block} />;
-			default:
-				return null;
-		}
-	}, []);
+	if (isBeautyDesign) {
+		return <ArticleDetailsBeauty {...props} />;
+	}
 
 	if (!id) {
 		return <div className={classNames('', {}, [])}>{t('Статья не найдена')}</div>;
@@ -107,7 +81,7 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
 					<Text text={article?.createdAt} size='size_m' />
 				</HStack>
 			</VStack>
-			{article?.blocks.map(renderBlock)}
+			{article?.blocks.map(renderArticleBlock)}
 		</VStack>
 	);
 });

@@ -88,7 +88,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 			>
 				<div className={cls.image}>
 					<AppImage
-						loadingFallback={<Skeleton width={200} height={200} />}
+						loadingFallback={<Skeleton width={'100%'} height={200} />}
 						src={article.img}
 						alt={article.title}
 						className={cls.img}
@@ -101,7 +101,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 							<Text size='size_m' className={cls.createdAt} text={article.createdAt} />
 							{views}
 						</HStack>
-						<HStack gap='8' align='center'>
+						<HStack gap='8' align='center' className={cls.userInfo}>
 							{userInfo}
 						</HStack>
 					</VStack>

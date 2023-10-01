@@ -41,8 +41,8 @@ export const ArticleDetailsHeader = memo((props: ArticleDetailsHeaderPropsBeauty
 		>
 			<HStack gap='8' align='center'>
 				<Avatar src={author.avatar} size={32} />
-				<Text text={author.username} bold />
-				<Text text={createdAt} />
+				<Text text={author.username} size='size_m' bold />
+				<Text text={createdAt} size='size_m' />
 			</HStack>
 			{canEdit && (
 				<AppLink to={getRouteArticleEdit(id)} variant='outline'>
