@@ -15,6 +15,8 @@ const meta = {
 			articleId: '1',
 			userId: '1',
 			user: {
+				id: '1',
+				username: 'admin',
 				avatar: Image,
 			},
 		},

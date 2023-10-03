@@ -23,6 +23,8 @@ export const PrimaryLight: Story = {
 				articleId: '1',
 				userId: '1',
 				user: {
+					id: '1',
+					username: 'admin',
 					avatar: Image,
 				},
 			},
@@ -32,6 +34,8 @@ export const PrimaryLight: Story = {
 				articleId: '1',
 				userId: '1',
 				user: {
+					id: '1',
+					username: 'admin',
 					avatar: Image,
 				},
 			},

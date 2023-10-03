@@ -52,6 +52,8 @@ const entities: Dictionary<Comment> = {
 		articleId: '1',
 		userId: '1',
 		user: {
+			id: '1',
+			username: 'admin',
 			avatar: Image,
 		},
 	},
@@ -61,6 +63,8 @@ const entities: Dictionary<Comment> = {
 		articleId: '1',
 		userId: '1',
 		user: {
+			id: '1',
+			username: 'admin',
 			avatar: Image,
 		},
 	},
@@ -70,6 +74,8 @@ const entities: Dictionary<Comment> = {
 		articleId: '1',
 		userId: '1',
 		user: {
+			id: '1',
+			username: 'admin',
 			avatar: Image,
 		},
 	},

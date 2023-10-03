@@ -15,7 +15,7 @@ import { Skeleton } from '@/shared/components/Skeleton';
 import { AppImage } from '@/shared/components/AppImage';
 import { useArticleDetails } from '../../../lib/hooks/useArticleDetails';
 
-interface ArticleDetailsProps {
+export interface ArticleDetailsProps {
 	className?: string;
 }
 
