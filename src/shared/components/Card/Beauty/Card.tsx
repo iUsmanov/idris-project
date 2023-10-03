@@ -15,7 +15,7 @@ import {
 } from '../../Stack';
 
 export type CardVariant = 'primary' | 'outline' | 'light';
-export type CardBorder = 'round' | 'normal';
+export type CardBorder = 'round' | 'normal' | 'high';
 export type CardPadding = '0' | '8' | '16' | '24';
 
 type FlexPropsWithotMusor = Omit<FlexProps, 'className' | 'children' | 'max'>;

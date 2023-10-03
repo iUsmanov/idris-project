@@ -35,7 +35,7 @@ export const ArticleDetailsHeader = memo((props: ArticleDetailsHeaderPropsBeauty
 			flex
 			direction='column'
 			padding='24'
-			border='round'
+			border='high'
 			gap='32'
 			className={classNames(cls.articleDetailsHeader, {}, [className])}
 		>

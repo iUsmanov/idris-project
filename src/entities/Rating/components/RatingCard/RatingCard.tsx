@@ -112,7 +112,7 @@ export const RatingCard = memo((props: RatingCardProps) => {
 		<ToggleFeatures
 			name='isBeautyDesign'
 			on={
-				<Card border='round' padding='24' className={classNames('', {}, [className])} max>
+				<Card border='high' padding='24' className={classNames('', {}, [className])} max>
 					{content}
 				</Card>
 			}

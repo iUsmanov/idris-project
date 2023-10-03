@@ -92,9 +92,10 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
 		<Card
 			flex
 			direction='column'
-			gap='32'
+			gap='16'
 			padding='24'
 			max
+			border='high'
 			className={classNames('', {}, [className])}
 		>
 			<Avatar max justify='center' src={data?.avatar} size={128} data-testid='ProfileCard.Avatar' />

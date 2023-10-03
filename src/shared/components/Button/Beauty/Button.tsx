@@ -15,9 +15,11 @@ export interface ButtonBeautyProps extends ButtonHTMLAttributes<HTMLButtonElemen
 	fullWidth?: boolean;
 	addonLeft?: ReactNode;
 	addonRight?: ReactNode;
+	color?: ButtonColor;
 }
 
 export type ButtonVariant = 'outline' | 'clear' | 'filled';
+export type ButtonColor = 'normal' | 'success' | 'error';
 
 export type ButtonSize = 'size_m' | 'size_l' | 'size_xl';
 
@@ -31,6 +33,7 @@ export const Button = memo((props: ButtonBeautyProps) => {
 		fullWidth,
 		addonLeft,
 		addonRight,
+		color = 'normal',
 		...otherProps
 	} = props;
 
@@ -43,7 +46,7 @@ export const Button = memo((props: ButtonBeautyProps) => {
 		<button
 			{...otherProps}
 			type='button'
-			className={classNames(cls.button, mods, [className, cls[variant], cls[size]])}
+			className={classNames(cls.button, mods, [className, cls[variant], cls[size], cls[color]])}
 		>
 			{addonLeft && <div className={cls.addonLeft}>{addonLeft}</div>}
 			{children}

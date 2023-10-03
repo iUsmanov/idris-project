@@ -32,7 +32,7 @@ export const ArticleDetailsPage = memo(() => {
 					content={
 						<Page className={classNames('', {}, [])}>
 							<VStack gap='16' className={cls.articleDetails}>
-								<Card padding='24' border='round' max>
+								<Card padding='24' border='high' max>
 									<ArticleDetails />
 								</Card>
 								{!error && (

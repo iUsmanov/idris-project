@@ -25,7 +25,7 @@ export const CommentCard = memo((props: CommentCardProps) => {
 			max
 			gap='8'
 			padding='24'
-			border='round'
+			border='high'
 			className={classNames('', {}, [className])}
 		>
 			<AppLink to={getRouteProfile(comment.userId)}>

@@ -9,7 +9,7 @@
 	padding: 6px 15px;
 	color: var(--text-beauty);
 	
-	&:hover {
+	&.normal:hover {
 		color: var(--accent-beauty);
 
 		.addonLeft svg, .addonRight svg{
@@ -24,12 +24,31 @@
 
 .outline {
 	background: none;
-	border: 2px solid var(--icon-beauty);
 	color: var(--text-beauty);
 	border-radius: 34px;
 
-	&:hover {
-		border: 2px solid var(--accent-beauty);
+	&.normal {
+		border: 2px solid var(--icon-beauty);
+
+		&:hover {
+			border: 2px solid var(--accent-beauty);
+		}
+	}
+
+	&.success {
+		border: 2px solid var(--save-beauty);
+
+		&:hover {
+			opacity: 0.8;
+		}
+	}
+
+	&.error {
+		border: 2px solid var(--cancel-beauty);
+
+		&:hover {
+			opacity: 0.8;
+		}
 	}
 }
 

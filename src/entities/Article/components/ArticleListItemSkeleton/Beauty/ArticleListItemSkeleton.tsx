@@ -38,7 +38,7 @@ export const ArticleListItemSkeleton = memo((props: ArticleListItemSkeletonBeaut
 			flex
 			direction='column'
 			gap='8'
-			border='round'
+			border='high'
 			padding='0'
 			className={classNames(cls.articleListItem, {}, [className, cls[view]])}
 		>
