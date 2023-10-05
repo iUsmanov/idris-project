@@ -27,6 +27,12 @@ export const updateFeatureFlags = createAsyncThunk<
 				},
 			})
 		);
+
+		// setFeatureFlags({
+		// 	...getAllFeatureFlags(),
+		// 	...newFeaturesFlags,
+		// });
+
 		window.location.reload();
 	} catch (e) {
 		rejectWithValue('error');

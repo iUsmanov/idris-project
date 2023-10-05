@@ -16,8 +16,9 @@ export const App = memo(() => {
 	const inited = useSelector(getUserInited);
 
 	useEffect(() => {
+		if (inited) return;
 		dispatch(initAuthData());
-	}, [dispatch]);
+	}, [dispatch, inited]);
 
 	toggleFeatures({
 		name: 'isBeautyDesign',
