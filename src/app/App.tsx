@@ -10,11 +10,12 @@ import { initAuthData } from '@/entities/User';
 import { PageLoader } from '@/widgets/PageLoader';
 import { ToggleFeatures, toggleFeatures } from '@/shared/lib/featureFlags';
 import { MainLayout } from '@/shared/layouts';
-import { ScrollToolbar } from '@/widgets/scrollToolbar';
+import { useAppToolbar } from './useAppToolbar/useAppToolbar';
 
 export const App = memo(() => {
 	const dispatch = useAppDispatch();
 	const inited = useSelector(getUserInited);
+	const toolbar = useAppToolbar();
 
 	const addClassName = (className: 'beauty-design' | 'matrix-design') => {
 		const notClassName: string = className === 'beauty-design' ? 'matrix-design' : 'beauty-design';
@@ -52,7 +53,7 @@ export const App = memo(() => {
 						content={<AppRouter />}
 						header={<Navbar />}
 						sidebar={<Sidebar />}
-						toolbar={<ScrollToolbar />}
+						toolbar={toolbar}
 					/>
 				}
 				off={

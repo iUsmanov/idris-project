@@ -1,16 +1,4 @@
-// export enum AppRoutes {
-// 	MAIN = 'main',
-// 	ABOUT = 'about',
-// 	PROFILE = 'profile',
-// 	ARTICLES = 'articles',
-// 	ARTICLE_DETAILS = 'article_details',
-// 	ARTICLE_CREATE = 'article_create',
-// 	ARTICLE_EDIT = 'article_edit',
-// 	ADMIN_PANEL = 'admin_panel',
-// 	FORBIDDEN = 'forbidden',
-// 	// last
-// 	NOT_FOUND = 'not_found',
-// }
+import { AppRoutes } from '../types/router';
 
 export const getRouteMain = () => `/`;
 export const getRouteAbout = () => `/about`;
@@ -23,3 +11,16 @@ export const getRouteAdminPanel = () => `/admin`;
 export const getRouteSettings = () => `/settings`;
 export const getRouteForbidden = () => `/forbidden`;
 export const getRouteNotFound = () => `/*`;
+
+export const AppRouteByPathPattern: Record<string, AppRoutes> = {
+	[getRouteMain()]: 'main',
+	[getRouteAbout()]: 'about',
+	[getRouteProfile(':id')]: 'profiles',
+	[getRouteArticles()]: 'articles',
+	[getRouteArticleDetails(':id')]: 'article_details',
+	[getRouteArticleCreate()]: 'article_create',
+	[getRouteArticleEdit(':id')]: 'article_edit',
+	[getRouteAdminPanel()]: 'admin_panel',
+	[getRouteSettings()]: 'settings',
+	[getRouteForbidden()]: 'forbidden',
+};
