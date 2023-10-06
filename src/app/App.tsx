@@ -10,6 +10,7 @@ import { initAuthData } from '@/entities/User';
 import { PageLoader } from '@/widgets/PageLoader';
 import { ToggleFeatures, toggleFeatures } from '@/shared/lib/featureFlags';
 import { MainLayout } from '@/shared/layouts';
+import { ScrollToolbar } from '@/widgets/scrollToolbar';
 
 export const App = memo(() => {
 	const dispatch = useAppDispatch();
@@ -51,7 +52,7 @@ export const App = memo(() => {
 						content={<AppRouter />}
 						header={<Navbar />}
 						sidebar={<Sidebar />}
-						toolbar={<div>7003849</div>}
+						toolbar={<ScrollToolbar />}
 					/>
 				}
 				off={
