@@ -8,7 +8,7 @@ import { ValidateProfileError } from '../../../model/types/editableProfileCardSc
 import { useEditableProfileCardHeader } from '../../../lib/hooks/useEditableProfileCardHeader';
 import { Card } from '@/shared/components/Card';
 
-interface EditableProfileCardHeaderProps {
+export interface EditableProfileCardHeaderProps {
 	className?: string;
 	readonly?: boolean;
 	profileValidateErrors?: ValidateProfileError[];

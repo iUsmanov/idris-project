@@ -2,7 +2,7 @@ import { ReactNode, memo, useEffect, useMemo, useState } from 'react';
 import { Theme } from '@/shared/types/theme';
 import { ThemeContext } from '@/shared/lib/context/ThemeContext';
 import { useUserSettings } from '@/entities/User';
-import { defaultTheme } from '@/shared/lib/hooks/useTheme/useTheme';
+import { fallbackTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 
 interface ThemeProviderProps {
 	initialTheme?: Theme;
@@ -13,8 +13,7 @@ export const ThemeProvider = memo((props: ThemeProviderProps) => {
 	const { children, initialTheme } = props;
 	const { theme: themeFromSettings } = useUserSettings();
 	const [isThemeInited, setIsThemeInited] = useState<boolean>(false);
-
-	const [theme, setTheme] = useState<Theme>(initialTheme || themeFromSettings || defaultTheme);
+	const [theme, setTheme] = useState<Theme>(initialTheme || themeFromSettings || fallbackTheme);
 
 	const defaultProps = useMemo(
 		() => ({
@@ -25,25 +24,13 @@ export const ThemeProvider = memo((props: ThemeProviderProps) => {
 	);
 
 	useEffect(() => {
-		if (!isThemeInited && themeFromSettings) {
-			setTheme(themeFromSettings);
+		if (!isThemeInited) {
+			setTheme(theme);
 			setIsThemeInited(true);
 
-			if (document.body.classList.contains('app-light-theme')) {
-				document.body.classList.remove('app-light-theme');
-			}
-
-			if (document.body.classList.contains('app-dark-theme')) {
-				document.body.classList.remove('app-dark-theme');
-			}
-
-			if (document.body.classList.contains('app-orange-theme')) {
-				document.body.classList.remove('app-orange-theme');
-			}
-
-			document.body.classList.add(themeFromSettings);
+			document.body.classList.add(theme);
 		}
-	}, [isThemeInited, themeFromSettings]);
+	}, [isThemeInited, theme]);
 
 	return <ThemeContext.Provider value={defaultProps}>{children}</ThemeContext.Provider>;
 });

@@ -6,25 +6,17 @@ import { Loader } from '@/shared/components/Loader';
 import { HStack } from '@/shared/components/Stack';
 import { ToggleFeatures } from '@/shared/lib/featureFlags';
 import { PageLoaderBeauty } from './Beauty/PageLoader.async';
+import { PageLoaderBeautyProps } from './Beauty/PageLoader';
 
-interface PageLoaderProps {
-	className?: string;
-}
-
-export const PageLoader = memo((props: PageLoaderProps) => {
-	const { className } = props;
+export const PageLoader = memo((props: PageLoaderBeautyProps) => {
 	const { t } = useTranslation();
 
 	return (
 		<ToggleFeatures
 			name='isBeautyDesign'
-			on={<PageLoaderBeauty />}
+			on={<PageLoaderBeauty {...props} />}
 			off={
-				<HStack
-					justify='center'
-					align='center'
-					className={classNames(cls.pageLoader, {}, [className])}
-				>
+				<HStack justify='center' align='center' className={classNames(cls.pageLoader, {}, [])}>
 					<Loader size='max' />
 				</HStack>
 			}

@@ -1,6 +1,7 @@
-import { lazy } from 'react';
+import { FC, lazy } from 'react';
+import { PageLoaderBeautyProps } from './PageLoader';
 
-const PageLoaderAsync = lazy(() =>
+const PageLoaderAsync = lazy<FC<PageLoaderBeautyProps>>(() =>
 	import('./PageLoader').then((module) => ({ default: module.PageLoader }))
 );
 

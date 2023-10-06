@@ -1,6 +1,6 @@
 import { Action, Dispatch, isAnyOf, isFulfilled } from '@reduxjs/toolkit';
 import { userActions } from '@/entities/User';
-import { LOCAL_STORAGE_USER_KEY } from '@/shared/const/localStorage';
+import { LOCAL_STORAGE_APP_DESIGN_KEY, LOCAL_STORAGE_USER_KEY } from '@/shared/const/localStorage';
 import { StateSchema } from '@/app/providers/StoreProvider';
 import { loginByUsername } from '../loginByUsername/loginByUsername';
 
@@ -18,10 +18,15 @@ export const authMiddleware =
 	(action: Action): void => {
 		if (isLoggedIn(action)) {
 			localStorage.setItem(LOCAL_STORAGE_USER_KEY, action.payload.id);
+			localStorage.setItem(
+				LOCAL_STORAGE_APP_DESIGN_KEY,
+				action.payload.features?.isBeautyDesign ? 'beauty' : 'matrix'
+			);
 		}
 
 		if (isLoggedOut(action)) {
 			localStorage.removeItem(LOCAL_STORAGE_USER_KEY);
+			localStorage.removeItem(LOCAL_STORAGE_APP_DESIGN_KEY);
 		}
 
 		next(action);

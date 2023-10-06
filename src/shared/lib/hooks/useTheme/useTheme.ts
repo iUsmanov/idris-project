@@ -1,20 +1,23 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { Theme } from '@/shared/types/theme';
 import { ThemeContext } from '@/shared/lib/context/ThemeContext';
+import { LOCAL_STORAGE_THEME_KEY } from '@/shared/const/localStorage';
 
 interface UseThemeResult {
 	theme: Theme;
 	changeTheme: (saveAction?: (theme: Theme) => void) => void;
 }
 
-export const defaultTheme: Theme = 'app-light-theme';
+// В моём случае, в принципе можно было не сохронять тему в локал-сторадж,
+// потому что лоадер и так нормально работает.
+// Ещё надо было бы и выбранный дизайн в локал-сторадж сохронять, но лоадер и так работает,
+// хотя я не понимаю, почему ?
+
+export const fallbackTheme: Theme =
+	(localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) || 'app-light-theme';
 
 export function useTheme(): UseThemeResult {
 	const { theme, setTheme } = useContext(ThemeContext);
-
-	useEffect(() => {
-		document.body.classList.add(defaultTheme);
-	}, []);
 
 	const changeTheme = (saveAction?: (theme: Theme) => void) => {
 		let newTheme;
@@ -39,13 +42,13 @@ export function useTheme(): UseThemeResult {
 		}
 
 		setTheme?.(newTheme);
-		// localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
+		localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
 
 		saveAction?.(newTheme);
 	};
 
 	return {
-		theme: theme || defaultTheme,
+		theme: theme || fallbackTheme,
 		changeTheme,
 	};
 }
