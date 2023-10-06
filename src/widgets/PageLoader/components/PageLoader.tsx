@@ -4,6 +4,8 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './PageLoader.module.scss';
 import { Loader } from '@/shared/components/Loader';
 import { HStack } from '@/shared/components/Stack';
+import { ToggleFeatures } from '@/shared/lib/featureFlags';
+import { PageLoaderBeauty } from './Beauty/PageLoader.async';
 
 interface PageLoaderProps {
 	className?: string;
@@ -14,8 +16,18 @@ export const PageLoader = memo((props: PageLoaderProps) => {
 	const { t } = useTranslation();
 
 	return (
-		<HStack justify='center' align='center' className={classNames(cls.pageLoader, {}, [className])}>
-			<Loader size='max' />
-		</HStack>
+		<ToggleFeatures
+			name='isBeautyDesign'
+			on={<PageLoaderBeauty />}
+			off={
+				<HStack
+					justify='center'
+					align='center'
+					className={classNames(cls.pageLoader, {}, [className])}
+				>
+					<Loader size='max' />
+				</HStack>
+			}
+		/>
 	);
 });

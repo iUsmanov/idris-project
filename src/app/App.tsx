@@ -27,8 +27,9 @@ export const App = memo(() => {
 	};
 
 	useEffect(() => {
-		if (inited) return;
-		dispatch(initAuthData());
+		if (!inited) {
+			dispatch(initAuthData());
+		}
 	}, [dispatch, inited]);
 
 	toggleFeatures({
