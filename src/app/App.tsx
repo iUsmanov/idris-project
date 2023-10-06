@@ -15,6 +15,17 @@ export const App = memo(() => {
 	const dispatch = useAppDispatch();
 	const inited = useSelector(getUserInited);
 
+	const addClassName = (className: 'beauty-design' | 'matrix-design') => {
+		const notClassName: string = className === 'beauty-design' ? 'matrix-design' : 'beauty-design';
+		if (!document.body.classList.contains(className)) {
+			document.body.classList.add(className);
+		}
+
+		if (document.body.classList.contains(notClassName)) {
+			document.body.classList.remove(notClassName);
+		}
+	};
+
 	useEffect(() => {
 		if (inited) return;
 		dispatch(initAuthData());
@@ -22,8 +33,8 @@ export const App = memo(() => {
 
 	toggleFeatures({
 		name: 'isBeautyDesign',
-		on: () => document.body.classList.add('beauty-design'),
-		off: () => console.log('DELETE ME'),
+		on: () => addClassName('beauty-design'),
+		off: () => addClassName('matrix-design'),
 	});
 
 	if (!inited) {

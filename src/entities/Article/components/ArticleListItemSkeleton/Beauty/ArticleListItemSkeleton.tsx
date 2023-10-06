@@ -42,9 +42,7 @@ export const ArticleListItemSkeleton = memo((props: ArticleListItemSkeletonBeaut
 			padding='0'
 			className={classNames(cls.articleListItem, {}, [className, cls[view]])}
 		>
-			<div className={cls.image}>
-				<Skeleton width={240} height={140} className={cls.img} />
-			</div>
+			<Skeleton width={240} height={140} className={cls.image} />
 			<VStack gap='4' className={cls.info} max>
 				<Skeleton width={200} height={24} className={cls.title} />
 				<VStack justify='right' max gap='4' className={cls.footer}>
