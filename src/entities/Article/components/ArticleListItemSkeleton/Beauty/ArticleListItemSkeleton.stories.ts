@@ -15,17 +15,17 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const PrimaryLight: Story = {
+export const PrimaryLightBeauty: Story = {
 	args: {},
 	decorators: [],
 };
 
-export const PrimaryDark: Story = {
+export const PrimaryDarkBeauty: Story = {
 	args: {},
 	decorators: [ThemeDecorator('app-dark-theme')],
 };
 
-export const PrimaryOrange: Story = {
+export const PrimaryOrangeBeauty: Story = {
 	args: {},
 	decorators: [ThemeDecorator('app-orange-theme')],
 };

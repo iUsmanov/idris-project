@@ -18,7 +18,7 @@ const meta = {
 			tags: ['autodocs'],
 			argTypes: {},
 			args: {
-				text: ``
+				text: 
 			},
 		} satisfies Meta<typeof Code>;
 		
@@ -46,17 +46,17 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const NormalLight: Story = {
+export const NormalLightBeauty: Story = {
 	args: {},
 	decorators: [],
 };
 
-export const NormalDark: Story = {
+export const NormalDarkBeauty: Story = {
 	args: {},
 	decorators: [ThemeDecorator('app-dark-theme')],
 };
 
-export const NormalOrange: Story = {
+export const NormalOrangeBeauty: Story = {
 	args: {},
 	decorators: [ThemeDecorator('app-orange-theme')],
 };

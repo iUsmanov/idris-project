@@ -16,33 +16,33 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const PrimaryLight: Story = {
+export const PrimaryLightMatrix: Story = {
 	args: {},
 	decorators: [],
 };
 
-export const PrimaryDark: Story = {
+export const PrimaryDarkMatrix: Story = {
 	args: {},
 	decorators: [ThemeDecorator('app-dark-theme')],
 };
 
-export const PrimaryOrange: Story = {
+export const PrimaryOrangeMatrix: Story = {
 	args: {},
 	decorators: [ThemeDecorator('app-orange-theme')],
 };
 
 // !READONLY
-export const ReadonlyLight: Story = {
+export const ReadonlyLightMatrix: Story = {
 	args: { readOnly: true },
 	decorators: [],
 };
 
-export const ReadonlyDark: Story = {
+export const ReadonlyDarkMatrix: Story = {
 	args: { readOnly: true },
 	decorators: [ThemeDecorator('app-dark-theme')],
 };
 
-export const ReadonlyOrange: Story = {
+export const ReadonlyOrangeMatrix: Story = {
 	args: { readOnly: true },
 	decorators: [ThemeDecorator('app-orange-theme')],
 };

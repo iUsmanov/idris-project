@@ -18,21 +18,21 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const PrimaryLight: Story = {
+export const PrimaryLightMatrix: Story = {
 	args: {
 		variant: 'primary',
 	},
 	decorators: [],
 };
 
-export const PrimaryDark: Story = {
+export const PrimaryDarkMatrix: Story = {
 	args: {
 		variant: 'primary',
 	},
 	decorators: [ThemeDecorator('app-dark-theme')],
 };
 
-export const PrimaryOrange: Story = {
+export const PrimaryOrangeMatrix: Story = {
 	args: {
 		variant: 'primary',
 	},
@@ -41,21 +41,21 @@ export const PrimaryOrange: Story = {
 
 // INVERTED
 
-export const InvertedLight: Story = {
+export const InvertedLightMatrix: Story = {
 	args: {
 		variant: 'inverted',
 	},
 	decorators: [],
 };
 
-export const InvertedDark: Story = {
+export const InvertedDarkMatrix: Story = {
 	args: {
 		variant: 'inverted',
 	},
 	decorators: [ThemeDecorator('app-dark-theme')],
 };
 
-export const InvertedOrange: Story = {
+export const InvertedOrangeMatrix: Story = {
 	args: {
 		variant: 'inverted',
 	},

@@ -19,21 +19,21 @@ type Story = StoryObj<typeof meta>;
 
 // PRIMARY
 
-export const PrimaryLight: Story = {
+export const PrimaryLightMatrix: Story = {
 	args: {
 		variant: 'primary',
 	},
 	decorators: [],
 };
 
-export const PrimaryDark: Story = {
+export const PrimaryDarkMatrix: Story = {
 	args: {
 		variant: 'primary',
 	},
 	decorators: [ThemeDecorator('app-dark-theme')],
 };
 
-export const PrimaryOrange: Story = {
+export const PrimaryOrangeMatrix: Story = {
 	args: {
 		variant: 'primary',
 	},
@@ -42,21 +42,21 @@ export const PrimaryOrange: Story = {
 
 // OUTLINE
 
-export const OutlineLight: Story = {
+export const OutlineLightMatrix: Story = {
 	args: {
 		variant: 'outline',
 	},
 	decorators: [],
 };
 
-export const OutlineDark: Story = {
+export const OutlineDarkMatrix: Story = {
 	args: {
 		variant: 'outline',
 	},
 	decorators: [ThemeDecorator('app-dark-theme')],
 };
 
-export const OutlineOrange: Story = {
+export const OutlineOrangeMatrix: Story = {
 	args: {
 		variant: 'outline',
 	},
@@ -65,21 +65,21 @@ export const OutlineOrange: Story = {
 
 // OUTLINE
 
-export const OutlineRedLight: Story = {
+export const OutlineRedLightMatrix: Story = {
 	args: {
 		variant: 'outlineRed',
 	},
 	decorators: [],
 };
 
-export const OutlineRedDark: Story = {
+export const OutlineRedDarkMatrix: Story = {
 	args: {
 		variant: 'outlineRed',
 	},
 	decorators: [ThemeDecorator('app-dark-theme')],
 };
 
-export const OutlineRedOrange: Story = {
+export const OutlineRedOrangeMatrix: Story = {
 	args: {
 		variant: 'outlineRed',
 	},
@@ -88,7 +88,7 @@ export const OutlineRedOrange: Story = {
 
 // CLEAR
 
-export const ClearLightSizeM: Story = {
+export const ClearLightSizeMMatrix: Story = {
 	args: {
 		variant: 'clear',
 		size: 'size_m',
@@ -96,7 +96,7 @@ export const ClearLightSizeM: Story = {
 	decorators: [],
 };
 
-export const ClearDarkSizeL: Story = {
+export const ClearDarkSizeLMatrix: Story = {
 	args: {
 		variant: 'clear',
 		size: 'size_l',
@@ -104,7 +104,7 @@ export const ClearDarkSizeL: Story = {
 	decorators: [ThemeDecorator('app-dark-theme')],
 };
 
-export const ClearOrangeSizeXL: Story = {
+export const ClearOrangeSizeXLMatrix: Story = {
 	args: {
 		variant: 'clear',
 		size: 'size_xl',
@@ -114,7 +114,7 @@ export const ClearOrangeSizeXL: Story = {
 
 // CLEAR_INVERTED
 
-export const ClearinvertedLightSizeM: Story = {
+export const ClearinvertedLightSizeMMatrix: Story = {
 	args: {
 		variant: 'clearInverted',
 		size: 'size_m',
@@ -122,7 +122,7 @@ export const ClearinvertedLightSizeM: Story = {
 	decorators: [],
 };
 
-export const ClearinvertedDarkSizeL: Story = {
+export const ClearinvertedDarkSizeLMatrix: Story = {
 	args: {
 		variant: 'clearInverted',
 		size: 'size_l',
@@ -130,7 +130,7 @@ export const ClearinvertedDarkSizeL: Story = {
 	decorators: [ThemeDecorator('app-dark-theme')],
 };
 
-export const ClearinvertedOrangeSizeXL: Story = {
+export const ClearinvertedOrangeSizeXLMatrix: Story = {
 	args: {
 		variant: 'clearInverted',
 		size: 'size_xl',
@@ -140,7 +140,7 @@ export const ClearinvertedOrangeSizeXL: Story = {
 
 // BACKGROUND
 
-export const BackgroundLight: Story = {
+export const BackgroundLightMatrix: Story = {
 	args: {
 		variant: 'background',
 		square: true,
@@ -150,7 +150,7 @@ export const BackgroundLight: Story = {
 	decorators: [],
 };
 
-export const BackgroundDark: Story = {
+export const BackgroundDarkMatrix: Story = {
 	args: {
 		variant: 'background',
 		square: true,
@@ -160,7 +160,7 @@ export const BackgroundDark: Story = {
 	decorators: [ThemeDecorator('app-dark-theme')],
 };
 
-export const BackgroundOrange: Story = {
+export const BackgroundOrangeMatrix: Story = {
 	args: {
 		variant: 'background',
 		square: true,
@@ -172,7 +172,7 @@ export const BackgroundOrange: Story = {
 
 // BACKGROUND_INVERTED
 
-export const BackgroundinvertedLight: Story = {
+export const BackgroundinvertedLightMatrix: Story = {
 	args: {
 		variant: 'backgroundInverted',
 		square: true,
@@ -182,7 +182,7 @@ export const BackgroundinvertedLight: Story = {
 	decorators: [],
 };
 
-export const BackgroundinvertedDark: Story = {
+export const BackgroundinvertedDarkMatrix: Story = {
 	args: {
 		variant: 'backgroundInverted',
 		square: true,
@@ -192,7 +192,7 @@ export const BackgroundinvertedDark: Story = {
 	decorators: [ThemeDecorator('app-dark-theme')],
 };
 
-export const BackgroundinvertedOrange: Story = {
+export const BackgroundinvertedOrangeMatrix: Story = {
 	args: {
 		variant: 'backgroundInverted',
 		square: true,
@@ -204,7 +204,7 @@ export const BackgroundinvertedOrange: Story = {
 
 // DISABLED
 
-export const DisabledLight: Story = {
+export const DisabledLightMatrix: Story = {
 	args: {
 		size: 'size_m',
 		disabled: true,
@@ -213,7 +213,7 @@ export const DisabledLight: Story = {
 	decorators: [],
 };
 
-export const DisabledDark: Story = {
+export const DisabledDarkMatrix: Story = {
 	args: {
 		size: 'size_l',
 		disabled: true,
@@ -222,7 +222,7 @@ export const DisabledDark: Story = {
 	decorators: [ThemeDecorator('app-dark-theme')],
 };
 
-export const DisabledOrange: Story = {
+export const DisabledOrangeMatrix: Story = {
 	args: {
 		size: 'size_xl',
 		disabled: true,
