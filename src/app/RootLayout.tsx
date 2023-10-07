@@ -1,5 +1,4 @@
 import { App } from './App';
-import { ThemeProvider } from './providers/ThemeProvider';
 import { ErrorBoundary } from './providers/ErrorBoundary';
 import { StoreProvider } from './providers/StoreProvider';
 import { Suspense, memo } from 'react';
@@ -10,11 +9,9 @@ export const RootLayout = memo(() => {
 		<ErrorBoundary>
 			<StoreProvider>
 				<ForceUpdateProvider>
-					<ThemeProvider>
-						<Suspense>
-							<App />
-						</Suspense>
-					</ThemeProvider>
+					<Suspense>
+						<App />
+					</Suspense>
 				</ForceUpdateProvider>
 			</StoreProvider>
 		</ErrorBoundary>

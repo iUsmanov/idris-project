@@ -11,8 +11,9 @@ import { PageLoader } from '@/widgets/PageLoader';
 import { ToggleFeatures, toggleFeatures } from '@/shared/lib/featureFlags';
 import { MainLayout } from '@/shared/layouts';
 import { useAppToolbar } from './useAppToolbar/useAppToolbar';
+import { withTheme } from './providers/ThemeProvider';
 
-export const App = memo(() => {
+const App = memo(() => {
 	const dispatch = useAppDispatch();
 	const inited = useSelector(getUserInited);
 	const toolbar = useAppToolbar();
@@ -69,6 +70,9 @@ export const App = memo(() => {
 		</div>
 	);
 });
+
+const AppWithTheme = withTheme(App);
+export { AppWithTheme as App };
 
 // 	return (
 // 		<div className={'app'}>

@@ -1,7 +1,6 @@
 import { ReactNode, memo, useEffect, useMemo, useState } from 'react';
 import { Theme } from '@/shared/types/theme';
 import { ThemeContext } from '@/shared/lib/context/ThemeContext';
-import { useUserSettings } from '@/entities/User';
 import { fallbackTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 
 interface ThemeProviderProps {
@@ -11,9 +10,8 @@ interface ThemeProviderProps {
 
 export const ThemeProvider = memo((props: ThemeProviderProps) => {
 	const { children, initialTheme } = props;
-	const { theme: themeFromSettings } = useUserSettings();
 	const [isThemeInited, setIsThemeInited] = useState<boolean>(false);
-	const [theme, setTheme] = useState<Theme>(initialTheme || themeFromSettings || fallbackTheme);
+	const [theme, setTheme] = useState<Theme>(initialTheme || fallbackTheme);
 
 	const defaultProps = useMemo(
 		() => ({
