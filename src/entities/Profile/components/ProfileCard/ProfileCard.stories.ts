@@ -4,6 +4,7 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
 import Image from '@/shared/assets/tests/storybook.jpg';
 import { Currency } from '@/entities/Currency/testing';
 import { Country } from '@/entities/Country/testing';
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator';
 
 const meta = {
 	title: 'entities/ProfileCard',
@@ -30,6 +31,11 @@ type Story = StoryObj<typeof meta>;
 export const PrimaryLight: Story = {
 	args: {},
 	decorators: [],
+};
+
+export const PrimaryBeautyLight: Story = {
+	args: {},
+	decorators: [FeatureFlagsDecorator({ isBeautyDesign: true })],
 };
 
 export const PrimaryDark: Story = {

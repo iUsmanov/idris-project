@@ -8,7 +8,7 @@ body,.app {
 	min-height: 100vh;
 }
 
-body.matrix-design {
+.matrix-design {
 	font: var(--font-m);
 	color: var(--primary-color);
 	background: var(--bg-color);
@@ -29,7 +29,7 @@ body.matrix-design {
 	}
 }
 
-body.beauty-design {
+.beauty-design {
 	background: var(--bg-beauty);
 	font: var(--font-m-beauty);
 	color: var(--text-beauty);
