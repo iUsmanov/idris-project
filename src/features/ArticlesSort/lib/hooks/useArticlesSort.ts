@@ -11,7 +11,7 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { useTranslation } from 'react-i18next';
 
 export function useArticlesSort(onChangeSort: VoidFunction, onChangeOrder: VoidFunction) {
-	const { t } = useTranslation();
+	const { t } = useTranslation('articles');
 	const dispatch = useAppDispatch();
 	const [searchParams] = useSearchParams();
 
@@ -28,11 +28,11 @@ export function useArticlesSort(onChangeSort: VoidFunction, onChangeOrder: VoidF
 		() => [
 			{
 				value: 'asc',
-				content: t('возрастанию'),
+				content: t('Возрастанию'),
 			},
 			{
 				value: 'desc',
-				content: t('убыванию'),
+				content: t('Убыванию'),
 			},
 		],
 		[t]
@@ -42,15 +42,15 @@ export function useArticlesSort(onChangeSort: VoidFunction, onChangeOrder: VoidF
 		() => [
 			{
 				value: 'createdAt',
-				content: t('дате создания'),
+				content: t('Дате создания'),
 			},
 			{
 				value: 'title',
-				content: t('названию'),
+				content: t('Названию'),
 			},
 			{
 				value: 'views',
-				content: t('просмотрам'),
+				content: t('Просмотрам'),
 			},
 		],
 		[t]

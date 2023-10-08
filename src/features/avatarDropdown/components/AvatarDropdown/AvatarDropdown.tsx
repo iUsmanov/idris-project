@@ -70,6 +70,7 @@ export const AvatarDropdown = memo((props: AvatarDropdownProps) => {
 			items={items}
 			trigger={avatar}
 			direction='bottomLeft'
+			textNoWrap
 		/>
 	);
 });

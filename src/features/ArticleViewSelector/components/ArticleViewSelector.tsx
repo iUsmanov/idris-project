@@ -1,5 +1,4 @@
 import { memo, useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './ArticleViewSelector.module.scss';
 import { ArticleView } from '@/entities/Article';
@@ -35,7 +34,6 @@ const viewTypes: ViewType[] = [
 
 export const ArticleViewSelector = memo((props: ArticleViewSelectorProps) => {
 	const { className, onViewClick, view } = props;
-	const { t } = useTranslation();
 
 	const onClick = useCallback(
 		(view: ArticleView) => () => {

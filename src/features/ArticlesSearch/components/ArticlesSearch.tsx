@@ -16,7 +16,7 @@ interface ArticlesSearchProps {
 
 export const ArticlesSearch = memo((props: ArticlesSearchProps) => {
 	const { className, onChangeSearch } = props;
-	const { t } = useTranslation();
+	const { t } = useTranslation('articles');
 	const search = useSelector(getArticlesSearch);
 	const { changeSearchHandler } = useArticlesSearch(onChangeSearch);
 

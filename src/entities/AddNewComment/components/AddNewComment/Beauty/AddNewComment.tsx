@@ -18,7 +18,7 @@ export interface AddNewCommentProps {
 
 export const AddNewComment = memo((props: AddNewCommentProps) => {
 	const { className, sendNewComment, error, isLoading } = props;
-	const { t } = useTranslation();
+	const { t } = useTranslation(['article-details', 'translation']);
 	const { onChangeText, onSendNewComment, text } = useAddNewComment(sendNewComment);
 
 	return (

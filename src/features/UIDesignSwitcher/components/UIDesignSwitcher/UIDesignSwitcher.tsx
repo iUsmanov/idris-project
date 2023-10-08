@@ -16,7 +16,7 @@ interface UIDesignSwitcherProps {
 
 export const UIDesignSwitcher = memo((props: UIDesignSwitcherProps) => {
 	const { className } = props;
-	const { t } = useTranslation();
+	const { t } = useTranslation('settings');
 	const dispatch = useAppDispatch();
 	const authData = useSelector(getUserAuthData);
 	const isBeautyDesign = getFeatureFlag('isBeautyDesign');
@@ -29,7 +29,7 @@ export const UIDesignSwitcher = memo((props: UIDesignSwitcherProps) => {
 				value: 'matrix',
 			},
 			{
-				content: t('Красивый'),
+				content: t('Красота'),
 				value: 'beauty',
 			},
 		],

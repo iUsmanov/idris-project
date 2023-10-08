@@ -9,7 +9,7 @@ import { saveUserSettings, useUserSettings } from '@/entities/User';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 export const ArticlesPageGreeting = memo(() => {
-	const { t } = useTranslation();
+	const { t } = useTranslation('additional');
 	const dispatch = useAppDispatch();
 	const { isArticlesPageWasOpened } = useUserSettings();
 	const { isMounted, isOpened, onMountAndOpen, onUnmountAndClose } = useModal();

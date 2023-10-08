@@ -15,6 +15,7 @@ export interface DropdownBeautyProps {
 	items: DropdownItem[];
 	trigger: ReactNode;
 	direction?: DropdownDirection;
+	textNoWrap?: boolean;
 }
 
 export interface DropdownItem {
@@ -25,7 +26,7 @@ export interface DropdownItem {
 }
 
 export const Dropdown = memo((props: DropdownBeautyProps) => {
-	const { className, items, trigger, direction = 'bottomRight' } = props;
+	const { className, items, trigger, direction = 'bottomRight', textNoWrap = false } = props;
 
 	return (
 		<Menu as={'div'} className={classNames('', {}, [className, popupsCls.popup])}>
@@ -40,7 +41,11 @@ export const Dropdown = memo((props: DropdownBeautyProps) => {
 							<button
 								disabled={item.disabled}
 								type='button'
-								className={classNames(cls.item, { [popupsCls.active]: active }, [])}
+								className={classNames(
+									cls.item,
+									{ [popupsCls.active]: active, [cls.textNoWrap]: textNoWrap },
+									[]
+								)}
 								onClick={item.onClick}
 							>
 								{item.content}
@@ -51,7 +56,11 @@ export const Dropdown = memo((props: DropdownBeautyProps) => {
 					if (item.href) {
 						itemInner = ({ active }: { active: boolean }) => (
 							<AppLink
-								className={classNames(cls.item, { [popupsCls.active]: active }, [])}
+								className={classNames(
+									cls.item,
+									{ [popupsCls.active]: active, [cls.textNoWrap]: textNoWrap },
+									[]
+								)}
 								to={item.href as string}
 							>
 								{item.content}

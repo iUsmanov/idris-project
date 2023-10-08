@@ -15,7 +15,7 @@ export interface ArticleRatingProps {
 
 export const ArticleRating = memo((props: ArticleRatingProps) => {
 	const { className, articleId } = props;
-	const { t } = useTranslation();
+	const { t } = useTranslation('article-details');
 	const userData = useSelector(getUserAuthData);
 	const { data, isLoading, error } = useGetArticleRatingQuery({
 		userId: userData?.id ?? '',

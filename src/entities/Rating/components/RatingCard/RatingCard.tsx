@@ -27,7 +27,7 @@ export const RatingCard = memo((props: RatingCardProps) => {
 	const { className, feedbackTitle, hasFeedback, onAccept, onCancel, title, rate = 0 } = props;
 	const [starsCount, setStarsCount] = useState(rate);
 	const [feedback, setFeedback] = useState<string>('');
-	const { t } = useTranslation(['translation', 'article-details']);
+	const { t } = useTranslation('article-details');
 	const {
 		isMounted,
 		isOpened,

@@ -20,7 +20,7 @@ export interface ArticlesSortProps {
 
 export const ArticlesSort = memo((props: ArticlesSortProps) => {
 	const { className, onChangeOrder, onChangeSort } = props;
-	const { t } = useTranslation();
+	const { t } = useTranslation('articles');
 	const sort = useSelector(getArticlesSortField);
 	const order = useSelector(getArticlesSortOrder);
 
@@ -31,7 +31,7 @@ export const ArticlesSort = memo((props: ArticlesSortProps) => {
 
 	return (
 		<VStack gap='8' className={classNames('', {}, [className])}>
-			<Text title={t('Сортировать по:')} />
+			<Text title={t('Сортировать по')} />
 			<ListBox<ArticlesSortField>
 				value={sort}
 				onChange={changeSortHandler}

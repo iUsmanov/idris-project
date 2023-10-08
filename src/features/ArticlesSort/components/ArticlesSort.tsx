@@ -18,7 +18,7 @@ interface ArticlesSortProps {
 
 export const ArticlesSort = memo((props: ArticlesSortProps) => {
 	const { className, onChangeOrder, onChangeSort } = props;
-	const { t } = useTranslation();
+	const { t } = useTranslation('articles');
 	const sort = useSelector(getArticlesSortField);
 	const order = useSelector(getArticlesSortOrder);
 
@@ -37,13 +37,13 @@ export const ArticlesSort = memo((props: ArticlesSortProps) => {
 						value={sort}
 						onChange={changeSortHandler}
 						options={orderFieldOptions}
-						label={t('Сортировать ПО')}
+						label={t('Сортировать по')}
 					/>
 					<Select
 						value={order}
 						onChange={changeOrderHandler}
 						options={orderOptions}
-						label={t('по')}
+						label={t('По')}
 					/>
 				</HStack>
 			}

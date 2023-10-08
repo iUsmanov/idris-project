@@ -10,7 +10,7 @@ import { initArticlesType } from '../../model/services/initArticleTypeTabs/initA
 import { useSearchParams } from 'react-router-dom';
 
 export function useArticleTypeTabs(onChangeType: VoidFunction) {
-	const { t } = useTranslation();
+	const { t } = useTranslation('articles');
 	const dispatch = useAppDispatch();
 	const [searchParams] = useSearchParams();
 

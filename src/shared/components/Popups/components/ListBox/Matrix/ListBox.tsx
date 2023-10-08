@@ -47,6 +47,10 @@ export const ListBox = memo((props: ListBoxMatrixProps) => {
 		[compact, options, label]
 	);
 
+	const selectedItem = useMemo(() => {
+		return options.find((option) => option.value === value);
+	}, [options, value]);
+
 	return (
 		<HStack
 			align='center'
@@ -63,7 +67,7 @@ export const ListBox = memo((props: ListBoxMatrixProps) => {
 			>
 				<HListbox.Button as={'div'} className={popupsCls.trigger}>
 					<Button disabled={disabled} variant='outline'>
-						{value ?? defaultValue}
+						{selectedItem?.content ?? defaultValue}
 					</Button>
 				</HListbox.Button>
 				<HListbox.Options className={classNames(cls.options, {}, [popupsCls[direction]])}>

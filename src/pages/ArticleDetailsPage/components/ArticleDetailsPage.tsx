@@ -24,6 +24,23 @@ export const ArticleDetailsPage = memo(() => {
 
 	if (!id) return null;
 
+	const additionalContent = !error && (
+		<>
+			<ToggleFeatures
+				name='isCounterEnabled'
+				on={<Counter />}
+				off={<Card max>{t('Счётчик скоро появится!')}</Card>}
+			/>
+			<ToggleFeatures
+				name='isArticleRatingEnabled'
+				on={<ArticleRating articleId={id} />}
+				off={<Card max>{t('Оценка статей скоро появится!')}</Card>}
+			/>
+			<ArticleRecommendations />
+			<ArticleCommentsList />
+		</>
+	);
+
 	return (
 		<ToggleFeatures
 			name='isBeautyDesign'
@@ -35,22 +52,7 @@ export const ArticleDetailsPage = memo(() => {
 								<Card padding='24' border='high' max>
 									<ArticleDetails />
 								</Card>
-								{!error && (
-									<>
-										<ToggleFeatures
-											name='isCounterEnabled'
-											on={<Counter />}
-											off={<Card max>{t('Счётчик скоро появится!')}</Card>}
-										/>
-										<ToggleFeatures
-											name='isArticleRatingEnabled'
-											on={<ArticleRating articleId={id} />}
-											off={<Card max>{t('Оценка статей скоро появится!')}</Card>}
-										/>
-										<ArticleRecommendations />
-										<ArticleCommentsList />
-									</>
-								)}
+								{additionalContent}
 							</VStack>
 						</Page>
 					}
@@ -68,22 +70,7 @@ export const ArticleDetailsPage = memo(() => {
 					<VStack gap='16' max>
 						<ArticleDetailsHeader />
 						<ArticleDetails />
-						{!error && (
-							<>
-								<ToggleFeatures
-									name='isCounterEnabled'
-									on={<Counter />}
-									off={<Card max>{t('Счётчик скоро появится!')}</Card>}
-								/>
-								<ToggleFeatures
-									name='isArticleRatingEnabled'
-									on={<ArticleRating articleId={id} />}
-									off={<Card max>{t('Оценка статей скоро появится!')}</Card>}
-								/>
-								<ArticleRecommendations />
-								<ArticleCommentsList />
-							</>
-						)}
+						{additionalContent}
 					</VStack>
 				</Page>
 			}

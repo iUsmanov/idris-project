@@ -18,7 +18,7 @@ export interface ArticleListProps {
 
 export const ArticleList = memo((props: ArticleListProps) => {
 	const { className, articles, isLoading, view = 'TILE', target } = props;
-	const { t } = useTranslation();
+	const { t } = useTranslation('articles');
 
 	const skeletons = useMemo(() => {
 		if (view === 'TILE') {

@@ -1,5 +1,4 @@
 import { memo, useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { Page } from '@/widgets/Page';
@@ -11,7 +10,6 @@ import {
 import { ArticlesPageGreeting } from '@/features/articlesPageGreeting';
 
 export const ArticlesPage = memo(() => {
-	const { t } = useTranslation();
 	const dispatch = useAppDispatch();
 	const error = useSelector(getArticlesInfiniteListError);
 

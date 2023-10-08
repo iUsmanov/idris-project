@@ -22,7 +22,7 @@ export interface ArticleDetailsHeaderPropsBeauty {
 
 export const ArticleDetailsHeader = memo((props: ArticleDetailsHeaderPropsBeauty) => {
 	const { className, author, createdAt, views } = props;
-	const { t } = useTranslation(['article-details', 'translation']);
+	const { t } = useTranslation('article-details');
 	const canEdit = useSelector(getArticleCanEdit);
 	const { id } = useParams<{ id: string }>();
 

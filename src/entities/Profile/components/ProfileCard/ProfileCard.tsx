@@ -109,7 +109,7 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
 						onChange={onChangeFirstOrLastName}
 						readOnly={readonly}
 						value={data?.first}
-						placeholder={t('Ваше имя')}
+						placeholder={t('Имя')}
 						name='firstName'
 						data-testid='ProfileCard.InputFirstName'
 					/>
@@ -117,7 +117,7 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
 						onChange={onChangeFirstOrLastName}
 						readOnly={readonly}
 						value={data?.lastname}
-						placeholder={t('Ваша фамилия')}
+						placeholder={t('Фамилия')}
 						name='lastName'
 						data-testid='ProfileCard.InputLastName'
 					/>
@@ -125,7 +125,7 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
 						onChange={onChangeAge}
 						readOnly={readonly}
 						value={data?.age}
-						placeholder={t('Ваш возраст')}
+						placeholder={t('Возраст')}
 						data-testid='ProfileCard.InputAge'
 					/>
 					<Input
@@ -139,14 +139,14 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
 						onChange={onChangeUsername}
 						readOnly={readonly}
 						value={data?.username}
-						placeholder={t('Введите имя пользователя')}
+						placeholder={t('Имя пользователя')}
 						data-testid='ProfileCard.InputUsername'
 					/>
 					<Input
 						onChange={onChangeAvatar}
 						readOnly={readonly}
 						value={data?.avatar}
-						placeholder={t('Введите ссылку на аватар')}
+						placeholder={t('Ссылка на аватар')}
 						data-testid='ProfileCard.InputAvatar'
 					/>
 					<CurrencySelect

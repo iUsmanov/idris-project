@@ -1,10 +1,18 @@
 {
+	"Просмотров_one": "{{count}} view",
+	"Просмотров_other": "{{count}} views",
 	"Статья не найдена": "Article not found",
 	"Комментарии": "Comments",
 	"Назад к списку": "Back to list",
 	"Рекомендуем": "Recommend",
-	"Просмотров_one": "{{count}} view",
-	"Просмотров_other": "{{count}} views",
-	"Оценка статей скоро появится!": "Article rating comming soon",
+	"Ваш отзыв": "Your feedback",
+	"Счётчик скоро появится!": "The counter will be available soon!",
+	"Оценка статей скоро появится!": "Article rating comming soon!",
+	"Отправить": "Send",
+	"Оставьте свой отзыв о статье": "Leave your rate for this artice",
+	"Закрыть": "Закрыть",
+	"Редактировать": "Edit",
+	"Оцените статью": "Rate this article",
+	"Введите текст комментария": "Input comment text",
 	"Спасибо за оценку!": "Thank you for rating!"
 }

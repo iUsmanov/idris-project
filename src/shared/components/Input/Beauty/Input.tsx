@@ -76,7 +76,6 @@ export const Input = memo((props: InputBeautyProps) => {
 			className={classNames(
 				cls.componentWrapper,
 				{
-					[cls.readonly]: readOnly,
 					[cls.focused]: isFocused,
 					[cls.withAddonLeft]: Boolean(addonLeft),
 					[cls.withAddonRight]: Boolean(addonRight),
@@ -104,7 +103,18 @@ export const Input = memo((props: InputBeautyProps) => {
 
 	if (label) {
 		return (
-			<HStack gap='8' max align='center'>
+			<HStack
+				gap='8'
+				max
+				align='center'
+				className={classNames(
+					'',
+					{
+						[cls.readonly]: readOnly,
+					},
+					[className, cls['size_' + size]]
+				)}
+			>
 				<Text text={label} size='size_m' />
 				{input}
 			</HStack>
