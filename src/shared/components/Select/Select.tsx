@@ -1,8 +1,9 @@
-import { ChangeEvent, ChangeEventHandler, memo, useCallback, useMemo } from 'react';
+import { ChangeEvent, ChangeEventHandler, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Select.module.scss';
 import { Flex } from '../Stack';
+import { typedMemo } from '@/shared/lib/helpers/typedMemo/typedMemo';
 
 interface SelectProps<T extends string> {
 	className?: string;
@@ -31,8 +32,6 @@ newProps: React.ComponentPropsWithoutRef<Component>
 ) => Component = memo;
 
 */
-
-const typedMemo: <T>(props: T) => T = memo;
 
 export const Select = typedMemo(<T extends string>(props: SelectProps<T>) => {
 	const { className, options, label, onChange, value, disabled } = props;

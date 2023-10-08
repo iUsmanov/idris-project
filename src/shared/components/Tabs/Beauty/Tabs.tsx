@@ -2,12 +2,13 @@ import {
 	BeautySharedProvider,
 	useBeautySharedComponents,
 } from '@/shared/lib/components/BeautySharedProvider/BeautySharedProvider';
-import { ReactNode, memo, useCallback } from 'react';
+import { ReactNode, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Tabs.module.scss';
 import { Card } from '@/shared/components/Card';
 import { Flex, FlexDirection } from '@/shared/components/Stack';
+import { typedMemo } from '@/shared/lib/helpers/typedMemo/typedMemo';
 
 export interface TabItem<T extends string> {
 	value: T;
@@ -21,8 +22,6 @@ export interface TabsBeautyProps<T extends string> {
 	onTabClick: (tab: TabItem<T>) => void;
 	direction?: FlexDirection;
 }
-
-export const typedMemo: <T>(props: T) => T = memo;
 
 export const Tabs = typedMemo(<T extends string>(props: TabsBeautyProps<T>) => {
 	const { className, tabs, onTabClick, value, direction = 'row' } = props;

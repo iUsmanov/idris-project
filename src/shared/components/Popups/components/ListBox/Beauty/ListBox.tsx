@@ -2,7 +2,7 @@ import {
 	BeautySharedProvider,
 	useBeautySharedComponents,
 } from '@/shared/lib/components/BeautySharedProvider/BeautySharedProvider';
-import { Fragment, ReactNode, memo, useMemo } from 'react';
+import { Fragment, ReactNode, useMemo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './ListBox.module.scss';
 import ArrowIcon from '@/shared/assets/icons/arrow-bottom.svg';
@@ -12,6 +12,7 @@ import { Button } from '@/shared/components/Button';
 import { HStack } from '@/shared/components/Stack';
 import { DropdownDirection } from '@/shared/types/ui';
 import { Icon } from '@/shared/components/Icon';
+import { typedMemo } from '@/shared/lib/helpers/typedMemo/typedMemo';
 
 export interface ListBoxBeautyProps<T extends string> {
 	className?: string;
@@ -30,8 +31,6 @@ export interface ListBoxOption<T extends string> {
 	content: ReactNode;
 	disabled?: boolean;
 }
-
-const typedMemo: <T>(props: T) => T = memo;
 
 export const ListBox = typedMemo(<T extends string>(props: ListBoxBeautyProps<T>) => {
 	const {

@@ -2,12 +2,13 @@ import {
 	MatrixSharedProvider,
 	useMatrixSharedComponents,
 } from '@/shared/lib/components/MatrixSharedProvider/MatrixSharedProvider';
-import { ReactNode, memo, useCallback } from 'react';
+import { ReactNode, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Tabs.module.scss';
 import { Card } from '@/shared/components/Card';
 import { HStack } from '@/shared/components/Stack';
+import { typedMemo } from '@/shared/lib/helpers/typedMemo/typedMemo';
 
 export interface TabItem<T extends string> {
 	value: T;
@@ -20,8 +21,6 @@ export interface TabsMatrixProps<T extends string> {
 	value: T;
 	onTabClick: (tab: TabItem<T>) => void;
 }
-
-export const typedMemo: <T>(props: T) => T = memo;
 
 export const Tabs = typedMemo(<T extends string>(props: TabsMatrixProps<T>) => {
 	const { className, tabs, onTabClick, value } = props;
