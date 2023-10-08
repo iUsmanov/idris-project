@@ -12,7 +12,10 @@
 	"Оставьте свой отзыв о статье": "Leave your rate for this artice",
 	"Закрыть": "Закрыть",
 	"Редактировать": "Edit",
+	"increment": "Increment",
+	"decrement": "Decrement",
 	"Оцените статью": "Rate this article",
+	"Комментарии отсутствуют": "There are no comments",
 	"Введите текст комментария": "Input comment text",
 	"Спасибо за оценку!": "Thank you for rating!"
 }

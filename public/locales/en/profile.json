@@ -11,6 +11,8 @@
 	"Попробуйте обновить страницу": "Try to update page",
 	"Отменить": "Cancel",
 	"Сохранить": "Save",
+	"Укажите валюту": "Choose currency",
+	"Укажите страну": "Choose country",
 	"Серверная ошибка при сохранении": "Server error when saving",
 	"Некорректный регион": "Invalid region",
 	"Имя и фамилия обязательны": "First and last name are required",

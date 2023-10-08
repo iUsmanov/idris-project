@@ -15,7 +15,7 @@ const options = Object.entries(Currency).map((arr) => ({ value: arr[0], content:
 
 export const CurrencySelect = memo((props: CurrencySelectProps) => {
 	const { className, onChange, value, disabled } = props;
-	const { t } = useTranslation();
+	const { t } = useTranslation('profile');
 
 	const changeHandler = useCallback(
 		(value: string) => {

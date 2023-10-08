@@ -15,7 +15,7 @@ const options = Object.entries(Country).map((arr) => ({ value: arr[0], content: 
 
 export const CountrySelect = memo((props: CountrySelectProps) => {
 	const { className, disabled, onChange, value } = props;
-	const { t } = useTranslation();
+	const { t } = useTranslation('profile');
 
 	const changeHandler = useCallback(
 		(value: string) => {
