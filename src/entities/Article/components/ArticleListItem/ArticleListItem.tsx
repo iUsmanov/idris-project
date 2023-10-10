@@ -43,7 +43,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 				name='isBeautyDesign'
 				on={<ArticleListItemBeauty {...props} />}
 				off={
-					<Card className={classNames(cls.articleListItem, {}, [className, cls[view]])}>
+					<Card className={classNames('', {}, [className, cls[view]])}>
 						<HStack justify='between' align='center' className={cls.header}>
 							<HStack gap='8' align='center'>
 								<Avatar size={30} src={article.user?.avatar} />
@@ -82,7 +82,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 			on={<ArticleListItemBeauty {...props} />}
 			off={
 				<AppLink to={getRouteArticleDetails(article.id)} target={target}>
-					<Card className={classNames(cls.articleListItem, {}, [className, cls[view]])}>
+					<Card className={classNames('', {}, [className, cls[view]])}>
 						<div className={cls.image}>
 							<AppImage
 								loadingFallback={<Skeleton width={200} height={200} />}

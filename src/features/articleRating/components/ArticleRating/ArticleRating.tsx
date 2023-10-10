@@ -1,7 +1,6 @@
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './ArticleRating.module.scss';
 import { RatingCard } from '@/entities/Rating';
 import { useGetArticleRatingQuery, usePostArticleRatingMutation } from '../../api/articleRatingApi';
 import { getUserAuthData } from '@/entities/User';
@@ -60,7 +59,7 @@ export const ArticleRating = memo((props: ArticleRatingProps) => {
 
 	return (
 		<RatingCard
-			className={classNames(cls.articleRating, {}, [className])}
+			className={classNames('', {}, [className])}
 			title={t('Оцените статью')}
 			feedbackTitle={t('Оставьте свой отзыв о статье')}
 			hasFeedback

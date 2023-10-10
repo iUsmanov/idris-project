@@ -1,7 +1,6 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './CommentsList.module.scss';
 import { Comment } from '../../model/types/comment';
 import { CommentCard } from '../CommentCard/CommentCard';
 import { Text } from '@/shared/components/Text';
@@ -22,14 +21,14 @@ export const CommentsList = memo((props: CommentsListProps) => {
 	if (isLoading) {
 		return (
 			<VStack max gap='16'>
-				<VStack max gap='8' className={classNames(cls.commentCard, {}, [className])}>
+				<VStack max gap='8' className={classNames('', {}, [className])}>
 					<HStack gap='8' align='center'>
 						<Skeleton width={30} height={30} borderRadius='50%' />
 						<Skeleton width={120} height={20} />
 					</HStack>
 					<Skeleton width={'100%'} height={60} />
 				</VStack>
-				<VStack max gap='8' className={classNames(cls.commentCard, {}, [className])}>
+				<VStack max gap='8' className={classNames('', {}, [className])}>
 					<HStack gap='8' align='center'>
 						<Skeleton width={30} height={30} borderRadius='50%' />
 						<Skeleton width={120} height={20} />
@@ -52,11 +51,9 @@ export const CommentsList = memo((props: CommentsListProps) => {
 	}
 
 	return (
-		<VStack max gap='16' className={classNames(cls.commentsList, {}, [className])}>
+		<VStack max gap='16' className={classNames('', {}, [className])}>
 			{comments?.length ? (
-				comments.map((comment) => (
-					<CommentCard className={cls.commentCard} key={comment.id} comment={comment} />
-				))
+				comments.map((comment) => <CommentCard className={''} key={comment.id} comment={comment} />)
 			) : (
 				<Text size='size_l' text={t('Комментарии отсутствуют')} />
 			)}

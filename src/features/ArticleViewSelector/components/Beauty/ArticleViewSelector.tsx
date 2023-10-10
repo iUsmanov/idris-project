@@ -42,12 +42,7 @@ export const ArticleViewSelector = memo((props: ArticleViewSelectorProps) => {
 	);
 
 	return (
-		<Card
-			flex
-			border='round'
-			gap='8'
-			className={classNames(cls.articleViewSelector, {}, [className])}
-		>
+		<Card flex border='round' gap='8' className={classNames('', {}, [className])}>
 			{viewTypes.map((viewType) => (
 				<Icon
 					key={viewType.view}

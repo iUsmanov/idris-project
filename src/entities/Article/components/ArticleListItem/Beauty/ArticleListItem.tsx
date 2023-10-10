@@ -46,7 +46,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 				max
 				gap='16'
 				direction='column'
-				className={classNames(cls.articleListItem, {}, [className, cls[view]])}
+				className={classNames('', {}, [className, cls[view]])}
 				padding='24'
 			>
 				<HStack gap='8' align='center' className={cls.header}>
@@ -84,7 +84,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 				gap='8'
 				border='high'
 				padding='0'
-				className={classNames(cls.articleListItem, {}, [className, cls[view]])}
+				className={classNames('', {}, [className, cls[view]])}
 			>
 				<div className={cls.image}>
 					<AppImage

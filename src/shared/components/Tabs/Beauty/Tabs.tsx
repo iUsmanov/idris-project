@@ -35,7 +35,7 @@ export const Tabs = typedMemo(<T extends string>(props: TabsBeautyProps<T>) => {
 	);
 
 	return (
-		<Flex direction={direction} gap='8' className={classNames(cls.tabs, {}, [className])}>
+		<Flex direction={direction} gap='8' className={classNames('', {}, [className])}>
 			{tabs.map((tab) => {
 				const isSelected = tab.value === value;
 				return (

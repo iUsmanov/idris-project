@@ -34,7 +34,7 @@ export const Tabs = typedMemo(<T extends string>(props: TabsMatrixProps<T>) => {
 	);
 
 	return (
-		<HStack gap='8' className={classNames(cls.tabs, {}, [className])}>
+		<HStack gap='8' className={classNames('', {}, [className])}>
 			{tabs.map((tab) => (
 				<Card
 					key={tab.value}

@@ -26,7 +26,7 @@ export const NotificationsPopup = memo((props: NotificationsPopupProps) => {
 				<>
 					<DesktopView>
 						<Popover
-							className={classNames(cls.notificationsPopup, {}, [className])}
+							className={classNames('', {}, [className])}
 							trigger={
 								<Button variant='clear'>
 									<Icon width={20} height={20} Svg={NotificationIcon} variant='inverted' />

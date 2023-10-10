@@ -20,5 +20,5 @@ export const ThemeSwitcher = memo((props: ThemeSwitcherProps) => {
 		});
 	}, [changeTheme, dispatch]);
 
-	return <Icon Svg={ThemeIcon} clickable onClick={onChangeTheme} />;
+	return <Icon Svg={ThemeIcon} clickable onClick={onChangeTheme} className={className} />;
 });

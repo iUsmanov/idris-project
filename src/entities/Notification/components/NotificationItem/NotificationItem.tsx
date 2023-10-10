@@ -31,9 +31,15 @@ export const NotificationItem = memo((props: NotificationItemProps) => {
 
 	if (item.href) {
 		return (
-			<a className={cls.link} target='_blank' href={item.href} rel='noreferrer'>
-				{content}
-			</a>
+			<ToggleFeatures
+				name='isBeautyDesign'
+				on={content}
+				off={
+					<a className={cls.link} target='_blank' href={item.href} rel='noreferrer'>
+						{content}
+					</a>
+				}
+			/>
 		);
 	}
 

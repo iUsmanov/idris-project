@@ -19,7 +19,7 @@ export const NotificationsPopup = memo((props: NotificationsPopupProps) => {
 		<>
 			<DesktopView>
 				<Popover
-					className={classNames(cls.notificationsPopup, {}, [className])}
+					className={classNames('', {}, [className])}
 					trigger={<Icon width={36} height={36} Svg={NotificationIcon} clickable />}
 				>
 					<NotificationsList className={cls.desktopNotifications} />
