@@ -26,9 +26,7 @@ export const ArticleDetailsHeader = memo((props: ArticleDetailsHeaderPropsBeauty
 	const canEdit = useSelector(getArticleCanEdit);
 	const { id } = useParams<{ id: string }>();
 
-	if (!id || !author || !createdAt || !views) {
-		return <div className={classNames('', {}, [])}>{t('Статья не найдена')}</div>;
-	}
+	if (!id || !author || !createdAt || !views) return null;
 
 	return (
 		<Card

@@ -28,9 +28,7 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
 	const { id } = useParams<{ id: string }>();
 	const { renderArticleBlock } = useArticleDetails(id, cls);
 
-	if (!id) {
-		return <div className={classNames('', {}, [])}>{t('Статья не найдена')}</div>;
-	}
+	if (!id) return null;
 
 	if (isLoading) {
 		return (

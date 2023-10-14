@@ -1,3 +1,4 @@
+// #store
 import { AnyAction, CombinedState, Reducer, ReducersMapObject, configureStore } from '@reduxjs/toolkit';
 import { StateSchema, ThunkExtraArg } from './StateSchema';
 import { counterReducer } from '@/entities/Counter';

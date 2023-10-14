@@ -1,3 +1,4 @@
+// #store
 import { CounterSchema } from '@/entities/Counter';
 import { UserSchema } from '@/entities/User';
 import { LoginSchema } from '@/features/AuthByUsername';
@@ -57,3 +58,5 @@ export interface ThunkConfig<T> {
 
 export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];
 export type StateSchemaKey = keyof StateSchema;
+
+export type ReducersObject = ReducersMapObject<StateSchema, AnyAction>;

@@ -1,6 +1,5 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from '@/shared/lib/classNames/classNames';
 import { HStack } from '@/shared/components/Stack';
 import { AppLink } from '@/shared/components/AppLink';
 import { getRouteArticleEdit, getRouteArticles } from '@/shared/const/router';
@@ -18,9 +17,7 @@ export const ArticleDetailsHeader = memo((props: ArticleDetailsHeaderProps) => {
 	const canEdit = useSelector(getArticleCanEdit);
 	const { id } = useParams<{ id: string }>();
 
-	if (!id) {
-		return <div className={classNames('', {}, [])}>{t('Статья не найдена')}</div>;
-	}
+	if (!id) return null;
 
 	return (
 		<HStack max justify='between' align='center' className={className}>

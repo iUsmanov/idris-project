@@ -50,7 +50,7 @@ export const ArticleListItemSkeleton = memo((props: ArticleListItemSkeletonBeaut
 						<Skeleton width={100} height={18} />
 						<Skeleton width={100} height={18} />
 					</HStack>
-					<HStack gap='8' align='center'>
+					<HStack gap='8' align='center' className={cls.userInfo}>
 						<Skeleton width={32} height={32} borderRadius='50%' />
 						<Skeleton width={100} height={16} />
 					</HStack>

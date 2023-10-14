@@ -7,6 +7,8 @@ import NotificationIcon from '@/shared/assets/icons/notification-20-20.svg';
 import { useModal } from '@/shared/lib/hooks/useModal/useModal';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Drawer } from '@/shared/components/Drawer';
+import { ToggleFeatures } from '@/shared/lib/featureFlags';
+import { NotificationsDrawerBeauty } from './Beauty/NotificationsDrawer.async';
 
 interface NotificationsDrawerProps {
 	className?: string;
@@ -17,18 +19,24 @@ export const NotificationsDrawer = memo((props: NotificationsDrawerProps) => {
 	const { isMounted, isOpened, onMountAndOpen, onUnmountAndClose } = useModal();
 
 	return (
-		<>
-			<Button variant='clear' onClick={onMountAndOpen}>
-				<Icon Svg={NotificationIcon} variant='inverted' />
-			</Button>
-			<Drawer
-				container={document.body}
-				isMounted={isMounted}
-				isOpened={isOpened}
-				onDrawerClose={onUnmountAndClose}
-			>
-				<NotificationsList className={classNames(cls.mobileNotifications, {}, [className])} />
-			</Drawer>
-		</>
+		<ToggleFeatures
+			name='isBeautyDesign'
+			on={<NotificationsDrawerBeauty {...props} />}
+			off={
+				<>
+					<Button variant='clear' onClick={onMountAndOpen}>
+						<Icon Svg={NotificationIcon} variant='inverted' />
+					</Button>
+					<Drawer
+						container={document.body}
+						isMounted={isMounted}
+						isOpened={isOpened}
+						onDrawerClose={onUnmountAndClose}
+					>
+						<NotificationsList className={classNames(cls.mobileNotifications, {}, [className])} />
+					</Drawer>
+				</>
+			}
+		/>
 	);
 });

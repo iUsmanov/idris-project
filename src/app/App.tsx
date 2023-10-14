@@ -13,13 +13,16 @@ import { MainLayout } from '@/shared/layouts';
 import { useAppToolbar } from './useAppToolbar/useAppToolbar';
 import { withTheme } from './providers/ThemeProvider';
 
+type DesignType = 'beauty-design' | 'matrix-design';
+
 const App = memo(() => {
 	const dispatch = useAppDispatch();
 	const inited = useSelector(getUserInited);
 	const toolbar = useAppToolbar();
 
-	const addClassName = (className: 'beauty-design' | 'matrix-design') => {
-		const notClassName: string = className === 'beauty-design' ? 'matrix-design' : 'beauty-design';
+	const addClassName = (className: DesignType) => {
+		const notClassName: DesignType =
+			className === 'beauty-design' ? 'matrix-design' : 'beauty-design';
 		if (!document.body.classList.contains(className)) {
 			document.body.classList.add(className);
 		}
@@ -35,11 +38,13 @@ const App = memo(() => {
 		}
 	}, [dispatch, inited]);
 
-	toggleFeatures({
-		name: 'isBeautyDesign',
-		on: () => addClassName('beauty-design'),
-		off: () => addClassName('matrix-design'),
-	});
+	useEffect(() => {
+		toggleFeatures({
+			name: 'isBeautyDesign',
+			on: () => addClassName('beauty-design'),
+			off: () => addClassName('matrix-design'),
+		});
+	}, []);
 
 	if (!inited) {
 		return <PageLoader />;
@@ -73,13 +78,3 @@ const App = memo(() => {
 
 const AppWithTheme = withTheme(App);
 export { AppWithTheme as App };
-
-// 	return (
-// 		<div className={'app'}>
-// 			<Navbar />
-// 			<HStack>
-// 				<Sidebar />
-// 				<AppRouter />
-// 			</HStack>
-// 		</div>
-// 	);

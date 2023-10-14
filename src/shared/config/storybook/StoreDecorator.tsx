@@ -1,3 +1,4 @@
+// #store
 import { StateSchema, StoreProvider } from '@/app/providers/StoreProvider/testing';
 import { addNewCommentReducer } from '@/entities/AddNewComment/testing';
 import { articleDetailsReducer } from '@/entities/Article/testing';

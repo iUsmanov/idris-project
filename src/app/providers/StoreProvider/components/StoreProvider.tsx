@@ -1,3 +1,4 @@
+// #store
 import { ReactNode, memo } from 'react';
 import { Provider } from 'react-redux';
 import { createReduxStore } from '../config/store';

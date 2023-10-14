@@ -11,7 +11,7 @@ import { useModal } from '@/shared/lib/hooks/useModal/useModal';
 import { Button } from '@/shared/components/Button';
 import { DesktopView, MobileView } from '@/shared/components/DeviceViews';
 import { Drawer } from '@/shared/components/Drawer';
-import { ToggleFeatures } from '@/shared/lib/featureFlags';
+import { ToggleFeatures, toggleFeatures } from '@/shared/lib/featureFlags';
 
 interface RatingCardProps {
 	className?: string;
@@ -80,7 +80,19 @@ export const RatingCard = memo((props: RatingCardProps) => {
 					<VStack gap='32' max>
 						{modalContent}
 						<HStack max gap='16' justify='right'>
-							<Button variant='outlineRed' onClick={cancelHandler}>
+							<Button
+								variant={toggleFeatures({
+									name: 'isBeautyDesign',
+									on: () => 'outline',
+									off: () => 'outlineRed',
+								})}
+								color={toggleFeatures({
+									name: 'isBeautyDesign',
+									on: () => 'error',
+									off: () => undefined,
+								})}
+								onClick={cancelHandler}
+							>
 								{t('Закрыть')}
 							</Button>
 							<Button variant='outline' onClick={acceptHandler}>
