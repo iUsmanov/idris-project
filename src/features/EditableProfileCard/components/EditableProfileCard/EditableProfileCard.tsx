@@ -45,14 +45,6 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
 		}
 	});
 
-	// useEffect(() => {
-	// 	if (__ENVIRON__ !== 'storybook') {
-	// 		if (id) {
-	// 			dispatch(fetchProfileData(id));
-	// 		}
-	// 	}
-	// }, [dispatch, id]);
-
 	const onChangeFirstOrLastName = useCallback(
 		(value: string, name?: string) => {
 			switch (name) {

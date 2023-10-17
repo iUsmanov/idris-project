@@ -1,3 +1,4 @@
+// #router
 import { AppRouteObject, AppRoutes } from '@/shared/types/router';
 import { MainPage } from '@/pages/MainPage';
 import { AboutPage } from '@/pages/AboutPage';

@@ -36,7 +36,7 @@ export interface StateSchema {
 }
 
 export interface ReducerManager {
-	getReducerMap: () => ReducersMapObject<StateSchema, AnyAction>;
+	getReducerMap: () => ReducersObject;
 	reduce: (state: StateSchema, action: AnyAction) => CombinedState<StateSchema>;
 	add: (key: StateSchemaKey, reducer: Reducer) => void;
 	remove: (key: StateSchemaKey) => void;

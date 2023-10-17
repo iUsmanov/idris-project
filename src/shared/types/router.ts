@@ -1,3 +1,4 @@
+// #router
 // eslint-disable-next-line fsd-paths-guard/hierarchy-imports-between-layers
 import { UserRole } from '@/entities/User';
 import { RouteObject } from 'react-router-dom';

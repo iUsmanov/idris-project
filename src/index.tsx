@@ -1,3 +1,4 @@
+// #i18next
 import { createRoot } from 'react-dom/client';
 import '@/app/styles/index.scss';
 import { RouterProvider } from 'react-router-dom';

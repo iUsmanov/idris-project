@@ -1,3 +1,4 @@
+// #theme
 // Не вижу смысла i18n для storybook
 import { ThemeProvider } from '@/app/providers/ThemeProvider/testing';
 import { Theme } from '@/shared/types/theme';

@@ -1,7 +1,8 @@
+// #theme
 import { ReactNode, memo, useEffect, useMemo, useState } from 'react';
 import { Theme } from '@/shared/types/theme';
-import { ThemeContext } from '@/shared/lib/context/ThemeContext';
-import { fallbackTheme } from '@/shared/lib/hooks/useTheme/useTheme';
+import { ThemeContext, ThemeContextProps } from '@/shared/lib/context/ThemeContext';
+import { fallbackTheme } from '@/shared/const/theme';
 
 interface ThemeProviderProps {
 	initialTheme?: Theme;
@@ -13,7 +14,7 @@ export const ThemeProvider = memo((props: ThemeProviderProps) => {
 	const [isThemeInited, setIsThemeInited] = useState<boolean>(false);
 	const [theme, setTheme] = useState<Theme>(initialTheme || fallbackTheme);
 
-	const defaultProps = useMemo(
+	const defaultProps = useMemo<ThemeContextProps>(
 		() => ({
 			theme,
 			setTheme,

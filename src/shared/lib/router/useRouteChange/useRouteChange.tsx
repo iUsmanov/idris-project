@@ -1,3 +1,4 @@
+// #router
 import { AppRouteByPathPattern } from '@/shared/const/router';
 import { AppRoutes } from '@/shared/types/router';
 import { useEffect, useState } from 'react';

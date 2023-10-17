@@ -1,3 +1,4 @@
+// #i18next
 import { StoryContext, StoryFn } from '@storybook/react';
 import { Suspense, useEffect } from 'react';
 import { I18nextProvider } from 'react-i18next';

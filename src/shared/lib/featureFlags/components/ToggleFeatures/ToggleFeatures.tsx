@@ -1,3 +1,4 @@
+// #featureFlags
 import { FC, ReactElement } from 'react';
 import { getFeatureFlag } from '../../lib/setGetFeatures';
 import { FeatureFlags } from '@/shared/types/featureFlags';

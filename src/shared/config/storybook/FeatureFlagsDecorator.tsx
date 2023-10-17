@@ -1,3 +1,4 @@
+// #featureFlags
 import { getFeatureFlag, setFeatureFlags } from '@/shared/lib/featureFlags';
 import { FeatureFlags } from '@/shared/types/featureFlags';
 import { StoryContext, StoryFn } from '@storybook/react';

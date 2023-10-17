@@ -1,3 +1,4 @@
+// #featureFlags
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { FeatureFlags } from '@/shared/types/featureFlags';
 import { createAsyncThunk } from '@reduxjs/toolkit';

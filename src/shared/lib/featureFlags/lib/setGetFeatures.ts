@@ -1,3 +1,4 @@
+// #featureFlags
 import { LOCAL_STORAGE_APP_DESIGN_KEY } from '@/shared/const/localStorage';
 import { FeatureFlags } from '@/shared/types/featureFlags';
 

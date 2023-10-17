@@ -1,7 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-interface UseModalProps {}
-
 interface UseModalReturn {
 	isOpened: boolean;
 	isMounted: boolean;
@@ -10,23 +8,22 @@ interface UseModalReturn {
 }
 
 export const useModal = (): UseModalReturn => {
-	// const {} = props;
-	const [isOpened, setOpened] = useState<boolean>(false);
+	const [isOpened, setIsOpened] = useState<boolean>(false);
 	const [isMounted, setIsMounted] = useState<boolean>(false);
-	const openTimerRef = useRef<undefined | ReturnType<typeof setTimeout>>(undefined);
-	const closeTimerRef = useRef<undefined | ReturnType<typeof setTimeout>>(undefined);
+	const timerRef = useRef<undefined | ReturnType<typeof setTimeout>>(undefined);
+
 	const onMountToggle = useCallback((bool: boolean) => {
 		setIsMounted(bool);
 	}, []);
 
 	const onOpenToggle = useCallback((bool: boolean) => {
-		setOpened(bool);
+		setIsOpened(bool);
 	}, []);
 
 	const onMountAndOpen = useCallback(() => {
 		if (isMounted) return;
 		onMountToggle(true);
-		openTimerRef.current = setTimeout(() => {
+		timerRef.current = setTimeout(() => {
 			onOpenToggle(true);
 		}, 0);
 	}, [isMounted, onMountToggle, onOpenToggle]);
@@ -35,15 +32,15 @@ export const useModal = (): UseModalReturn => {
 		if (!isMounted) return;
 		onOpenToggle?.(false);
 
-		closeTimerRef.current = setTimeout(() => {
+		timerRef.current = setTimeout(() => {
 			onMountToggle?.(false);
 		}, 300);
 	}, [isMounted, onMountToggle, onOpenToggle]);
 
 	useEffect(() => {
 		return () => {
-			clearTimeout(openTimerRef.current);
-			clearTimeout(closeTimerRef.current);
+			clearTimeout(timerRef.current);
+			clearTimeout(timerRef.current);
 		};
 	}, []);
 

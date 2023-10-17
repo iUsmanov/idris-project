@@ -1,3 +1,4 @@
+// #theme
 import { useUserSettings } from '@/entities/User';
 import { ThemeProvider } from '../../components/ThemeProvider';
 

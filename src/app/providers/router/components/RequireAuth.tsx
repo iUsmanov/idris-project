@@ -1,3 +1,4 @@
+// #router
 import { getUserAuthData } from '@/entities/User';
 import { getRouteForbidden } from '@/shared/const/router';
 import { useSelector } from 'react-redux';

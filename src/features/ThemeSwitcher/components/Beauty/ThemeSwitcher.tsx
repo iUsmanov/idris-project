@@ -1,3 +1,4 @@
+// #theme
 import { memo, useCallback } from 'react';
 import ThemeIcon from '@/shared/assets/icons/theme.svg';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';

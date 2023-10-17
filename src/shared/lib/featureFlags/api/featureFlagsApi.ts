@@ -1,3 +1,4 @@
+// #featureFlags
 import { rtkApi } from '@/shared/api/rtkApi';
 import { FeatureFlags } from '@/shared/types/featureFlags';
 

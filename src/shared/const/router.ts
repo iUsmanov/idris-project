@@ -1,3 +1,4 @@
+// #router
 import { AppRoutes } from '../types/router';
 
 export const getRouteMain = () => `/`;

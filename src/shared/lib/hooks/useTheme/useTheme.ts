@@ -1,7 +1,9 @@
+// #theme
 import { useContext } from 'react';
 import { Theme } from '@/shared/types/theme';
 import { ThemeContext } from '@/shared/lib/context/ThemeContext';
 import { LOCAL_STORAGE_THEME_KEY } from '@/shared/const/localStorage';
+import { fallbackTheme } from '@/shared/const/theme';
 
 interface UseThemeResult {
 	theme: Theme;
@@ -12,9 +14,6 @@ interface UseThemeResult {
 // потому что лоадер и так нормально работает.
 // Ещё надо было бы и выбранный дизайн в локал-сторадж сохронять, но лоадер и так работает,
 // хотя я не понимаю, почему ?
-
-export const fallbackTheme: Theme =
-	(localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) || 'app-light-theme';
 
 export function useTheme(): UseThemeResult {
 	const { theme, setTheme } = useContext(ThemeContext);

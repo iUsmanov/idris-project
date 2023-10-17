@@ -2,13 +2,12 @@
 import { ReactNode, memo } from 'react';
 import { Provider } from 'react-redux';
 import { createReduxStore } from '../config/store';
-import { StateSchema } from '../config/StateSchema';
-import { ReducersMapObject } from '@reduxjs/toolkit';
+import { ReducersObject, StateSchema } from '../config/StateSchema';
 
 interface StoreProviderProps {
 	children: ReactNode;
 	initialState?: StateSchema;
-	asyncReducers?: ReducersMapObject<StateSchema>;
+	asyncReducers?: ReducersObject;
 }
 
 export const StoreProvider = memo((props: StoreProviderProps) => {

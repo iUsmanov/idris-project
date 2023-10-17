@@ -1,3 +1,4 @@
+// #router
 import { ToggleFeatures } from '@/shared/lib/featureFlags';
 import { PageLoader } from '@/widgets/PageLoader';
 import { Suspense, memo } from 'react';

@@ -1,6 +1,6 @@
 // #store
-import { AnyAction, CombinedState, Reducer, ReducersMapObject, configureStore } from '@reduxjs/toolkit';
-import { StateSchema, ThunkExtraArg } from './StateSchema';
+import { AnyAction, CombinedState, Reducer, configureStore } from '@reduxjs/toolkit';
+import { ReducersObject, StateSchema, ThunkExtraArg } from './StateSchema';
 import { counterReducer } from '@/entities/Counter';
 import { userReducer } from '@/entities/User';
 import { authMiddleware } from '@/features/AuthByUsername';
@@ -9,11 +9,8 @@ import { $api } from '@/shared/api/api';
 import { uiReducer } from '@/widgets/Page';
 import { rtkApi } from '@/shared/api/rtkApi';
 
-export const createReduxStore = (
-	initialState?: StateSchema,
-	asyncReducers?: ReducersMapObject<StateSchema>
-) => {
-	const rootReducer: ReducersMapObject<StateSchema, AnyAction> = {
+export const createReduxStore = (initialState?: StateSchema, asyncReducers?: ReducersObject) => {
+	const rootReducer: ReducersObject = {
 		...asyncReducers,
 		counter: counterReducer,
 		user: userReducer,

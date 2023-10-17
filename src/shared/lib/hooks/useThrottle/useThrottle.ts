@@ -26,3 +26,6 @@ export function useThrottle(callback: (...args: any[]) => void, delay: number) {
 
 	return throttleCallback;
 }
+
+// Если с моомента последнего вызова не прошла нужная задержка,
+// то вызов проигнорируется

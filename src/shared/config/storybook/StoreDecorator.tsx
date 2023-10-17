@@ -1,5 +1,5 @@
 // #store
-import { StateSchema, StoreProvider } from '@/app/providers/StoreProvider/testing';
+import { ReducersObject, StateSchema, StoreProvider } from '@/app/providers/StoreProvider/testing';
 import { addNewCommentReducer } from '@/entities/AddNewComment/testing';
 import { articleDetailsReducer } from '@/entities/Article/testing';
 import { articleCommentsListReducer } from '@/features/ArticleCommentsList/testing';
@@ -10,7 +10,6 @@ import { loginReducer } from '@/features/AuthByUsername/testing';
 import { profileReducer } from '@/features/EditableProfileCard/testing';
 import { ReducersList } from '@/shared/lib/hooks/useDynamicModule/useDynamicModule';
 import { articlesInfiniteListReducer } from '@/widgets/articlesInfiniteList/testing';
-import { ReducersMapObject } from '@reduxjs/toolkit';
 import { StoryFn } from '@storybook/react';
 
 // const defaultAsyncReducers: DeepPartial<ReducersMapObject<StateSchema>> = {
@@ -31,9 +30,7 @@ export const StoreDecorator =
 		return (
 			<StoreProvider
 				initialState={state as StateSchema}
-				asyncReducers={
-					{ ...defaultAsyncReducers, ...asyncReducers } as ReducersMapObject<StateSchema>
-				}
+				asyncReducers={{ ...defaultAsyncReducers, ...asyncReducers } as ReducersObject}
 			>
 				<Story />
 			</StoreProvider>
