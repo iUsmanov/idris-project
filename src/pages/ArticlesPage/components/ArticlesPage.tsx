@@ -6,12 +6,14 @@ import {
 	ArticlesInfiniteList,
 	fetchNextArticlesPage,
 	getArticlesInfiniteListError,
+	getArticlesInfiniteListIsLoading,
 } from '@/widgets/articlesInfiniteList';
 import { ArticlesPageGreeting } from '@/features/articlesPageGreeting';
 
 export const ArticlesPage = memo(() => {
 	const dispatch = useAppDispatch();
 	const error = useSelector(getArticlesInfiniteListError);
+	const isLoading = useSelector(getArticlesInfiniteListIsLoading);
 
 	const onLoadNextPart = useCallback(() => {
 		if (__ENVIRON__ !== 'storybook') {
@@ -20,7 +22,7 @@ export const ArticlesPage = memo(() => {
 	}, [dispatch]);
 
 	return (
-		<Page onScrollEnd={onLoadNextPart} data-testid='ArticlesPage'>
+		<Page onScrollEnd={!isLoading ? onLoadNextPart : undefined} data-testid='ArticlesPage'>
 			<ArticlesInfiniteList />
 			{/* Не забывать, что если здесь появится контент, который будет ниже, использовать констркуцию {!error && <>{JSX}</>} */}
 			{!error && (

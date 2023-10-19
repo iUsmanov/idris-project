@@ -2,7 +2,6 @@ import { memo } from 'react';
 import cls from './NotificationsDrawer.module.scss';
 import { NotificationsList } from '@/entities/Notification';
 import { Icon } from '@/shared/components/Icon';
-import { Button } from '@/shared/components/Button';
 import NotificationIcon from '@/shared/assets/icons/notification.svg';
 import { useModal } from '@/shared/lib/hooks/useModal/useModal';
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -18,9 +17,7 @@ export const NotificationsDrawer = memo((props: NotificationsDrawerProps) => {
 
 	return (
 		<>
-			<Button variant='clear' onClick={onMountAndOpen}>
-				<Icon width={36} height={36} Svg={NotificationIcon} clickable />
-			</Button>
+			<Icon width={36} height={36} Svg={NotificationIcon} clickable onClick={onMountAndOpen} />
 			<Drawer
 				container={document.body}
 				isMounted={isMounted}
