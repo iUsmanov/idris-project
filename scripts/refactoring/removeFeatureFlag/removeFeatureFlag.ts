@@ -1,4 +1,5 @@
 // npm run remove-feature isArticleRatingEnabled on
+// Don't forget delete "console.log('DELETE ME!')" and '<DeleteMe />'
 import { Project, SyntaxKind } from 'ts-morph';
 import { processError } from './processError';
 import { processToggleFunction } from './processToggleFunction';
@@ -10,8 +11,8 @@ const stateToggle = process.argv[3];
 
 processError(removeFeatureName, stateToggle);
 
-// project.addSourceFilesAtPaths('src/pages/ArticleDetailsPage/components/ArticleDetailsPage.tsx');
-project.addSourceFilesAtPaths('src/**/*.{ts,tsx}');
+project.addSourceFilesAtPaths('src/pages/ArticleDetailsPage/components/ArticleDetailsPage.tsx');
+// project.addSourceFilesAtPaths('src/**/*.{ts,tsx}');
 const sourceFiles = project.getSourceFiles();
 
 sourceFiles.forEach((sourceFile) => {

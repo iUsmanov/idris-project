@@ -13,6 +13,10 @@ export function processToggleFunction(node: Node, removeFeatureName: string, sta
 
 	if (featureName !== removeFeatureName) return;
 
+	if (!replaceProperty) {
+		return node.replaceWithText("console.log('DELETE ME!')");
+	}
+
 	const replaceFunction = replaceProperty?.getFirstChildByKind(SyntaxKind.ArrowFunction);
 	const arrowFunctionBody = replaceFunction?.getChildAtIndex(4);
 

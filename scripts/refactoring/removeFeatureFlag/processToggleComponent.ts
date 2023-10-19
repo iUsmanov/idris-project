@@ -49,5 +49,5 @@ export function processToggleComponent(node: Node, removeFeatureName: string, st
 		replaceExpression = attributeValueText;
 	});
 
-	node.replaceWithText(replaceExpression ?? '');
+	node.replaceWithText(replaceExpression ?? '	');
 }
