@@ -27,11 +27,11 @@ export const UIDesignSwitcher = memo((props: UIDesignSwitcherProps) => {
 		() => [
 			{
 				content: t('Матрица'),
-				value: 'matrix',
+				value: 'matrix-design',
 			},
 			{
 				content: t('Красота'),
-				value: 'beauty',
+				value: 'beauty-design',
 			},
 		],
 		[t]
@@ -44,7 +44,7 @@ export const UIDesignSwitcher = memo((props: UIDesignSwitcherProps) => {
 			await dispatch(
 				updateFeatureFlags({
 					newFeaturesFlags: {
-						isBeautyDesign: value === 'beauty',
+						isBeautyDesign: value === 'beauty-design',
 					},
 					userId: authData.id,
 				})
@@ -72,7 +72,7 @@ export const UIDesignSwitcher = memo((props: UIDesignSwitcherProps) => {
 				<ListBox
 					onChange={onChange}
 					options={options}
-					value={isBeautyDesign ? 'beauty' : 'matrix'}
+					value={isBeautyDesign ? 'beauty-design' : 'matrix-design'}
 					className={classNames('', {}, [className])}
 				/>
 			)}

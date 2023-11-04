@@ -20,7 +20,7 @@ export const initAuthData = createAsyncThunk<User, void, ThunkConfig<string>>(
 
 			localStorage.setItem(
 				LOCAL_STORAGE_APP_DESIGN_KEY,
-				response.features?.isBeautyDesign ? 'beauty' : 'matrix'
+				response.features?.isBeautyDesign ? 'beauty-design' : 'matrix-design'
 			);
 
 			return response;

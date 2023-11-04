@@ -14,6 +14,7 @@ describe('update.test', () => {
 	// });
 
 	test('Success update', async () => {
+		// This Async-thunk returns undefined
 		const data: FeatureFlags = {};
 		const thunk = new TestAsyncThunk(updateFeatureFlags, {
 			user: {

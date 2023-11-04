@@ -2,6 +2,13 @@ import { FeatureFlags } from '@/shared/types/featureFlags';
 import { getAllFeatureFlags, getFeatureFlag, setFeatureFlags } from './setGetFeatures';
 
 describe('setGetFeatures.test', () => {
+	test('Флаги, которые объявлены в defaultFeatureFlags возвращают false, а те к-ые нет - undefined', () => {
+		const isBeautyDesign = getFeatureFlag('isBeautyDesign');
+		const isArticleRatingEnabled = getFeatureFlag('isArticleRatingEnabled');
+
+		expect(isBeautyDesign).toBe(false);
+		expect(isArticleRatingEnabled).toBe(undefined);
+	});
 	test('setFeatureFlags and getFeatureFlag', () => {
 		setFeatureFlags({ isBeautyDesign: true });
 		const isBeautyDesign = getFeatureFlag('isBeautyDesign');
@@ -31,7 +38,7 @@ describe('setGetFeatures.test', () => {
 
 		expect(allFeatureFlags).toEqual(featureFlags);
 	});
-	test('При вызове setFeatureFlags с аргументом-пустым объектом, фича-флаги должны обнулиться', () => {
+	test('При вызове setFeatureFlags с аргументом пустым-объектом, фича-флаги должны обнулиться', () => {
 		setFeatureFlags({});
 		const allFeatureFlags = getAllFeatureFlags();
 

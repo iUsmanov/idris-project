@@ -3,7 +3,7 @@ import { LOCAL_STORAGE_APP_DESIGN_KEY } from '@/shared/const/localStorage';
 import { FeatureFlags } from '@/shared/types/featureFlags';
 
 const defaultFeatureFlags: FeatureFlags = {
-	isBeautyDesign: localStorage.getItem(LOCAL_STORAGE_APP_DESIGN_KEY) === 'beauty',
+	isBeautyDesign: localStorage.getItem(LOCAL_STORAGE_APP_DESIGN_KEY) === 'beauty-design',
 };
 
 let featureFlags: FeatureFlags = {

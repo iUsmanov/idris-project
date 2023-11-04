@@ -20,7 +20,7 @@ export const authMiddleware =
 			localStorage.setItem(LOCAL_STORAGE_USER_KEY, action.payload.id);
 			localStorage.setItem(
 				LOCAL_STORAGE_APP_DESIGN_KEY,
-				action.payload.features?.isBeautyDesign ? 'beauty' : 'matrix'
+				action.payload.features?.isBeautyDesign ? 'beauty-design' : 'matrix-design'
 			);
 		}
 
