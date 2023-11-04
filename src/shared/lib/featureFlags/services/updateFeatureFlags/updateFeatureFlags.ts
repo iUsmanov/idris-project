@@ -10,32 +10,33 @@ interface UpdateFeatureFlagsOptions {
 	newFeaturesFlags: Partial<FeatureFlags>;
 }
 
-export const updateFeatureFlags = createAsyncThunk<
-	void,
-	UpdateFeatureFlagsOptions,
-	ThunkConfig<string>
->('features/updateFeatureFlags', async (args, thunkApi) => {
-	const { newFeaturesFlags, userId } = args;
-	const { rejectWithValue, dispatch } = thunkApi;
+export const updateFeatureFlags = createAsyncThunk<any, UpdateFeatureFlagsOptions, ThunkConfig<string>>(
+	'features/updateFeatureFlags',
+	async (args, thunkApi) => {
+		const { newFeaturesFlags, userId } = args;
+		const { rejectWithValue, dispatch } = thunkApi;
 
-	try {
-		await dispatch(
-			updateFeatureFlagsMutation({
-				userId,
-				features: {
-					...getAllFeatureFlags(),
-					...newFeaturesFlags,
-				},
-			})
-		);
+		try {
+			const response = await dispatch(
+				updateFeatureFlagsMutation({
+					userId,
+					features: {
+						...getAllFeatureFlags(),
+						...newFeaturesFlags,
+					},
+				})
+			);
 
-		// setFeatureFlags({
-		// 	...getAllFeatureFlags(),
-		// 	...newFeaturesFlags,
-		// });
+			return response;
 
-		window.location.reload();
-	} catch (e) {
-		rejectWithValue('error');
+			// setFeatureFlags({
+			// 	...getAllFeatureFlags(),
+			// 	...newFeaturesFlags,
+			// });
+
+			// window.location.reload();
+		} catch (e) {
+			return rejectWithValue('error');
+		}
 	}
-});
+);
