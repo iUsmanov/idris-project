@@ -8,8 +8,9 @@ import {
 	useAnimationLibs,
 } from '@/shared/lib/components/AnimationProvider/AnimationProvider';
 import { toggleFeatures } from '@/shared/lib/featureFlags';
+import { TestProps } from '@/shared/types/tests';
 
-interface DrawerProps {
+interface DrawerProps extends TestProps {
 	className?: string;
 	container?: HTMLElement;
 	children: ReactNode;
@@ -21,7 +22,15 @@ interface DrawerProps {
 const height = window.innerHeight;
 
 const DrawerComponent = memo((props: DrawerProps) => {
-	const { className, children, container, isOpened = false, isMounted = false, onDrawerClose } = props;
+	const {
+		className,
+		children,
+		container,
+		isOpened = false,
+		isMounted = false,
+		onDrawerClose,
+		['data-testid']: dataTestId = 'Drawer',
+	} = props;
 	const { Spring, Gesture } = useAnimationLibs();
 
 	const [{ y }, api] = Spring.useSpring(() => ({ y: height }));
@@ -81,6 +90,7 @@ const DrawerComponent = memo((props: DrawerProps) => {
 						off: () => cls.modalMatrix,
 					}),
 				])}
+				data-testid={dataTestId}
 			>
 				<Overlay onClick={() => closeDrawer()}>
 					<Spring.a.div

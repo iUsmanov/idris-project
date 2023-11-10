@@ -5,10 +5,11 @@ import {
 import { HTMLAttributes, ReactNode, memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Card.module.scss';
+import { TestProps } from '@/shared/types/tests';
 
 export type CardVariant = 'primary' | 'outline';
 
-export interface CardMatrixProps extends HTMLAttributes<HTMLDivElement> {
+export interface CardMatrixProps extends HTMLAttributes<HTMLDivElement>, TestProps {
 	className?: string;
 	children: ReactNode;
 	variant?: CardVariant;
@@ -16,12 +17,20 @@ export interface CardMatrixProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const Card = memo((props: CardMatrixProps) => {
-	const { className, children, max, variant = 'primary', ...otherProps } = props;
+	const {
+		className,
+		children,
+		max,
+		variant = 'primary',
+		['data-testid']: dataTestId = 'Card',
+		...otherProps
+	} = props;
 
 	return (
 		<div
 			{...otherProps}
 			className={classNames(cls.card, { [cls.max]: max }, [className, cls[variant]])}
+			data-testid={dataTestId}
 		>
 			{children}
 		</div>

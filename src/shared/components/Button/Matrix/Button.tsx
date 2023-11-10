@@ -5,8 +5,9 @@ import {
 import { ButtonHTMLAttributes, ReactNode, memo } from 'react';
 import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Button.module.scss';
+import { TestProps } from '@/shared/types/tests';
 
-export interface ButtonMatrixProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonMatrixProps extends ButtonHTMLAttributes<HTMLButtonElement>, TestProps {
 	className?: string;
 	children: ReactNode;
 	variant?: ButtonVariant;
@@ -33,6 +34,7 @@ export const Button = memo((props: ButtonMatrixProps) => {
 		square,
 		size = 'size_m',
 		fullWidth,
+		['data-testid']: dataTestId = 'Button',
 		...otherProps
 	} = props;
 
@@ -41,11 +43,13 @@ export const Button = memo((props: ButtonMatrixProps) => {
 		[cls[size]]: size,
 		[cls.fullWidth]: fullWidth,
 	};
+
 	return (
 		<button
 			{...otherProps}
 			type='button'
 			className={classNames(cls.button, mods, [className, cls[variant]])}
+			data-testid={dataTestId}
 		>
 			{children}
 		</button>

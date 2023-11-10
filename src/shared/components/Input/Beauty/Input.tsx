@@ -7,11 +7,12 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Input.module.scss';
 import { HStack } from '@/shared/components/Stack';
 import { Text } from '../../Text';
+import { TestProps } from '@/shared/types/tests';
 
 type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value' | 'size'>;
 type InputSize = 's' | 'm' | 'l';
 
-export interface InputBeautyProps extends HTMLInputProps {
+export interface InputBeautyProps extends HTMLInputProps, TestProps {
 	className?: string;
 	placeholder?: string;
 	type?: string;
@@ -39,6 +40,7 @@ export const Input = memo((props: InputBeautyProps) => {
 		addonLeft,
 		addonRight,
 		label,
+		['data-testid']: dataTestId = 'Input',
 		size = 'm',
 		...otherProps
 	} = props;
@@ -87,6 +89,7 @@ export const Input = memo((props: InputBeautyProps) => {
 			<input
 				{...otherProps}
 				ref={ref}
+				data-testid={dataTestId}
 				type={type}
 				className={cls.input}
 				value={value}

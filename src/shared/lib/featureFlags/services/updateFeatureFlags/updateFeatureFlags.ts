@@ -26,6 +26,7 @@ export const updateFeatureFlags = createAsyncThunk<any, UpdateFeatureFlagsOption
 					},
 				})
 			);
+			window.location.reload();
 
 			return response;
 
@@ -33,8 +34,6 @@ export const updateFeatureFlags = createAsyncThunk<any, UpdateFeatureFlagsOption
 			// 	...getAllFeatureFlags(),
 			// 	...newFeaturesFlags,
 			// });
-
-			// window.location.reload();
 		} catch (e) {
 			return rejectWithValue('error');
 		}

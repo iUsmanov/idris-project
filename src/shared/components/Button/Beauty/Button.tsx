@@ -5,8 +5,9 @@ import {
 	BeautySharedProvider,
 	useBeautySharedComponents,
 } from '@/shared/lib/components/BeautySharedProvider/BeautySharedProvider';
+import { TestProps } from '@/shared/types/tests';
 
-export interface ButtonBeautyProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonBeautyProps extends ButtonHTMLAttributes<HTMLButtonElement>, TestProps {
 	className?: string;
 	children: ReactNode;
 	variant?: ButtonVariant;
@@ -20,7 +21,6 @@ export interface ButtonBeautyProps extends ButtonHTMLAttributes<HTMLButtonElemen
 
 export type ButtonVariant = 'outline' | 'clear' | 'filled';
 export type ButtonColor = 'normal' | 'success' | 'error';
-
 export type ButtonSize = 'size_m' | 'size_l' | 'size_xl';
 
 export const Button = memo((props: ButtonBeautyProps) => {
@@ -34,6 +34,7 @@ export const Button = memo((props: ButtonBeautyProps) => {
 		addonLeft,
 		addonRight,
 		color = 'normal',
+		['data-testid']: dataTestId = 'Button',
 		...otherProps
 	} = props;
 
@@ -47,6 +48,7 @@ export const Button = memo((props: ButtonBeautyProps) => {
 			{...otherProps}
 			type='button'
 			className={classNames(cls.button, mods, [className, cls[variant], cls[size], cls[color]])}
+			data-testid={dataTestId}
 		>
 			{addonLeft && <div className={cls.addonLeft}>{addonLeft}</div>}
 			{children}

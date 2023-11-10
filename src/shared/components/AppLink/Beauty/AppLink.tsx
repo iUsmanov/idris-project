@@ -6,10 +6,11 @@ import {
 	useBeautySharedComponents,
 } from '@/shared/lib/components/BeautySharedProvider/BeautySharedProvider';
 import { LinkProps, NavLink } from 'react-router-dom';
+import { TestProps } from '@/shared/types/tests';
 
 export type AppLinkVariant = 'primary' | 'red' | 'outline';
 
-export interface AppLinkBeautyProps extends LinkProps {
+export interface AppLinkBeautyProps extends LinkProps, TestProps {
 	className?: string;
 	variant?: AppLinkVariant;
 	children: ReactNode;
@@ -17,7 +18,14 @@ export interface AppLinkBeautyProps extends LinkProps {
 }
 
 export const AppLink = memo((props: AppLinkBeautyProps) => {
-	const { variant = 'primary', className, children, activeClassName = '', ...otherProps } = props;
+	const {
+		variant = 'primary',
+		className,
+		children,
+		activeClassName = '',
+		['data-testid']: dataTestId = 'AppLink',
+		...otherProps
+	} = props;
 
 	return (
 		<NavLink
@@ -25,6 +33,7 @@ export const AppLink = memo((props: AppLinkBeautyProps) => {
 			className={({ isActive }) =>
 				classNames(cls.appLink, { [activeClassName]: isActive }, [className, cls[variant]])
 			}
+			data-testid={dataTestId}
 		>
 			{children}
 		</NavLink>

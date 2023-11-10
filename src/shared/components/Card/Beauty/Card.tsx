@@ -13,6 +13,7 @@ import {
 	justifyClasses,
 	wrapClasses,
 } from '../../Stack';
+import { TestProps } from '@/shared/types/tests';
 
 export type CardVariant = 'primary' | 'outline' | 'light';
 export type CardBorder = 'round' | 'normal' | 'high';
@@ -20,7 +21,7 @@ export type CardPadding = '0' | '8' | '16' | '24';
 
 type FlexPropsWithotMusor = Omit<FlexProps, 'className' | 'children' | 'max'>;
 
-interface CardBaseBeautyProps extends HTMLAttributes<HTMLDivElement> {
+interface CardBaseBeautyProps extends HTMLAttributes<HTMLDivElement>, TestProps {
 	className?: string;
 	children: ReactNode;
 	variant?: CardVariant;
@@ -48,6 +49,7 @@ export const Card = memo((props: CardBeautyProps) => {
 		padding = '8',
 		flex,
 		border = 'normal',
+		['data-testid']: dataTestId = 'Skeleton',
 		...otherProps
 	} = props;
 
@@ -73,6 +75,7 @@ export const Card = memo((props: CardBeautyProps) => {
 			direction = 'row',
 			wrap = 'nowrap',
 			Tag = 'div',
+			['data-testid']: dataTestId = 'Card',
 			...otherProps
 		} = props;
 
@@ -88,6 +91,7 @@ export const Card = memo((props: CardBeautyProps) => {
 					wrapClasses[wrap],
 					gap && gapClasses[gap],
 				])}
+				data-testid={dataTestId}
 			>
 				{children}
 			</Tag>
@@ -95,7 +99,11 @@ export const Card = memo((props: CardBeautyProps) => {
 	}
 
 	return (
-		<div {...otherProps} className={classNames(cls.card, { [cls.max]: max }, additionalClasses)}>
+		<div
+			{...otherProps}
+			className={classNames(cls.card, { [cls.max]: max }, additionalClasses)}
+			data-testid={dataTestId}
+		>
 			{children}
 		</div>
 	);

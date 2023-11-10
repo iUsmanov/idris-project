@@ -14,10 +14,11 @@ import {
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Input.module.scss';
 import { HStack } from '@/shared/components/Stack';
+import { TestProps } from '@/shared/types/tests';
 
 type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'>;
 
-export interface InputMatrixProps extends HTMLInputProps {
+export interface InputMatrixProps extends HTMLInputProps, TestProps {
 	className?: string;
 	placeholder?: string;
 	type?: string;
@@ -38,6 +39,7 @@ export const Input = memo((props: InputMatrixProps) => {
 		autoFocus,
 		readOnly,
 		name,
+		['data-testid']: dataTestId = 'Input',
 		...otherProps
 	} = props;
 	const [isFocused, setIsFocused] = useState<boolean>(false);
@@ -81,6 +83,7 @@ export const Input = memo((props: InputMatrixProps) => {
 			<div className={cls.caretAndInputWrapper}>
 				<input
 					{...otherProps}
+					data-testid={dataTestId}
 					ref={ref}
 					type={type}
 					className={cls.input}

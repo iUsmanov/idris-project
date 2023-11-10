@@ -6,13 +6,7 @@ import { updateFeatureFlagsMutation } from '../../api/featureFlagsApi';
 
 jest.mock('../../api/featureFlagsApi');
 
-// const mockedUpdateFeatureFlagsMutation = jest.mocked(updateFeatureFlagsMutation);
-
 describe('update.test', () => {
-	// afterEach(() => {
-	// 	jest.clearAllMocks();
-	// });
-
 	test('Success update', async () => {
 		// This Async-thunk returns undefined
 		const data: FeatureFlags = {};

@@ -5,8 +5,9 @@ import {
 import { CSSProperties, memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Skeleton.module.scss';
+import { TestProps } from '@/shared/types/tests';
 
-export interface SkeletonBeautyProps {
+export interface SkeletonBeautyProps extends TestProps {
 	className?: string;
 	width: string | number;
 	height: string | number;
@@ -15,7 +16,14 @@ export interface SkeletonBeautyProps {
 }
 
 export const Skeleton = memo((props: SkeletonBeautyProps) => {
-	const { className, borderRadius, height, width, style } = props;
+	const {
+		className,
+		borderRadius,
+		height,
+		width,
+		['data-testid']: dataTestId = 'Skeleton',
+		style,
+	} = props;
 
 	const styles: CSSProperties = {
 		...style,
@@ -24,7 +32,13 @@ export const Skeleton = memo((props: SkeletonBeautyProps) => {
 		borderRadius,
 	};
 
-	return <div style={styles} className={classNames(cls.skeleton, {}, [className])}></div>;
+	return (
+		<div
+			data-testid={dataTestId}
+			style={styles}
+			className={classNames(cls.skeleton, {}, [className])}
+		></div>
+	);
 });
 
 const SkeletonAsync = (props: SkeletonBeautyProps) => {
