@@ -9,8 +9,9 @@ import cls from './Popover.module.scss';
 import popupsCls from '../../../styles/PopupsMatrix.module.scss';
 import { Popover as HPopover } from '@headlessui/react';
 import { DropdownDirection } from '@/shared/types/ui';
+import { TestProps } from '@/shared/types/tests';
 
-export interface PopoverMatrixProps {
+export interface PopoverMatrixProps extends TestProps {
 	className?: string;
 	trigger: ReactNode;
 	direction?: DropdownDirection;
@@ -18,12 +19,22 @@ export interface PopoverMatrixProps {
 }
 
 export const Popover = memo((props: PopoverMatrixProps) => {
-	const { className, trigger, direction = 'bottomLeft', children } = props;
+	const {
+		className,
+		trigger,
+		direction = 'bottomLeft',
+		['data-testid']: dataTestId = 'Popover',
+		children,
+	} = props;
 	const { t } = useTranslation();
 
 	return (
-		<HPopover as={'div'} className={classNames('', {}, [className, popupsCls.popup])}>
-			<HPopover.Button as='div' className={popupsCls.trigger}>
+		<HPopover
+			as={'div'}
+			className={classNames('', {}, [className, popupsCls.popup])}
+			data-testid={dataTestId}
+		>
+			<HPopover.Button as='div' className={popupsCls.trigger} data-testid={dataTestId + '.Trigger'}>
 				{trigger}
 			</HPopover.Button>
 

@@ -9,8 +9,9 @@ import { Menu } from '@headlessui/react';
 import { DropdownDirection } from '@/shared/types/ui';
 import { AppLink } from '@/shared/components/AppLink';
 import popupsCls from '../../../styles/PopupsBeauty.module.scss';
+import { TestProps } from '@/shared/types/tests';
 
-export interface DropdownBeautyProps {
+export interface DropdownBeautyProps extends TestProps {
 	className?: string;
 	items: DropdownItem[];
 	trigger: ReactNode;
@@ -26,11 +27,22 @@ export interface DropdownItem {
 }
 
 export const Dropdown = memo((props: DropdownBeautyProps) => {
-	const { className, items, trigger, direction = 'bottomRight', textNoWrap = false } = props;
+	const {
+		className,
+		items,
+		trigger,
+		direction = 'bottomRight',
+		['data-testid']: dataTestId = 'Dropdown',
+		textNoWrap = false,
+	} = props;
 
 	return (
-		<Menu as={'div'} className={classNames('', {}, [className, popupsCls.popup])}>
-			<Menu.Button as='div' className={popupsCls.trigger}>
+		<Menu
+			as={'div'}
+			className={classNames('', {}, [className, popupsCls.popup])}
+			data-testid={dataTestId}
+		>
+			<Menu.Button as='div' className={popupsCls.trigger} data-testid={dataTestId + '.Trigger'}>
 				{trigger}
 			</Menu.Button>
 			<Menu.Items className={classNames(cls.menu, {}, [popupsCls[direction], popupsCls.items])}>

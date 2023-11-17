@@ -1,21 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { Tabs } from './Tabs';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
-
-const tabs = [
-	{
-		content: 'Tab 1',
-		value: 'Tab 1',
-	},
-	{
-		content: 'Tab 2',
-		value: 'Tab 2',
-	},
-	{
-		content: 'Tab 3',
-		value: 'Tab 3',
-	},
-];
+import { mockTabs } from '../testing';
 
 const meta = {
 	title: 'shared/Tabs',
@@ -27,7 +13,7 @@ const meta = {
 		},
 	},
 	args: {
-		tabs: tabs,
+		tabs: mockTabs,
 		value: 'Tab 2',
 	},
 } satisfies Meta<typeof Tabs>;

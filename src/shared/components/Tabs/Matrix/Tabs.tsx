@@ -9,13 +9,14 @@ import cls from './Tabs.module.scss';
 import { Card } from '@/shared/components/Card';
 import { HStack } from '@/shared/components/Stack';
 import { typedMemo } from '@/shared/lib/helpers/typedMemo/typedMemo';
+import { TestProps } from '@/shared/types/tests';
 
 export interface TabItem<T extends string> {
 	value: T;
 	content: ReactNode;
 }
 
-export interface TabsMatrixProps<T extends string> {
+export interface TabsMatrixProps<T extends string> extends TestProps {
 	className?: string;
 	tabs: TabItem<T>[];
 	value: T;
@@ -23,7 +24,7 @@ export interface TabsMatrixProps<T extends string> {
 }
 
 export const Tabs = typedMemo(<T extends string>(props: TabsMatrixProps<T>) => {
-	const { className, tabs, onTabClick, value } = props;
+	const { className, tabs, onTabClick, ['data-testid']: dataTestId = 'Tabs', value } = props;
 	const { t } = useTranslation();
 
 	const onClick = useCallback(
@@ -34,7 +35,7 @@ export const Tabs = typedMemo(<T extends string>(props: TabsMatrixProps<T>) => {
 	);
 
 	return (
-		<HStack gap='8' className={classNames('', {}, [className])}>
+		<HStack gap='8' className={classNames('', {}, [className])} data-testid={dataTestId}>
 			{tabs.map((tab) => (
 				<Card
 					key={tab.value}

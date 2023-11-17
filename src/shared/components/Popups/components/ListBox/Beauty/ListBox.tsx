@@ -13,8 +13,9 @@ import { HStack } from '@/shared/components/Stack';
 import { DropdownDirection } from '@/shared/types/ui';
 import { Icon } from '@/shared/components/Icon';
 import { typedMemo } from '@/shared/lib/helpers/typedMemo/typedMemo';
+import { TestProps } from '@/shared/types/tests';
 
-export interface ListBoxBeautyProps<T extends string> {
+export interface ListBoxBeautyProps<T extends string> extends TestProps {
 	className?: string;
 	options: ListBoxOption<T>[];
 	label?: string;
@@ -42,6 +43,7 @@ export const ListBox = typedMemo(<T extends string>(props: ListBoxBeautyProps<T>
 		disabled,
 		defaultValue,
 		direction = 'bottomRight',
+		['data-testid']: dataTestId = 'ListBox',
 		compact,
 	} = props;
 
@@ -59,6 +61,7 @@ export const ListBox = typedMemo(<T extends string>(props: ListBoxBeautyProps<T>
 			align='center'
 			gap='4'
 			className={classNames('', { [popupsCls.disabled]: disabled }, [className])}
+			data-testid={dataTestId}
 		>
 			{label && <span>{`${label}>`}</span>}
 			<HListbox
@@ -69,7 +72,12 @@ export const ListBox = typedMemo(<T extends string>(props: ListBoxBeautyProps<T>
 				disabled={disabled}
 			>
 				<HListbox.Button as={'div'} className={popupsCls.trigger}>
-					<Button disabled={disabled} variant='filled' addonRight={<Icon Svg={ArrowIcon} />}>
+					<Button
+						disabled={disabled}
+						variant='filled'
+						addonRight={<Icon Svg={ArrowIcon} />}
+						data-testid={dataTestId + '.Trigger'}
+					>
 						{selectedItem?.content ?? defaultValue}
 					</Button>
 				</HListbox.Button>

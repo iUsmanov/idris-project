@@ -12,5 +12,7 @@ export type LoaderSize = 'max' | 'min';
 export const Loader = memo((props: LoaderProps) => {
 	const { className, size = 'min' } = props;
 
-	return <div className={classNames(cls.loader, {}, [className, cls[size]])}></div>;
+	return (
+		<div data-testid='Loader' className={classNames(cls.loader, {}, [className, cls[size]])}></div>
+	);
 });

@@ -2,6 +2,7 @@ import { screen } from '@testing-library/react';
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender';
 import { Drawer } from './Drawer';
 import { act } from 'react-dom/test-utils';
+import { userEvent } from '@testing-library/user-event';
 
 const wrapper = <div className='wrapper'></div>;
 const drawerContent = 'Drawer content';
@@ -34,5 +35,21 @@ describe('Drawer.test', () => {
 			componentRender(<Drawer container={wrapper as any}>{drawerContent}</Drawer>);
 		});
 		expect(screen.queryByTestId('Drawer')).toBeNull();
+	});
+
+	test('Close drawer by mouse click', async () => {
+		const onDrawerClose = jest.fn();
+		await act(async () => {
+			componentRender(<Drawer onDrawerClose={onDrawerClose}>{drawerContent}</Drawer>);
+		});
+
+		const overlay = screen.getByTestId('Drawer.Overlay');
+
+		expect(screen.getByTestId('Drawer')).toBeInTheDocument();
+		expect(overlay).toBeInTheDocument();
+
+		await userEvent.click(overlay);
+
+		expect(onDrawerClose).toHaveBeenCalled();
 	});
 });

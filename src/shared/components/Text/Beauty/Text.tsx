@@ -46,6 +46,7 @@ export const Text = memo((props: TextBeautyProps) => {
 				cls[align],
 				cls[size],
 			])}
+			data-testid={dataTestId}
 		>
 			{title && (
 				<TitleTag className={cls.title} data-testid={`${dataTestId}.Title`}>

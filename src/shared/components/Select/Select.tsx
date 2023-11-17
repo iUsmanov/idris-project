@@ -4,8 +4,9 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Select.module.scss';
 import { Flex } from '../Stack';
 import { typedMemo } from '@/shared/lib/helpers/typedMemo/typedMemo';
+import { TestProps } from '@/shared/types/tests';
 
-interface SelectProps<T extends string> {
+interface SelectProps<T extends string> extends TestProps {
 	className?: string;
 	options: SelectOption<T>[];
 	label?: string;
@@ -34,7 +35,15 @@ newProps: React.ComponentPropsWithoutRef<Component>
 */
 
 export const Select = typedMemo(<T extends string>(props: SelectProps<T>) => {
-	const { className, options, label, onChange, value, disabled } = props;
+	const {
+		className,
+		options,
+		label,
+		onChange,
+		value,
+		['data-testid']: dataTestId = 'Select',
+		disabled,
+	} = props;
 	const { t } = useTranslation();
 
 	const onChangeHandler = useCallback<ChangeEventHandler<HTMLSelectElement>>(
@@ -46,14 +55,19 @@ export const Select = typedMemo(<T extends string>(props: SelectProps<T>) => {
 
 	const optionsList = useMemo(() => {
 		return options.map((opt) => (
-			<option className={cls.option} key={opt.value} value={opt.value}>
+			<option
+				className={cls.option}
+				key={opt.value}
+				value={opt.value}
+				data-testid={dataTestId + '.Item'}
+			>
 				{opt.content}
 			</option>
 		));
-	}, [options]);
+	}, [dataTestId, options]);
 
 	return (
-		<Flex className={cls.wrapper}>
+		<Flex className={cls.wrapper} data-testid={dataTestId}>
 			{label && (
 				<span
 					className={classNames(cls.label, { [cls.disabled]: disabled }, [])}
@@ -64,6 +78,7 @@ export const Select = typedMemo(<T extends string>(props: SelectProps<T>) => {
 				value={value}
 				onChange={onChangeHandler}
 				disabled={disabled}
+				data-testid={dataTestId + '.Select'}
 			>
 				{optionsList}
 			</select>

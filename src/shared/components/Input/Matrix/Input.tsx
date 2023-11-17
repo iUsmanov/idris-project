@@ -78,8 +78,13 @@ export const Input = memo((props: InputMatrixProps) => {
 	}, [autoFocus]);
 
 	return (
-		<HStack className={classNames(cls.componentWrapper, { [cls.readonly]: readOnly }, [className])}>
-			{placeholder && <div className={cls.placeholder}>{`${placeholder}>`}</div>}
+		<HStack
+			className={classNames(cls.componentWrapper, { [cls.readonly]: readOnly }, [className])}
+			data-testid={'componentWrapper'}
+		>
+			{placeholder && (
+				<div className={cls.placeholder} data-testid={'placeholder'}>{`${placeholder}>`}</div>
+			)}
 			<div className={cls.caretAndInputWrapper}>
 				<input
 					{...otherProps}
@@ -96,7 +101,11 @@ export const Input = memo((props: InputMatrixProps) => {
 					readOnly={readOnly}
 				/>
 				{isCaretVisible && (
-					<span className={cls.caret} style={{ left: `${caretPosition * 9}px` }} />
+					<span
+						className={cls.caret}
+						style={{ left: `${caretPosition * 9}px` }}
+						data-testid={'caret'}
+					/>
 				)}
 			</div>
 		</HStack>

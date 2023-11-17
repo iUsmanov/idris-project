@@ -9,13 +9,14 @@ import cls from './Tabs.module.scss';
 import { Card } from '@/shared/components/Card';
 import { Flex, FlexDirection } from '@/shared/components/Stack';
 import { typedMemo } from '@/shared/lib/helpers/typedMemo/typedMemo';
+import { TestProps } from '@/shared/types/tests';
 
 export interface TabItem<T extends string> {
 	value: T;
 	content: ReactNode;
 }
 
-export interface TabsBeautyProps<T extends string> {
+export interface TabsBeautyProps<T extends string> extends TestProps {
 	className?: string;
 	tabs: TabItem<T>[];
 	value: T;
@@ -24,7 +25,14 @@ export interface TabsBeautyProps<T extends string> {
 }
 
 export const Tabs = typedMemo(<T extends string>(props: TabsBeautyProps<T>) => {
-	const { className, tabs, onTabClick, value, direction = 'row' } = props;
+	const {
+		className,
+		tabs,
+		onTabClick,
+		value,
+		['data-testid']: dataTestId = 'Tabs',
+		direction = 'row',
+	} = props;
 	const { t } = useTranslation();
 
 	const onClick = useCallback(
@@ -35,7 +43,12 @@ export const Tabs = typedMemo(<T extends string>(props: TabsBeautyProps<T>) => {
 	);
 
 	return (
-		<Flex direction={direction} gap='8' className={classNames('', {}, [className])}>
+		<Flex
+			direction={direction}
+			gap='8'
+			className={classNames('', {}, [className])}
+			data-testid={dataTestId}
+		>
 			{tabs.map((tab) => {
 				const isSelected = tab.value === value;
 				return (

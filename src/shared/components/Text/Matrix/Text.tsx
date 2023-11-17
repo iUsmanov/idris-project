@@ -37,7 +37,10 @@ export const Text = memo((props: TextMatrixProps) => {
 	const TextTag = tags[1] ? tags[1] : 'p';
 
 	return (
-		<div className={classNames(cls.text, {}, [className, cls[variant], cls[align], cls[size]])}>
+		<div
+			className={classNames(cls.text, {}, [className, cls[variant], cls[align], cls[size]])}
+			data-testid={dataTestId}
+		>
 			{title && (
 				<TitleTag className={cls.title} data-testid={`${dataTestId}.Title`}>
 					{title}

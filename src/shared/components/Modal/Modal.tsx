@@ -4,8 +4,9 @@ import cls from './Modal.module.scss';
 import { Portal } from '../Portal/Portal';
 import { Overlay } from '../Overlay/Overlay';
 import { toggleFeatures } from '@/shared/lib/featureFlags';
+import { TestProps } from '@/shared/types/tests';
 
-interface ModalProps {
+interface ModalProps extends TestProps {
 	className?: string;
 	container?: HTMLElement;
 	children: ReactNode;
@@ -15,7 +16,15 @@ interface ModalProps {
 }
 
 export const Modal = memo((props: ModalProps) => {
-	const { className, children, container, isOpened = false, isMounted = false, onModalClose } = props;
+	const {
+		className,
+		children,
+		container,
+		isOpened = false,
+		isMounted = false,
+		['data-testid']: dataTestId = 'Modal',
+		onModalClose,
+	} = props;
 
 	const onContentClick = useCallback((event: React.MouseEvent) => {
 		event.stopPropagation();
@@ -52,8 +61,9 @@ export const Modal = memo((props: ModalProps) => {
 						off: () => cls.modalMatrix,
 					}),
 				])}
+				data-testid={dataTestId}
 			>
-				<Overlay onClick={onModalClose} centering>
+				<Overlay onClick={onModalClose} centering data-testid={dataTestId + '.Overlay'}>
 					<div onClick={onContentClick} className={classNames(cls.modalContent, {}, [])}>
 						{children}
 					</div>

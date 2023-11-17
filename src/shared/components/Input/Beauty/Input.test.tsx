@@ -1,75 +1,55 @@
-// Я не смог решить проблему связанную со строками
-// await user.clear(input); или await user.type(input, value);
-// expect(input).toHaveValue('');
-
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender';
 import { Input } from './Input';
 import { screen } from '@testing-library/react';
+import { act } from 'react-dom/test-utils';
 import { userEvent } from '@testing-library/user-event';
 
+const label = 'label';
 describe('Input.test', () => {
-	test('Component is componentRendered', () => {
-		componentRender(<Input placeholder='placeholder' />);
+	test('Component is componentRendered', async () => {
+		await act(async () => componentRender(<Input size='l' />));
+
+		const componentWrapper = screen.getByTestId('componentWrapper');
+
 		expect(screen.getByTestId('Input')).toBeInTheDocument();
-		expect(screen.getByTestId('componentWrapper')).toBeInTheDocument();
-		expect(screen.getByTestId('placeholder')).toBeInTheDocument();
+		expect(componentWrapper).toBeInTheDocument();
+		expect(componentWrapper).toHaveClass('size_l');
 	});
 
-	test('Component has placeholder', () => {
+	test('Component has label', async () => {
+		await act(async () => componentRender(<Input label={label} />));
+
+		expect(screen.getByTestId('Input')).toBeInTheDocument();
+		expect(screen.getByText(label)).toBeInTheDocument();
+	});
+
+	test('Component has placeholder', async () => {
 		const placeholder = 'placeholder';
-		componentRender(<Input placeholder={placeholder} />);
+		await act(async () => componentRender(<Input placeholder={placeholder} />));
 
-		expect(screen.getByText(placeholder + '>')).toBeInTheDocument();
-		expect(screen.getByTestId('Input')).toBeInTheDocument();
+		expect(screen.getByTestId('Input')).toHaveAttribute(placeholder, placeholder);
 	});
 
-	test('Component has type', () => {
+	test('Component has type', async () => {
 		const type = 'number';
-		componentRender(<Input type={type} />);
+		await act(async () => componentRender(<Input type={type} />));
 
 		expect(screen.getByTestId('Input')).toHaveAttribute('type', type);
 	});
 
-	test('Component has value', () => {
+	test('Component has value', async () => {
 		const value = 'value';
-		componentRender(<Input value={value} />);
+		await act(async () => componentRender(<Input value={value} />));
 
 		const input = screen.getByTestId('Input');
 
 		expect(input).toHaveValue(value);
 	});
 
-	// test('Clear value of input', async () => {
-	// 	const value = 'value';
-	// 	componentRender(<Input value={value} />);
-	// 	const user = userEvent.setup();
-
-	// 	const input = screen.getByTestId('Input');
-	// 	await user.clear(input);
-	// 	await waitFor(
-	// 		() => {
-	// 			expect(input).toHaveValue(''); -- This string calls bug(error)
-	// 		},
-	// 		{ timeout: 1000 }
-	// 	);
-	// });
-
-	// test('Typing text to Input', async () => {
-	// 	const value = 'value';
-	// 	componentRender(<Input />);
-	// 	const user = userEvent.setup();
-
-	// 	const input: HTMLInputElement = screen.getByTestId('Input');
-	// 	await user.type(input, value);
-	// 	setTimeout(() => {
-	// 		expect(input).toHaveValue(value); -- This string calls bug(error)
-	// 	}, 0);
-	// });
-
 	test('Typing text to Input with onChange', async () => {
 		const value = 'value';
 		const onChange = jest.fn();
-		componentRender(<Input value={''} onChange={onChange} />);
+		await act(async () => componentRender(<Input value={''} onChange={onChange} />));
 
 		const input: HTMLInputElement = screen.getByTestId('Input');
 		await userEvent.type(input, value);
@@ -86,7 +66,7 @@ describe('Input.test', () => {
 		const value = 'value';
 		const name = 'username';
 		const onChange = jest.fn();
-		componentRender(<Input value={''} onChange={onChange} name={name} />);
+		await act(async () => componentRender(<Input value={''} onChange={onChange} name={name} />));
 
 		const input: HTMLInputElement = screen.getByTestId('Input');
 		await userEvent.type(input, value);
@@ -99,20 +79,31 @@ describe('Input.test', () => {
 		expect(onChange).toHaveBeenCalledWith('e', name);
 	});
 
-	test('Readonly', () => {
-		const value = 'value';
-		componentRender(<Input value={value} readOnly />);
+	test('Readonly', async () => {
+		await act(async () => componentRender(<Input label={label} readOnly />));
 
 		const input: HTMLInputElement = screen.getByTestId('Input');
+		const labelParent = screen.getByTestId('labelParent');
+
 		expect(input).toHaveAttribute('readonly');
+		expect(labelParent).toBeInTheDocument();
+		expect(labelParent).toHaveClass('readonly');
 		expect(input).not.toHaveFocus();
-		expect(screen.queryByTestId('caret')).toBeNull();
 	});
 
-	test('Autofocus on Input', () => {
-		componentRender(<Input autoFocus />);
+	test('Autofocus on Input', async () => {
+		await act(async () => componentRender(<Input autoFocus />));
 
 		expect(screen.getByTestId('Input')).toHaveFocus();
-		expect(screen.getByTestId('caret')).toBeInTheDocument();
+	});
+
+	test('Input with addons', async () => {
+		await act(async () => componentRender(<Input addonLeft='addonLeft' addonRight='addonRight' />));
+
+		const addonLeft = screen.getByText('addonLeft');
+		const addonRight = screen.getByText('addonRight');
+
+		expect(addonLeft).toHaveClass('addonLeft');
+		expect(addonRight).toHaveClass('addonRight');
 	});
 });

@@ -92,7 +92,7 @@ const DrawerComponent = memo((props: DrawerProps) => {
 				])}
 				data-testid={dataTestId}
 			>
-				<Overlay onClick={() => closeDrawer()}>
+				<Overlay onClick={() => closeDrawer()} data-testid={dataTestId + '.Overlay'}>
 					<Spring.a.div
 						onClick={onContentClick}
 						style={{ display, bottom: `calc(-100vh + ${height - 100}px)`, y }}

@@ -84,6 +84,7 @@ export const Input = memo((props: InputBeautyProps) => {
 				},
 				[className, cls['size_' + size]]
 			)}
+			data-testid={'componentWrapper'}
 		>
 			{addonLeft && <div className={cls.addonLeft}>{addonLeft}</div>}
 			<input
@@ -117,6 +118,7 @@ export const Input = memo((props: InputBeautyProps) => {
 					},
 					[className, cls['size_' + size]]
 				)}
+				data-testid={'labelParent'}
 			>
 				<Text text={label} size='size_m' />
 				{input}

@@ -10,8 +10,9 @@ import { Listbox as HListbox } from '@headlessui/react';
 import { Button } from '@/shared/components/Button';
 import { HStack } from '@/shared/components/Stack';
 import { DropdownDirection } from '@/shared/types/ui';
+import { TestProps } from '@/shared/types/tests';
 
-export interface ListBoxMatrixProps {
+export interface ListBoxMatrixProps extends TestProps {
 	className?: string;
 	options: ListBoxOption[];
 	label?: string;
@@ -39,6 +40,7 @@ export const ListBox = memo((props: ListBoxMatrixProps) => {
 		disabled,
 		defaultValue,
 		direction = 'bottomRight',
+		['data-testid']: dataTestId = 'ListBox',
 		compact,
 	} = props;
 
@@ -56,6 +58,7 @@ export const ListBox = memo((props: ListBoxMatrixProps) => {
 			align='center'
 			gap='4'
 			className={classNames('', { [popupsCls.disabled]: disabled }, [className])}
+			data-testid={dataTestId}
 		>
 			{label && <span>{`${label}>`}</span>}
 			<HListbox
@@ -66,7 +69,7 @@ export const ListBox = memo((props: ListBoxMatrixProps) => {
 				disabled={disabled}
 			>
 				<HListbox.Button as={'div'} className={popupsCls.trigger}>
-					<Button disabled={disabled} variant='outline'>
+					<Button disabled={disabled} variant='outline' data-testid={dataTestId + '.Trigger'}>
 						{selectedItem?.content ?? defaultValue}
 					</Button>
 				</HListbox.Button>
