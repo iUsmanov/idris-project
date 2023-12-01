@@ -70,6 +70,7 @@ export const ListBox = typedMemo(<T extends string>(props: ListBoxBeautyProps<T>
 				value={value}
 				onChange={onChange}
 				disabled={disabled}
+				data-testid={dataTestId + '.ListBox'}
 			>
 				<HListbox.Button as={'div'} className={popupsCls.trigger}>
 					<Button

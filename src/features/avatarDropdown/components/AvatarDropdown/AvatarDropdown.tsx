@@ -71,6 +71,7 @@ export const AvatarDropdown = memo((props: AvatarDropdownProps) => {
 			trigger={avatar}
 			direction='bottomLeft'
 			textNoWrap
+			data-testid='AvatarDropdown'
 		/>
 	);
 });

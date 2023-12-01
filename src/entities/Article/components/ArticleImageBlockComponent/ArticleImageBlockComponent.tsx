@@ -13,9 +13,12 @@ export const ArticleImageBlockComponent = memo((props: ArticleImageBlockComponen
 	const { className, block } = props;
 
 	return (
-		<div className={classNames(cls.articleImageBlockComponent, {}, [className])}>
-			<img src={block.src} />
-			<Text title={block.title} align='center' />
+		<div
+			className={classNames(cls.articleImageBlockComponent, {}, [className])}
+			data-testid='ArticleImageBlock'
+		>
+			<img src={block.src} data-testid='ArticleImageBlock.Image' />
+			<Text title={block.title} align='center' data-testid='ArticleImageBlock.Description' />
 		</div>
 	);
 });

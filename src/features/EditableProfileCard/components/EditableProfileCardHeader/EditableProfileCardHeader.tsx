@@ -26,7 +26,13 @@ export const EditableProfileCardHeader = memo((props: EditableProfileCardHeaderP
 			on={<EditableProfileCardHeaderBeauty {...props} />}
 			off={
 				<>
-					<HStack className={classNames('', {}, [className])} max justify='between' align='center'>
+					<HStack
+						className={classNames('', {}, [className])}
+						max
+						justify='between'
+						align='center'
+						data-testid='EditableProfileCardHeader'
+					>
 						<Text title={t('Профиль')} size='size_l' />
 						{canEdit && (
 							<>

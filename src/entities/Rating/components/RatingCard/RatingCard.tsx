@@ -60,14 +60,19 @@ export const RatingCard = memo((props: RatingCardProps) => {
 	const modalContent = (
 		<>
 			<Text title={feedbackTitle} />
-			<Input value={feedback} onChange={setFeedback} placeholder={t('Ваш отзыв')} />
+			<Input
+				value={feedback}
+				onChange={setFeedback}
+				placeholder={t('Ваш отзыв')}
+				data-testid='FeedbackInput'
+			/>
 		</>
 	);
 
 	const content = (
 		<>
 			<VStack align='center' gap='8'>
-				<Text title={starsCount ? t('Спасибо за оценку!') : title} />
+				<Text title={starsCount ? t('Спасибо за оценку!') : title} data-testid='StarsCount' />
 				<StarRating selectedStars={starsCount} size={40} onSelect={onSelectStars} />
 			</VStack>
 			<DesktopView>
@@ -124,12 +129,18 @@ export const RatingCard = memo((props: RatingCardProps) => {
 		<ToggleFeatures
 			name='isBeautyDesign'
 			on={
-				<Card border='high' padding='24' className={classNames('', {}, [className])} max>
+				<Card
+					border='high'
+					padding='24'
+					className={classNames('', {}, [className])}
+					max
+					data-testid='RatingCard'
+				>
 					{content}
 				</Card>
 			}
 			off={
-				<Card className={classNames('', {}, [className])} max>
+				<Card className={classNames('', {}, [className])} max data-testid='RatingCard'>
 					{content}
 				</Card>
 			}

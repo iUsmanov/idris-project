@@ -1,10 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { ProfileCard } from './ProfileCard';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
-import Image from '@/shared/assets/tests/storybook.jpg';
-import { Currency } from '@/entities/Currency/testing';
-import { Country } from '@/entities/Country/testing';
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator';
+import { mockProfile } from '../../mocks';
 
 const meta = {
 	title: 'entities/ProfileCard',
@@ -12,16 +10,7 @@ const meta = {
 	tags: ['autodocs'],
 	argTypes: {},
 	args: {
-		data: {
-			age: 30,
-			avatar: Image,
-			city: 'Moscow',
-			currency: Currency.RUB,
-			country: Country.ARMENIA,
-			first: 'Jackson',
-			lastname: 'Styled',
-			username: 'Chotkiy pocik',
-		},
+		data: mockProfile,
 	},
 } satisfies Meta<typeof ProfileCard>;
 

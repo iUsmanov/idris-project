@@ -7,15 +7,17 @@ import { RouterProvider } from 'react-router-dom';
 import { ReducersObject, StateSchema, StoreProvider } from '@/app/providers/StoreProvider/testing';
 import { createMemoryRouter } from 'react-router-dom';
 import { routes } from '@/app/providers/router/testing';
+import { act } from 'react-dom/test-utils';
 
 export interface ComponentRenderOptions {
 	route?: string;
 	initialState?: DeepPartial<StateSchema>;
 	asyncReducers?: DeepPartial<ReducersObject>;
+	wrapInAct?: boolean;
 }
 
 export const componentRender = (component: ReactNode, options: ComponentRenderOptions = {}) => {
-	const { route = '/', initialState, asyncReducers } = options;
+	const { route = '/', initialState, asyncReducers, wrapInAct } = options;
 
 	const rootLayout = (
 		<StoreProvider
@@ -37,7 +39,13 @@ export const componentRender = (component: ReactNode, options: ComponentRenderOp
 		initialEntries: [route],
 	});
 
-	return render(<RouterProvider router={router} />);
+	const renderedComponent = render(<RouterProvider router={router} />);
+
+	if (wrapInAct) {
+		return act(async () => renderedComponent);
+	}
+
+	return renderedComponent;
 
 	// return render(
 	// 	<MemoryRouter initialEntries={[route]}>

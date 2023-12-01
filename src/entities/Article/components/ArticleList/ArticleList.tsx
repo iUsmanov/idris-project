@@ -1,4 +1,4 @@
-import { HTMLAttributeAnchorTarget, memo, useCallback, useMemo } from 'react';
+import { HTMLAttributeAnchorTarget, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './ArticleList.module.scss';
@@ -8,7 +8,7 @@ import { HStack, VStack } from '@/shared/components/Stack';
 import { Text } from '@/shared/components/Text';
 import { ToggleFeatures } from '@/shared/lib/featureFlags';
 import { ArticleListBeauty } from './Beauty/ArticleList.async';
-import { ArticleListItemSkeleton } from '../ArticleListItemSkeleton/ArticleListItemSkeleton';
+import { ArticleListSkeleton } from './ArticleListSkeleton';
 
 interface ArticleListProps {
 	className?: string;
@@ -21,36 +21,6 @@ interface ArticleListProps {
 export const ArticleList = memo((props: ArticleListProps) => {
 	const { className, articles, isLoading, view = 'TILE', target } = props;
 	const { t } = useTranslation('articles');
-
-	const skeletons = useMemo(() => {
-		if (view === 'TILE') {
-			return (
-				<ToggleFeatures
-					name='isBeautyDesign'
-					on={<ArticleListBeauty {...props} />}
-					off={
-						<HStack
-							gap='32'
-							wrap='wrap'
-							className={classNames(cls.articleList, {}, [className, cls[view]])}
-						>
-							{new Array(9).fill(0).map((item, index) => (
-								<ArticleListItemSkeleton key={index} view={view} className={cls.card} />
-							))}
-						</HStack>
-					}
-				/>
-			);
-		} else {
-			return (
-				<VStack max className={classNames(cls.articleList, {}, [className, cls[view]])}>
-					{new Array(3).fill(0).map((item, index) => (
-						<ArticleListItemSkeleton key={index} view={view} className={cls.card} />
-					))}
-				</VStack>
-			);
-		}
-	}, [className, props, view]);
 
 	const renderArticle = useCallback(
 		(article: Article) => {
@@ -68,7 +38,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
 	);
 
 	const renderArticles = articles && articles.length && articles.map(renderArticle);
-	const renderSkeletons = isLoading && skeletons;
+	const renderSkeletons = isLoading && <ArticleListSkeleton view={view} className={className} />;
 
 	if ((!articles || !articles.length) && !isLoading) {
 		return (
@@ -86,7 +56,11 @@ export const ArticleList = memo((props: ArticleListProps) => {
 				name='isBeautyDesign'
 				on={<ArticleListBeauty {...props} />}
 				off={
-					<VStack max className={classNames(cls.articleList, {}, [className, cls[view]])}>
+					<VStack
+						max
+						className={classNames(cls.articleList, {}, [className, cls[view]])}
+						data-testid='ArticleList.LIST'
+					>
 						{renderArticles}
 						{renderSkeletons}
 					</VStack>
@@ -105,6 +79,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
 					wrap='wrap'
 					max
 					className={classNames(cls.articleList, {}, [className, cls[view]])}
+					data-testid='ArticleList.TILE'
 				>
 					{renderArticles}
 					{renderSkeletons}

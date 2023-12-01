@@ -32,18 +32,20 @@ export const ArticlesSort = memo((props: ArticlesSortProps) => {
 			name='isBeautyDesign'
 			on={<ArticlesSortBeauty {...props} />}
 			off={
-				<HStack gap='8' className={classNames('', {}, [className])}>
+				<HStack gap='8' className={classNames('', {}, [className])} data-testid='ArticlesSort'>
 					<Select<ArticlesSortField>
 						value={sort}
 						onChange={changeSortHandler}
 						options={orderFieldOptions}
 						label={t('Сортировать по')}
+						data-testid='SortField'
 					/>
 					<Select
 						value={order}
 						onChange={changeOrderHandler}
 						options={orderOptions}
 						label={t('По')}
+						data-testid='SortOrder'
 					/>
 				</HStack>
 			}

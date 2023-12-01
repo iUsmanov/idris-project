@@ -20,7 +20,7 @@ export const CommentsList = memo((props: CommentsListProps) => {
 
 	if (isLoading) {
 		return (
-			<VStack max gap='16'>
+			<VStack max gap='16' data-testid='CommentsList.IsLoading'>
 				<VStack max gap='8' className={classNames('', {}, [className])}>
 					<HStack gap='8' align='center'>
 						<Skeleton width={30} height={30} borderRadius='50%' />
@@ -51,7 +51,7 @@ export const CommentsList = memo((props: CommentsListProps) => {
 	}
 
 	return (
-		<VStack max gap='16' className={classNames('', {}, [className])}>
+		<VStack max gap='16' className={classNames('', {}, [className])} data-testid='CommentsList'>
 			{comments?.length ? (
 				comments.map((comment) => <CommentCard className={''} key={comment.id} comment={comment} />)
 			) : (

@@ -1,5 +1,4 @@
 import { memo } from 'react';
-import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './CommentCard.module.scss';
 import { Comment } from '../../model/types/comment';
@@ -18,14 +17,18 @@ interface CommentCardProps {
 
 export const CommentCard = memo((props: CommentCardProps) => {
 	const { className, comment } = props;
-	const { t } = useTranslation();
 
 	return (
 		<ToggleFeatures
 			name='isBeautyDesign'
 			on={<CommentCardBeauty {...props} />}
 			off={
-				<VStack max gap='8' className={classNames(cls.commentCard, {}, [className])}>
+				<VStack
+					max
+					gap='8'
+					className={classNames(cls.commentCard, {}, [className])}
+					data-testid='CommentCard'
+				>
 					<AppLink to={getRouteProfile(comment.userId)}>
 						<HStack gap='8' align='center'>
 							<Avatar src={comment.user?.avatar} size={30} />

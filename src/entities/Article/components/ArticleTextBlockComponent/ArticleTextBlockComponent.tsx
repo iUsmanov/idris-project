@@ -13,10 +13,28 @@ export const ArticleTextBlockComponent = memo((props: ArticleTextBlockComponentP
 	const { className, block } = props;
 
 	return (
-		<div className={classNames(cls.articleTextBlockComponent, {}, [className])}>
-			{block.title && <Text className={cls.title} title={block.title} size='size_m' />}
+		<div
+			className={classNames(cls.articleTextBlockComponent, {}, [className])}
+			data-testid='ArticleTextBlock'
+		>
+			{block.title && (
+				<Text
+					className={cls.title}
+					title={block.title}
+					size='size_m'
+					data-testid='ArticleTextBlock.Description'
+				/>
+			)}
 			{block.paragraphs.map((paragraph) => {
-				return <Text text={paragraph} className={cls.paragraph} size='size_m' key={paragraph} />;
+				return (
+					<Text
+						text={paragraph}
+						className={cls.paragraph}
+						size='size_m'
+						key={paragraph}
+						data-testid='ArticleTextBlock.Paragraph'
+					/>
+				);
 			})}
 		</div>
 	);

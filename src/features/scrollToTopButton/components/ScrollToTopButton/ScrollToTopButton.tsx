@@ -22,6 +22,7 @@ export const ScrollToTopButton = memo((props: ScrollToTopButtonProps) => {
 			onClick={onClick}
 			Svg={ToTopIcon}
 			className={classNames('', {}, [className])}
+			data-testid='ScrollToTopButton'
 		/>
 	);
 });

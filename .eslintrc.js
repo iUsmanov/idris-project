@@ -74,6 +74,7 @@ module.exports = {
 			{
 				alias: '@',
 				testFilesPatterns: [
+					'**/mocks.ts',
 					'**/*.test.*',
 					'**/storybook/*Decorator.tsx',
 					'**/*.stories.{ts,tsx}',

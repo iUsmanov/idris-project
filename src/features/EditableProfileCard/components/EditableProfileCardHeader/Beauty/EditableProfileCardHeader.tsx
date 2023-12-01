@@ -29,6 +29,7 @@ export const EditableProfileCardHeader = memo((props: EditableProfileCardHeaderP
 				max
 				justify='between'
 				align='center'
+				data-testid='EditableProfileCardHeader'
 			>
 				<Text title={t('Профиль')} size='size_l' />
 				{canEdit && (

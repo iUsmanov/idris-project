@@ -55,6 +55,7 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
 						max
 						justify='center'
 						className={classNames(cls.profileCard, {}, [className, cls.loading])}
+						data-testid='ProfileCard.IsLoading'
 					>
 						<Loader size='max' />
 					</HStack>
@@ -97,6 +98,7 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
 					gap={'16'}
 					max
 					className={classNames(cls.profileCard, { [cls.editing]: !readonly }, [className])}
+					data-testid='ProfileCard'
 				>
 					<Avatar
 						max
@@ -149,18 +151,8 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
 						placeholder={t('Ссылка на аватар')}
 						data-testid='ProfileCard.InputAvatar'
 					/>
-					<CurrencySelect
-						disabled={readonly}
-						value={data?.currency}
-						onChange={onChangeCurrency}
-						data-testid='ProfileCard.CurrencySelect'
-					/>
-					<CountrySelect
-						disabled={readonly}
-						value={data?.country}
-						onChange={onChangeCountry}
-						data-testid='ProfileCard.CountrySelect'
-					/>
+					<CurrencySelect disabled={readonly} value={data?.currency} onChange={onChangeCurrency} />
+					<CountrySelect disabled={readonly} value={data?.country} onChange={onChangeCountry} />
 				</VStack>
 			}
 		/>

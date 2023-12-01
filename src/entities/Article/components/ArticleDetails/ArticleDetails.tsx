@@ -77,17 +77,39 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
 			name='isBeautyDesign'
 			on={<ArticleDetailsBeauty {...props} />}
 			off={
-				<VStack max gap='16' className={classNames(cls.articleDetails, {}, [className])}>
-					<AppImage src={article?.img} className={cls.preview} />
+				<VStack
+					max
+					gap='16'
+					className={classNames(cls.articleDetails, {}, [className])}
+					data-testid='ArticleDetails'
+				>
+					<AppImage
+						src={article?.img}
+						className={cls.preview}
+						data-testid='ArticleDetails.Image'
+					/>
 					<VStack max gap='8'>
-						<Text title={article?.title} text={article?.subtitle} size='size_l' />
+						<Text
+							title={article?.title}
+							text={article?.subtitle}
+							size='size_l'
+							data-testid='ArticleDetails.Titles'
+						/>
 						<HStack gap='8' align='center'>
 							<Icon Svg={EyeIcon} />
-							<Text text={String(article?.views)} size='size_m' />
+							<Text
+								text={String(article?.views)}
+								size='size_m'
+								data-testid='ArticleDetails.Views'
+							/>
 						</HStack>
 						<HStack gap='8' align='center'>
 							<Icon Svg={CalendarIcon} />
-							<Text text={article?.createdAt} size='size_m' />
+							<Text
+								text={article?.createdAt}
+								size='size_m'
+								data-testid='ArticleDetails.CreatedAt'
+							/>
 						</HStack>
 					</VStack>
 					{article?.blocks.map(renderArticleBlock)}

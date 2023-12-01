@@ -36,6 +36,7 @@ export const ArticleDetailsHeader = memo((props: ArticleDetailsHeaderPropsBeauty
 			border='high'
 			gap='32'
 			className={classNames(cls.articleDetailsHeader, {}, [className])}
+			data-testid='ArticleDetailsHeader'
 		>
 			<HStack gap='8' align='center'>
 				<Avatar src={author.avatar} size={32} />

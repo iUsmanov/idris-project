@@ -28,9 +28,11 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 	const { className, article, view, target } = props;
 	const { t } = useTranslation('articles');
 
-	const types = <Text size='size_m' text={article.type.join(', ')} className={cls.types} />;
+	const types = (
+		<Text size='size_m' text={article.type.join(', ')} className={cls.types} data-testid='Types' />
+	);
 	const views = (
-		<HStack align='center'>
+		<HStack align='center' data-testid='Views'>
 			<Text size='size_m' text={String(article.views)} className={cls.views} />
 			<Icon Svg={EyeIcon} />
 		</HStack>
@@ -43,10 +45,13 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 				name='isBeautyDesign'
 				on={<ArticleListItemBeauty {...props} />}
 				off={
-					<Card className={classNames('', {}, [className, cls[view]])}>
+					<Card
+						className={classNames('', {}, [className, cls[view]])}
+						data-testid='ArticleListItem.LIST'
+					>
 						<HStack justify='between' align='center' className={cls.header}>
 							<HStack gap='8' align='center'>
-								<Avatar size={30} src={article.user?.avatar} />
+								<Avatar size={30} src={article.user?.avatar} data-testid='Avatar' />
 								<Text size='size_m' text={article.user?.username} />
 							</HStack>
 							<Text size='size_m' text={article.createdAt} />
@@ -82,7 +87,10 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 			on={<ArticleListItemBeauty {...props} />}
 			off={
 				<AppLink to={getRouteArticleDetails(article.id)} target={target}>
-					<Card className={classNames('', {}, [className, cls[view]])}>
+					<Card
+						className={classNames('', {}, [className, cls[view]])}
+						data-testid='ArticleListItem.TILE'
+					>
 						<div className={cls.image}>
 							<AppImage
 								loadingFallback={<Skeleton width={200} height={200} />}

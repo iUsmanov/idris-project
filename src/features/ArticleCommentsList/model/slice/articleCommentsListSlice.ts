@@ -14,7 +14,7 @@ export const initialState: ArticleCommentsListSchema = {
 	sendError: undefined,
 };
 
-const articleCommentsListAdapter = createEntityAdapter<Comment>({
+export const articleCommentsListAdapter = createEntityAdapter<Comment>({
 	selectId: (comment) => comment.id,
 });
 

@@ -6,10 +6,11 @@ import { Flex } from '../Stack';
 import { FlexProps } from '../Stack/Flex/Flex';
 import { AppImage } from '../AppImage';
 import { Skeleton } from '../Skeleton';
+import { TestProps } from '@/shared/types/tests';
 
 type ExProps = Omit<FlexProps, 'direction' | 'children' | 'wrap' | 'gap'>;
 
-interface AvatarProps extends ExProps {
+interface AvatarProps extends ExProps, TestProps {
 	alt?: string;
 	src?: string;
 	size?: number;
@@ -17,7 +18,14 @@ interface AvatarProps extends ExProps {
 }
 
 export const Avatar = memo((props: AvatarProps) => {
-	const { src, alt, size = 100, fallbackInverted, ...otherProps } = props;
+	const {
+		src,
+		alt,
+		size = 100,
+		fallbackInverted,
+		['data-testid']: dataTestId = 'Avatar',
+		...otherProps
+	} = props;
 
 	const styles = useMemo<CSSProperties>(() => ({ width: size, height: size }), [size]);
 
@@ -26,7 +34,7 @@ export const Avatar = memo((props: AvatarProps) => {
 	const loadingFallback = <Skeleton width={size} height={size} borderRadius='50%' />;
 
 	return (
-		<Flex {...otherProps} className={classNames(cls.avatar, {}, [])}>
+		<Flex {...otherProps} className={classNames(cls.avatar, {}, [])} data-testid={dataTestId}>
 			<div className={cls.wrapper} style={styles}>
 				<AppImage
 					loadingFallback={loadingFallback}

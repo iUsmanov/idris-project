@@ -55,7 +55,7 @@ export const UIDesignSwitcher = memo((props: UIDesignSwitcherProps) => {
 	);
 
 	return (
-		<HStack gap='16' align='center'>
+		<HStack gap='16' align='center' data-testid='UIDesignSwitcher'>
 			<Text
 				title={
 					t('Выберите дизайн') +

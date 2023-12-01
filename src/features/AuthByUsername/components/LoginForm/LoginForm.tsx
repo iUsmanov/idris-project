@@ -61,7 +61,7 @@ export const LoginForm = memo((props: LoginFormProps) => {
 	}, [dispatch, onModalClose, password, username]);
 
 	return (
-		<div className={classNames(cls.loginForm, {}, [className])}>
+		<div className={classNames(cls.loginForm, {}, [className])} data-testid='LoginForm'>
 			<Text align='center' size='size_m' title={t('Форма авторизации')} className={cls.title} />
 			{error && <Text variant='error' title={t('Вы ввели неверный логин или пароль')} />}
 			<Input

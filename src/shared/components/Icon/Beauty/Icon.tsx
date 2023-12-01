@@ -5,6 +5,7 @@ import {
 	BeautySharedProvider,
 	useBeautySharedComponents,
 } from '@/shared/lib/components/BeautySharedProvider/BeautySharedProvider';
+import { TestProps } from '@/shared/types/tests';
 
 type SvgProps = Omit<React.SVGProps<SVGSVGElement>, 'onClick'>;
 
@@ -18,7 +19,7 @@ interface NonClickableIconBeautyProps extends IconBeautyBaseProps {
 	clickable?: false;
 }
 
-interface ClickableIconBeautyProps extends IconBeautyBaseProps {
+interface ClickableIconBeautyProps extends IconBeautyBaseProps, TestProps {
 	clickable: true;
 	onClick: () => void;
 }
@@ -41,7 +42,13 @@ export const Icon = memo((props: IconBeautyProps) => {
 
 	if (clickable) {
 		return (
-			<button type='button' className={cls.button} onClick={props.onClick} style={{ width, height }}>
+			<button
+				type='button'
+				className={cls.button}
+				onClick={props.onClick}
+				style={{ width, height }}
+				data-testid={props['data-testid']}
+			>
 				{icon}
 			</button>
 		);

@@ -24,7 +24,7 @@ export const StarRating = memo((props: StarRatingMatrixProps) => {
 	);
 
 	return (
-		<div className={classNames(cls.starRating, {}, [className])}>
+		<div className={classNames(cls.starRating, {}, [className])} data-testid='StarRating'>
 			{stars.map((starNumber) => (
 				<Icon
 					className={classNames(

@@ -1,5 +1,4 @@
 import { memo } from 'react';
-import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './NotificationItem.module.scss';
 import { Notification } from '../../model/types/notification';
@@ -15,14 +14,17 @@ interface NotificationItemProps {
 
 export const NotificationItem = memo((props: NotificationItemProps) => {
 	const { className, item } = props;
-	const { t } = useTranslation();
 
 	const content = (
 		<ToggleFeatures
 			name='isBeautyDesign'
 			on={<NotificationItemBeauty {...props} />}
 			off={
-				<Card variant='outline' className={classNames(cls.notificationItem, {}, [className])}>
+				<Card
+					variant='outline'
+					className={classNames(cls.notificationItem, {}, [className])}
+					data-testid='NotificationItem'
+				>
 					<Text title={item.title} text={item.description} tags={['h4']} />
 				</Card>
 			}
@@ -35,7 +37,13 @@ export const NotificationItem = memo((props: NotificationItemProps) => {
 				name='isBeautyDesign'
 				on={content}
 				off={
-					<a className={cls.link} target='_blank' href={item.href} rel='noreferrer'>
+					<a
+						className={cls.link}
+						target='_blank'
+						href={item.href}
+						rel='noreferrer'
+						data-testid='Link'
+					>
 						{content}
 					</a>
 				}

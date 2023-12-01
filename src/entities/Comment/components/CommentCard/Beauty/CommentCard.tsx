@@ -27,6 +27,7 @@ export const CommentCard = memo((props: CommentCardProps) => {
 			padding='24'
 			border='high'
 			className={classNames('', {}, [className])}
+			data-testid='CommentCard'
 		>
 			<AppLink to={getRouteProfile(comment.userId)}>
 				<HStack gap='8' align='center'>

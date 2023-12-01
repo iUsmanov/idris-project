@@ -34,6 +34,7 @@ export const AddNewComment = memo((props: AddNewCommentProps) => {
 						justify='between'
 						align='center'
 						className={classNames(cls.addNewComment, {}, [className])}
+						data-testid='AddNewComment'
 					>
 						<Input
 							className={cls.input}

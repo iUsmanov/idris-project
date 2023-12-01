@@ -35,6 +35,7 @@ export const ThemeSwitcher = memo((props: ThemeSwitcherProps) => {
 					variant='clear'
 					className={classNames(cls.themeSwitcher, {}, [className])}
 					onClick={onChangeTheme}
+					data-testid='ThemeSwitcher'
 				>
 					<Icon Svg={ThemeIcon} width={40} height={40} variant='inverted' />
 				</Button>

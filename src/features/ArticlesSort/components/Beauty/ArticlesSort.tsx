@@ -30,14 +30,20 @@ export const ArticlesSort = memo((props: ArticlesSortProps) => {
 	);
 
 	return (
-		<VStack gap='8' className={classNames('', {}, [className])}>
+		<VStack gap='8' className={classNames('', {}, [className])} data-testid='ArticlesSort'>
 			<Text title={t('Сортировать по')} />
 			<ListBox<ArticlesSortField>
 				value={sort}
 				onChange={changeSortHandler}
 				options={orderFieldOptions}
+				data-testid='SortField'
 			/>
-			<ListBox value={order} onChange={changeOrderHandler} options={orderOptions} />
+			<ListBox
+				value={order}
+				onChange={changeOrderHandler}
+				options={orderOptions}
+				data-testid='SortOrder'
+			/>
 		</VStack>
 	);
 });

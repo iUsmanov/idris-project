@@ -32,7 +32,7 @@ describe('Code.test', () => {
 
 	test('Code is copied successfully', async () => {
 		userEvent.setup();
-		await act(async () => componentRender(<Code text={codeText} />));
+		await act(() => componentRender(<Code text={codeText} />));
 
 		const Button = screen.getByTestId('Button');
 		await userEvent.click(Button);

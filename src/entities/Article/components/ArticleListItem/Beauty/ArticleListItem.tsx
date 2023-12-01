@@ -32,7 +32,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 		</>
 	);
 	const views = (
-		<HStack align='center' gap='8'>
+		<HStack align='center' gap='8' data-testid='Views'>
 			<Icon Svg={EyeIcon} />
 			<Text size='size_m' text={String(article.views)} className={cls.views} />
 		</HStack>
@@ -48,6 +48,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 				direction='column'
 				className={classNames('', {}, [className, cls[view]])}
 				padding='24'
+				data-testid='ArticleListItem.LIST'
 			>
 				<HStack gap='8' align='center' className={cls.header}>
 					{userInfo}
@@ -55,7 +56,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 				</HStack>
 				<Text size='size_l' bold text={article.title} />
 				<Text size='size_m' text={article.subtitle} />
-				<div className={cls.image}>
+				<div className={cls.image} data-testid='Avatar'>
 					<AppImage
 						loadingFallback={<Skeleton width={'100%'} height={250} />}
 						src={article.img}
@@ -85,6 +86,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 				border='high'
 				padding='0'
 				className={classNames('', {}, [className, cls[view]])}
+				data-testid='ArticleListItem.TILE'
 			>
 				<div className={cls.image}>
 					<AppImage

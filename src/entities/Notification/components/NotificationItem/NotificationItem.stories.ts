@@ -1,13 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { NotificationItem } from './NotificationItem';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
-import { Notification } from '../../model/types/notification';
-
-const notification: Notification = {
-	id: '1',
-	title: 'Уведомление 1',
-	description: 'Произошло какое-то событие',
-};
+import { mockNotification } from '../../testing';
 
 const meta = {
 	title: 'entities/NotificationItem',
@@ -15,7 +9,7 @@ const meta = {
 	tags: ['autodocs'],
 	argTypes: {},
 	args: {
-		item: notification,
+		item: mockNotification,
 	},
 } satisfies Meta<typeof NotificationItem>;
 

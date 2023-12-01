@@ -33,6 +33,7 @@ export const CurrencySelect = memo((props: CurrencySelectProps) => {
 			options={options}
 			disabled={disabled}
 			direction='topRight'
+			data-testid='CurrencySelect'
 		/>
 	);
 });

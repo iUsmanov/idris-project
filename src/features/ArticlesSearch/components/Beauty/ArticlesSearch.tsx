@@ -21,6 +21,7 @@ export const ArticlesSearch = memo((props: ArticlesSearchProps) => {
 
 	return (
 		<Input
+			data-testid='ArticlesSearch'
 			className={classNames('', {}, [className])}
 			addonLeft={<Icon Svg={SearchIcon} />}
 			placeholder={t('Поиск')}

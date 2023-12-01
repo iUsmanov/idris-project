@@ -52,6 +52,7 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
 				padding='24'
 				max
 				className={classNames('', {}, [className])}
+				data-testid='ProfileCard.IsLoading'
 			>
 				<Flex max justify='center'>
 					<Skeleton width={128} height={128} borderRadius='50%' />
@@ -97,6 +98,7 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
 			max
 			border='high'
 			className={classNames('', {}, [className])}
+			data-testid='ProfileCard'
 		>
 			<Avatar max justify='center' src={data?.avatar} size={128} data-testid='ProfileCard.Avatar' />
 			<HStack max gap='24'>
@@ -147,18 +149,8 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
 						label={t('Ссылка на аватар')}
 						data-testid='ProfileCard.InputAvatar'
 					/>
-					<CurrencySelect
-						disabled={readonly}
-						value={data?.currency}
-						onChange={onChangeCurrency}
-						data-testid='ProfileCard.CurrencySelect'
-					/>
-					<CountrySelect
-						disabled={readonly}
-						value={data?.country}
-						onChange={onChangeCountry}
-						data-testid='ProfileCard.CountrySelect'
-					/>
+					<CurrencySelect disabled={readonly} value={data?.currency} onChange={onChangeCurrency} />
+					<CountrySelect disabled={readonly} value={data?.country} onChange={onChangeCountry} />
 				</VStack>
 			</HStack>
 		</Card>

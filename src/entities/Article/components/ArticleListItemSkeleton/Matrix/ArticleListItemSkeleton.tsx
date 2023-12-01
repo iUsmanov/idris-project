@@ -17,7 +17,10 @@ export const ArticleListItemSkeleton = memo((props: ArticleListItemSkeletonMatri
 
 	if (view === 'LIST') {
 		return (
-			<Card className={classNames(cls.articleListItem, {}, [className, cls[view]])}>
+			<Card
+				className={classNames(cls.articleListItem, {}, [className, cls[view]])}
+				data-testid='ArticleListItemSkeleton.LIST'
+			>
 				<HStack max justify='between' align='center' className={cls.header}>
 					<HStack gap='8' align='center'>
 						<Skeleton width={30} height={30} borderRadius='50%' />
@@ -35,7 +38,10 @@ export const ArticleListItemSkeleton = memo((props: ArticleListItemSkeletonMatri
 	}
 
 	return (
-		<Card className={classNames(cls.articleListItem, {}, [className, cls[view]])}>
+		<Card
+			className={classNames(cls.articleListItem, {}, [className, cls[view]])}
+			data-testid='ArticleListItemSkeleton.TILE'
+		>
 			<div className={cls.image}>
 				<ToggleFeatures
 					name='isBeautyDesign'

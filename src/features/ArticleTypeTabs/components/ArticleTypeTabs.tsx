@@ -22,6 +22,7 @@ export const ArticleTypeTabs = memo((props: ArticleTypeTabsProps) => {
 			tabs={typeTabs}
 			value={type}
 			direction='column'
+			data-testid='ArticleTypeTabs'
 		/>
 	);
 });

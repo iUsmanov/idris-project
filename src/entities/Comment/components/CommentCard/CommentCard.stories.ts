@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { CommentCard } from './CommentCard';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
-import Image from '@/shared/assets/tests/storybook.jpg';
+import { mockComment } from '../../testing';
 
 const meta = {
 	title: 'entities/CommentCard',
@@ -9,17 +9,7 @@ const meta = {
 	tags: ['autodocs'],
 	argTypes: {},
 	args: {
-		comment: {
-			id: '1',
-			text: 'some comment',
-			articleId: '1',
-			userId: '1',
-			user: {
-				id: '1',
-				username: 'admin',
-				avatar: Image,
-			},
-		},
+		comment: mockComment,
 	},
 } satisfies Meta<typeof CommentCard>;
 

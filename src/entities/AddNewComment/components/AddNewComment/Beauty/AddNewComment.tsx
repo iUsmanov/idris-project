@@ -22,7 +22,7 @@ export const AddNewComment = memo((props: AddNewCommentProps) => {
 	const { onChangeText, onSendNewComment, text } = useAddNewComment(sendNewComment);
 
 	return (
-		<Card padding='24' border='high' max>
+		<Card padding='24' border='high' max data-testid='AddNewComment'>
 			{error && <Text variant='error' title={t('Произошла непредвиденная ошибка')} />}
 			<HStack
 				max

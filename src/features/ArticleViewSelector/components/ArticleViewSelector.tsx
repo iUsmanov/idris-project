@@ -47,7 +47,7 @@ export const ArticleViewSelector = memo((props: ArticleViewSelectorProps) => {
 			name='isBeautyDesign'
 			on={<ArticleViewSelectorBeauty {...props} />}
 			off={
-				<HStack className={classNames('', {}, [className])}>
+				<HStack className={classNames('', {}, [className])} data-testid='ArticleViewSelector'>
 					{viewTypes.map((viewType) => (
 						<Button key={viewType.view} variant='clear' onClick={onClick(viewType.view)}>
 							<Icon

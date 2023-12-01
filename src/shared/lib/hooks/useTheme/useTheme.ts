@@ -37,7 +37,7 @@ export function useTheme(): UseThemeResult {
 				document.body.classList.add(newTheme);
 				break;
 			default:
-				newTheme = 'app-dark-theme' as Theme;
+				newTheme = fallbackTheme;
 		}
 
 		setTheme?.(newTheme);

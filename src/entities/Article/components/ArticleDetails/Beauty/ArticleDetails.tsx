@@ -56,13 +56,19 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
 	}
 
 	return (
-		<VStack max gap='16' className={classNames(cls.articleDetails, {}, [className])}>
-			<Text title={article?.title} size='size_l' bold />
-			<Text title={article?.subtitle} size='size_m' />
+		<VStack
+			max
+			gap='16'
+			className={classNames(cls.articleDetails, {}, [className])}
+			data-testid='ArticleDetails'
+		>
+			<Text title={article?.title} size='size_l' bold data-testid='ArticleDetails.Title' />
+			<Text title={article?.subtitle} size='size_m' data-testid='ArticleDetails.Subtitle' />
 			<AppImage
 				src={article?.img}
 				className={cls.preview}
 				loadingFallback={<Skeleton width='100%' height={420} borderRadius='16px' />}
+				data-testid='ArticleDetails.Image'
 			/>
 			{article?.blocks.map(renderArticleBlock)}
 		</VStack>

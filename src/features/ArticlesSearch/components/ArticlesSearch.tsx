@@ -25,7 +25,7 @@ export const ArticlesSearch = memo((props: ArticlesSearchProps) => {
 			name='isBeautyDesign'
 			on={<ArticlesSearchBeauty {...props} />}
 			off={
-				<Card className={classNames('', {}, [className])}>
+				<Card className={classNames('', {}, [className])} data-testid='ArticlesSearch'>
 					<Input placeholder={t('Поиск')} value={search} onChange={changeSearchHandler} />
 				</Card>
 			}

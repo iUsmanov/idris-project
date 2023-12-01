@@ -13,7 +13,10 @@ export const ArticleCodeBlockComponent = memo((props: ArticleCodeBlockComponentP
 	const { className, block } = props;
 
 	return (
-		<div className={classNames(cls.articleCodeBlockComponent, {}, [className])}>
+		<div
+			className={classNames(cls.articleCodeBlockComponent, {}, [className])}
+			data-testid='ArticleCodeBlock'
+		>
 			<Code text={block.code} />
 		</div>
 	);

@@ -67,6 +67,7 @@ export const ListBox = memo((props: ListBoxMatrixProps) => {
 				value={value}
 				onChange={onChange}
 				disabled={disabled}
+				data-testid={dataTestId + '.ListBox'}
 			>
 				<HListbox.Button as={'div'} className={popupsCls.trigger}>
 					<Button disabled={disabled} variant='outline' data-testid={dataTestId + '.Trigger'}>

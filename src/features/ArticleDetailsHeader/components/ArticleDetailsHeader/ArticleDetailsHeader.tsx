@@ -20,7 +20,13 @@ export const ArticleDetailsHeader = memo((props: ArticleDetailsHeaderProps) => {
 	if (!id) return null;
 
 	return (
-		<HStack max justify='between' align='center' className={className}>
+		<HStack
+			max
+			justify='between'
+			align='center'
+			className={className}
+			data-testid='ArticleDetailsHeader'
+		>
 			<AppLink to={getRouteArticles()} variant='outline'>
 				{t('Назад к списку')}
 			</AppLink>
