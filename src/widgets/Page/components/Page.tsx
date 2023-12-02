@@ -21,7 +21,7 @@ interface PageProps extends TestProps {
 }
 
 export const Page = (props: PageProps) => {
-	const { className, children, onScrollEnd, 'data-testid': dataTestId } = props;
+	const { className, children, onScrollEnd, 'data-testid': dataTestId = 'Page' } = props;
 	const wrapperRef = useRef() as MutableRefObject<HTMLDivElement>;
 	const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
 	const dispatch = useAppDispatch();
@@ -48,7 +48,7 @@ export const Page = (props: PageProps) => {
 
 	return (
 		<main
-			data-testid={dataTestId ?? 'Page'}
+			data-testid={dataTestId}
 			onScroll={onScrollEnd && onScroll}
 			ref={wrapperRef}
 			className={classNames(
@@ -62,7 +62,22 @@ export const Page = (props: PageProps) => {
 			)}
 		>
 			{children}
-			{onScrollEnd && <div ref={triggerRef} />}
+			{onScrollEnd && <div data-testid={dataTestId + '.Trigger'} ref={triggerRef} />}
 		</main>
 	);
 };
+
+/* 
+
+
+		toggleFeatures({
+			name: 'isBeautyDesign',
+			on: () => (document.body.scrollTop = scrollPosition),
+			off: () => (wrapperRef.current.scrollTop = scrollPosition),
+		});
+
+			console.log(pathname);
+	console.log(scrollPosition);
+	console.log(wrapperRef.current);
+
+*/

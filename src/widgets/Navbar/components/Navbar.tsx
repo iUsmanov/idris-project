@@ -38,7 +38,13 @@ export const Navbar = memo((props: NavbarProps) => {
 
 	if (authData) {
 		return (
-			<HStack Tag='header' align='center' max className={classNames(cls.navbar, {}, [className])}>
+			<HStack
+				Tag='header'
+				align='center'
+				max
+				className={classNames(cls.navbar, {}, [className])}
+				data-testid='Navbar'
+			>
 				<Text variant='inverted' size='size_m' title={t('Articles App')} className={cls.title} />
 				<HStack max align='center' justify='between'>
 					<AppLink to={getRouteArticleCreate()} variant='inverted'>
@@ -60,6 +66,7 @@ export const Navbar = memo((props: NavbarProps) => {
 			align='center'
 			max
 			className={classNames(cls.navbar, {}, [className])}
+			data-testid='Navbar'
 		>
 			<LoginModal
 				isOpened={isAuthModalOpened}

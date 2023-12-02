@@ -29,6 +29,7 @@ export const SidebarItem = memo((props: SidebarItemProps) => {
 			activeClassName={cls.active}
 			className={classNames(cls.item, { [cls.collapsed]: collapsed }, [className])}
 			to={item.path}
+			data-testid='SidebarItem'
 		>
 			<HStack align='center' justify={collapsed ? 'center' : 'left'}>
 				<Icon Svg={item.Icon} />

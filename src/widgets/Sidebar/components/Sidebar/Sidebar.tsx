@@ -5,7 +5,6 @@ import { Button } from '@/shared/components/Button';
 import { ThemeSwitcher } from '@/features/ThemeSwitcher';
 import { Flex, VStack } from '@/shared/components/Stack';
 import { LangSwitcher } from '@/features/LangSwitcher';
-import { useTranslation } from 'react-i18next';
 import { getSidebarItems } from '../../model/selectors/items';
 import { SidebarItem } from '../SidebarItem/SidebarItem';
 import { useSelector } from 'react-redux';
@@ -18,7 +17,6 @@ interface SidebarProps {
 
 export const Sidebar = memo((props: SidebarProps) => {
 	const { className } = props;
-	const { t } = useTranslation();
 	const [collapsed, setCollapsed] = useState<boolean>(false);
 	const sidebarItemsList = useSelector(getSidebarItems);
 
@@ -28,7 +26,7 @@ export const Sidebar = memo((props: SidebarProps) => {
 			on={<SidebarBeauty />}
 			off={
 				<section
-					data-testid={'sidebar'}
+					data-testid={'Sidebar'}
 					className={classNames(cls.sidebar, { [cls.collapsed]: collapsed }, [className])}
 				>
 					<VStack Tag='nav' gap='16' className={cls.items}>
@@ -39,7 +37,7 @@ export const Sidebar = memo((props: SidebarProps) => {
 					<Button
 						variant='backgroundInverted'
 						className={cls.collapseButton}
-						data-testid={'collapseButton'}
+						data-testid={'CollapseButton'}
 						onClick={() => setCollapsed((prev) => !prev)}
 					>
 						{collapsed ? '>' : '<'}
@@ -50,6 +48,7 @@ export const Sidebar = memo((props: SidebarProps) => {
 						align='center'
 						max
 						className={cls.switchers}
+						data-testid={'Switchers'}
 					>
 						<ThemeSwitcher />
 						<LangSwitcher className={cls.langSwitcher} short={collapsed} />

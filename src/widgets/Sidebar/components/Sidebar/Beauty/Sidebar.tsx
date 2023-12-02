@@ -1,7 +1,6 @@
 import { memo, useState } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Sidebar.module.scss';
-import { useTranslation } from 'react-i18next';
 import { getSidebarItems } from '../../../model/selectors/items';
 import { useSelector } from 'react-redux';
 import { AppLogo } from '@/shared/components/AppLogo';
@@ -18,13 +17,12 @@ export interface SidebarProps {
 
 export const Sidebar = memo((props: SidebarProps) => {
 	const { className } = props;
-	const { t } = useTranslation();
 	const [collapsed, setCollapsed] = useState<boolean>(false);
 	const sidebarItemsList = useSelector(getSidebarItems);
 
 	return (
 		<section
-			data-testid={'sidebar'}
+			data-testid={'Sidebar'}
 			className={classNames(cls.sidebar, { [cls.collapsed]: collapsed }, [className])}
 		>
 			<AppLogo className={cls.appLogo} size={collapsed ? 30 : 50} />
@@ -36,7 +34,7 @@ export const Sidebar = memo((props: SidebarProps) => {
 			<Icon
 				Svg={ArrowIcon}
 				className={cls.collapseButton}
-				data-testid={'collapseButton'}
+				data-testid={'CollapseButton'}
 				onClick={() => setCollapsed((prev) => !prev)}
 				clickable
 			/>
@@ -46,6 +44,7 @@ export const Sidebar = memo((props: SidebarProps) => {
 				align='center'
 				max
 				className={cls.switchers}
+				data-testid={'Switchers'}
 			>
 				<ThemeSwitcher />
 				<LangSwitcher className={cls.langSwitcher} short={collapsed} />

@@ -47,6 +47,7 @@ export const ArticlesInfiniteList = memo((props: ArticlesInfiniteListProps) => {
 
 	return (
 		<StickyContentLayout
+			data-testid='ArticlesInfiniteList'
 			left={<ArticleViewSelector view={view} onViewClick={onChangeView} />}
 			content={
 				<ArticleList
@@ -72,23 +73,3 @@ export const ArticlesInfiniteList = memo((props: ArticlesInfiniteListProps) => {
 		/>
 	);
 });
-/* 
-
-<VStack max gap='16'>
-			<HStack max justify='between'>
-				<VStack gap='16' className={classNames('', {}, [className])}>
-					<ArticlesSort onChangeOrder={onChangeOrder} onChangeSort={onChangeSort} />
-					<ArticlesSearch onChangeSearch={onChangeSearch} />
-					<ArticleTypeTabs onChangeType={onChangeType} />
-				</VStack>
-				<ArticleViewSelector view={view} onViewClick={onChangeView} />
-			</HStack>
-			<ArticleList
-				className={classNames('', {}, [className])}
-				articles={articles}
-				isLoading={isLoading}
-				view={view}
-			/>
-		</VStack>
-
-*/

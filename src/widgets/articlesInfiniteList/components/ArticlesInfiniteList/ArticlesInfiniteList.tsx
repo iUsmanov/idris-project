@@ -50,7 +50,7 @@ export const ArticlesInfiniteList = memo((props: ArticlesInfiniteListProps) => {
 			name='isBeautyDesign'
 			on={<ArticlesInfiniteListBeauty {...props} />}
 			off={
-				<VStack max gap='16'>
+				<VStack max gap='16' data-testid='ArticlesInfiniteList'>
 					<HStack max justify='between'>
 						<VStack gap='16' className={classNames('', {}, [className])}>
 							<ArticlesSort onChangeOrder={onChangeOrder} onChangeSort={onChangeSort} />

@@ -18,7 +18,12 @@ export const PageError = memo((props: PageErrorProps) => {
 	};
 
 	return (
-		<VStack justify='center' align='center' className={classNames(cls.pageError, {}, [className])}>
+		<VStack
+			data-testid='PageError'
+			justify='center'
+			align='center'
+			className={classNames(cls.pageError, {}, [className])}
+		>
 			<h1>{t('Произошла непредвиденная ошибка')}</h1>
 			<Button onClick={reload}>{t('Обновить страницу')}</Button>
 		</VStack>

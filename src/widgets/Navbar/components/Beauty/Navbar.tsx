@@ -28,7 +28,13 @@ export const Navbar = memo((props: NavbarProps) => {
 
 	if (authData) {
 		return (
-			<HStack Tag='header' align='start' max className={classNames(cls.navbar, {}, [className])}>
+			<HStack
+				Tag='header'
+				align='start'
+				max
+				className={classNames(cls.navbar, {}, [className])}
+				data-testid='Navbar'
+			>
 				<NotificationsPopup />
 				<AvatarDropdown />
 			</HStack>
@@ -42,6 +48,7 @@ export const Navbar = memo((props: NavbarProps) => {
 			align='center'
 			max
 			className={classNames(cls.navbar, {}, [className])}
+			data-testid='Navbar'
 		>
 			<LoginModal
 				isOpened={isAuthModalOpened}

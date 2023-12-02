@@ -12,6 +12,7 @@ export const PageLoader = memo((props: PageLoaderBeautyProps) => {
 	const { hasSidebar = true } = props;
 	return (
 		<MainLayout
+			data-testid='PageLoader'
 			header={
 				<HStack className={cls.header}>
 					<Skeleton width={40} height={40} borderRadius='50%' />

@@ -34,6 +34,7 @@ export const SidebarItem = memo((props: SidebarItemProps) => {
 					variant='inverted'
 					className={classNames(cls.item, { [cls.collapsed]: collapsed }, [])}
 					to={item.path}
+					data-testid='SidebarItem'
 				>
 					<HStack align='center'>
 						<item.Icon className={cls.icon} />

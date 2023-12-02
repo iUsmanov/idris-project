@@ -3,14 +3,10 @@ import { Sidebar } from './Sidebar';
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender';
 import { userEvent } from '@testing-library/user-event';
 import { mockUser } from '@/entities/User/testing';
+import { setFeatureFlags } from '@/shared/lib/featureFlags';
 
 describe('Sidebar.test', () => {
-	// test('Sidebar test', () => {
-	// Deprecated
-	// 	const SidebarWithTranslation = withTranslation('translation')(Sidebar);
-	// 	componentRender(<SidebarWithTranslation />);
-	// 	expect(screen.getByTestId('Sidebar')).toBeInTheDocument();
-	// });
+	setFeatureFlags({ isBeautyDesign: true });
 	test('Component is rendered', async () => {
 		await componentRender(<Sidebar />, {
 			wrapInAct: true,
@@ -18,7 +14,7 @@ describe('Sidebar.test', () => {
 
 		expect(screen.getByTestId('Sidebar')).toBeInTheDocument();
 		expect(screen.getByTestId('Switchers')).toHaveClass('directionRow');
-		expect(screen.getByTestId('CollapseButton')).toHaveTextContent('<');
+		// expect(screen.getByTestId('CollapseButton')).toHaveTextContent('<');
 		expect(screen.getAllByTestId('SidebarItem')).toHaveLength(2);
 		expect(screen.getByTestId('LangSwitcher')).toHaveTextContent('Язык');
 		expect(screen.getByTestId('ThemeSwitcher')).toBeInTheDocument();
@@ -47,7 +43,7 @@ describe('Sidebar.test', () => {
 
 		expect(screen.getByTestId('LangSwitcher')).toHaveTextContent('Короткий язык');
 		expect(sidebar).toHaveClass('collapsed');
-		expect(collapseButton).toHaveTextContent('>');
+		// expect(collapseButton).toHaveTextContent('>');
 		expect(screen.getByTestId('Switchers')).toHaveClass('directionColumn');
 	});
 	test('Is sidebar collapsable and uncollapseble', async () => {
@@ -63,14 +59,14 @@ describe('Sidebar.test', () => {
 
 		expect(sidebar).toHaveClass('collapsed');
 		expect(langSwitcher).toHaveTextContent('Короткий язык');
-		expect(collapseButton).toHaveTextContent('>');
+		// expect(collapseButton).toHaveTextContent('>');
 		expect(switchers).toHaveClass('directionColumn');
 
 		await userEvent.click(collapseButton);
 
 		expect(sidebar).not.toHaveClass('collapsed');
 		expect(langSwitcher).toHaveTextContent('Язык');
-		expect(collapseButton).toHaveTextContent('<');
+		// expect(collapseButton).toHaveTextContent('<');
 		expect(switchers).toHaveClass('directionRow');
 	});
 });
