@@ -46,6 +46,7 @@ export const ArticleDetailsPage = memo(() => {
 			name='isBeautyDesign'
 			on={
 				<StickyContentLayout
+					data-testid='ArticleDetailsPage'
 					content={
 						<Page className={classNames('', {}, [])}>
 							<VStack gap='16' className={cls.articleDetails}>
@@ -66,7 +67,7 @@ export const ArticleDetailsPage = memo(() => {
 				/>
 			}
 			off={
-				<Page className={classNames('', {}, [])}>
+				<Page className={classNames('', {}, [])} data-testid='ArticleDetailsPage'>
 					<VStack gap='16' max>
 						<ArticleDetailsHeader />
 						<ArticleDetails />

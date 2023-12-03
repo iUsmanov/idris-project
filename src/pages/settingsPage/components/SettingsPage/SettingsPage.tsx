@@ -15,7 +15,7 @@ export const SettingsPage = memo((props: SettingsPageProps) => {
 	const { t } = useTranslation('settings');
 
 	return (
-		<Page className={classNames('', {}, [className])}>
+		<Page className={classNames('', {}, [className])} data-testid='SettingsPage'>
 			<VStack gap='16'>
 				<Text size='size_l' title={t('Настройки пользователя')} />
 				<UIDesignSwitcher />

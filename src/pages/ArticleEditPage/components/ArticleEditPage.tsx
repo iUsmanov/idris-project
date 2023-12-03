@@ -8,5 +8,9 @@ export const ArticleEditPage = memo(() => {
 	const { id } = useParams<{ id: string }>();
 	const isEdit = Boolean(id);
 
-	return <Page>{isEdit ? t('Редактирование статьи с ID = ') + id : t('Создание новой статьи')}</Page>;
+	return (
+		<Page data-testid='ArticleEditPage'>
+			{isEdit ? t('Редактирование статьи с ID = ') + id : t('Создание новой статьи')}
+		</Page>
+	);
 });

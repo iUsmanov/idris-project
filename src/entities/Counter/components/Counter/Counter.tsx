@@ -22,7 +22,7 @@ export const Counter = memo(() => {
 	};
 
 	return (
-		<div>
+		<div data-testid={'Counter'}>
 			<h1 className={cls.title}>This is a counter</h1>
 			<h2 data-testid={'count'}>{value}</h2>
 			<Button onClick={increment}>{t('increment')}</Button>
