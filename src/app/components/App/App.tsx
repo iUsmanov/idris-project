@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { AppRouter } from './providers/router/components/AppRouter/AppRouter';
+import { AppRouter } from '../../providers/router/components/AppRouter/AppRouter';
 import { Navbar } from '@/widgets/Navbar';
 import { Sidebar } from '@/widgets/Sidebar';
 import { HStack } from '@/shared/components/Stack';
@@ -8,9 +8,9 @@ import { useSelector } from 'react-redux';
 import { PageLoader } from '@/widgets/PageLoader';
 import { ToggleFeatures } from '@/shared/lib/featureFlags';
 import { MainLayout } from '@/shared/layouts';
-import { useAppToolbar } from './lib/hooks/useAppToolbar/useAppToolbar';
-import { withTheme } from './providers/ThemeProvider';
-import { useApp } from './lib/hooks/useApp/useApp';
+import { useAppToolbar } from '../../lib/hooks/useAppToolbar/useAppToolbar';
+import { withTheme } from '../../providers/ThemeProvider';
+import { useApp } from '../../lib/hooks/useApp/useApp';
 
 const App = memo(() => {
 	const inited = useSelector(getUserInited);
@@ -22,7 +22,7 @@ const App = memo(() => {
 	}
 
 	return (
-		<div className={'app'}>
+		<div className={'app'} data-testid='App'>
 			<ToggleFeatures
 				name='isBeautyDesign'
 				on={
