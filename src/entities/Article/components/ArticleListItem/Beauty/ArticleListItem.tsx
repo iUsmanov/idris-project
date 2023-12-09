@@ -56,7 +56,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 				</HStack>
 				<Text size='size_l' bold text={article.title} />
 				<Text size='size_m' text={article.subtitle} />
-				<div className={cls.image} data-testid='Avatar'>
+				<div className={cls.image}>
 					<AppImage
 						loadingFallback={<Skeleton width={'100%'} height={250} />}
 						src={article.img}

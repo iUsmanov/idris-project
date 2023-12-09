@@ -4,22 +4,20 @@ import { LangSwitcher } from './LangSwitcher';
 import { userEvent } from '@testing-library/user-event';
 import i18next from 'i18next';
 
-const mockSetReadonly = jest.fn();
-
 describe('LangSwitcher.test', () => {
 	test('Component is rendered. Not profile of this user', async () => {
 		await componentRender(<LangSwitcher />, {
 			wrapInAct: true,
 		});
 
-		expect(screen.getByTestId('Button')).toHaveTextContent('Язык');
+		expect(screen.getByTestId('LangSwitcher')).toHaveTextContent('Язык');
 	});
 	test('Component is rendered. Not profile of this user', async () => {
 		await componentRender(<LangSwitcher short />, {
 			wrapInAct: true,
 		});
 
-		expect(screen.getByTestId('Button')).toHaveTextContent('Короткий язык');
+		expect(screen.getByTestId('LangSwitcher')).toHaveTextContent('Короткий язык');
 	});
 
 	test('Component is rendered. Not profile of this user', async () => {
@@ -27,7 +25,7 @@ describe('LangSwitcher.test', () => {
 			wrapInAct: true,
 		});
 
-		const button = screen.getByTestId('Button');
+		const button = screen.getByTestId('LangSwitcher');
 
 		expect(i18next.language).toBe('ru');
 

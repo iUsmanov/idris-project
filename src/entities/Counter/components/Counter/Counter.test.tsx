@@ -21,9 +21,9 @@ describe('Counter.test', () => {
 				value: 10,
 			},
 		};
-		componentRender(<Counter />, { initialState });
+		await componentRender(<Counter />, { initialState, wrapInAct: true });
 
-		await userEvent.click(screen.getByText('incrementor'));
+		await userEvent.click(screen.getByText('increment'));
 
 		expect(screen.getByTestId('count')).toHaveTextContent('11');
 	});
@@ -33,9 +33,9 @@ describe('Counter.test', () => {
 				value: 10,
 			},
 		};
-		componentRender(<Counter />, { initialState });
+		await componentRender(<Counter />, { initialState, wrapInAct: true });
 
-		await userEvent.click(screen.getByText('decrementor'));
+		await userEvent.click(screen.getByText('decrement'));
 
 		expect(screen.getByTestId('count')).toHaveTextContent('9');
 	});

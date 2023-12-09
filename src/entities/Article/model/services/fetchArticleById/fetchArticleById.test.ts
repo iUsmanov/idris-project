@@ -14,7 +14,7 @@ describe('fetchArticleById.test', () => {
 		expect(action.meta.requestStatus).toEqual('fulfilled');
 		expect(action.payload).toEqual(mockArticle);
 	});
-	test('Success load', async () => {
+	test('Rejected', async () => {
 		const thunk = new TestAsyncThunk(fetchArticleById);
 		thunk.api.get.mockResolvedValue({ status: 403 });
 		const action = await thunk.callThunk('1');

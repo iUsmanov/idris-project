@@ -1,45 +1,8 @@
-import { Comment } from '@/entities/Comment/testing';
+import { Comment, mockComments } from '@/entities/Comment/testing';
 import { fetchArticleCommentsByArticleId } from '../services/fetchArticleCommentsByArticleId/fetchArticleCommentsByArticleId';
 import { ArticleCommentsListSchema } from '../types/articleCommentsListSchema';
 import { articleCommentsListReducer } from './articleCommentsListSlice';
-import Image from '@/shared/assets/tests/storybook.jpg';
 import { sendArticleComment } from '../services/sendArticleComment/sendArticleComment';
-
-const comments: Comment[] = [
-	{
-		id: '1',
-		text: 'some comment',
-		articleId: '1',
-		userId: '1',
-		user: {
-			id: '1',
-			username: 'admin',
-			avatar: Image,
-		},
-	},
-	{
-		id: '2',
-		text: 'some comment',
-		articleId: '1',
-		userId: '1',
-		user: {
-			id: '1',
-			username: 'admin',
-			avatar: Image,
-		},
-	},
-	{
-		id: '3',
-		text: 'some comment',
-		articleId: '1',
-		userId: '1',
-		user: {
-			id: '1',
-			username: 'admin',
-			avatar: Image,
-		},
-	},
-];
 
 describe('articleCommentsListSlice.test', () => {
 	test('fetchArticleCommentsByArticleId pending', () => {
@@ -62,14 +25,14 @@ describe('articleCommentsListSlice.test', () => {
 		const state: DeepPartial<ArticleCommentsListSchema> = {
 			isCommentsLoading: true,
 		};
-		const payload: Comment[] = comments;
+		const payload: Comment[] = mockComments;
 		const expects: DeepPartial<ArticleCommentsListSchema> = {
 			isCommentsLoading: false,
 			ids: ['1', '2', '3'],
 			entities: {
-				'1': comments[0],
-				'2': comments[1],
-				'3': comments[2],
+				'1': mockComments[0],
+				'2': mockComments[1],
+				'3': mockComments[2],
 			},
 		};
 		expect(

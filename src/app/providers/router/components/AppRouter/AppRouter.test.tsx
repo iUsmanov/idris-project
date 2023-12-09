@@ -1,5 +1,5 @@
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import { AppRouter } from './AppRouter';
 import {
 	getRouteAbout,
@@ -82,7 +82,9 @@ describe('AppRouter.test', () => {
 		});
 
 		const page = await screen.findByTestId('ProfilePage');
-		expect(page).toBeInTheDocument();
+		await waitFor(() => {
+			expect(page).toBeInTheDocument();
+		});
 	});
 
 	test('Редирект пользователя, не имеющего нужную роль, на ForbiddenPage', async () => {

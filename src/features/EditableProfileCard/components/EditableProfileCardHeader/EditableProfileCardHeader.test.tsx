@@ -1,6 +1,6 @@
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender';
 import { screen } from '@testing-library/react';
-import { mockUser, userReducer } from '@/entities/User/testing';
+import { mockUser } from '@/entities/User/testing';
 import { EditableProfileCardHeader } from './EditableProfileCardHeader';
 import { mockProfile } from '@/entities/Profile/testing';
 import { profileActions, profileReducer } from '../../model/slice/profileSlice';
@@ -32,7 +32,6 @@ describe('EditableProfileCardHeader.test', () => {
 				},
 			},
 			asyncReducers: {
-				user: userReducer,
 				profile: profileReducer,
 			},
 		});
@@ -55,7 +54,6 @@ describe('EditableProfileCardHeader.test', () => {
 					},
 				},
 				asyncReducers: {
-					user: userReducer,
 					profile: profileReducer,
 				},
 			}
@@ -82,7 +80,6 @@ describe('EditableProfileCardHeader.test', () => {
 				},
 			},
 			asyncReducers: {
-				user: userReducer,
 				profile: profileReducer,
 			},
 		});
@@ -105,7 +102,6 @@ describe('EditableProfileCardHeader.test', () => {
 				},
 			},
 			asyncReducers: {
-				user: userReducer,
 				profile: profileReducer,
 			},
 		});
@@ -128,7 +124,6 @@ describe('EditableProfileCardHeader.test', () => {
 				},
 			},
 			asyncReducers: {
-				user: userReducer,
 				profile: profileReducer,
 			},
 		});
@@ -151,7 +146,6 @@ describe('EditableProfileCardHeader.test', () => {
 				},
 			},
 			asyncReducers: {
-				user: userReducer,
 				profile: profileReducer,
 			},
 		});
@@ -174,7 +168,6 @@ describe('EditableProfileCardHeader.test', () => {
 				},
 			},
 			asyncReducers: {
-				user: userReducer,
 				profile: profileReducer,
 			},
 		});

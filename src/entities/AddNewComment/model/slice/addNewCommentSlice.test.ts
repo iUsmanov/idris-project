@@ -1,7 +1,7 @@
 import { AddNewCommentSchema } from '../types/addNewComment';
 import { addNewCommentActions, addNewCommentReducer } from './addNewCommentSlice';
 
-describe('articleCommentsSlice.test', () => {
+describe('addNewCommentSlice.test', () => {
 	test('set text', () => {
 		const state: DeepPartial<AddNewCommentSchema> = {
 			text: '',

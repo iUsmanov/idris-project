@@ -38,7 +38,7 @@ describe('ArticlesSearch.test', () => {
 			},
 		});
 
-		await userEvent.type(screen.getByTestId('Input'), 'Text');
+		await userEvent.type(screen.getByTestId('ArticlesSearch'), 'Text');
 		expect(mockSetSearch).toHaveBeenCalledWith('T');
 		expect(mockSetSearch).toHaveBeenCalledWith('e');
 		expect(mockSetSearch).toHaveBeenCalledWith('x');

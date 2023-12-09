@@ -17,7 +17,7 @@ jest.mock('react-redux', () => ({
 	useDispatch: () => mockDispatch,
 }));
 
-describe('ArticlesSort.test', () => {
+describe('ArticlesSort2.test', () => {
 	test('Actions are really called to store', async () => {
 		jest.spyOn(articlesSortActions, 'setSort').mockImplementation(mockSetSort);
 		jest.spyOn(articlesSortActions, 'setOrder').mockImplementation(mockSetOrder);
