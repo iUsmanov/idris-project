@@ -1,28 +1,16 @@
 import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 import { fetchProfileData } from './fetchProfileData';
-import { Currency } from '@/entities/Currency/testing';
-import { Country } from '@/entities/Country/testing';
-import { Image } from '@/shared/assets/tests/storybook.jpg';
+import { mockProfile } from '@/entities/Profile/testing';
 
 describe('fetchProfileData.test', () => {
 	test('Success load', async () => {
-		const data = {
-			age: 30,
-			avatar: Image,
-			city: 'Moscow',
-			currency: Currency.RUB,
-			country: Country.ARMENIA,
-			first: 'Jackson',
-			lastname: 'Styled',
-			username: 'Chotkiy pocik',
-		};
 		const thunk = new TestAsyncThunk(fetchProfileData);
-		thunk.api.get.mockResolvedValue({ data });
+		thunk.api.get.mockResolvedValue({ data: mockProfile });
 		const action = await thunk.callThunk('1');
 
 		expect(thunk.dispatch).toHaveBeenCalledTimes(2);
 		expect(thunk.api.get).toHaveBeenCalled();
-		expect(action.payload).toEqual(data);
+		expect(action.payload).toEqual(mockProfile);
 		expect(action.meta.requestStatus).toEqual('fulfilled');
 	});
 	test('Rejected', async () => {

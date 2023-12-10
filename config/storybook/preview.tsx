@@ -16,6 +16,37 @@ const preview: Preview = {
 				date: /Date$/,
 			},
 		},
+		// mockAddonConfigs: {
+		// 	globalMockData: [
+		// 		{
+		// 			// An array of mock objects which will add in every story
+		// 			url: `https://storybook-api.story/notifications`,
+		// 			method: 'GET',
+		// 			status: 200,
+		// 			response: {
+		// 				data: mockNotifications,
+		// 			},
+		// 		},
+		// 		{
+		// 			url: `https://storybook-api.story/article-ratings?userId=&articleId=1`,
+		// 			method: 'GET',
+		// 			status: 200,
+		// 			response: {
+		// 				data: [mockRating, mockRating],
+		// 			},
+		// 		},
+		// 		{
+		// 			url: `https://storybook-api.story/articles?_limit=8&_expand=user`,
+		// 			method: 'GET',
+		// 			status: 200,
+		// 			response: { data: mockArticles },
+		// 		},
+		// 	],
+		// 	ignoreQueryParams: false, // Whether or not to ignore query parameters globally
+		// 	refreshStoryOnUpdate: false, // This property re-renders the story if there's any data changes
+		// 	disableUsingOriginal: false, // This property disables the toggle (on/off) option to use the original endpoint
+		// 	disable: true, // This property disables the panel from all the stories
+		// },
 	},
 	decorators: [
 		SuspenseDecorator,

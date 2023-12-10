@@ -37,8 +37,11 @@ describe('AppImage', () => {
 
 	test('Image successfully loaded', async () => {
 		window.Image = FakeImageSuccess as any;
-		componentRender(
-			<AppImage src={'test.jpg'} errorFallback={errorFallback} loadingFallback={loadingFallback} />
+		await componentRender(
+			<AppImage src={'test.jpg'} errorFallback={errorFallback} loadingFallback={loadingFallback} />,
+			{
+				wrapInAct: true,
+			}
 		);
 
 		await waitFor(() => {
@@ -50,8 +53,11 @@ describe('AppImage', () => {
 
 	test('It`s throwed error', async () => {
 		window.Image = FakeImageError as any;
-		componentRender(
-			<AppImage src={'test.jpg'} errorFallback={errorFallback} loadingFallback={loadingFallback} />
+		await componentRender(
+			<AppImage src={'test.jpg'} errorFallback={errorFallback} loadingFallback={loadingFallback} />,
+			{
+				wrapInAct: true,
+			}
 		);
 
 		await waitFor(() => {
@@ -62,8 +68,11 @@ describe('AppImage', () => {
 	});
 
 	test('Loading', async () => {
-		componentRender(
-			<AppImage src={'test.jpg'} errorFallback={errorFallback} loadingFallback={loadingFallback} />
+		await componentRender(
+			<AppImage src={'test.jpg'} errorFallback={errorFallback} loadingFallback={loadingFallback} />,
+			{
+				wrapInAct: true,
+			}
 		);
 
 		expect(screen.queryByTestId('ErrorFallback')).toBeNull();

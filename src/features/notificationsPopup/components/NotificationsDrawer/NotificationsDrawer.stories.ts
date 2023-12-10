@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { NotificationsDrawer } from './NotificationsDrawer';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
+import { mockStorybookGetNotificationsSuccess } from '@/shared/mocks/storybook/requests';
 
 const meta = {
 	title: 'shared/NotificationsDrawer',
@@ -8,6 +9,9 @@ const meta = {
 	tags: ['autodocs'],
 	argTypes: {},
 	args: {},
+	parameters: {
+		mockData: [mockStorybookGetNotificationsSuccess],
+	},
 } satisfies Meta<typeof NotificationsDrawer>;
 
 export default meta;

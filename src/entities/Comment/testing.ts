@@ -1,6 +1,8 @@
 import type { Comment } from './model/types/comment';
 import Image from '@/shared/assets/tests/storybook.jpg';
 
+const pathToAvatar = '../../shared/assets/tests/storybook.jpg';
+
 export type { Comment };
 export const mockComment: Comment = {
 	id: '1',

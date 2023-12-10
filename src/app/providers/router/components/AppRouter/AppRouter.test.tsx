@@ -80,8 +80,10 @@ describe('AppRouter.test', () => {
 				},
 			},
 		});
-
-		const page = await screen.findByTestId('ProfilePage');
+		let page!: HTMLElement;
+		await waitFor(() => {
+			page = screen.getByTestId('ProfilePage');
+		});
 		await waitFor(() => {
 			expect(page).toBeInTheDocument();
 		});

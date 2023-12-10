@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { NotificationsPopup } from './NotificationsPopup';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
+import { mockStorybookGetNotificationsSuccess } from '@/shared/mocks/storybook/requests';
 
 const meta = {
 	title: 'features/NotificationsPopup',
@@ -8,6 +9,9 @@ const meta = {
 	tags: ['autodocs'],
 	argTypes: {},
 	args: {},
+	parameters: {
+		mockData: [mockStorybookGetNotificationsSuccess],
+	},
 } satisfies Meta<typeof NotificationsPopup>;
 
 export default meta;

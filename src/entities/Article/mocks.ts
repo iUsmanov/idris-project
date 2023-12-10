@@ -1,6 +1,8 @@
 import { EntityState } from '@reduxjs/toolkit';
 import { Article } from './model/types/article';
-// import Image from '@/shared/assets/tests/storybook.jpg';
+import Image from '@/shared/assets/tests/storybook.jpg';
+
+const pathToAvatar = '../../shared/assets/tests/storybook.jpg';
 
 export const mockArticles: Article[] = [
 	{
@@ -15,7 +17,7 @@ export const mockArticles: Article[] = [
 		user: {
 			id: '1',
 			username: 'Autor',
-			avatar: 'shared/assets/tests/storybook.jpg',
+			avatar: Image,
 		},
 		blocks: [
 			{
@@ -90,7 +92,7 @@ export const mockArticles: Article[] = [
 		user: {
 			id: '1',
 			username: 'Autor',
-			avatar: 'shared/assets/tests/storybook.jpg',
+			avatar: Image,
 		},
 		blocks: [
 			{
@@ -117,7 +119,7 @@ export const mockArticles: Article[] = [
 		user: {
 			id: '1',
 			username: 'Autor',
-			avatar: 'shared/assets/tests/storybook.jpg',
+			avatar: Image,
 		},
 		blocks: [
 			{
@@ -144,7 +146,7 @@ export const mockArticles: Article[] = [
 		user: {
 			id: '1',
 			username: 'Autor',
-			avatar: 'shared/assets/tests/storybook.jpg',
+			avatar: Image,
 		},
 		blocks: [
 			{

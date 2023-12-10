@@ -3,6 +3,8 @@ import { Avatar } from './Avatar';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
 import Image from '@/shared/assets/tests/storybook.jpg';
 
+const pathToAvatar = '../../assets/tests/storybook.jpg';
+
 const meta = {
 	title: 'shared/Avatar',
 	component: Avatar,

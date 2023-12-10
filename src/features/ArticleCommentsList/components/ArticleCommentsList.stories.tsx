@@ -2,45 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { ArticleCommentsList } from './ArticleCommentsList';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator';
-import { Comment } from '@/entities/Comment/testing';
-import Image from '@/shared/assets/tests/storybook.jpg';
-import { Dictionary } from '@reduxjs/toolkit';
-
-const entities: Dictionary<Comment> = {
-	'1': {
-		id: '1',
-		text: 'some comment',
-		articleId: '1',
-		userId: '1',
-		user: {
-			id: '1',
-			username: 'admin',
-			avatar: Image,
-		},
-	},
-	'2': {
-		id: '2',
-		text: 'some comment',
-		articleId: '1',
-		userId: '1',
-		user: {
-			id: '1',
-			username: 'admin',
-			avatar: Image,
-		},
-	},
-	'3': {
-		id: '3',
-		text: 'some comment',
-		articleId: '1',
-		userId: '1',
-		user: {
-			id: '1',
-			username: 'admin',
-			avatar: Image,
-		},
-	},
-};
+import { mockCommentsEntities } from '../mocks';
 
 const meta = {
 	title: 'features/ArticleCommentsList',
@@ -57,8 +19,8 @@ const meta = {
 	decorators: [
 		StoreDecorator({
 			articleCommentsList: {
-				ids: ['1', '2', '3'],
-				entities: entities,
+				ids: mockCommentsEntities.ids,
+				entities: mockCommentsEntities.entities,
 				commentsError: undefined,
 				sendError: undefined,
 				isCommentsLoading: false,
@@ -119,8 +81,8 @@ export const SendLoadingLight: Story = {
 	decorators: [
 		StoreDecorator({
 			articleCommentsList: {
-				ids: ['1', '2', '3'],
-				entities: entities,
+				ids: mockCommentsEntities.ids,
+				entities: mockCommentsEntities.entities,
 				commentsError: undefined,
 				sendError: undefined,
 				isCommentsLoading: false,
@@ -141,8 +103,8 @@ export const CommenstErrorLight: Story = {
 	decorators: [
 		StoreDecorator({
 			articleCommentsList: {
-				ids: ['1', '2', '3'],
-				entities: entities,
+				ids: mockCommentsEntities.ids,
+				entities: mockCommentsEntities.entities,
 				commentsError: 'error',
 				sendError: undefined,
 				isCommentsLoading: false,
@@ -163,8 +125,8 @@ export const SendErrorLight: Story = {
 	decorators: [
 		StoreDecorator({
 			articleCommentsList: {
-				ids: ['1', '2', '3'],
-				entities: entities,
+				ids: mockCommentsEntities.ids,
+				entities: mockCommentsEntities.entities,
 				commentsError: undefined,
 				sendError: 'error',
 				isCommentsLoading: false,

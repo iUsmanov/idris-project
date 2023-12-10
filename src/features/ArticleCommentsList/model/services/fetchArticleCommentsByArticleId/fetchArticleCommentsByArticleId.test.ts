@@ -1,51 +1,16 @@
-import { Comment } from '@/entities/Comment/testing';
-import Image from '@/shared/assets/tests/storybook.jpg';
 import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 import { fetchArticleCommentsByArticleId } from './fetchArticleCommentsByArticleId';
-const comments: Comment[] = [
-	{
-		id: '1',
-		text: 'some comment',
-		articleId: '1',
-		userId: '1',
-		user: {
-			id: '1',
-			username: 'admin',
-			avatar: Image,
-		},
-	},
-	{
-		id: '2',
-		text: 'some comment',
-		articleId: '1',
-		userId: '1',
-		user: {
-			id: '1',
-			username: 'admin',
-			avatar: Image,
-		},
-	},
-	{
-		id: '3',
-		text: 'some comment',
-		articleId: '1',
-		userId: '1',
-		user: {
-			id: '1',
-			username: 'admin',
-			avatar: Image,
-		},
-	},
-];
+import { mockComments } from '@/entities/Comment/testing';
+
 describe('fetchArticleCommentsByArticleId.test', () => {
 	test('Success load', async () => {
 		const thunk = new TestAsyncThunk(fetchArticleCommentsByArticleId);
-		thunk.api.get.mockResolvedValue({ data: comments });
+		thunk.api.get.mockResolvedValue({ data: mockComments });
 		const action = await thunk.callThunk('1');
 
 		expect(thunk.dispatch).toHaveBeenCalledTimes(2);
 		expect(thunk.api.get).toHaveBeenCalled();
-		expect(action.payload).toEqual(comments);
+		expect(action.payload).toEqual(mockComments);
 		expect(action.meta.requestStatus).toBe('fulfilled');
 	});
 	test('Error load', async () => {

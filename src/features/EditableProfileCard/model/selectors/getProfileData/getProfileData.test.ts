@@ -1,27 +1,15 @@
 import { StateSchema } from '@/app/providers/StoreProvider/testing';
-import { Country } from '@/entities/Country/testing';
-import { Currency } from '@/entities/Currency/testing';
-import Image from '@/shared/assets/tests/storybook.jpg';
 import { getProfileData } from './getProfileData';
+import { mockProfile } from '@/entities/Profile/testing';
 
 describe('getProfileData.test', () => {
 	test('getProfileData', () => {
-		const data = {
-			age: 30,
-			avatar: Image,
-			city: 'Moscow',
-			currency: Currency.RUB,
-			country: Country.ARMENIA,
-			first: 'Jackson',
-			lastname: 'Styled',
-			username: 'Chotkiy pocik',
-		};
 		const state: DeepPartial<StateSchema> = {
 			profile: {
-				data,
+				data: mockProfile,
 			},
 		};
-		expect(getProfileData(state as StateSchema)).toEqual(data);
+		expect(getProfileData(state as StateSchema)).toEqual(mockProfile);
 	});
 	test('With empty state', () => {
 		const state: DeepPartial<StateSchema> = {};

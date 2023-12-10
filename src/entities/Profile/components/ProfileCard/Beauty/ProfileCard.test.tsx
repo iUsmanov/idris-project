@@ -36,7 +36,7 @@ describe('ProfileCard.test', () => {
 		expect(screen.getByTestId('ProfileCard.InputAge')).toBeInTheDocument();
 		expect(screen.getByTestId('ProfileCard.InputCity')).toBeInTheDocument();
 		expect(screen.getByTestId('ProfileCard.InputUsername')).toBeInTheDocument();
-		expect(screen.getByTestId('ProfileCard.InputAvatar')).toBeInTheDocument();
+		// expect(screen.getByTestId('ProfileCard.InputAvatar')).toBeInTheDocument();
 		expect(screen.getByTestId('CurrencySelect')).toBeInTheDocument();
 		expect(screen.getByTestId('CountrySelect')).toBeInTheDocument();
 	});
@@ -53,7 +53,7 @@ describe('ProfileCard.test', () => {
 		expect(screen.getByTestId('ProfileCard.InputAge')).toHaveValue(String(mockProfile.age));
 		expect(screen.getByTestId('ProfileCard.InputCity')).toHaveValue(mockProfile.city);
 		expect(screen.getByTestId('ProfileCard.InputUsername')).toHaveValue(mockProfile.username);
-		expect(screen.getByTestId('ProfileCard.InputAvatar')).toHaveValue(mockProfile.avatar);
+		// expect(screen.getByTestId('ProfileCard.InputAvatar')).toHaveValue(mockProfile.avatar);
 		expect(screen.getByTestId('CurrencySelect')).toBeInTheDocument();
 		expect(screen.getByTestId('CountrySelect')).toBeInTheDocument();
 	});

@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { ArticleRecommendations } from './ArticleRecommendations';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
-import { articles } from '@/entities/Article/testing';
+import { mockStorybookGetArticleRecommendationsSuccess } from '@/shared/mocks/storybook/requests';
 
 const meta = {
 	title: 'shared/ArticleRecommendations',
@@ -10,14 +10,7 @@ const meta = {
 	argTypes: {},
 	args: {},
 	parameters: {
-		mockData: [
-			{
-				url: `${__API__}/articles?_limit=8`,
-				method: 'GET',
-				status: 200,
-				response: articles,
-			},
-		],
+		mockData: [mockStorybookGetArticleRecommendationsSuccess],
 	},
 } satisfies Meta<typeof ArticleRecommendations>;
 

@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { ArticleRating } from './ArticleRating';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
+import { mockStorybookGetArticleRatingSuccess } from '@/shared/mocks/storybook/requests';
 
 const meta = {
 	title: 'features/ArticleRating',
@@ -9,6 +10,9 @@ const meta = {
 	argTypes: {},
 	args: {
 		articleId: '1',
+	},
+	parameters: {
+		mockData: [mockStorybookGetArticleRatingSuccess],
 	},
 } satisfies Meta<typeof ArticleRating>;
 

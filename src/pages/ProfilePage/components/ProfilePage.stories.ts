@@ -2,9 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { ProfilePage } from './ProfilePage';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator';
-import { Currency } from '@/entities/Currency/testing';
-import { Country } from '@/entities/Country/testing';
-import Image from '@/shared/assets/tests/storybook.jpg';
+import { mockProfile } from '@/entities/Profile/testing';
 
 const meta = {
 	title: 'pages/ProfilePage',
@@ -15,16 +13,7 @@ const meta = {
 	decorators: [
 		StoreDecorator({
 			profile: {
-				formData: {
-					age: 30,
-					avatar: Image,
-					city: 'Moscow',
-					currency: Currency.RUB,
-					country: Country.ARMENIA,
-					first: 'Jackson',
-					lastname: 'Styled',
-					username: 'Chotkiy pocik',
-				},
+				formData: mockProfile,
 				readonly: true,
 				data: {
 					id: '1',
@@ -91,16 +80,7 @@ export const EditingLight: Story = {
 		StoreDecorator({
 			profile: {
 				readonly: false,
-				formData: {
-					age: 30,
-					avatar: Image,
-					city: 'Moscow',
-					currency: Currency.RUB,
-					country: Country.ARMENIA,
-					first: 'Jackson',
-					lastname: 'Styled',
-					username: 'Chotkiy pocik',
-				},
+				formData: mockProfile,
 				data: {
 					id: '1',
 				},
@@ -119,16 +99,7 @@ export const ValidateErrorsLight: Story = {
 	decorators: [
 		StoreDecorator({
 			profile: {
-				formData: {
-					age: 30,
-					avatar: Image,
-					city: '',
-					currency: Currency.RUB,
-					country: Country.ARMENIA,
-					first: '',
-					lastname: 'Styled',
-					username: 'Chotkiy pocik',
-				},
+				formData: mockProfile,
 				validateErrors: ['incorrectFirstName', 'incorrectCity'],
 				data: {
 					id: '1',

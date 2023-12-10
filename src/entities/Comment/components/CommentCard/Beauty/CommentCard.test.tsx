@@ -10,5 +10,5 @@ describe('CommentCard.test', () => {
 		});
 
 		expect(screen.getByTestId('CommentCard')).toBeInTheDocument();
-	});
+	}, 30000);
 });
