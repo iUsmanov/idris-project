@@ -1,8 +1,4 @@
-// !This code is copied from internet. I don't undestand it.
-// !This code is copied from internet. I don't undestand it.
-// !This code is copied from internet. I don't undestand it.
-// !This code is copied from internet. I don't undestand it.
-// !This code is copied from internet. I don't undestand it.
+// Friend's code
 import type { OutputSelector, Selector } from '@reduxjs/toolkit';
 import type { StateSchema } from '@/app/providers/StoreProvider';
 import { useSelector } from 'react-redux';

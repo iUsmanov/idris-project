@@ -1,3 +1,4 @@
+# Friend's code
 name: linting, testing, building
 on:
    push:

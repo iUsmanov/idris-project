@@ -1,3 +1,4 @@
+// Friend's code
 import { ReactNode, memo, useCallback, useEffect } from 'react';
 import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Drawer.module.scss';

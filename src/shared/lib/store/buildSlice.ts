@@ -1,3 +1,4 @@
+// Friend's code
 import {
 	CreateSliceOptions,
 	SliceCaseReducers,
