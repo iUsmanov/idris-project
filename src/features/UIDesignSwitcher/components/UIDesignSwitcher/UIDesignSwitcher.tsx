@@ -49,6 +49,7 @@ export const UIDesignSwitcher = memo((props: UIDesignSwitcherProps) => {
 					userId: authData.id,
 				})
 			).unwrap();
+			window.location.reload();
 			setIsLoading(false);
 		},
 		[authData, dispatch]
