@@ -4,6 +4,7 @@ import { FeatureFlags } from '@/shared/types/featureFlags';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { updateFeatureFlagsMutation } from '../../api/featureFlagsApi';
 import { getAllFeatureFlags } from '../../lib/setGetFeatures';
+import { LOCAL_STORAGE_APP_DESIGN_KEY } from '@/shared/const/localStorage';
 
 interface UpdateFeatureFlagsOptions {
 	userId: string;
@@ -26,6 +27,12 @@ export const updateFeatureFlags = createAsyncThunk<any, UpdateFeatureFlagsOption
 					},
 				})
 			);
+
+			localStorage.setItem(
+				LOCAL_STORAGE_APP_DESIGN_KEY,
+				newFeaturesFlags.isBeautyDesign ? 'beauty-design' : 'matrix-design'
+			);
+
 			window.location.reload();
 
 			return response;

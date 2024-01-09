@@ -30,7 +30,7 @@ describe('Tabs.test', () => {
 	});
 
 	test('Title and text has tag `p` by default', () => {
-		const { container } = componentRender(<Text title={title} text={text} />);
+		const { container }: any = componentRender(<Text title={title} text={text} />);
 
 		const paragraphs = container.querySelectorAll('p');
 		const titleComponent = screen.getByTestId('Text.Title');
@@ -42,7 +42,7 @@ describe('Tabs.test', () => {
 	});
 
 	test('Title has tag `h1`', () => {
-		const { container } = componentRender(<Text title={title} text={text} tags={['h1']} />);
+		const { container }: any = componentRender(<Text title={title} text={text} tags={['h1']} />);
 
 		// EXPECTS
 		expect(screen.getByTestId('Text.Title')).toBe(container.querySelector('h1'));
@@ -50,7 +50,7 @@ describe('Tabs.test', () => {
 	});
 
 	test('Title has tag `h1, text has tag `a', () => {
-		const { container } = componentRender(<Text title={title} text={text} tags={['h1', 'a']} />);
+		const { container }: any = componentRender(<Text title={title} text={text} tags={['h1', 'a']} />);
 
 		// EXPECTS
 		expect(screen.getByTestId('Text.Title')).toBe(container.querySelector('h1'));

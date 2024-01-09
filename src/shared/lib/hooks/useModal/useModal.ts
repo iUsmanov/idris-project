@@ -40,7 +40,6 @@ export const useModal = (): UseModalReturn => {
 	useEffect(() => {
 		return () => {
 			clearTimeout(timerRef.current);
-			clearTimeout(timerRef.current);
 		};
 	}, []);
 
