@@ -2,9 +2,8 @@ import { PayloadAction, createEntityAdapter, createSlice } from '@reduxjs/toolki
 import { StateSchema } from '@/app/providers/StoreProvider';
 import { Article, ArticleView } from '@/entities/Article';
 import { fetchArticlesList } from '../services/fetchArticlesList/fetchArticlesList';
-import { LOCAL_STORAGE_ARTICLE_VIEW_KEY } from '@/shared/const/localStorage';
 import { ArticlesInfiniteListSchema } from '../types/articlesInfiniteListSchema';
-import { initialState } from '../consts/articlesInfiniteListConsts';
+import { defaultArticleView, initialState } from '../consts/articlesInfiniteListConsts';
 
 const articlesInfiniteListAdapter = createEntityAdapter<Article>({
 	selectId: (article) => article.id,
@@ -26,7 +25,7 @@ export const articlesInfiniteListSlice = createSlice({
 			state.page = action.payload;
 		},
 		initState: (state) => {
-			const view = localStorage.getItem(LOCAL_STORAGE_ARTICLE_VIEW_KEY) as ArticleView;
+			const view = defaultArticleView;
 			state.view = view;
 			state.limit = state.view === 'LIST' ? 4 : 9;
 			state._inited = true;

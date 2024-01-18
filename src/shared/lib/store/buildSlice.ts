@@ -1,4 +1,4 @@
-// Friend's code
+// Code from internet
 import {
 	CreateSliceOptions,
 	SliceCaseReducers,

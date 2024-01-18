@@ -1,4 +1,4 @@
-// Friend's code
+// Code from internet
 import type { OutputSelector, Selector } from '@reduxjs/toolkit';
 import type { StateSchema } from '@/app/providers/StoreProvider';
 import { useSelector } from 'react-redux';

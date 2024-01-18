@@ -21,11 +21,13 @@ export const fetchArticlesList = createAsyncThunk<
 >('articlesPage/fetchArticlesList', async (_, thunkAPI) => {
 	const { rejectWithValue, extra, getState } = thunkAPI;
 	const limit = getArticlesInfiniteListLimit(getState());
+	const page = getArticlesInfiniteListNumber(getState());
+
 	const sort = getArticlesSortField(getState());
 	const order = getArticlesSortOrder(getState());
 	const search = getArticlesSearch(getState());
-	const page = getArticlesInfiniteListNumber(getState());
 	const type = getArticlesType(getState());
+
 	try {
 		addQueryParams({
 			sort,

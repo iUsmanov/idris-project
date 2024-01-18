@@ -1,4 +1,4 @@
-# Friend's code
+# Code from internet
 name: linting, testing, building
 on:
    push:
