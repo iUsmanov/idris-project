@@ -232,3 +232,5 @@ npm run start:dev:webpack или npm run start:dev:vite - запуск серв�
 -  [Profile](/src/entities/Profile)
 -  [Rating](/src/entities/Rating)
 -  [User](/src/entities/User)
+
+First commit doc
