@@ -1,3 +1,8 @@
+/**
+ * Скрипт для автоматического создания FSD-слайса.
+ *
+ */
+
 const createTemplate = require('./creators/createTemplate');
 
 const layer = process.argv[2];

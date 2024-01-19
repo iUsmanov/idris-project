@@ -1,3 +1,8 @@
+/**
+ * Этот скрипт создаёт PublicApi для компонентов Shared-слоя.
+ *
+ */
+
 import path from 'path';
 import { Project } from 'ts-morph';
 

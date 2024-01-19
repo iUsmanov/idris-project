@@ -1,5 +1,14 @@
 // npx ts-node ./scripts/renameStories/renameStories.ts
-import { log } from 'console';
+
+/**
+ * Скрипт, который переименовывает стори-кейсы, добаляя к их названию
+ * вариант дизайна - `Beauty` или `Matrix`.
+ *
+ * Например, стори-кейс имел название `PrimaryLightMatrix`,
+ * теперь, когда мы добавляем дизайн `Beauty` в приложение,
+ * у нас будет 2 стори-кейса один - `PrimaryLightMatrix`, другой - `PrimaryLightBeauty`.
+ */
+
 import { ExportedDeclarations, Project, SyntaxKind } from 'ts-morph';
 
 const project = new Project({});

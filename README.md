@@ -175,18 +175,29 @@ npm run start:dev:webpack или npm run start:dev:vite - запуск серв�
 
 ---
 
-## Сущности (entities)
+## Страницы (pages)
 
--  [AddNewComment](/src/entities/AddNewComment)
--  [Article](/src/entities/Article)
--  [Comment](/src/entities/Comment)
--  [Counter](/src/entities/Counter)
--  [Country](/src/entities/Country)
--  [Currency](/src/entities/Currency)
--  [Notification](/src/entities/Notification)
--  [Profile](/src/entities/Profile)
--  [Rating](/src/entities/Rating)
--  [User](/src/entities/User)
+-  [AboutPage](/src/pages/AboutPage)
+-  [AdminPanelPage](/src/pages/AdminPanelPage)
+-  [AdminPanelPage](/src/pages/AdminPanelPage)
+-  [ArticleDetailsPage](/src/pages/ArticleDetailsPage)
+-  [ArticleEditPage](/src/pages/ArticleEditPage)
+-  [ArticlesPage](/src/pages/ArticlesPage)
+-  [ForbiddenPage](/src/pages/ForbiddenPage)
+-  [MainPage](/src/pages/MainPage)
+-  [NotFoundPage](/src/pages/NotFoundPage)
+-  [ProfilePage](/src/pages/ProfilePage)
+-  [settingsPage](/src/pages/settingsPage)
+
+## Виджеты (widgets)
+
+-  [articlesInfiniteList](/src/pages/articlesInfiniteList)
+-  [Navbar](/src/pages/Navbar)
+-  [Page](/src/pages/Page)
+-  [PageError](/src/pages/PageError)
+-  [PageLoader](/src/pages/PageLoader)
+-  [scrollToolbar](/src/pages/scrollToolbar)
+-  [Sidebar](/src/pages/Sidebar)
 
 ## Фичи (features)
 
@@ -208,3 +219,16 @@ npm run start:dev:webpack или npm run start:dev:vite - запуск серв�
 -  [scrollToTopButton](/src/features/scrollToTopButton)
 -  [ThemeSwitcher](/src/features/ThemeSwitcher)
 -  [UIDesignSwitcher](/src/features/UIDesignSwitcher)
+
+## Сущности (entities)
+
+-  [AddNewComment](/src/entities/AddNewComment)
+-  [Article](/src/entities/Article)
+-  [Comment](/src/entities/Comment)
+-  [Counter](/src/entities/Counter)
+-  [Country](/src/entities/Country)
+-  [Currency](/src/entities/Currency)
+-  [Notification](/src/entities/Notification)
+-  [Profile](/src/entities/Profile)
+-  [Rating](/src/entities/Rating)
+-  [User](/src/entities/User)
