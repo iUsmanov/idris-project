@@ -1,7 +1,7 @@
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender';
 import { screen } from '@testing-library/react';
 import { NotificationItem } from './NotificationItem';
-import { mockNotification } from '../../../testing';
+import { mockNotification } from '../../../mocks';
 import { getRouteMain } from '@/shared/const/router';
 import { setFeatureFlags } from '@/shared/lib/featureFlags';
 

@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender';
 import { Dropdown } from './Dropdown';
-import { dropdownItems } from '../../../testing';
+import { dropdownItems } from '../../../mocks';
 
 const trigger = <div>trigger</div>;
 

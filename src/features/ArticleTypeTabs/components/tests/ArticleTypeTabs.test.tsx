@@ -1,9 +1,9 @@
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender';
 import { ArticleTypeTabs } from '../ArticleTypeTabs';
 import { screen } from '@testing-library/react';
-import { articlesTypeReducer } from '../../testing';
 import { userEvent } from '@testing-library/user-event';
 import { setFeatureFlags } from '@/shared/lib/featureFlags';
+import { articlesTypeReducer } from '../../model/slice/articlesTypeSlice';
 
 const onChangeType = jest.fn();
 

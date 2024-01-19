@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { CommentsList } from './CommentsList';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
-import { mockComments } from '../../testing';
+import { mockComments } from '../../mocks';
 
 const meta = {
 	title: 'entities/CommentsList',

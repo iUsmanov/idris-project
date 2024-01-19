@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender';
 import { Select } from './Select';
-import { selectItems } from './testing';
+import { selectItems } from './mocks';
 
 describe('Select.test', () => {
 	test('Component is rendered', async () => {

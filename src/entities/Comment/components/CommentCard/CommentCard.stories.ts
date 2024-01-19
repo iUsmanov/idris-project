@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { CommentCard } from './CommentCard';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
-import { mockComment } from '../../testing';
+import { mockComment } from '../../mocks';
 
 const meta = {
 	title: 'entities/CommentCard',

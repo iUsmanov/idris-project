@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender';
 import { ListBox } from './ListBox';
-import { listBoxItems } from '../../../testing';
+import { listBoxItems } from '../../../mocks';
 import { act } from 'react-dom/test-utils';
 
 const onChange = jest.fn();

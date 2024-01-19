@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { NotificationItem } from './NotificationItem';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
-import { mockNotification } from '../../testing';
+import { mockNotification } from '../../mocks';
 
 const meta = {
 	title: 'entities/NotificationItem',

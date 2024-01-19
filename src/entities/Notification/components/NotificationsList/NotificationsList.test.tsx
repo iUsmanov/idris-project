@@ -2,7 +2,7 @@ import { componentRender } from '@/shared/lib/tests/componentRender/componentRen
 import { screen } from '@testing-library/react';
 import { NotificationsList } from './NotificationsList';
 import { useGetNotificationsQuery } from '../../api/notificationsApi';
-import { mockNotifications } from '../../testing';
+import { mockNotifications } from '../../mocks';
 
 jest.mock('../../api/notificationsApi', () => ({
 	useGetNotificationsQuery: jest.fn(),

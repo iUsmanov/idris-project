@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { ArticleList } from './ArticleList';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
-import { mockArticles } from '../../testing';
+import { mockArticles } from '../../mocks';
 
 const meta = {
 	title: 'entities/ArticleList',

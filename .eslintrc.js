@@ -90,6 +90,8 @@ module.exports = {
 				ignoreImportPatterns: ['**/StoreProvider', '**/testing'],
 			},
 		],
+		'fsd-paths-guard/no-relative-import-to-public-api': 'error',
+
 		'unused-imports/no-unused-imports': 'error',
 		'@typescript-eslint/no-explicit-any': 'warn',
 	},

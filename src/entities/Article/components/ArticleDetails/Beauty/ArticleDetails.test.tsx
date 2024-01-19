@@ -1,7 +1,7 @@
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender';
 import { screen } from '@testing-library/react';
 import { ArticleDetails } from './ArticleDetails';
-import { mockArticle } from '../../../testing';
+import { mockArticle } from '../../../mocks';
 import { getRouteArticleDetails } from '@/shared/const/router';
 import { setFeatureFlags } from '@/shared/lib/featureFlags';
 import { articleDetailsReducer } from '../../../model/slice/articleDetailsSlice';

@@ -1,9 +1,8 @@
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender';
 import { screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
-import { articlesTypeReducer } from '../../testing';
 import { ArticleTypeTabs } from '../ArticleTypeTabs';
-import { articlesTypeActions } from '../../model/slice/articlesTypeSlice';
+import { articlesTypeActions, articlesTypeReducer } from '../../model/slice/articlesTypeSlice';
 
 const onChangeType = jest.fn();
 const mockSetType = jest.fn();

@@ -1,6 +1,6 @@
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender';
 import { ArticleImageBlockComponent } from './ArticleImageBlockComponent';
-import { mockArticleBlockImage } from '../../testing';
+import { mockArticleBlockImage } from '../../mocks';
 import { screen } from '@testing-library/react';
 
 describe('ArticleImageBlockComponent.test', () => {

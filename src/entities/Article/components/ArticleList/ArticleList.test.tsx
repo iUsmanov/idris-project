@@ -1,7 +1,7 @@
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender';
 import { screen } from '@testing-library/react';
 import { ArticleList } from './ArticleList';
-import { mockArticles } from '../../testing';
+import { mockArticles } from '../../mocks';
 
 describe('ArticleDetails.test', () => {
 	test('No article passed in the component', async () => {

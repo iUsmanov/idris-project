@@ -1,10 +1,9 @@
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender';
 import { LoginForm } from '../LoginForm';
 import { screen } from '@testing-library/react';
-import { loginReducer } from '../../../testing';
 import { userEvent } from '@testing-library/user-event';
 import { loginByUsername } from '../../../model/services/loginByUsername/loginByUsername';
-import { loginActions } from '../../../model/slice/loginSlice';
+import { loginActions, loginReducer } from '../../../model/slice/loginSlice';
 import { getAction } from './helpers';
 // Это не работает
 // jest.mock('../../model/services/loginByUsername/loginByUsername', () => ({

@@ -1,6 +1,6 @@
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender';
 import { ArticleTextBlockComponent } from './ArticleTextBlockComponent';
-import { mockArticleBlockText } from '../../testing';
+import { mockArticleBlockText } from '../../mocks';
 import { screen } from '@testing-library/react';
 
 describe('ArticleTextBlockComponent.test', () => {

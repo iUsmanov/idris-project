@@ -1,7 +1,7 @@
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender';
 import { screen } from '@testing-library/react';
 import { CommentsList } from './CommentsList';
-import { mockComments } from '../../testing';
+import { mockComments } from '../../mocks';
 
 describe('CommentList.test', () => {
 	test('Component is rendered', async () => {
