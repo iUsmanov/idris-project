@@ -32,13 +32,12 @@ npm run start:dev:webpack или npm run start:dev:vite - запуск серв�
 
 ---
 
-[Скрипты](/docs/scripts.md)
-
-## Архитектура проекта
-
-Проект написан в соответствии с методологией Feature sliced design
-
-Ссылка на документацию - [feature sliced design](https://feature-sliced.design/docs/get-started/tutorial)
+-  [Скрипты](/docs/scripts.md)
+-  [Качество кода](/docs/codeQuality.md)
+-  [Storybook](/config/storybook/storybook.md)
+-  [Конфигурация проекта](/docs/config.md)
+-  [Feature-flags](/src/shared/lib/featureFlags/README.md)
+-  [Архитектура проекта](https://feature-sliced.design/docs/get-started/tutorial)
 
 ---
 
@@ -62,20 +61,6 @@ npm run start:dev:webpack или npm run start:dev:vite - запуск серв�
 
 ---
 
-[Качество кода](/docs/codeQuality.md)
-
----
-
-## Storybook
-
-Подробнее о [Storybook](/config/storybook/storybook.md)
-
----
-
-[Конфигурация проекта](/docs/config.md)
-
----
-
 ## CI pipeline и pre commit хуки
 
 Конфигурация github actions находится в [/.github/workflows](/.github/workflows).
@@ -96,8 +81,6 @@ npm run start:dev:webpack или npm run start:dev:vite - запуск серв�
 [useDynamicModule](/src/shared/lib/hooks/useDynamicModule/useDynamicModule.ts)
 
 ---
-
-[Feature-flags](/src/shared/lib/featureFlags/README.md)
 
 ## Страницы (pages)
 
