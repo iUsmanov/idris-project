@@ -35,19 +35,19 @@ export function processToggleComponent(node: Node, removeFeatureName: string, st
 		const attributeValue = attribute.getLastChild();
 		let attributeValueText = attributeValue?.getText();
 
-		if (
-			attributeValue &&
-			getFirstJsxDescendant(attributeValue) &&
-			!attributeValue?.getFirstChildByKind(SyntaxKind.BinaryExpression)
-		) {
-			attributeValueText = attributeValueText?.slice(1, -1);
-			if (attributeValueText?.startsWith('(')) {
-				attributeValueText = attributeValueText.slice(1, -1);
+		if (attributeValue && getFirstJsxDescendant(attributeValue)) {
+			if (!attributeValue?.getFirstChildByKind(SyntaxKind.BinaryExpression)) {
+				attributeValueText = attributeValueText?.slice(1, -1);
+				if (attributeValueText?.startsWith('(')) {
+					attributeValueText = attributeValueText.slice(1, -1);
+				}
+			} else {
+				attributeValueText = `<>${attributeValueText}</>`;
 			}
 		}
 
 		replaceExpression = attributeValueText;
 	});
 
-	node.replaceWithText(replaceExpression ?? '	');
+	node.replaceWithText(replaceExpression ?? '<>DELETE ME!</>');
 }
