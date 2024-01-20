@@ -1,3 +1,11 @@
+/**
+ * CenteringDecorator предназначен для центрирования компонента,
+ * на который написан стори-кейс.
+ *
+ *
+ *
+ * */
+
 import { StoryFn } from '@storybook/react';
 import { CSSProperties } from 'react';
 

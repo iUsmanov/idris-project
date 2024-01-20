@@ -1,4 +1,13 @@
 // #i18next
+/**
+ * I18nDecorator предназначен для того, чтобы переводы работали и
+ * в сторибуке, и чтобы мы могли переключать языки. Здесь используется
+ * специальный конфиг i18n для сторибука.
+ *
+ *
+ *
+ * */
+
 import { StoryContext, StoryFn } from '@storybook/react';
 import { Suspense, useEffect } from 'react';
 import { I18nextProvider } from 'react-i18next';

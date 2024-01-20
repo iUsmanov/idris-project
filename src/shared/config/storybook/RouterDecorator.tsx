@@ -1,4 +1,11 @@
 // #router
+/**
+ * RouterDecorator предназначен для того, чтобы мы могли рендерить наш
+ * компонент на определённой странице. Это нужно, например, если мы
+ * в нашем компоненте используем следующую запись `const { id } = useParams<{ id: string }>();`.
+ *
+ * */
+
 import { StoryContext, StoryFn } from '@storybook/react';
 import { BrowserRouter, MemoryRouter, Route, Routes } from 'react-router-dom';
 

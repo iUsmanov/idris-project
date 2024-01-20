@@ -1,3 +1,10 @@
+/**
+ * ThemeDecorator предназначен для того, чтобы обернуть стори-кейс
+ * в ThemeProvider, навешивать определённые классы тем. В общем, нужен
+ * для того, чтобы работали темы в стори-кейсах.
+ *
+ * */
+
 // #theme
 // Не вижу смысла i18n для storybook
 import { ThemeProvider } from '@/app/providers/ThemeProvider/testing';
