@@ -57,7 +57,58 @@ webpack-конфиг для сборки сторибука. В поле `webpac
 
 Декораторы представляют собой обёртки для React-компонентов, которые дают дополнительный функционал.
 Декораторы расположены вот [здесь](/src/shared/config/storybook). Документация для каждого
-декоратора написана прямо в его файле.
+декоратора написана прямо в его файле. Некоторые декораторы могут принимать аргументы. В файле
+[preview.tsx](/config/storybook/preview.tsx) большинство декораторов уже объявлено, и те, которые
+могут принимать аргументы объявлены с аргументами по умолчанию. Если же мы хотим переопределить эти
+аргументы по умолчанию, то можем объявить эти декораторы для группы стори-кейсов. Вот так:
+
+```typescript jsx
+import { Meta, StoryObj } from '@storybook/react';
+import { CommentsList } from './CommentsList';
+import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
+import { mockComments } from '../../mocks';
+
+const meta = {
+	title: 'entities/CommentsList',
+	component: CommentsList,
+	tags: ['autodocs'],
+	argTypes: {},
+	args: {},
+	decorators: [ThemeDecorator('app-dark-theme')],
+} satisfies Meta<typeof CommentsList>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const PrimaryLight: Story = {
+	args: {
+		comments: mockComments,
+	},
+};
+
+export const LoadingDark: Story = {
+	args: {
+		isLoading: true,
+	},
+};
+
+export const ErrorOrange: Story = {
+	args: {
+		error: 'error',
+	},
+};
+```
+
+Или мы можем объявить эти декораторы для конкретного стори-кейса. Вот так:
+
+```typescript jsx
+export const LoadingDark: Story = {
+	args: {
+		isLoading: true,
+	},
+	decorators: [ThemeDecorator('app-dark-theme')],
+};
+```
 
 #### Запросы на сервер
 
