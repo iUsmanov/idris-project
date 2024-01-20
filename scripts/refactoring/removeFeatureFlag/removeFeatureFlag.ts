@@ -12,7 +12,7 @@
  * `
  * toggleFeatures({
  * 	name: 'isCounterEnabled',
- * 	on: () => console.log('FEATURE isCounterEnabled is toggled ON')
+ * 	on: () => console.log('FEATURE isCounterEnabled is toggled ON'),
  * 	off: () => console.log('FEATURE isCounterEnabled is toggled OFF')
  * })
  *
