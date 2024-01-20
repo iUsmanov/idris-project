@@ -5,11 +5,11 @@ import {
 	articlesInfiniteListActions,
 	articlesInfiniteListReducer,
 } from '../../../model/slices/articlesInfiniteListSlice';
-import { mockArticlesEntities } from '@/entities/Article/testing';
 import { userEvent } from '@testing-library/user-event';
 import { LOCAL_STORAGE_ARTICLE_VIEW_KEY } from '@/shared/const/localStorage';
 import { fetchArticlesList } from '../../../model/services/fetchArticlesList/fetchArticlesList';
 import { setFeatureFlags } from '@/shared/lib/featureFlags';
+import { mockArticlesEntities } from '@/entities/Article/testing';
 
 const mockDispatch = jest.fn();
 const mockSetView = jest.fn();
