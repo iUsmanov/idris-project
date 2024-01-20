@@ -14,6 +14,7 @@ import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLogi
 import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading';
 import { getLoginError } from '../../model/selectors/getLoginError/getLoginError';
 import { ReducersList, useDynamicModule } from '@/shared/lib/hooks/useDynamicModule/useDynamicModule';
+import { AppLink } from '@/shared/components/AppLink';
 
 export interface LoginFormProps {
 	className?: string;
@@ -62,6 +63,14 @@ export const LoginForm = memo((props: LoginFormProps) => {
 	return (
 		<div className={classNames(cls.loginForm, {}, [className])} data-testid='LoginForm'>
 			<Text align='center' size='size_m' title={t('Форма авторизации')} className={cls.title} />
+			<AppLink
+				target='_blank'
+				variant='outline'
+				to={'https://github.com/iUsmanov/idris-project/blob/main/docs/authentication.md'}
+				// eslint-disable-next-line i18next/no-literal-string
+			>
+				КАК ВОЙТИ ?
+			</AppLink>
 			{error && <Text variant='error' title={t('Вы ввели неверный логин или пароль')} />}
 			<Input
 				className={cls.input}
