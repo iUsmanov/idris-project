@@ -1,4 +1,4 @@
-import { FeatureFlags } from '@/shared/types/featureFlags';
+import { FeatureFlags } from '@/shared/lib/featureFlags';
 import { UserSettings } from './userSettings';
 
 export interface User {

@@ -1,7 +1,7 @@
 // npm run test:unit updateFeatureFlags.test.ts
 import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 import { updateFeatureFlags } from './updateFeatureFlags';
-import { FeatureFlags } from '@/shared/types/featureFlags';
+import { FeatureFlags } from '../../model/types/featureFlags';
 import { updateFeatureFlagsMutation } from '../../api/featureFlagsApi';
 
 jest.mock('../../api/featureFlagsApi');

@@ -1,6 +1,6 @@
 // #featureFlags
 import { ThunkConfig } from '@/app/providers/StoreProvider';
-import { FeatureFlags } from '@/shared/types/featureFlags';
+import { FeatureFlags } from '../../model/types/featureFlags';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { updateFeatureFlagsMutation } from '../../api/featureFlagsApi';
 import { getAllFeatureFlags } from '../../lib/setGetFeatures';

@@ -1,4 +1,4 @@
-import { FeatureFlags } from '@/shared/types/featureFlags';
+import { FeatureFlags } from '../model/types/featureFlags';
 import { getAllFeatureFlags, getFeatureFlag, setFeatureFlags } from './setGetFeatures';
 
 describe('setGetFeatures.test', () => {

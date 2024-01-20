@@ -55,7 +55,7 @@ TestAsyncThunk похож на componentRender, но служит для тес�
 ```typescript jsx
 import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 import { updateFeatureFlags } from './updateFeatureFlags';
-import { FeatureFlags } from '@/shared/types/featureFlags';
+import { FeatureFlags } from '@/shared/lib/featureFlags';
 import { updateFeatureFlagsMutation } from '../../api/featureFlagsApi';
 
 jest.mock('../../api/featureFlagsApi');

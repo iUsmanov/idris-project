@@ -10,7 +10,7 @@
  * */
 
 import { getFeatureFlag, setFeatureFlags } from '@/shared/lib/featureFlags';
-import { FeatureFlags } from '@/shared/types/featureFlags';
+import { FeatureFlags } from '@/shared/lib/featureFlags';
 import { StoryContext, StoryFn } from '@storybook/react';
 
 export const FeatureFlagsDecorator =
