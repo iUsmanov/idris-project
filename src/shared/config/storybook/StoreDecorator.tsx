@@ -1,4 +1,10 @@
 // #store
+/**
+ * StoreProvider предназначен для того, чтобы замокать redux-state,
+ * и определить редюсеры в компоненте.
+ *
+ * */
+
 import { ReducersObject, StateSchema, StoreProvider } from '@/app/providers/StoreProvider/testing';
 import { addNewCommentReducer } from '@/entities/AddNewComment/testing';
 import { articleDetailsReducer } from '@/entities/Article/testing';
