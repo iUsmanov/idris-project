@@ -1,4 +1,9 @@
 // #store #i18next
+
+/**
+ * Подробнее можно узнать в документации проекта в разделе `Тесты`.
+ *
+ * */
 import { render } from '@testing-library/react';
 import { ReactNode } from 'react';
 import { I18nextProvider } from 'react-i18next';

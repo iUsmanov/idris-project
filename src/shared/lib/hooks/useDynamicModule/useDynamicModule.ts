@@ -9,13 +9,20 @@ export type ReducersList = {
 	[name in StateSchemaKey]?: Reducer<NonNullable<StateSchema[name]>>;
 };
 
-// type ReducersListEntry = [StateSchemaKey, Reducer];after turn on strict-mode, not need
-
+/**
+ * useDynamicModuleProps
+ * @param reducers - массив редюсеров, которые нужно добавить.
+ * @param saveAfterUnmount - сохранять ли редюсер в стейте после демонтирования компонента?
+ * */
 interface useDynamicModuleProps {
 	reducers: ReducersList;
 	saveAfterUnmount?: boolean;
 }
 
+/**
+ * Хук useDynamicModule служит для добавления и удаления редюсеров.
+ * Использует для своих целей reducerManager.
+ * */
 export const useDynamicModule = (props: useDynamicModuleProps) => {
 	const { saveAfterUnmount = false, reducers } = props;
 	const dispatch = useAppDispatch();

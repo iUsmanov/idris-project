@@ -2,6 +2,17 @@
 import { AnyAction, Reducer, combineReducers } from '@reduxjs/toolkit';
 import { ReducerManager, ReducersObject, StateSchema, StateSchemaKey } from './StateSchema';
 
+/**
+ * Функция createReducerManager создаёт редюсер-менеджер.
+ * Он нужен нам для того, чтобы динамически добавлять и удалять редюсеры,
+ * а не свалить всю логику в bundle. Подробнее можно смотреть в документации редакс.
+ *
+ * @param getReducerMap возвращает нам текущие редюсеры.
+ * @param reduce возвращает нам корневой редюсер.
+ * @param add служит для добавления редюсера в store.
+ * @param remove служит для удаления редюсера в store.
+ */
+
 export function createReducerManager(initialReducers: ReducersObject): ReducerManager {
 	const reducers = { ...initialReducers };
 	let combinedReducer = combineReducers(reducers);
