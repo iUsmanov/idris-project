@@ -40,6 +40,8 @@ npm run start:dev:webpack или npm run start:dev:vite - запуск серв�
 
 ---
 
+## Ключевые разделы
+
 -  [Как войти?](/docs/authentication.md)
 -  [Скрипты](/docs/scripts.md)
 -  [Качество кода](/docs/codeQuality.md)
