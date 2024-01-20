@@ -1,5 +1,5 @@
 import { getUserInited, initAuthData } from '@/entities/User';
-import { toggleFeatures } from '@/shared/lib/featureFlags';
+import { getFeatureFlag, toggleFeatures } from '@/shared/lib/featureFlags';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { AppDesign } from '@/shared/types/design';
 import { useEffect } from 'react';
@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 export function useApp() {
 	const dispatch = useAppDispatch();
 	const inited = useSelector(getUserInited);
+	const isBeautyDesign = getFeatureFlag('isBeautyDesign');
 
 	const addClassName = (className: AppDesign) => {
 		const notClassName: AppDesign = className === 'beauty-design' ? 'matrix-design' : 'beauty-design';
@@ -32,5 +33,5 @@ export function useApp() {
 			on: () => addClassName('beauty-design'),
 			off: () => addClassName('matrix-design'),
 		});
-	}, []);
+	}, [isBeautyDesign]);
 }
