@@ -9,6 +9,13 @@ import { $api } from '@/shared/api/api';
 import { uiReducer } from '@/widgets/Page';
 import { rtkApi } from '@/shared/api/rtkApi';
 
+/**
+ * @param children - что мы хотим обернуть в Provider?
+ * @param initialState - Состояние стейта по умолчанию. Используется только в тестах и сторибуке.
+ * Предназначен для мокания стейта.
+ * @param asyncReducers - Редюсеры стора по умолчанию. Используется только в тестах и сторибуке.
+ * Предназначен для мокания редюсеров.
+ * */
 export const createReduxStore = (initialState?: StateSchema, asyncReducers?: ReducersObject) => {
 	const rootReducer: ReducersObject = {
 		...asyncReducers,
