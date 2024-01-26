@@ -71,6 +71,7 @@
 		"concurrently": "^8.2.0",
 		"copy-webpack-plugin": "^11.0.0",
 		"css-loader": "^6.7.3",
+		"cypress": "^13.6.3",
 		"eslint": "^8.46.0",
 		"eslint-config-prettier": "^9.0.0",
 		"eslint-plugin-fsd-paths-guard": "^0.0.13",
