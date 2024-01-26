@@ -23,7 +23,7 @@
 			"module": "CommonJS"
 		}
 	},
-	"exclude": ["./cypress.config.ts", "./cypress/e2e/**/*.*"]
+	"exclude": ["./cypress.config.ts", "./cypress/**/*.*"]
 	// "include": [
 	// 	"./config/jest/jest.config.ts",
 	// 	"./config/jest/setupTests.ts",
