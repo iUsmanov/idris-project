@@ -1,6 +1,25 @@
 import { LOCAL_STORAGE_USER_KEY } from 'C:/Users/PC95/Desktop/frontend/idris-project/src/shared/const/localStorage.ts';
 import { UserRole } from 'C:/Users/PC95/Desktop/frontend/idris-project/src/entities/User/model/types/user';
 
+export const login = (role: UserRole) => {
+	let token: string = '4';
+	switch (role) {
+		case 'ADMIN':
+			token = '4';
+	}
+
+	window.localStorage.setItem(LOCAL_STORAGE_USER_KEY, token);
+	return token;
+};
+
+declare global {
+	namespace Cypress {
+		interface Chainable {
+			login(role: UserRole): Chainable<string>;
+		}
+	}
+}
+
 // export const login = (username: string = 'testuser', password: string = '123') => {
 // 	cy.request({
 // 		method: 'POST',
@@ -21,13 +40,3 @@ import { UserRole } from 'C:/Users/PC95/Desktop/frontend/idris-project/src/entit
 // 	cy.get('input').last().type(password);
 // 	cy.get('[data-testid=LoginForm]').contains('Войти').click();
 // };
-
-export const login = (role: UserRole) => {
-	let token: string = '4';
-	switch (role) {
-		case 'ADMIN':
-			token = '4';
-	}
-
-	window.localStorage.setItem(LOCAL_STORAGE_USER_KEY, token);
-};

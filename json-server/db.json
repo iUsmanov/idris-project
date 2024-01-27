@@ -1119,7 +1119,7 @@
       }
     },
     {
-      "id": "2",
+      "id": "3",
       "username": "user",
       "password": "123",
       "roles": [
@@ -1137,7 +1137,7 @@
       }
     },
     {
-      "id": "3",
+      "id": "2",
       "username": "manager",
       "password": "123",
       "roles": [
@@ -1184,6 +1184,17 @@
     },
     {
       "id": "2",
+      "first": "idris",
+      "lastname": "Usmanov",
+      "age": 465,
+      "currency": "EUR",
+      "country": "Ukraine",
+      "city": "Moscow",
+      "username": "idris",
+      "avatar": "https://i.pinimg.com/originals/9a/e0/2d/9ae02d4b4288396108ef77830a59e060.jpg"
+    },
+    {
+      "id": "3",
       "first": "idris",
       "lastname": "Usmanov",
       "age": 465,
