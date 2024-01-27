@@ -49,6 +49,7 @@ module.exports = {
 		semi: 'warn',
 		'@typescript-eslint/no-empty-interface': 'warn',
 		'react/jsx-props-no-spreading': 'warn',
+		'@typescript-eslint/no-namespace': 'off',
 		// ERRORS
 		'react/button-has-type': 'error',
 		// 'no-undef': 'error',
