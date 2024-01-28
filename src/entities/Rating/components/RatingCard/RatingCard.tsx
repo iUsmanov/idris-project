@@ -97,10 +97,15 @@ export const RatingCard = memo((props: RatingCardProps) => {
 									off: () => undefined,
 								})}
 								onClick={cancelHandler}
+								data-testid='RatingCard.CancelButton'
 							>
 								{t('Закрыть')}
 							</Button>
-							<Button variant='outline' onClick={acceptHandler}>
+							<Button
+								variant='outline'
+								onClick={acceptHandler}
+								data-testid='RatingCard.SendButton'
+							>
 								{t('Отправить')}
 							</Button>
 						</HStack>

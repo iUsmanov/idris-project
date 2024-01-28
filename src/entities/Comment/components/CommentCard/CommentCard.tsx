@@ -35,7 +35,7 @@ export const CommentCard = memo((props: CommentCardProps) => {
 							<Text title={comment.user?.username} size='size_m' />
 						</HStack>
 					</AppLink>
-					<Text text={comment.text} size='size_m' />
+					<Text text={comment.text} size='size_m' data-testid='CommentCard.Text' />
 				</VStack>
 			}
 		/>
