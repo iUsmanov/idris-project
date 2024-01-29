@@ -26,7 +26,6 @@ describe('ArticleDetails', () => {
 	});
 	it('Оставление отзыва', () => {
 		const feedback = 'feedbackText';
-		cy.intercept('GET', '**/articles/*', { fixture: 'article-details.json' });
 		cy.getByTestId('RatingCard').scrollIntoView();
 		cy.setRate(5, feedback);
 		cy.get('[data-test-selected=true]').should('have.length', 5);
