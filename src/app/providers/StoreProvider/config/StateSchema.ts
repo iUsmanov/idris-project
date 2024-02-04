@@ -8,7 +8,6 @@ import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore';
 import { AxiosInstance } from 'axios';
 import { ArticleCommentsListSchema } from '@/features/ArticleCommentsList';
 import { AddNewCommentSchema } from '@/entities/AddNewComment';
-import { UISchema } from '@/widgets/PageMainContent';
 import { ArticlesSortSchema } from '@/features/ArticlesSort';
 import { ArticlesTypeSchema } from '@/features/ArticleTypeTabs';
 import { ArticlesSearchSchema } from '@/features/ArticlesSearch';
@@ -16,6 +15,7 @@ import { ProfileSchema } from '@/features/EditableProfileCard';
 import { rtkApi } from '@/shared/api/rtkApi';
 import { ArticlesInfiniteListSchema } from '@/widgets/articlesInfiniteList';
 import { ArticleDetailsSchema } from '@/entities/Article';
+import { UISchema } from '@/shared/lib/UI';
 
 /**
  * StateSchema описывает состояние нашего `store`.
