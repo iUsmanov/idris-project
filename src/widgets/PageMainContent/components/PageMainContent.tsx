@@ -1,6 +1,6 @@
 import { MutableRefObject, ReactNode, useRef } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './Page.module.scss';
+import cls from './PageMainContent.module.scss';
 import { useInfiniteScroll } from '@/shared/lib/hooks/useInfiniteScroll/useInfiniteScroll';
 import { UIEvent } from 'react';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -20,8 +20,8 @@ interface PageProps extends TestProps {
 	onScrollEnd?: () => void;
 }
 
-export const Page = (props: PageProps) => {
-	const { className, children, onScrollEnd, 'data-testid': dataTestId = 'Page' } = props;
+export const PageMainContent = (props: PageProps) => {
+	const { className, children, onScrollEnd, 'data-testid': dataTestId = 'PageMainContent' } = props;
 	const wrapperRef = useRef() as MutableRefObject<HTMLDivElement>;
 	const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
 	const dispatch = useAppDispatch();

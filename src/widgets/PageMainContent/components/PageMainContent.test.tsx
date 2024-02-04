@@ -1,6 +1,6 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender';
-import { Page } from './Page';
+import { PageMainContent } from './PageMainContent';
 import { setFeatureFlags } from '@/shared/lib/featureFlags';
 import { uiActions } from '../UI/model/slice/UISlice';
 
@@ -18,24 +18,24 @@ jest.mock('react-redux', () => ({
 	useDispatch: () => mockDispatch,
 }));
 
-describe('Page.test', () => {
+describe('PageMainContent.test', () => {
 	setFeatureFlags({ isBeautyDesign: true });
 	afterEach(() => {
 		jest.clearAllMocks();
 	});
 	test('Component is rendered', async () => {
-		await componentRender(<Page>{children}</Page>, {
+		await componentRender(<PageMainContent>{children}</PageMainContent>, {
 			wrapInAct: true,
 		});
 
-		expect(screen.getByTestId('Page')).toBeInTheDocument();
+		expect(screen.getByTestId('PageMainContent')).toBeInTheDocument();
 		expect(screen.getByTestId('Children')).toBeInTheDocument();
-		expect(screen.queryByTestId('Page.Trigger')).toBeNull();
+		expect(screen.queryByTestId('PageMainContent.Trigger')).toBeNull();
 	});
 
 	// test('Значение скролла достаётся из стейта и старница проскролливается до нужного места', async () => {
 	// 	// TEST not works because wrapperRef is undefined
-	// 	await componentRender(<Page>{children}</Page>, {
+	// 	await componentRender(<PageMainContent>{children}</PageMainContent>, {
 	// 		wrapInAct: true,
 	// 		initialState: {
 	// 			ui: {
@@ -46,28 +46,34 @@ describe('Page.test', () => {
 	// 		},
 	// 	});
 
-	// 	expect(screen.getByTestId('Page').scrollTop).toBe(100);
+	// 	expect(screen.getByTestId('PageMainContent').scrollTop).toBe(100);
 	// });
 
-	test('Page.Trigger is in DOM', async () => {
+	test('PageMainContent.Trigger is in DOM', async () => {
 		window.IntersectionObserver = jest.fn().mockImplementation(intersectionObserverMock);
 
-		await componentRender(<Page onScrollEnd={mockOnScrollEnd}>{children}</Page>, {
-			wrapInAct: true,
-		});
+		await componentRender(
+			<PageMainContent onScrollEnd={mockOnScrollEnd}>{children}</PageMainContent>,
+			{
+				wrapInAct: true,
+			}
+		);
 
-		expect(screen.getByTestId('Page.Trigger')).toBeInTheDocument();
+		expect(screen.getByTestId('PageMainContent.Trigger')).toBeInTheDocument();
 	});
 
 	test('Scrolling', async () => {
 		window.IntersectionObserver = jest.fn().mockImplementation(intersectionObserverMock);
 		jest.spyOn(uiActions, 'setScrollPosition').mockImplementation(mockSetScrollPosition);
 
-		await componentRender(<Page onScrollEnd={mockOnScrollEnd}>{children}</Page>, {
-			wrapInAct: true,
-		});
+		await componentRender(
+			<PageMainContent onScrollEnd={mockOnScrollEnd}>{children}</PageMainContent>,
+			{
+				wrapInAct: true,
+			}
+		);
 
-		fireEvent.scroll(screen.getByTestId('Page'), { target: { scrollY: 100 } });
+		fireEvent.scroll(screen.getByTestId('PageMainContent'), { target: { scrollY: 100 } });
 
 		await waitFor(() => {
 			expect(mockDispatch).toHaveBeenCalledTimes(1);

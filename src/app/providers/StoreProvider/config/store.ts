@@ -6,7 +6,7 @@ import { userReducer } from '@/entities/User';
 import { authMiddleware } from '@/features/AuthByUsername';
 import { createReducerManager } from './reducerManager';
 import { $api } from '@/shared/api/api';
-import { uiReducer } from '@/widgets/Page';
+import { uiReducer } from '@/widgets/PageMainContent';
 import { rtkApi } from '@/shared/api/rtkApi';
 
 /**

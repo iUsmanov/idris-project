@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Page } from '@/widgets/Page';
+import { PageMainContent } from '@/widgets/PageMainContent';
 import { EditableProfileCard } from '@/features/EditableProfileCard';
 import { useParams } from 'react-router-dom';
 import { Text } from '@/shared/components/Text';
@@ -20,8 +20,8 @@ export const ProfilePage = memo((props: ProfilePageProps) => {
 	}
 
 	return (
-		<Page className={classNames('', {}, [className])} data-testid='ProfilePage'>
+		<PageMainContent className={classNames('', {}, [className])} data-testid='ProfilePage'>
 			<EditableProfileCard id={id} />
-		</Page>
+		</PageMainContent>
 	);
 });

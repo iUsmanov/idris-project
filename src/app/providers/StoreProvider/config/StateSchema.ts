@@ -8,7 +8,7 @@ import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore';
 import { AxiosInstance } from 'axios';
 import { ArticleCommentsListSchema } from '@/features/ArticleCommentsList';
 import { AddNewCommentSchema } from '@/entities/AddNewComment';
-import { UISchema } from '@/widgets/Page';
+import { UISchema } from '@/widgets/PageMainContent';
 import { ArticlesSortSchema } from '@/features/ArticlesSort';
 import { ArticlesTypeSchema } from '@/features/ArticleTypeTabs';
 import { ArticlesSearchSchema } from '@/features/ArticlesSearch';

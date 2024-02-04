@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Text } from '@/shared/components/Text';
-import { Page } from '@/widgets/Page';
+import { PageMainContent } from '@/widgets/PageMainContent';
 import { VStack } from '@/shared/components/Stack';
 import { UIDesignSwitcher } from '@/features/UIDesignSwitcher';
 
@@ -15,11 +15,11 @@ export const SettingsPage = memo((props: SettingsPageProps) => {
 	const { t } = useTranslation('settings');
 
 	return (
-		<Page className={classNames('', {}, [className])} data-testid='SettingsPage'>
+		<PageMainContent className={classNames('', {}, [className])} data-testid='SettingsPage'>
 			<VStack gap='16'>
 				<Text size='size_l' title={t('Настройки пользователя')} />
 				<UIDesignSwitcher />
 			</VStack>
-		</Page>
+		</PageMainContent>
 	);
 });

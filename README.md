@@ -80,7 +80,7 @@ npm run start:dev:webpack или npm run start:dev:vite - запуск серв�
 
 -  [articlesInfiniteList](/src/pages/articlesInfiniteList)
 -  [Navbar](/src/pages/Navbar)
--  [Page](/src/pages/Page)
+-  [PageMainContent](/src/pages/PageMainContent)
 -  [PageError](/src/pages/PageError)
 -  [PageLoader](/src/pages/PageLoader)
 -  [scrollToolbar](/src/pages/scrollToolbar)
