@@ -21,6 +21,12 @@ jest.mock('react-redux', () => ({
 
 jest.mock('../../../model/services/fetchArticlesList/fetchArticlesList');
 
+const intersectionObserverMock = () => ({
+	observe: () => null,
+	unobserve: () => null,
+});
+window.IntersectionObserver = jest.fn().mockImplementation(intersectionObserverMock);
+
 describe('ArticlesInfiniteList.test', () => {
 	setFeatureFlags({ isBeautyDesign: true });
 	test('Error', async () => {
