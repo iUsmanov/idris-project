@@ -78,13 +78,13 @@ npm run start:dev:webpack или npm run start:dev:vite - запуск серв�
 
 ## Виджеты (widgets)
 
--  [articlesInfiniteList](/src/pages/articlesInfiniteList)
--  [Navbar](/src/pages/Navbar)
--  [PageMainContent](/src/pages/PageMainContent)
--  [PageError](/src/pages/PageError)
--  [PageLoader](/src/pages/PageLoader)
--  [scrollToolbar](/src/pages/scrollToolbar)
--  [Sidebar](/src/pages/Sidebar)
+-  [articlesInfiniteList](/src/widgets /articlesInfiniteList)
+-  [Navbar](/src/widgets /Navbar)
+-  [PageMainContent](/src/widgets /PageMainContent)
+-  [PageError](/src/widgets /PageError)
+-  [PageLoader](/src/widgets /PageLoader)
+-  [scrollToolbar](/src/widgets /scrollToolbar)
+-  [Sidebar](/src/widgets /Sidebar)
 
 ## Фичи (features)
 
