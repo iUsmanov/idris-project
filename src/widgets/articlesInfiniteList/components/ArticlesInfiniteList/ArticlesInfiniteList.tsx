@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { MutableRefObject, memo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useSelector } from 'react-redux';
@@ -18,6 +18,7 @@ import { Text } from '@/shared/components/Text';
 import { ToggleFeatures } from '@/shared/lib/featureFlags';
 import { ArticlesInfiniteListBeauty } from './Beauty/ArticlesInfiniteList.async';
 import { useArticlesInfiniteList } from '../../lib/hooks/useArticlesInfiniteList';
+import { useInfiniteScroll } from '@/shared/lib/hooks/useInfiniteScroll/useInfiniteScroll';
 
 interface ArticlesInfiniteListProps {
 	className?: string;
@@ -30,9 +31,16 @@ export const ArticlesInfiniteList = memo((props: ArticlesInfiniteListProps) => {
 	const isLoading = useSelector(getArticlesInfiniteListIsLoading);
 	const error = useSelector(getArticlesInfiniteListError);
 	const view = useSelector(getArticlesInfiniteListView);
+	const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
 
-	const { onChangeView, onChangeSort, onChangeOrder, onChangeSearch, onChangeType } =
+	const { onChangeView, onChangeSort, onChangeOrder, onChangeSearch, onChangeType, onLoadNextPart } =
 		useArticlesInfiniteList();
+
+	useInfiniteScroll({
+		trigger: triggerRef.current,
+		parent: undefined,
+		callback: onLoadNextPart,
+	});
 
 	if (error) {
 		return (
@@ -65,6 +73,7 @@ export const ArticlesInfiniteList = memo((props: ArticlesInfiniteListProps) => {
 						isLoading={isLoading}
 						view={view}
 					/>
+					<div ref={triggerRef} />
 				</VStack>
 			}
 		/>

@@ -8,16 +8,32 @@ import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle';
 import { useSelector } from 'react-redux';
 import { StateSchema } from '@/app/providers/StoreProvider';
 
-export function useScrolling(parent: HTMLElement, listName?: string) {
+export function useScrolling(parent: HTMLElement = document.body, listName?: string) {
 	const dispatch = useAppDispatch();
 	const { pathname } = useLocation();
 	const listPath = useRef<string>(listName ? `${pathname}.${listName}` : pathname);
 	const scrollPosition = useSelector((state: StateSchema) => getScrollByPath(state, pathname));
 
+	const onScroll = useThrottle((e: UIEvent<HTMLDivElement>) => {
+		if (parent === document.body) {
+			dispatch(uiActions.setScrollPosition({ path: listPath.current, position: window.screenY }));
+		} else {
+			dispatch(
+				uiActions.setScrollPosition({ path: listPath.current, position: e.currentTarget.scrollTop })
+			);
+		}
+	}, 500);
+
 	useEffect(() => {
 		const s = setTimeout(() => {
 			if (parent) {
-				parent.scrollTop = scrollPosition;
+				if (parent === document.body) {
+					console.log('By mount parent is body');
+					window.screenY = scrollPosition;
+				} else {
+					console.log('By mount parent is main');
+					parent.scrollTop = scrollPosition;
+				}
 			}
 		}, 0);
 
@@ -25,15 +41,30 @@ export function useScrolling(parent: HTMLElement, listName?: string) {
 			clearTimeout(s);
 		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [parent]);
 
-	const onScroll = useThrottle((e: UIEvent<HTMLDivElement>) => {
-		dispatch(
-			uiActions.setScrollPosition({ path: listPath.current, position: e.currentTarget.scrollTop })
-		);
-	}, 500);
+	useEffect(() => {
+		if (parent === document.body) {
+			window.onscroll = onScroll;
+			console.log('OnScroll changed on body');
+		} else {
+			if (parent) {
+				console.log('OnScroll changed on main');
 
-	return {
-		onScroll,
-	};
+				parent.onscroll = onScroll;
+			}
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [parent]);
+
+	// useEffect(() => {
+	// 	const s = setInterval(() => {
+	// 		console.log(window.screenY);
+	// 	}, 500);
+
+	// 	return () => {
+	// 		clearTimeout(s);
+	// 	};
+	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
+	// }, []);
 }

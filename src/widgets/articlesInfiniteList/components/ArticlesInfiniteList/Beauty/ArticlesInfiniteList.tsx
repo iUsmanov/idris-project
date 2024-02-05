@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { MutableRefObject, memo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useSelector } from 'react-redux';
@@ -18,6 +18,7 @@ import { Text } from '@/shared/components/Text';
 import { StickyContentLayout } from '@/shared/layouts';
 import { Card } from '@/shared/components/Card';
 import { useArticlesInfiniteList } from '../../../lib/hooks/useArticlesInfiniteList';
+import { useInfiniteScroll } from '@/shared/lib/hooks/useInfiniteScroll/useInfiniteScroll';
 
 export interface ArticlesInfiniteListProps {
 	className?: string;
@@ -30,9 +31,16 @@ export const ArticlesInfiniteList = memo((props: ArticlesInfiniteListProps) => {
 	const isLoading = useSelector(getArticlesInfiniteListIsLoading);
 	const error = useSelector(getArticlesInfiniteListError);
 	const view = useSelector(getArticlesInfiniteListView);
+	const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
 
-	const { onChangeView, onChangeSort, onChangeOrder, onChangeSearch, onChangeType } =
+	const { onChangeView, onChangeSort, onChangeOrder, onChangeSearch, onChangeType, onLoadNextPart } =
 		useArticlesInfiniteList();
+
+	useInfiniteScroll({
+		trigger: triggerRef.current,
+		parent: undefined,
+		callback: onLoadNextPart,
+	});
 
 	if (error) {
 		return (
@@ -50,12 +58,15 @@ export const ArticlesInfiniteList = memo((props: ArticlesInfiniteListProps) => {
 			data-testid='ArticlesInfiniteList'
 			left={<ArticleViewSelector view={view} onViewClick={onChangeView} />}
 			content={
-				<ArticleList
-					className={classNames('', {}, [className])}
-					articles={articles}
-					isLoading={isLoading}
-					view={view}
-				/>
+				<>
+					<ArticleList
+						className={classNames('', {}, [className])}
+						articles={articles}
+						isLoading={isLoading}
+						view={view}
+					/>
+					<div ref={triggerRef} />
+				</>
 			}
 			right={
 				<Card

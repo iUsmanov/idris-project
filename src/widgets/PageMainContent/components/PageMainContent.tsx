@@ -1,7 +1,6 @@
 import { MutableRefObject, ReactNode, useRef } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './PageMainContent.module.scss';
-import { useInfiniteScroll } from '@/shared/lib/hooks/useInfiniteScroll/useInfiniteScroll';
 import { TestProps } from '@/shared/types/tests';
 import { toggleFeatures } from '@/shared/lib/featureFlags';
 import { useScrolling } from '@/shared/lib/UI';
@@ -9,31 +8,36 @@ import { useScrolling } from '@/shared/lib/UI';
 interface PageProps extends TestProps {
 	className?: string;
 	children: ReactNode;
-	onScrollEnd?: () => void;
 }
 
 export const PageMainContent = (props: PageProps) => {
-	const { className, children, onScrollEnd, 'data-testid': dataTestId = 'PageMainContent' } = props;
+	const { className, children, 'data-testid': dataTestId = 'PageMainContent' } = props;
 	const wrapperRef = useRef() as MutableRefObject<HTMLDivElement>;
-	const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
-
-	const { onScroll } = useScrolling(wrapperRef.current);
-
-	useInfiniteScroll({
-		triggerRef,
-		wrapperRef: toggleFeatures({
+	// const [node, setNode] = useState(wrapperRef.current)
+	useScrolling(
+		toggleFeatures({
 			name: 'isBeautyDesign',
 			on: () => undefined,
-			off: () => wrapperRef,
-		}),
-		callback: onScrollEnd,
-	});
+			off: () => wrapperRef.current,
+		})
+	);
+
+	// console.log(wrapperRef.current);
+
+	// useEffect(() => {
+	// 	const s = setInterval(() => {
+	// 		console.log(wrapperRef.current);
+	// 	}, 500);
+
+	// 	return () => {
+	// 		clearTimeout(s);
+	// 	};
+	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
+	// }, []);
 
 	return (
 		<main
 			data-testid={dataTestId}
-			onScroll={onScroll}
-			ref={wrapperRef}
 			className={classNames(
 				toggleFeatures({
 					name: 'isBeautyDesign',
@@ -43,9 +47,13 @@ export const PageMainContent = (props: PageProps) => {
 				{},
 				[className]
 			)}
+			ref={toggleFeatures({
+				name: 'isBeautyDesign',
+				on: () => undefined,
+				off: () => wrapperRef,
+			})}
 		>
 			{children}
-			{onScrollEnd && <div data-testid={dataTestId + '.Trigger'} ref={triggerRef} />}
 		</main>
 	);
 };

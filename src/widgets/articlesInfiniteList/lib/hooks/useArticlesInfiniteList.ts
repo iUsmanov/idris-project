@@ -11,6 +11,7 @@ import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchA
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
 import { ArticleView } from '@/entities/Article';
 import { LOCAL_STORAGE_ARTICLE_VIEW_KEY } from '@/shared/const/localStorage';
+import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
 
 export function useArticlesInfiniteList() {
 	const dispatch = useAppDispatch();
@@ -31,6 +32,12 @@ export function useArticlesInfiniteList() {
 	const fetchData = useCallback(() => {
 		if (__ENVIRON__ !== 'storybook') {
 			dispatch(fetchArticlesList({ replace: true }));
+		}
+	}, [dispatch]);
+
+	const onLoadNextPart = useCallback(() => {
+		if (__ENVIRON__ !== 'storybook') {
+			dispatch(fetchNextArticlesPage());
 		}
 	}, [dispatch]);
 
@@ -70,5 +77,6 @@ export function useArticlesInfiniteList() {
 		onChangeOrder,
 		onChangeSearch,
 		onChangeType,
+		onLoadNextPart,
 	};
 }
