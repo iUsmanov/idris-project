@@ -2,7 +2,7 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ArticleCommentsList } from '@/features/ArticleCommentsList';
-import { Page } from '@/widgets/Page';
+import { PageMainContent } from '@/widgets/PageMainContent';
 import { ArticleRecommendations } from '@/features/ArticleRecommendations';
 import { useSelector } from 'react-redux';
 import { VStack } from '@/shared/components/Stack';
@@ -48,14 +48,14 @@ export const ArticleDetailsPage = memo(() => {
 				<StickyContentLayout
 					data-testid='ArticleDetailsPage'
 					content={
-						<Page className={classNames('', {}, [])}>
+						<PageMainContent className={classNames('', {}, [])}>
 							<VStack gap='16' className={cls.articleDetails}>
 								<Card padding='24' border='high' max>
 									<ArticleDetails />
 								</Card>
 								{additionalContent}
 							</VStack>
-						</Page>
+						</PageMainContent>
 					}
 					right={
 						<ArticleDetailsHeaderBeauty
@@ -67,13 +67,13 @@ export const ArticleDetailsPage = memo(() => {
 				/>
 			}
 			off={
-				<Page className={classNames('', {}, [])} data-testid='ArticleDetailsPage'>
+				<PageMainContent className={classNames('', {}, [])} data-testid='ArticleDetailsPage'>
 					<VStack gap='16' max>
 						<ArticleDetailsHeader />
 						<ArticleDetails />
 						{additionalContent}
 					</VStack>
-				</Page>
+				</PageMainContent>
 			}
 		/>
 	);
@@ -85,7 +85,7 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ArticleCommentsList } from '@/features/ArticleCommentsList';
-import { Page } from '@/widgets/Page';
+import { PageMainContent } from '@/widgets/PageMainContent';
 import { ArticleRecommendations } from '@/features/ArticleRecommendations';
 import { ArticleDetails, getArticleDetailsError } from '@/features/ArticleDetails';
 import { useSelector } from 'react-redux';
@@ -118,7 +118,7 @@ export const ArticleDetailsPage = memo(() => {
 	});
 
 	return (
-		<Page className={classNames('', {}, [])}>
+		<PageMainContent className={classNames('', {}, [])}>
 			<VStack gap='16' max>
 				<ArticleDetails />
 				{!error && (
@@ -148,7 +148,7 @@ export const ArticleDetailsPage = memo(() => {
 					</>
 				)}
 			</VStack>
-		</Page>
+		</PageMainContent>
 	);
 });
 

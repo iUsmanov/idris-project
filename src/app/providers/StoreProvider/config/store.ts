@@ -6,8 +6,8 @@ import { userReducer } from '@/entities/User';
 import { authMiddleware } from '@/features/AuthByUsername';
 import { createReducerManager } from './reducerManager';
 import { $api } from '@/shared/api/api';
-import { uiReducer } from '@/widgets/Page';
 import { rtkApi } from '@/shared/api/rtkApi';
+import { uiReducer } from '@/shared/lib/UI';
 
 /**
  * @param children - что мы хотим обернуть в Provider?

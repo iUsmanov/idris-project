@@ -1,4 +1,4 @@
-import { Page } from '@/widgets/Page';
+import { PageMainContent } from '@/widgets/PageMainContent';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
@@ -9,8 +9,8 @@ export const ArticleEditPage = memo(() => {
 	const isEdit = Boolean(id);
 
 	return (
-		<Page data-testid='ArticleEditPage'>
+		<PageMainContent data-testid='ArticleEditPage'>
 			{isEdit ? t('Редактирование статьи с ID = ') + id : t('Создание новой статьи')}
-		</Page>
+		</PageMainContent>
 	);
 });

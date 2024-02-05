@@ -20,6 +20,12 @@ jest.mock('react-redux', () => ({
 
 jest.mock('../../model/services/fetchArticlesList/fetchArticlesList');
 
+const intersectionObserverMock = () => ({
+	observe: () => null,
+	unobserve: () => null,
+});
+window.IntersectionObserver = jest.fn().mockImplementation(intersectionObserverMock);
+
 describe('ArticlesInfiniteList.test', () => {
 	test('Error', async () => {
 		await componentRender(<ArticlesInfiniteList />, {

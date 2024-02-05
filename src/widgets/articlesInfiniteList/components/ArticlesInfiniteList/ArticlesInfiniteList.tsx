@@ -31,7 +31,7 @@ export const ArticlesInfiniteList = memo((props: ArticlesInfiniteListProps) => {
 	const error = useSelector(getArticlesInfiniteListError);
 	const view = useSelector(getArticlesInfiniteListView);
 
-	const { onChangeView, onChangeSort, onChangeOrder, onChangeSearch, onChangeType } =
+	const { onChangeView, onChangeSort, onChangeOrder, onChangeSearch, onChangeType, triggerRef } =
 		useArticlesInfiniteList();
 
 	if (error) {
@@ -65,6 +65,7 @@ export const ArticlesInfiniteList = memo((props: ArticlesInfiniteListProps) => {
 						isLoading={isLoading}
 						view={view}
 					/>
+					<div ref={triggerRef} />
 				</VStack>
 			}
 		/>

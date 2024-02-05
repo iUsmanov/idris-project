@@ -31,7 +31,7 @@ export const ArticlesInfiniteList = memo((props: ArticlesInfiniteListProps) => {
 	const error = useSelector(getArticlesInfiniteListError);
 	const view = useSelector(getArticlesInfiniteListView);
 
-	const { onChangeView, onChangeSort, onChangeOrder, onChangeSearch, onChangeType } =
+	const { onChangeView, onChangeSort, onChangeOrder, onChangeSearch, onChangeType, triggerRef } =
 		useArticlesInfiniteList();
 
 	if (error) {
@@ -50,12 +50,15 @@ export const ArticlesInfiniteList = memo((props: ArticlesInfiniteListProps) => {
 			data-testid='ArticlesInfiniteList'
 			left={<ArticleViewSelector view={view} onViewClick={onChangeView} />}
 			content={
-				<ArticleList
-					className={classNames('', {}, [className])}
-					articles={articles}
-					isLoading={isLoading}
-					view={view}
-				/>
+				<>
+					<ArticleList
+						className={classNames('', {}, [className])}
+						articles={articles}
+						isLoading={isLoading}
+						view={view}
+					/>
+					<div ref={triggerRef} />
+				</>
 			}
 			right={
 				<Card
