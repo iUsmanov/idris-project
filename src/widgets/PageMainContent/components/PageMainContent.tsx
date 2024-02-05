@@ -18,7 +18,7 @@ export const PageMainContent = (props: PageProps) => {
 		toggleFeatures({
 			name: 'isBeautyDesign',
 			on: () => undefined,
-			off: () => wrapperRef.current,
+			off: () => wrapperRef,
 		})
 	);
 

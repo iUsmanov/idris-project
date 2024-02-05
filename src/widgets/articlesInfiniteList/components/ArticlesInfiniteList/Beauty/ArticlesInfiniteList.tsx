@@ -39,7 +39,7 @@ export const ArticlesInfiniteList = memo((props: ArticlesInfiniteListProps) => {
 	useInfiniteScroll({
 		trigger: triggerRef.current,
 		parent: undefined,
-		callback: onLoadNextPart,
+		callback: isLoading ? undefined : onLoadNextPart,
 	});
 
 	if (error) {
@@ -65,7 +65,7 @@ export const ArticlesInfiniteList = memo((props: ArticlesInfiniteListProps) => {
 						isLoading={isLoading}
 						view={view}
 					/>
-					<div ref={triggerRef} />
+					<div ref={triggerRef} style={{ height: 10 }} />
 				</>
 			}
 			right={

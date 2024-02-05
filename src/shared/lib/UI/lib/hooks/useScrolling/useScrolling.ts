@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { MutableRefObject, useEffect, useRef } from 'react';
 import { UIEvent } from 'react';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { uiActions } from '@/shared/lib/UI/model/slice/UISlice';
@@ -8,7 +8,10 @@ import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle';
 import { useSelector } from 'react-redux';
 import { StateSchema } from '@/app/providers/StoreProvider';
 
-export function useScrolling(parent: HTMLElement = document.body, listName?: string) {
+export function useScrolling(
+	parent: HTMLElement | MutableRefObject<HTMLDivElement> = document.body,
+	listName?: string
+) {
 	const dispatch = useAppDispatch();
 	const { pathname } = useLocation();
 	const listPath = useRef<string>(listName ? `${pathname}.${listName}` : pathname);
@@ -26,36 +29,40 @@ export function useScrolling(parent: HTMLElement = document.body, listName?: str
 
 	useEffect(() => {
 		const s = setTimeout(() => {
-			if (parent) {
-				if (parent === document.body) {
-					console.log('By mount parent is body');
-					window.screenY = scrollPosition;
-				} else {
-					console.log('By mount parent is main');
-					parent.scrollTop = scrollPosition;
-				}
+			// if (parent) {
+			if (parent === document.body) {
+				console.log('By mount parent is body');
+				window.screenY = scrollPosition;
+				// @ts-ignore
+			} else if (parent.current) {
+				console.log('By mount parent is main');
+				// @ts-ignore
+				parent.current.scrollTop = scrollPosition;
 			}
+			// }
 		}, 0);
 
 		return () => {
 			clearTimeout(s);
 		};
+		// @ts-ignore
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [parent]);
+	}, [parent, parent.current]);
 
 	useEffect(() => {
 		if (parent === document.body) {
 			window.onscroll = onScroll;
 			console.log('OnScroll changed on body');
-		} else {
-			if (parent) {
-				console.log('OnScroll changed on main');
+			// @ts-ignore
+		} else if (parent.current) {
+			console.log('OnScroll changed on main');
 
-				parent.onscroll = onScroll;
-			}
+			// @ts-ignore
+			parent.current.onscroll = onScroll;
 		}
+		// @ts-ignore
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [parent]);
+	}, [parent, parent.current]);
 
 	// useEffect(() => {
 	// 	const s = setInterval(() => {

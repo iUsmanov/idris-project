@@ -18,7 +18,6 @@ import { Text } from '@/shared/components/Text';
 import { ToggleFeatures } from '@/shared/lib/featureFlags';
 import { ArticlesInfiniteListBeauty } from './Beauty/ArticlesInfiniteList.async';
 import { useArticlesInfiniteList } from '../../lib/hooks/useArticlesInfiniteList';
-import { useInfiniteScroll } from '@/shared/lib/hooks/useInfiniteScroll/useInfiniteScroll';
 
 interface ArticlesInfiniteListProps {
 	className?: string;
@@ -36,11 +35,11 @@ export const ArticlesInfiniteList = memo((props: ArticlesInfiniteListProps) => {
 	const { onChangeView, onChangeSort, onChangeOrder, onChangeSearch, onChangeType, onLoadNextPart } =
 		useArticlesInfiniteList();
 
-	useInfiniteScroll({
-		trigger: triggerRef.current,
-		parent: undefined,
-		callback: onLoadNextPart,
-	});
+	// useInfiniteScroll({
+	// 	trigger: triggerRef.current,
+	// 	parent: undefined,
+	// 	callback: isLoading ? undefined : onLoadNextPart,
+	// });
 
 	if (error) {
 		return (

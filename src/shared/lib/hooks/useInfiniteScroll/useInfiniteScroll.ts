@@ -8,10 +8,21 @@ export interface UseInfiniteScroll {
 
 export function useInfiniteScroll(props: UseInfiniteScroll) {
 	const { callback, trigger, parent } = props;
+	// useEffect(() => {
+	// 	const s = setInterval(() => {
+	// 		console.log(trigger);
+	// 	}, 500);
 
+	// 	return () => {
+	// 		clearTimeout(s);
+	// 	};
+	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
+	// }, []);
 	useEffect(() => {
+		console.log(trigger);
 		if (!trigger) return;
 		let observer: IntersectionObserver | null = null;
+		console.log(trigger);
 		if (callback) {
 			const options = {
 				root: parent,
