@@ -13,7 +13,6 @@ interface PageProps extends TestProps {
 export const PageMainContent = (props: PageProps) => {
 	const { className, children, 'data-testid': dataTestId = 'PageMainContent' } = props;
 	const wrapperRef = useRef() as MutableRefObject<HTMLDivElement>;
-	// const [node, setNode] = useState(wrapperRef.current)
 	useScrolling(
 		toggleFeatures({
 			name: 'isBeautyDesign',
@@ -21,19 +20,6 @@ export const PageMainContent = (props: PageProps) => {
 			off: () => wrapperRef,
 		})
 	);
-
-	// console.log(wrapperRef.current);
-
-	// useEffect(() => {
-	// 	const s = setInterval(() => {
-	// 		console.log(wrapperRef.current);
-	// 	}, 500);
-
-	// 	return () => {
-	// 		clearTimeout(s);
-	// 	};
-	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	// }, []);
 
 	return (
 		<main
@@ -59,6 +45,21 @@ export const PageMainContent = (props: PageProps) => {
 };
 
 /* 
+
+
+
+	// console.log(wrapperRef.current);
+
+	// useEffect(() => {
+	// 	const s = setInterval(() => {
+	// 		console.log(wrapperRef.current);
+	// 	}, 500);
+
+	// 	return () => {
+	// 		clearTimeout(s);
+	// 	};
+	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
+	// }, []);
 
 
 		toggleFeatures({

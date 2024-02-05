@@ -1,4 +1,4 @@
-import { MutableRefObject, memo, useRef } from 'react';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useSelector } from 'react-redux';
@@ -30,16 +30,9 @@ export const ArticlesInfiniteList = memo((props: ArticlesInfiniteListProps) => {
 	const isLoading = useSelector(getArticlesInfiniteListIsLoading);
 	const error = useSelector(getArticlesInfiniteListError);
 	const view = useSelector(getArticlesInfiniteListView);
-	const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
 
-	const { onChangeView, onChangeSort, onChangeOrder, onChangeSearch, onChangeType, onLoadNextPart } =
+	const { onChangeView, onChangeSort, onChangeOrder, onChangeSearch, onChangeType, triggerRef } =
 		useArticlesInfiniteList();
-
-	// useInfiniteScroll({
-	// 	triggerRef: triggerRef,
-	// 	parent: undefined,
-	// 	callback: isLoading ? undefined : onLoadNextPart,
-	// });
 
 	if (error) {
 		return (

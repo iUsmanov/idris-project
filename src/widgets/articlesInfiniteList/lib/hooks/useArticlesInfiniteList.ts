@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { MutableRefObject, useCallback, useMemo, useRef } from 'react';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import {
 	articlesInfiniteListActions,
@@ -12,9 +12,14 @@ import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
 import { ArticleView } from '@/entities/Article';
 import { LOCAL_STORAGE_ARTICLE_VIEW_KEY } from '@/shared/const/localStorage';
 import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
+import { useInfiniteScroll } from '@/shared/lib/hooks/useInfiniteScroll/useInfiniteScroll';
+import { useSelector } from 'react-redux';
+import { getArticlesInfiniteListIsLoading } from '../../model/selectors/articlesInfiniteListSelectors';
 
 export function useArticlesInfiniteList() {
 	const dispatch = useAppDispatch();
+	const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
+	const isLoading = useSelector(getArticlesInfiniteListIsLoading);
 
 	const reducers = useMemo<ReducersList>(
 		() => ({
@@ -40,6 +45,12 @@ export function useArticlesInfiniteList() {
 			dispatch(fetchNextArticlesPage());
 		}
 	}, [dispatch]);
+
+	useInfiniteScroll({
+		triggerRef: triggerRef,
+		parent: undefined,
+		callback: isLoading ? undefined : onLoadNextPart,
+	});
 
 	const debouncedFetchData = useDebounce(fetchData, 500);
 
@@ -77,6 +88,6 @@ export function useArticlesInfiniteList() {
 		onChangeOrder,
 		onChangeSearch,
 		onChangeType,
-		onLoadNextPart,
+		triggerRef,
 	};
 }

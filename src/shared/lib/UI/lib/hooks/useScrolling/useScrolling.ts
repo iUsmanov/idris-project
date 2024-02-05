@@ -19,8 +19,13 @@ export function useScrolling(
 
 	const onScroll = useThrottle((e: UIEvent<HTMLDivElement>) => {
 		if (parent === document.body) {
-			dispatch(uiActions.setScrollPosition({ path: listPath.current, position: window.screenY }));
+			// console.log('scrolliing body');
+			dispatch(
+				// scrollY почему-то не работает и всегда бывает равен 0
+				uiActions.setScrollPosition({ path: listPath.current, position: window.pageYOffset })
+			);
 		} else {
+			// console.log('scrolliing another');
 			dispatch(
 				uiActions.setScrollPosition({ path: listPath.current, position: e.currentTarget.scrollTop })
 			);
@@ -31,11 +36,11 @@ export function useScrolling(
 		const s = setTimeout(() => {
 			// if (parent) {
 			if (parent === document.body) {
-				console.log('By mount parent is body');
-				window.screenY = scrollPosition;
+				// console.log('By mount parent is body');
+				window.scrollY = scrollPosition;
 				// @ts-ignore
 			} else if (parent.current) {
-				console.log('By mount parent is main');
+				// console.log('By mount parent is main');
 				// @ts-ignore
 				parent.current.scrollTop = scrollPosition;
 			}
@@ -52,10 +57,10 @@ export function useScrolling(
 	useEffect(() => {
 		if (parent === document.body) {
 			window.onscroll = onScroll;
-			console.log('OnScroll changed on body');
+			// console.log('OnScroll changed on body');
 			// @ts-ignore
 		} else if (parent.current) {
-			console.log('OnScroll changed on main');
+			// console.log('OnScroll changed on main');
 
 			// @ts-ignore
 			parent.current.onscroll = onScroll;
@@ -66,7 +71,7 @@ export function useScrolling(
 
 	// useEffect(() => {
 	// 	const s = setInterval(() => {
-	// 		console.log(window.screenY);
+	// 		console.log(window.scrollY);
 	// 	}, 500);
 
 	// 	return () => {
