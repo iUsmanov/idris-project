@@ -3,14 +3,15 @@ import { MutableRefObject, useEffect } from 'react';
 export interface UseInfiniteScroll {
 	callback?: () => void;
 	triggerRef: MutableRefObject<HTMLDivElement>;
-	parent?: HTMLElement;
+	parentRef?: MutableRefObject<HTMLElement>;
 }
 
 export function useInfiniteScroll(props: UseInfiniteScroll) {
-	const { callback, triggerRef, parent } = props;
+	const { callback, triggerRef, parentRef } = props;
 
 	useEffect(() => {
 		const triggerElement = triggerRef.current;
+		const parentElement = parentRef?.current;
 
 		if (!triggerElement) return;
 
@@ -18,7 +19,7 @@ export function useInfiniteScroll(props: UseInfiniteScroll) {
 
 		if (callback) {
 			const options = {
-				root: parent,
+				root: parentElement,
 				rootMargin: '10px',
 				threshold: 1.0,
 			};
@@ -40,7 +41,7 @@ export function useInfiniteScroll(props: UseInfiniteScroll) {
 				observer.unobserve(triggerElement);
 			}
 		};
-	}, [callback, parent, triggerRef]);
+	}, [callback, parentRef, triggerRef]);
 }
 /* 
 // After callback called

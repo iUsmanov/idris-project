@@ -48,7 +48,7 @@ export function useArticlesInfiniteList() {
 
 	useInfiniteScroll({
 		triggerRef: triggerRef,
-		parent: undefined,
+		parentRef: undefined,
 		callback: isLoading ? undefined : onLoadNextPart,
 	});
 

@@ -68,15 +68,4 @@ export function useScrolling(
 		// @ts-ignore
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [parent, parent.current]);
-
-	// useEffect(() => {
-	// 	const s = setInterval(() => {
-	// 		console.log(window.scrollY);
-	// 	}, 500);
-
-	// 	return () => {
-	// 		clearTimeout(s);
-	// 	};
-	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	// }, []);
 }
