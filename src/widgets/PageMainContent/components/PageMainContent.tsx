@@ -12,14 +12,8 @@ interface PageProps extends TestProps {
 
 export const PageMainContent = (props: PageProps) => {
 	const { className, children, 'data-testid': dataTestId = 'PageMainContent' } = props;
-	const wrapperRef = useRef() as MutableRefObject<HTMLDivElement>;
-	useScrolling(
-		toggleFeatures({
-			name: 'isBeautyDesign',
-			on: () => undefined,
-			off: () => wrapperRef,
-		})
-	);
+	const parentRef = useRef() as MutableRefObject<HTMLDivElement>;
+	useScrolling(parentRef);
 
 	return (
 		<main
@@ -36,7 +30,7 @@ export const PageMainContent = (props: PageProps) => {
 			ref={toggleFeatures({
 				name: 'isBeautyDesign',
 				on: () => undefined,
-				off: () => wrapperRef,
+				off: () => parentRef,
 			})}
 		>
 			{children}
@@ -48,11 +42,11 @@ export const PageMainContent = (props: PageProps) => {
 
 
 
-	// console.log(wrapperRef.current);
+	// console.log(parentRef.current);
 
 	// useEffect(() => {
 	// 	const s = setInterval(() => {
-	// 		console.log(wrapperRef.current);
+	// 		console.log(parentRef.current);
 	// 	}, 500);
 
 	// 	return () => {
@@ -65,11 +59,11 @@ export const PageMainContent = (props: PageProps) => {
 		toggleFeatures({
 			name: 'isBeautyDesign',
 			on: () => (document.body.scrollTop = scrollPosition),
-			off: () => (wrapperRef.current.scrollTop = scrollPosition),
+			off: () => (parentRef.current.scrollTop = scrollPosition),
 		});
 
 			console.log(pathname);
 	console.log(scrollPosition);
-	console.log(wrapperRef.current);
+	console.log(parentRef.current);
 
 */
