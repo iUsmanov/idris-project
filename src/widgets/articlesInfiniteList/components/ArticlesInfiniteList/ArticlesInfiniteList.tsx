@@ -36,7 +36,7 @@ export const ArticlesInfiniteList = memo((props: ArticlesInfiniteListProps) => {
 		useArticlesInfiniteList();
 
 	// useInfiniteScroll({
-	// 	trigger: triggerRef.current,
+	// 	triggerRef: triggerRef,
 	// 	parent: undefined,
 	// 	callback: isLoading ? undefined : onLoadNextPart,
 	// });
