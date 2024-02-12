@@ -49,3 +49,5 @@ body,.app {
 		border: 2px solid var(--accent-beauty);  /* отступ вокруг бегунка */
 	}
 }
+
+iframe#webpack-dev-server-client-overlay{display:none!important}

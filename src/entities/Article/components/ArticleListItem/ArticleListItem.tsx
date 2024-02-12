@@ -1,4 +1,4 @@
-import { HTMLAttributeAnchorTarget, memo } from 'react';
+import { HTMLAttributeAnchorTarget, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './ArticleListItem.module.scss';
@@ -8,25 +8,32 @@ import { Text } from '@/shared/components/Text';
 import { HStack } from '@/shared/components/Stack';
 import { Icon } from '@/shared/components/Icon';
 import EyeIcon from '@/shared/assets/icons/eye-20-20.svg';
-import { Avatar } from '@/shared/components/Avatar';
-import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 import { AppLink } from '@/shared/components/AppLink';
 import { getRouteArticleDetails } from '@/shared/const/router';
 import { AppImage } from '@/shared/components/AppImage';
 import { Skeleton } from '@/shared/components/Skeleton';
 import { ToggleFeatures } from '@/shared/lib/featureFlags';
 import { ArticleListItemBeauty } from './Beauty/ArticleListItem.async';
+import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
+import { Avatar } from '@/shared/components/Avatar';
+import { SESSION_STORAGE_CURRENT_ARTICLE_ID_KEY } from '@/shared/const/sessionStorage';
 
 interface ArticleListItemProps {
 	className?: string;
 	article: Article;
 	view: ArticleView;
 	target?: HTMLAttributeAnchorTarget;
+	index?: number;
 }
 
 export const ArticleListItem = memo((props: ArticleListItemProps) => {
-	const { className, article, view, target } = props;
+	const { className, article, view, target, index } = props;
 	const { t } = useTranslation('articles');
+
+	const saveArticleId = useCallback(() => {
+		if (!index) return;
+		sessionStorage.setItem(SESSION_STORAGE_CURRENT_ARTICLE_ID_KEY, JSON.stringify(index));
+	}, [index]);
 
 	const types = (
 		<Text size='size_m' text={article.type.join(', ')} className={cls.types} data-testid='Types' />
@@ -70,7 +77,11 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 							<ArticleTextBlockComponent block={textBlock} className={cls.textBlock} />
 						)}
 						<HStack align='center' justify='between'>
-							<AppLink to={getRouteArticleDetails(article.id)} variant='outline'>
+							<AppLink
+								to={getRouteArticleDetails(article.id)}
+								variant='outline'
+								onClick={saveArticleId}
+							>
 								{t('Читать далее...')}
 							</AppLink>
 							{views}
@@ -86,7 +97,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 			name='isBeautyDesign'
 			on={<ArticleListItemBeauty {...props} />}
 			off={
-				<AppLink to={getRouteArticleDetails(article.id)} target={target}>
+				<AppLink to={getRouteArticleDetails(article.id)} target={target} onClick={saveArticleId}>
 					<Card
 						className={classNames('', {}, [className, cls[view]])}
 						data-testid='ArticleListItem.TILE'

@@ -6,3 +6,4 @@ export {
 	getArticleDetailsError,
 	getArticleDetailsData,
 } from './model/selectors/articleDetailsSelectors/articleDetailsSelectors';
+export { getTilesQuantity } from './lib/helpers/getTilesQuantity';

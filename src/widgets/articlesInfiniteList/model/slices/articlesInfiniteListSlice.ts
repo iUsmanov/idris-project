@@ -4,6 +4,7 @@ import { Article, ArticleView } from '@/entities/Article';
 import { fetchArticlesList } from '../services/fetchArticlesList/fetchArticlesList';
 import { ArticlesInfiniteListSchema } from '../types/articlesInfiniteListSchema';
 import { defaultArticleView, initialState } from '../consts/articlesInfiniteListConsts';
+import { getTilesQuantity } from '@/entities/Article';
 
 const articlesInfiniteListAdapter = createEntityAdapter<Article>({
 	selectId: (article) => article.id,
@@ -19,7 +20,7 @@ export const articlesInfiniteListSlice = createSlice({
 	reducers: {
 		setView: (state, action: PayloadAction<ArticleView>) => {
 			state.view = action.payload;
-			state.limit = state.view === 'LIST' ? 4 : 9;
+			state.limit = state.view === 'LIST' ? 4 : getTilesQuantity();
 		},
 		setPage: (state, action: PayloadAction<number>) => {
 			state.page = action.payload;
@@ -27,7 +28,7 @@ export const articlesInfiniteListSlice = createSlice({
 		initState: (state) => {
 			const view = defaultArticleView;
 			state.view = view;
-			state.limit = state.view === 'LIST' ? 4 : 9;
+			state.limit = state.view === 'LIST' ? 4 : getTilesQuantity();
 			state._inited = true;
 		},
 	},

@@ -1,4 +1,4 @@
-import { HTMLAttributeAnchorTarget, memo } from 'react';
+import { HTMLAttributeAnchorTarget, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './ArticleListItem.module.scss';
@@ -13,17 +13,24 @@ import { AppLink } from '@/shared/components/AppLink';
 import { getRouteArticleDetails } from '@/shared/const/router';
 import { AppImage } from '@/shared/components/AppImage';
 import { Skeleton } from '@/shared/components/Skeleton';
+import { SESSION_STORAGE_CURRENT_ARTICLE_ID_KEY } from '@/shared/const/sessionStorage';
 
 export interface ArticleListItemProps {
 	className?: string;
 	article: Article;
 	view: ArticleView;
 	target?: HTMLAttributeAnchorTarget;
+	index?: number;
 }
 
 export const ArticleListItem = memo((props: ArticleListItemProps) => {
-	const { className, article, view, target } = props;
+	const { className, article, view, target, index } = props;
 	const { t } = useTranslation('articles');
+
+	const saveArticleId = useCallback(() => {
+		if (!index) return;
+		sessionStorage.setItem(SESSION_STORAGE_CURRENT_ARTICLE_ID_KEY, JSON.stringify(index));
+	}, [index]);
 
 	const userInfo = (
 		<>
@@ -68,7 +75,11 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 					<Text text={textBlock.paragraphs.slice(0, 2).join(' ')} className={cls.textBlock} />
 				)}
 				<HStack max align='center' justify='between'>
-					<AppLink to={getRouteArticleDetails(article.id)} variant='outline'>
+					<AppLink
+						to={getRouteArticleDetails(article.id)}
+						variant='outline'
+						onClick={saveArticleId}
+					>
 						{t('Читать далее...')}
 					</AppLink>
 					{views}
@@ -78,7 +89,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 	}
 
 	return (
-		<AppLink to={getRouteArticleDetails(article.id)} target={target}>
+		<AppLink to={getRouteArticleDetails(article.id)} target={target} onClick={saveArticleId}>
 			<Card
 				flex
 				direction='column'

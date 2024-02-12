@@ -31,8 +31,15 @@ export const ArticlesInfiniteList = memo((props: ArticlesInfiniteListProps) => {
 	const error = useSelector(getArticlesInfiniteListError);
 	const view = useSelector(getArticlesInfiniteListView);
 
-	const { onChangeView, onChangeSort, onChangeOrder, onChangeSearch, onChangeType, triggerRef } =
-		useArticlesInfiniteList();
+	const {
+		onChangeView,
+		onChangeSort,
+		onChangeOrder,
+		onChangeSearch,
+		onChangeType,
+		triggerRef,
+		onLoadNextPart,
+	} = useArticlesInfiniteList();
 
 	if (error) {
 		return (
@@ -50,7 +57,7 @@ export const ArticlesInfiniteList = memo((props: ArticlesInfiniteListProps) => {
 			name='isBeautyDesign'
 			on={<ArticlesInfiniteListBeauty {...props} />}
 			off={
-				<VStack max gap='16' data-testid='ArticlesInfiniteList'>
+				<VStack max gap='16' data-testid='ArticlesInfiniteList' style={{ height: '100%' }}>
 					<HStack max justify='between'>
 						<VStack gap='16' className={classNames('', {}, [className])}>
 							<ArticlesSort onChangeOrder={onChangeOrder} onChangeSort={onChangeSort} />
@@ -64,6 +71,8 @@ export const ArticlesInfiniteList = memo((props: ArticlesInfiniteListProps) => {
 						articles={articles}
 						isLoading={isLoading}
 						view={view}
+						endReached={onLoadNextPart}
+						virtualization
 					/>
 					<div ref={triggerRef} />
 				</VStack>

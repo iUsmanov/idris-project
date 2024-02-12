@@ -9,6 +9,7 @@ import { Button } from '@/shared/components/Button';
 import { Icon } from '@/shared/components/Icon';
 import { ToggleFeatures } from '@/shared/lib/featureFlags';
 import { ArticleViewSelectorBeauty } from './Beauty/ArticleViewSelector.async';
+import { SESSION_STORAGE_CURRENT_ARTICLE_ID_KEY } from '@/shared/const/sessionStorage';
 
 interface ArticleViewSelectorProps {
 	className?: string;
@@ -38,6 +39,7 @@ export const ArticleViewSelector = memo((props: ArticleViewSelectorProps) => {
 	const onClick = useCallback(
 		(view: ArticleView) => () => {
 			onViewClick?.(view);
+			sessionStorage.setItem(SESSION_STORAGE_CURRENT_ARTICLE_ID_KEY, '0');
 		},
 		[onViewClick]
 	);

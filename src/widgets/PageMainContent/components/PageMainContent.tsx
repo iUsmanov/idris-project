@@ -3,7 +3,6 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './PageMainContent.module.scss';
 import { TestProps } from '@/shared/types/tests';
 import { toggleFeatures } from '@/shared/lib/featureFlags';
-import { useScrolling } from '@/shared/lib/UI';
 
 interface PageProps extends TestProps {
 	className?: string;
@@ -13,7 +12,7 @@ interface PageProps extends TestProps {
 export const PageMainContent = (props: PageProps) => {
 	const { className, children, 'data-testid': dataTestId = 'PageMainContent' } = props;
 	const parentRef = useRef() as MutableRefObject<HTMLDivElement>;
-	useScrolling(parentRef);
+	// useScrolling(parentRef);
 
 	return (
 		<main
