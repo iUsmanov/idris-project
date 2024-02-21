@@ -42,7 +42,7 @@ export const useArticleListMatrix = (props: UseArticleListMatrixProps) => {
 	const renderArticleVirtualization = useCallback(
 		(index: number, article: Article) => {
 			return (
-				<div style={view === 'TILE' ? { height: 286, width: 230 } : { minHeight: 300 }}>
+				<div style={view === 'TILE' ? { height: 286, width: 230 } : { minHeight: 443 }}>
 					<ArticleListItem
 						target={target}
 						key={article.id}

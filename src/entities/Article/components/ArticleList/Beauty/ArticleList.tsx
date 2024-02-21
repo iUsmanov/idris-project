@@ -6,7 +6,7 @@ import { Article, ArticleView } from '../../../model/types/article';
 import { HStack, VStack } from '@/shared/components/Stack';
 import { Text } from '@/shared/components/Text';
 import { useArticleListBeauty } from '../../../lib/hooks/useArticleListBeauty';
-import { Virtuoso } from 'react-virtuoso';
+import { Virtuoso, VirtuosoGrid } from 'react-virtuoso';
 
 export interface ArticleListProps {
 	className?: string;
@@ -59,6 +59,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
 				data-testid='ArticleList.LIST'
 			>
 				<Virtuoso
+					totalCount={articles?.length}
 					style={{ height: '100%', width: '100%' }}
 					data={articles}
 					endReached={endReached}
@@ -68,23 +69,42 @@ export const ArticleList = memo((props: ArticleListProps) => {
 						ScrollSeekPlaceholder: Footer,
 						Footer,
 					}}
-					customScrollParent={document.body}
+					useWindowScroll
 				/>
 			</VStack>
 		);
 	}
 
 	return (
-		<HStack
-			gap='16'
-			wrap='wrap'
-			max
-			className={classNames(cls.articleList, {}, [className, cls[view]])}
-			data-testid='ArticleList.TILE'
-		>
-			{renderArticles}
-			{renderSkeletons}
-		</HStack>
+		<>
+			{virtualization ? (
+				<VirtuosoGrid
+					ref={virtuosoGridRef}
+					style={{ height: '100%', width: '100%' }}
+					data={articles}
+					endReached={endReached}
+					totalCount={articles?.length}
+					itemContent={renderArticleVirtualization}
+					components={{
+						Footer: Footer,
+						ScrollSeekPlaceholder: Footer,
+					}}
+					listClassName={cls.flex}
+					useWindowScroll
+				/>
+			) : (
+				<HStack
+					gap='16'
+					wrap='wrap'
+					max
+					className={classNames(cls.articleList, {}, [className, cls[view]])}
+					data-testid='ArticleList.TILE'
+				>
+					{renderArticles}
+					{renderSkeletons}
+				</HStack>
+			)}
+		</>
 	);
 });
 
@@ -102,18 +122,5 @@ export const ArticleList = memo((props: ArticleListProps) => {
 			</VStack>
 		);
 	}
-
-	return (
-		<HStack
-			gap='16'
-			wrap='wrap'
-			max
-			className={classNames(cls.articleList, {}, [className, cls[view]])}
-			data-testid='ArticleList.TILE'
-		>
-			{renderArticles}
-			{renderSkeletons}
-		</HStack>
-	);
 
 */
